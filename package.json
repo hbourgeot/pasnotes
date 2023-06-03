@@ -13,6 +13,8 @@
     "@fontsource/fira-mono": "^4.5.10",
     "@neoconfetti/svelte": "^1.0.0",
     "@smui/button": "7.0.0-beta.8",
+    "@smui/data-table": "^7.0.0-beta.8",
+    "@smui/top-app-bar": "^7.0.0-beta.8",
     "@steeze-ui/components": "^1.2.0",
     "@steeze-ui/material-design-icons": "^1.0.0",
     "@steeze-ui/tabler-icons": "^2.0.0",
@@ -32,6 +34,7 @@
   "type": "module",
   "dependencies": {
     "@steeze-ui/svelte-icon": "^1.3.2",
+    "svelte-carousel": "^1.0.25",
     "vite-plugin-windicss": "^1.8.10"
   }
 }
