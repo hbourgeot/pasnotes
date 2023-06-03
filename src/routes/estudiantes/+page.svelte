@@ -21,6 +21,7 @@
         }, 
     ]
         
+    console.log('Desarrollado por Samuel Suarez. Github: @imsamuelsuarez')
     
 </script>
 
@@ -44,7 +45,7 @@
                         <button class=' bg-[#884A39]'>Descargar</button>
             </div> 
 
-            <div class='w-full h-auto flex flex-wrap flex-col gap-4 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200' 
+            <div class='w-full max-w-[830px] h-auto flex flex-wrap flex-col gap-4 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200' 
                 
                 
                 >

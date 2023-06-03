@@ -12,6 +12,7 @@
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
     "@neoconfetti/svelte": "^1.0.0",
+    "@smui-extra/accordion": "^7.0.0-beta.8",
     "@smui/button": "7.0.0-beta.8",
     "@smui/data-table": "^7.0.0-beta.8",
     "@smui/top-app-bar": "^7.0.0-beta.8",
