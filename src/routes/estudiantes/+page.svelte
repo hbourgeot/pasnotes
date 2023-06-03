@@ -1,5 +1,5 @@
 <script>
-     import Carousel from 'svelte-carousel'
+
     import Logo from '$lib/images/logo.jpg'
 
     const colors = [
@@ -24,61 +24,66 @@
     
 </script>
 
-<nav class='w-full h-[60px]'>
+<nav class='w-full h-[60px]' style='border-bottom: 1px solid rgb(229 231 235);
+'>
     <a href="/" class='h-full flex flex-center'>
         <img src="{Logo}" alt="" class='logo'>
     </a>
 </nav>
-<div class="flex flex-center flex-col w-full h-screen gap-6 bg-gray-100">
-    <h1 class='text-2xl font-bold text-left w-[90%] mt-8'>¡Bienvenido, estudiante!</h1>
-    <div class='w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg' style="height: calc(100vh - 100px);">
+<div class="flex flex-center flex-col w-full min-h-screen max-h-auto gap-6 bg-gray-100">
+    <h1 class='w-[90%] mt-8 text-2xl font-bold text-center'>¡Bienvenido, estudiante!</h1>
+    <div class='w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg' style="min-height: calc(100vh - 100px); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
 
        
 
-            <div class='w-full h-[100px] carousel grid grid-cols-6'>
-                        <article class='col-span-2 bg-[#5C8984]'>Notas</article>
-                        <article class='col-span-2 bg-[#545B77]'>Inscripciones</article>
-                        <article class='col-span-2 bg-[#9DB2BF]'>Ejemploo</article>
-                        <article class='col-start-2 col-end-4 bg-[#DD58D6]'>ejemplooo</article>
-                        <article class='col-start-4 col-end-6 bg-[#884A39]'>ejemplooo</article>
+            <div class='w-full h-auto mt-5 flex flex-wrap gap-5  flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white'>
+                        <button class=' bg-[#5C8984] '><a href="/">Notas</a></button>
+                        <button class=' bg-[#545B77]'>Inscribir</button>
+                        <button class=' bg-[#9DB2BF]'>Constancias</button>
+                        <button class=' bg-[#DD58D6]'>Materias</button>
+                        <button class=' bg-[#884A39]'>Descargar</button>
             </div> 
 
-            <div class='w-full h-auto flex flex-col gap-4'>
+            <div class='w-full h-auto flex flex-wrap flex-col gap-4 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200' 
+                
+                
+                >
+                <h2 class='text-center font-bold text-[18px]'>Informacion estudiantil</h2>
                     <span>
                         <h2>Cedula:</h2>
-                        <p></p>
+                        <p> 30.573.239</p>
                     </span>
                     <span>
                         <h2>Apellido y Nombre:</h2>
-                        <p></p>
+                        <p>SUAREZ RIVERO SAMUEL ALFONZO</p>
                     </span>
                     <span>
                         <h2>Especialidad:</h2>
-                        <p></p>
+                        <p>ING. EN SISTEMAS</p>
                     </span>
                     <span>
                         <h2>Turno:</h2>
-                        <p></p>
+                        <p>Nocturno</p>
                     </span>
                     <span>
                         <h2>Lapso Ingreso:</h2>
-                        <p></p>
+                        <p>202101</p>
                     </span>
                     <span>
                         <h2>Lapso en Curso:</h2>
-                        <p></p>
+                        <p>2022/2023</p>
                     </span>
                     <span>
-                        <h2>Ultimo Lapso Cursado:</h2>
-                        <p></p>
+                        <h2>Ult. Lapso Cursado:</h2>
+                        <p>2021/2023</p>
                     </span>
                     <span>
                         <h2>Tipo Ingreso:</h2>
-                        <p></p>
+                        <p>Regular</p>
                     </span>
                     <span>
                         <h2>Estado Academico:</h2>
-                        <p></p>
+                        <p>Regular</p>
                     </span>
 
             </div>
@@ -87,8 +92,8 @@
 <style>
 
 div > article {
-    width: 110px;
-    height: 40px;
+    width: 200px;
+    height: 80px;
     border-radius: 10px;
     display: grid;
     place-content: center;
@@ -97,7 +102,7 @@ div > article {
 }
 
 span h2 {
-    font-weight: bold;
+    font-weight: 600;
     padding-left: 16px;
 }
 
