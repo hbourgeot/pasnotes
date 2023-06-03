@@ -1,27 +1,14 @@
 <script>
 
     import Logo from '$lib/images/logo.jpg'
-
-    const colors = [
-        {
-            color: '#0079FF',
-            text: 'Ejemplo 1'
-        }, 
-        {
-            color: '#0079FF',
-            text: 'Ejemplo 1'
-        }, 
-        {
-            color: '#0079FF',
-            text: 'Ejemplo 1'
-        }, 
-        {
-            color: '#0079FF',
-            text: 'Ejemplo 1'
-        }, 
-    ]
         
-    console.log('Desarrollado por Samuel Suarez. Github: @imsamuelsuarez')
+    import { ExpandMore, ExpandLess } from '@steeze-ui/material-design-icons'
+
+    import Summary from '$lib/components/Summary.svelte'
+
+    console.log('Desarrollado por Samuel Suarez. Github: @imsamuelsuarez');
+
+    let panel = false;
     
 </script>
 
@@ -45,7 +32,7 @@
                         <button class=' bg-[#884A39]'>Descargar</button>
             </div> 
 
-            <div class='w-full max-w-[830px] h-auto flex flex-wrap flex-col gap-4 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200' 
+            <!-- <div class='w-full max-w-[830px] h-auto flex flex-wrap flex-col gap-4 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200' 
                 
                 
                 >
@@ -87,7 +74,54 @@
                         <p>Regular</p>
                     </span>
 
+            </div>  -->
+            <div>
+                <Summary title='Informacion del estudiante' addClasses='w-full'>
+
+                    <div class='w-full mt-6 max-w-[830px] h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200'>
+                        <span>
+                            <h2>Cedula:</h2>
+                            <p> 30.573.239</p>
+                        </span>
+                        <span>
+                            <h2>Apellido y Nombre:</h2>
+                            <p>SUAREZ RIVERO SAMUEL ALFONZO</p>
+                        </span>
+                        <span>
+                            <h2>Especialidad:</h2>
+                            <p>ING. EN SISTEMAS</p>
+                        </span>
+                        <span>
+                            <h2>Turno:</h2>
+                            <p>Nocturno</p>
+                        </span>
+                        <span>
+                            <h2>Lapso Ingreso:</h2>
+                            <p>202101</p>
+                        </span>
+                        <span>
+                            <h2>Lapso en Curso:</h2>
+                            <p>2022/2023</p>
+                        </span>
+                        <span>
+                            <h2>Ult. Lapso Cursado:</h2>
+                            <p>2021/2023</p>
+                        </span>
+                        <span>
+                            <h2>Tipo Ingreso:</h2>
+                            <p>Regular</p>
+                        </span>
+                        <span>
+                            <h2>Estado Academico:</h2>
+                            <p>Regular</p>
+                        </span>
+                    </div>
+
+
+
+                </Summary>
             </div>
+
     </div>
 </div>
 <style>
