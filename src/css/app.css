@@ -70,3 +70,9 @@ button {
   height: 40px;
   border-radius: 100%;
 }
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
