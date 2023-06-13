@@ -1,5 +1,7 @@
 <script lang="ts">
-	import "virtual:windi.css";
+
+
+    import "virtual:windi.css";
 	import { Lock, User } from "@steeze-ui/tabler-icons";
 	import { Icon } from "@steeze-ui/svelte-icon";
 	import Pascal from "$lib/images/pascalConFondo.png";
