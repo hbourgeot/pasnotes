@@ -19,7 +19,7 @@ const authHandler: Handle = async ({ event, resolve }) => {
   const access_token = await getAccessToken(event);
 
   if (access_token) {
-    event.locals.user = (await getUser(access_token)) as unknown as Estudiante;
+    event.locals.estudiante = (await getUser(access_token)) as unknown as Estudiante;
   }
 
   return await resolve(event);
@@ -40,4 +40,4 @@ const clientHandler: Handle=async ({event, resolve}) => {
   
 }
 
-export const handle = sequence(clientHandler);
+export const handle = sequence(authHandler, clientHandler);

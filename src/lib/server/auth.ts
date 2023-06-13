@@ -1,15 +1,20 @@
 import { baseURL } from "$env/static/private";
-import type { RequestEvent } from "@sveltejs/kit";
+import { fail, type RequestEvent } from "@sveltejs/kit";
 import type { Estudiante } from "../../app";
 
 export const logIn = async (
-  { locals: { client } }: RequestEvent,
+  { locals: { client }, cookies }: RequestEvent,
   { username, password }: { username?: string; password?: string }
 ) => {
-  const { ok, status, data } = await client.POST("/auth/login", {
-    username,
-    password,
+  const { ok, status, data } = await client.POST("/api/students/login", {
+    usuario: username,
+    clave: password,
   });
+  if (!ok) {
+    return fail(400, {message: data.message})
+  }
+
+  cookies.set("access_token", data.access_token, {httpOnly: true})
 
   return { ok, status, data };
 };
@@ -19,7 +24,9 @@ export const getAccessToken = async (event: RequestEvent) => {
 
   const access_token = cookies.get("access_token");
 
-  return access_token;
+  if (access_token) {
+    return access_token;
+  }
 };
 
 export const getUser = async (token: string) => {
@@ -29,8 +36,9 @@ export const getUser = async (token: string) => {
       Authorization: token,
     };
 
+    console.log(`${baseURL}/api/students/refresh`);
     const res: Response = await fetch(`${baseURL}/api/students/refresh`, {
-      method: "POST",
+      method: "GET",
       headers,
     });
     // console.log(res)
