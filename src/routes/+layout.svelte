@@ -1,15 +1,26 @@
 <script>
-    import "../app.css";
+    import "../css/app.css";
+    import Logo from "$lib/images/logo.jpg";
 </script>
-<nav class='flex gap-10 justify-center items-center w-full h-20 bg-red-400'>
-    <a href=""><button>Profesores</button></a>
-    <a href="./estudiantes"><button>Estudiantes</button></a>
-    <a href=""><button>Otra cosa</button></a>
-</nav>
-<slot/>
 
-<style>
-    * {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+<nav
+    class="w-full h-[60px]"
+    style="border-bottom: 1px solid rgb(229 231 235);
+"
+>
+    <a href="/" class="h-full flex flex-center">
+        <img src={Logo} alt="" class="logo" />
+    </a>
+</nav>
+
+<main class='w-full h-screen'>
+    <slot/>
+</main>
+
+
+
+<style scoped>
+    main {
+        background: rgba(243, 244, 246, 1);
     }
 </style>
