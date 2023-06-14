@@ -1,8 +1,9 @@
 import { client } from "$lib/server/fetch"
-import type { Handle } from "@sveltejs/kit";
+import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import type { Estudiante } from "./app";
 import { getAccessToken, getUser } from "$lib/server/auth";
+import { expirates } from "$lib/resources/store";
 
 const authHandler: Handle = async ({ event, resolve }) => {
   console.log("http://localhost:5173/");
@@ -20,6 +21,8 @@ const authHandler: Handle = async ({ event, resolve }) => {
 
   if (access_token) {
     event.locals.estudiante = (await getUser(access_token)) as unknown as Estudiante;
+  } else {
+    throw redirect(302, "/estudiantes/login?exp=true")
   }
 
   return await resolve(event);
