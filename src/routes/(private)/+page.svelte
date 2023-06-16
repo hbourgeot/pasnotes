@@ -4,7 +4,7 @@
   import type { PageData } from "./$types";
 
   import Summary from "$lib/components/Summary.svelte";
-  import type { Estudiante } from "../../../app";
+  import type { Estudiante } from "../../app";
 
   export let data: PageData;
 

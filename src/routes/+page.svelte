@@ -3,7 +3,7 @@
 </script>
 <svelte:head> </svelte:head>
 <main class='w-full h-screen'>
-        <a href="/estudiantes">
+        <a href="/estudiantes/login">
         Ir a Estudiantes</a>
 </main>
 
