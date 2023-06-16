@@ -1,10 +1,9 @@
 <script>
     import background from '../lib/images/layered-waves-haikei.svg'
 </script>
-<svelte:head> </svelte:head>
+
 <main class='w-full h-screen'>
-        <a href="/estudiantes/login">
-        Ir a Estudiantes</a>
+   <a href="/estudiantes">Ir a estudiantes</a>
 </main>
 
 

@@ -12,7 +12,9 @@
 	$: console.log(form);
 
 	let y: number;
-	let isExpirated = $page.url.searchParams.get("exp") ? true : false
+	let isExpirated = $page.url.searchParams.get("exp") ? true : false;
+
+	export const layout = false;
 </script>
 
 <svelte:head>
