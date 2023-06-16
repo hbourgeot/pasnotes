@@ -1,17 +1,10 @@
 <script lang="ts">
-	import "virtual:windi.css";
 	import { Lock, User } from "@steeze-ui/tabler-icons";
 	import { Icon } from "@steeze-ui/svelte-icon";
 	import Pascal from "$lib/images/pascalConFondo.png";
-	import type { ActionData } from "./$types";
+	
 
-	export let form: ActionData;
-	$: if (form?.message) {
-		alert(form.message);
-	}
-	import { enhance } from "$app/forms";
-
-	let y: number;
+	 let y: number;
 </script>
 
 <svelte:head>
@@ -23,8 +16,7 @@
 	class="w-full h-screen xl:w-1/2 flex flex-col justify-center items-center mb-15 xl:mb-0"
 >
 	<form
-		use:enhance
-		method="post"
+
 		class="max-w-[485px] w-5/12 flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
 	>
 		<img src={Pascal} alt="Instituto Pascal" class="w-1/2" />

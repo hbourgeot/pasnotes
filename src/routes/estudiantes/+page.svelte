@@ -16,15 +16,6 @@
 
 </script>
 
-<!-- <nav
-    class="w-full h-[60px]"
-    style="border-bottom: 1px solid rgb(229 231 235);
-"
->
-    <a href="/" class="h-full flex flex-center">
-        <img src={Logo} alt="" class="logo" />
-    </a>
-</nav> -->
 <div
     class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
     style="min-height: calc(100vh + 10rem);"
@@ -40,11 +31,11 @@
             class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
             md:[&>button]:w-1/6"
         >
-            <button class=" bg-[#5C8984]"><a href="./estudiantes/notas">Notas</a></button>
+            <button class=""><a href="./estudiantes/notas">Notas</a></button>
             <button>Inscribir</button>
-            <button class=" bg-[#9DB2BF]">Constancias</button>
-            <button class=" bg-[#DD58D6]">Materias</button>
-            <button class='bg-black'> Descargar </button>
+            <button class="">Constancias</button>
+            <button class="">Materias</button>
+            <button class=''> Descargar </button>
                
         </div>
 
@@ -120,7 +111,7 @@
     }
 
     button {
-        background-color: rgba(221, 88, 214, 0.7);
+        background-color: #db0081;
     }
 
     details .expanded {
