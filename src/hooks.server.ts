@@ -1,6 +1,33 @@
 import { client } from "$lib/server/fetch"
-import type { Handle } from "@sveltejs/kit";
+import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
+import type { Estudiante } from "./app";
+import { getAccessToken, getUser } from "$lib/server/auth";
+import { expirates } from "$lib/resources/store";
+
+const authHandler: Handle = async ({ event, resolve }) => {
+  console.log("http://localhost:5173/");
+  console.log(
+    "\x1b[35m",
+    "HOOK RUN (This function runs every time the SvelteKit server receives a request — whether that happens while the app is running, or during prerendering)",
+    "https://kit.svelte.dev/docs/hooks"
+  );
+  console.log(
+    "\x1b[0;36m",
+    "Requests for static assets — which includes pages that were already prerendered — are not handled by SvelteKit."
+  );
+
+  const access_token = await getAccessToken(event);
+
+  if (access_token) {
+    event.locals.estudiante = (await getUser(access_token)) as unknown as Estudiante;
+  } else {
+    throw redirect(302, "/estudiantes/login?exp=true")
+  }
+
+  return await resolve(event);
+};
+
 const clientHandler: Handle=async ({event, resolve}) => {
 
 
@@ -16,4 +43,4 @@ const clientHandler: Handle=async ({event, resolve}) => {
   
 }
 
-export const handle = sequence(clientHandler);
+export const handle = sequence(authHandler, clientHandler);

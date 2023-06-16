@@ -1,10 +1,15 @@
 <script lang="ts">
+
+
+    import "virtual:windi.css";
 	import { Lock, User } from "@steeze-ui/tabler-icons";
 	import { Icon } from "@steeze-ui/svelte-icon";
 	import Pascal from "$lib/images/pascalConFondo.png";
-	
+	import { enhance } from "$app/forms";
+  import { page } from "$app/stores";
 
-	 let y: number;
+	let y: number;
+	let isExpirated = $page.url.searchParams.get("exp") ? true : false
 </script>
 
 <svelte:head>
