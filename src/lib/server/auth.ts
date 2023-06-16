@@ -1,5 +1,5 @@
 import { baseURL } from "$env/static/private";
-import { fail, type RequestEvent } from "@sveltejs/kit";
+import type  { RequestEvent } from "@sveltejs/kit";
 import type { Estudiante } from "../../app";
 
 export const logIn = async (
@@ -11,7 +11,7 @@ export const logIn = async (
     clave: password,
   });
   if (!ok) {
-    return fail(400, {message: data.message})
+    return {ok, data}
   }
 
   cookies.set("access_token", data.access_token, {httpOnly: true})

@@ -1,12 +1,15 @@
 <script lang="ts">
 
 
-    import "virtual:windi.css";
 	import { Lock, User } from "@steeze-ui/tabler-icons";
 	import { Icon } from "@steeze-ui/svelte-icon";
 	import Pascal from "$lib/images/pascalConFondo.png";
 	import { enhance } from "$app/forms";
   import { page } from "$app/stores";
+	import type { ActionData } from "./$types";
+
+	export let form: ActionData;
+	$: console.log(form);
 
 	let y: number;
 	let isExpirated = $page.url.searchParams.get("exp") ? true : false
@@ -18,12 +21,12 @@
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
 <section
-	class="w-full h-screen xl:w-1/2 flex flex-col justify-center items-center mb-15 xl:mb-0"
+	class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0"
 >
 	<form
 		use:enhance
 		method="post"
-		class="max-w-[485px] w-5/12 flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
+		class="max-w-[485px] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
 	>
 		<img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
 		<h1
@@ -31,17 +34,22 @@
 		>
 			Bienvenido
 		</h1>
+		{#if form?.message}
+			<p class="bg-red-300 text-lg p-4">
+				{form.message}
+			</p>
+			{/if}
 		<label
 			for="username"
 			class="text-xl flex justify-end items-center  border-1 rounded-lg"
 		>
-			<Icon src={User} class="h-15 w-18 p-4 border-r-1" />
+			<Icon src={User} class="h-14 w-14 p-1 border-r-1" />
 			<input
 				type="text"
 				name="username"
 				id="username"
 				placeholder="Usuario"
-				class="w-full border-0 outline-0  bg-transparent rounded-tr-lg rounded-br-lg text-xl"
+				class="w-full border-0 outline-none bg-transparent rounded-lg text-xl"
 			/>
 		</label>
 		<label
@@ -49,18 +57,18 @@
 			class="text-xl flex justify-end items-center 
 		 border-1 rounded-lg"
 		>
-			<Icon src={Lock} class="h-15 w-18 p-4 border-r-1" />
+			<Icon src={Lock} class="h-14 w-14 p-1 border-r-1" />
 			<input
 				type="password"
 				name="password"
 				id="password"
 				placeholder="Contraseña"
-				class="w-full border-0 outline-0 bg-transparent rounded-tr-lg rounded-br-lg text-xl"
+				class="w-full border-0 outline-none bg-transparent rounded-lg text-xl"
 			/>
 		</label>
 		<button
 			type="submit"
-			class="w-full bg-purple-700 p-4 rounded-lg text-light-100
+			class="w-full bg-blue-500 p-4 rounded-lg text-light-100
 			text-xl"
 			>Iniciar sesion</button
 		>

@@ -49,12 +49,10 @@
             md:[&>button]:w-1/6"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="./estudiantes/notas">Notas</a></button
+        ><a href="./estudiantes/notas">Notas de materias</a></button
       >
-      <button>Inscribir</button>
-      <button class=" bg-[#9DB2BF]">Constancias</button>
-      <button class=" bg-[#DD58D6]">Materias</button>
-      <button class="bg-black"> Descargar </button>
+      <button>Inscribir materias</button>
+      <button class=" bg-[#9DB2BF]">Generar constancia de estudio</button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
@@ -62,7 +60,7 @@
         Informacion general
       </h2>
 
-      <details class="">
+      <details class="flex w-2/5 mx-auto flex-col items-center justify-center">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -109,6 +107,27 @@
           <span>
             <h2>Estado Academico:</h2>
             <p>{estudiante.estado}</p>
+          </span>
+        </div>
+      </details>
+      <details class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center">
+        <summary
+          class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        >
+          <span class="expand">
+            <Icon src="{ExpandMore}" class="icon " />
+          </span>
+          <span class="expanded">
+            <Icon src="{ExpandLess}" class="icon " />
+          </span>
+
+          Información de materias
+        </summary>
+        <div
+          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
+        >
+          <span>
+            <h2>Nombre materia:</h2>
           </span>
         </div>
       </details>
