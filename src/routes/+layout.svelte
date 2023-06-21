@@ -1,16 +1,4 @@
 <script>
-<<<<<<< HEAD
-    import "../css/app.css";
-    import Logo from "$lib/images/logo.jpg";
-
-    import Header from '$lib/components/Header.svelte'
-</script>
-
-<Header/>
-
-<main class='w-full h-[90vh]'>
-    <slot/>
-=======
   import "../app.postcss";
   import "../css/app.css";
   import Logo from "$lib/images/logo.jpg";
@@ -32,13 +20,12 @@ import '../app.postcss';
 "
 >
   <a href="/" class="h-full flex flex-center">
-    <img src={Logo} alt class="logo" />
+    <img src={Logo} alt="" class="logo" />
   </a>
 </nav>
 
 <main class="w-full h-screen">
   <slot />
->>>>>>> 83b7b9e40ce9e8b2e7304148473732cabcfec8f8
 </main>
 
 <style scoped>

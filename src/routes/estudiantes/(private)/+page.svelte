@@ -4,7 +4,7 @@
   import type { PageData } from "./$types";
 
   import Summary from "$lib/components/Summary.svelte";
-  import type { Estudiante } from "../../app";
+  import type { Estudiante } from "../../../app";
 
   export let data: PageData;
 
@@ -38,7 +38,7 @@
   style="min-height: calc(100vh + 10rem);"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
-    ¡Bienvenido, {estudiante.nombre}!
+    ¡Bienvenid@, {estudiante.nombre}!
   </h1>
   <div
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
@@ -46,13 +46,13 @@
   >
     <div
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
-            md:[&>button]:w-1/6"
+            md:[&>button]:w-[200px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="./estudiantes/notas">Notas de materias</a></button
+        ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a></button
       >
       <button>Inscribir materias</button>
-      <button class=" bg-[#9DB2BF]">Generar constancia de estudio</button>
+      <button class=" bg-[#9DB2BF]">Generar constancia</button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
