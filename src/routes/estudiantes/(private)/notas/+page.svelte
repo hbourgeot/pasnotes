@@ -1,47 +1,22 @@
-<script>
-     import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
+<script lang="ts">
+  import type {PageData} from "./$types";
+  import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
+  import type { TableSource } from "@skeletonlabs/skeleton";
 
-     const HEADER = [
-        {
-        estudiante: "estudiante",
-        materia: 'materia',
-        curso: 'curso',
-        turno: 'nocturno'
-     }
-     ]
+  export let data: PageData;
+
+  const sourceData = [
+    { materia: "Introducción a la administración", corte1: 6, corte2: 5, corte3: 7, total: 18 },
+  ];
+
+  const tableSimple: TableSource = {
+    // A list of heading labels.
+    head: ["Materia", "1er corte", "2do corte", "3er corte", "Total"],
+    // The data visibly shown in your table body UI.
+    body: tableMapperValues(sourceData, ["materia", "corte1", "corte2", "corte3", "total"]),
+  };
 </script>
 
+<h2 class="text-3xl py-10 text-center ">Notas de <span class="text-sky-600 capitalize">{data.estudiante.nombre}</span></h2>
 
-<DataTable table$aria-label="People list" style="max-width: 100%;" class='text-center flex flex-center gap-2'>
-    <Head class='bg-color-900 ' >
-      <Row>
-        <Cell>Name</Cell>
-        <Cell>Favorite Color</Cell>
-        <Cell numeric>Favorite Number</Cell>
-      </Row>
-    </Head>
-    <Body>
-      <Row>
-        <Cell>Steve</Cell>
-        <Cell>Red</Cell>
-        <Cell numeric>45</Cell>
-      </Row>
-      <Row>
-        <Cell>Sharon</Cell>
-        <Cell>Purple</Cell>
-        <Cell numeric>5</Cell>
-      </Row>
-      <Row>
-        <Cell>Rodney</Cell>
-        <Cell>Orange</Cell>
-        <Cell numeric>32</Cell>
-      </Row>
-      <Row>
-        <Cell>Mack</Cell>
-        <Cell>Blue</Cell>
-        <Cell numeric>12</Cell>
-      </Row>
-    </Body>
-  </DataTable>
-   
-
+<Table source="{tableSimple}" />
