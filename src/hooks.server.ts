@@ -1,9 +1,9 @@
 import { client } from "$lib/server/fetch"
 import type { Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
-import type { Estudiante } from "./app";
+import type { Coordinacion, Docente, Estudiante } from "./app";
 import { getAccessToken, getUser } from "$lib/server/auth";
-import { expirates } from "$lib/resources/store";
+import {verify, type Secret} from "jsonwebtoken";
 
 const authHandler: Handle = async ({ event, resolve }) => {
   console.log("http://localhost:5173/");
@@ -17,11 +17,31 @@ const authHandler: Handle = async ({ event, resolve }) => {
     "Requests for static assets — which includes pages that were already prerendered — are not handled by SvelteKit."
   );
 
-  const access_token = await getAccessToken(event);
+  const accessToken = getAccessToken(event);
+  const verifyToken = accessToken?.split(" ")[1] ?? "";
+  const secretKey: Secret = "*pasc4lc4gu4."
 
-  if (access_token) {
-    event.locals.estudiante = (await getUser(access_token)) as unknown as Estudiante;
+  if (accessToken) {
+    try {
+      const decodedToken = verify(verifyToken, secretKey) as unknown as { rol: string };
+      const rol = decodedToken.rol;
+      switch (rol) {
+        case "CO":
+          event.locals.coordinador = (await getUser(accessToken, "coordinacion")) as unknown as Coordinacion;
+          break;
+        case "D":
+          event.locals.docente = (await getUser(accessToken, "docentes")) as unknown as Docente;
+          break;
+        case "E":
+          event.locals.estudiante = (await getUser(accessToken, "students")) as unknown as Estudiante;
+          break;
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
+
+  console.log(event.locals.estudiante);
 
   return await resolve(event);
 };

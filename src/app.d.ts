@@ -7,6 +7,8 @@ declare global {
 		interface Locals {
 			client: client,
 			estudiante: Estudiante,
+			docente: Docente,
+			coordinador: Coordinacion
 		}
 		// interface PageData {}
 		// interface Platform {}
@@ -24,4 +26,18 @@ interface Estudiante{
 	carrera: number;
 }
 
-export {Estudiante, Pago};
+interface Coordinacion{
+	cedula: string;
+	nombre: string;
+	correo: string;
+	telefono: string;
+}
+
+interface Docente {
+  cedula: string;
+  nombre: string;
+  correo: string;
+  telefono: string;
+}
+
+export {Estudiante, Coordinacion, Docente};
