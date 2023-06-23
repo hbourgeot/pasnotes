@@ -18,7 +18,7 @@
     "Administración Empresarial",
   ];
 
-  let estudiante: Coordinacion = data.coordinador;
+  let coordinador: Coordinacion = data.coordinador;
   
   let panel = false;
   let clicked = 0;
@@ -38,7 +38,7 @@
   style="min-height: calc(100vh + 10rem);"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
-    ¡Bienvenid@, {estudiante.nombre}!
+    ¡Bienvenid@, {coordinador.nombre}!
   </h1>
   <div
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
@@ -71,22 +71,18 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Informacion del estudiante
+          Informacion del coordinador
         </summary>
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
         >
           <span>
             <h2>Cedula:</h2>
-            <p>{estudiante.cedula}</p>
+            <p>{coordinador.cedula}</p>
           </span>
           <span>
             <h2>Nombre completo:</h2>
-            <p class="capitalize">{estudiante.nombre}</p>
-          </span>
-          <span>
-            <h2>Especialidad:</h2>
-            <p class="capitalize">{carreras[estudiante.carrera - 1]}</p>
+            <p class="capitalize">{coordinador.nombre}</p>
           </span>
           <!-- <span>
             <h2>Lapso Ingreso:</h2>
@@ -101,12 +97,8 @@
             <p>2021/2023</p>
           </span> -->
           <span>
-            <h2>Semestre:</h2>
-            <p>{estudiante.semestre}</p>
-          </span>
-          <span>
-            <h2>Estado Academico:</h2>
-            <p>{estudiante.estado}</p>
+            <h2>Teléfono:</h2>
+            <p>{coordinador.telefono}</p>
           </span>
         </div>
       </details>
