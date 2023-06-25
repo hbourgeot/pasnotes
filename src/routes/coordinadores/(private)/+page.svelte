@@ -3,20 +3,10 @@
   import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
 
-  import Summary from "$lib/components/Summary.svelte";
   import type { Coordinacion } from "../../../app";
 
   export let data: PageData;
 
-  const carreras = [
-    "Informática",
-    "Tecnología de Alimentos",
-    "Comunicación y Electrónica",
-    "Diseño Gráfico",
-    "Contabilidad y Costos",
-    "Administración Bancaria y Financiera",
-    "Administración Empresarial",
-  ];
 
   let coordinador: Coordinacion = data.coordinador;
   
@@ -49,10 +39,10 @@
             md:[&>button]:w-[200px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a></button
+        ><a href="/estudiantes/notas" class="w-full h-full block">Notas de Estudiantes</a></button
       >
-      <button>Inscribir materias</button>
-      <button class=" bg-[#9DB2BF]">Generar constancia</button>
+      <button>Registrar materias</button>
+      <button class=" bg-[#9DB2BF]">Registrar docentes</button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
@@ -60,7 +50,7 @@
         Informacion general
       </h2>
 
-      <details class="flex w-2/5 mx-auto flex-col items-center justify-center">
+      <details open class="flex w-2/5 mx-auto flex-col items-center justify-center">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -102,27 +92,6 @@
           </span>
         </div>
       </details>
-      <details class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center">
-        <summary
-          class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
-        >
-          <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
-          </span>
-          <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
-          </span>
-
-          Información de materias
-        </summary>
-        <div
-          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
-        >
-          <span>
-            <h2>Nombre materia:</h2>
-          </span>
-        </div>
-      </details>
     </div>
   </div>
 </div>
@@ -134,7 +103,7 @@
   }
 
   button {
-    background-color: rgba(221, 88, 214, 0.7);
+    background-color: rgba(88, 119, 221, 0.7);
   }
 
   details .expanded {

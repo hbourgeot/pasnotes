@@ -1,11 +1,16 @@
-import { client } from "$lib/server/fetch"
-import type { Handle } from "@sveltejs/kit";
+import { client } from "$lib/server/fetch";
+import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import type { Coordinacion, Docente, Estudiante } from "./app";
 import { getAccessToken, getUser } from "$lib/server/auth";
-import {verify, type Secret} from "jsonwebtoken";
+import { verify, type Secret, decode } from "jsonwebtoken";
 
 const authHandler: Handle = async ({ event, resolve }) => {
+
+  function isLoginRoute(url: string): boolean {
+    return ["/coordinadores/login", "/estudiantes/login", "/docentes/login"].includes(url);
+  }
+
   console.log("http://localhost:5173/");
   console.log(
     "\x1b[35m",
@@ -19,22 +24,58 @@ const authHandler: Handle = async ({ event, resolve }) => {
 
   const accessToken = getAccessToken(event);
   const verifyToken = accessToken?.split(" ")[1] ?? "";
-  const secretKey: Secret = "*pasc4lc4gu4."
+  const secretKey: Secret = "*pasc4lc4gu4.";
 
   if (accessToken) {
     try {
-      const decodedToken = verify(verifyToken, secretKey) as unknown as { rol: string };
+      const decodedToken = decode(verifyToken) as { exp: number; rol: string };
+      const currentTime = Math.floor(Date.now() / 1000);
       const rol = decodedToken.rol;
-      switch (rol) {
-        case "CO":
-          event.locals.coordinador = (await getUser(accessToken, "coordinacion")) as unknown as Coordinacion;
-          break;
-        case "D":
-          event.locals.docente = (await getUser(accessToken, "docentes")) as unknown as Docente;
-          break;
-        case "E":
-          event.locals.estudiante = (await getUser(accessToken, "students")) as unknown as Estudiante;
-          break;
+      if (currentTime <= decodedToken.exp || isLoginRoute(event.url.pathname)) {
+        switch (rol) {
+          case "CO":
+            event.locals.coordinador = (await getUser(
+              accessToken,
+              "coordinacion"
+            )) as unknown as Coordinacion;
+            break;
+          case "D":
+            event.locals.docente = (await getUser(
+              accessToken,
+              "docentes"
+            )) as unknown as Docente;
+            break;
+          case "E":
+            event.locals.estudiante = (await getUser(
+              accessToken,
+              "students"
+            )) as unknown as Estudiante;
+            break;
+        }
+      } else {
+        console.log("expirated");
+        let redirectUrl = "";
+
+        switch (rol) {
+          case "CO":
+            redirectUrl = "/coordinadores/login?exp=true";
+            break;
+          case "D":
+            redirectUrl = "/estudiantes/login?exp=true";
+            break;
+          case "E":
+            redirectUrl = "/estudiantes/login?exp=true";
+            break;
+        }
+
+        if (redirectUrl) {
+          return new Response(null, {
+            status: 302,
+            headers: {
+              Location: redirectUrl,
+            },
+          });
+        }
       }
     } catch (e) {
       console.log(e);
@@ -46,19 +87,21 @@ const authHandler: Handle = async ({ event, resolve }) => {
   return await resolve(event);
 };
 
-const clientHandler: Handle=async ({event, resolve}) => {
+const clientHandler: Handle = async ({ event, resolve }) => {
+  event.locals.client = {
+    GET: async (endpoint: string, body?: object, headers?: any) =>
+      await client(endpoint, "GET", body, headers),
+    POST: async (endpoint: string, body?: object, headers?: any) =>
+      await client(endpoint, "POST", body, headers),
+    PUT: async (endpoint: string, body?: object, headers?: any) =>
+      await client(endpoint, "PUT", body, headers),
+    PATCH: async (endpoint: string, body?: object, headers?: any) =>
+      await client(endpoint, "PATCH", body, headers),
+    DELETE: async (endpoint: string, body?: object, headers?: any) =>
+      await client(endpoint, "DELETE", body, headers),
+  };
 
-
-  event.locals.client={
-    "GET":async(endpoint:string,body?:object, headers?:any)=>await client(endpoint,"GET",body,headers),
-    "POST":async(endpoint:string,body?:object, headers?:any)=>await client(endpoint,"POST",body,headers),
-    "PUT":async (endpoint:string,body?:object, headers?:any)=>await client(endpoint,"PUT",body,headers),
-    "PATCH":async (endpoint:string,body?:object, headers?:any)=> await client(endpoint,"PATCH",body,headers),
-    "DELETE":async (endpoint:string,body?:object, headers?:any)=> await client(endpoint,"DELETE",body,headers)
-  }
-
-  return await resolve (event)
-  
-}
+  return await resolve(event);
+};
 
 export const handle = sequence(authHandler, clientHandler);

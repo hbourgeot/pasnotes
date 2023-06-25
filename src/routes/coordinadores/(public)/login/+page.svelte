@@ -7,12 +7,27 @@
 	import { enhance } from "$app/forms";
   import { page } from "$app/stores";
 	import type { ActionData } from "./$types";
-
+  import { toastStore, type ToastSettings, Toast } from "@skeletonlabs/skeleton";
+	
 	export let form: ActionData;
-	$: console.log(form);
 
+	$: if (form?.message) {
+    const t: ToastSettings = {
+      message: form?.message
+    };
+
+		toastStore.trigger(t)
+  }
 	let y: number;
-	let isExpirated = $page.url.searchParams.get("exp") ? true : false
+  let isExpirated = $page.url.searchParams.get("exp") ? true : false;
+
+	if(isExpirated){
+		const t: ToastSettings = {
+      message: "Sesión caducada"
+    };
+
+		toastStore.trigger(t)
+	}
 </script>
 
 <svelte:head>
@@ -34,11 +49,9 @@
 		>
 			Bienvenido
 		</h1>
-		{#if form?.message}
-			<p class="bg-red-300 text-lg p-4">
-				{form.message}
-			</p>
-			{/if}
+		{#if form?.message || isExpirated}
+      <Toast position="t" />
+    {/if}
 		<label
 			for="username"
 			class="text-xl flex justify-end items-center  border-1 rounded-lg"
