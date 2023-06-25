@@ -36,6 +36,23 @@ export const logInControlEstudio = async (
   return { ok, status, data };
 };
 
+export const logInDocente = async (
+  { locals: { client }, cookies }: RequestEvent,
+  { username, password }: { username?: string; password?: string }
+) => {
+  const { ok, status, data } = await client.POST("/api/docente/login", {
+    usuario: username,
+    clave: password,
+  });
+  if (!ok) {
+    return { ok, data };
+  }
+
+  cookies.set("access_token", data.access_token, { httpOnly: true });
+
+  return { ok, status, data };
+};
+
 export const logInCoordinacion = async (
   { locals: { client }, cookies }: RequestEvent,
   { username, password }: { username?: string; password?: string; }
