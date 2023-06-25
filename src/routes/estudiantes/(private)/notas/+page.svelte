@@ -19,4 +19,4 @@
 
 <h2 class="text-3xl py-10 text-center ">Notas de <span class="text-sky-600 capitalize">{data.estudiante.nombre}</span></h2>
 
-<Table source="{tableSimple}" />
+<Table source="{tableSimple}" class='lg:w-9/12 lg:mx-auto' />
