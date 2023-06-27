@@ -20,7 +20,7 @@ import '../app.postcss';
 "
 >
   <a href="/" class="h-full flex flex-center">
-    <img src={Logo} alt='' class="logo" />
+    <img src={Logo} alt="" class="logo" />
   </a>
 </nav>
 
