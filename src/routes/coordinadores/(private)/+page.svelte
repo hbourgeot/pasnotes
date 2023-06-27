@@ -42,7 +42,7 @@
         ><a href="/estudiantes/notas" class="w-full h-full block">Notas de Estudiantes</a></button
       >
       <button>Registrar materias</button>
-      <button class=" bg-[#9DB2BF]">Registrar docentes</button>
+      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/agregar-docente" class="w-full h-full block">Registrar docentes</a></button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
