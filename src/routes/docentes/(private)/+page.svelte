@@ -1,8 +1,12 @@
 <script lang='ts'>
-    let nombre_profesor = 'Docente';
+  import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
+  import type { TableSource } from "@skeletonlabs/skeleton";
+  import type {PageData} from "./$types"
 
-    import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
-    import type { TableSource } from "@skeletonlabs/skeleton";
+  export let data: PageData;
+  
+    let nombre_profesor = data.docente.nombre;
+
 
     let table = {
         cantidad_estudiantes: 24
@@ -22,7 +26,7 @@
 
 <main class='w-full h-screen'>
     <section class='flex flex-col gap-12'>
-        <h2 class='text-3xl text-left pl-6 pt-12 lg:pt-16 lg:pl-48'>Bienvenido, {nombre_profesor}!</h2>
+        <h2 class='text-3xl text-left pl-6 pt-12 lg:pt-16 lg:pl-48'>Bienvenid@, {nombre_profesor}!</h2>
         <div class='flex container h-auto rounded-md'>
              <section class='w-full mb-8'>
                 <h3 class='text-2xl pl-4 py-4'>Acciones</h3>
@@ -50,7 +54,8 @@
     ul > li {
         width: 80px; 
         height: 80px;
-        background-color: green;
+        background-color: #194bca;
+        color: white;
         border-radius: 16px;
         display: flex;
         justify-content: center;

@@ -93,6 +93,7 @@ export const getUser = async (token: string, endpoint: string) => {
     });
     // console.log(res)
     const { data: user } = await res.json();
+    console.log(user);
 
     return user;
   } catch (error) {
