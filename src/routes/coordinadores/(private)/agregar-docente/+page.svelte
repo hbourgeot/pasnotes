@@ -16,9 +16,6 @@
     };
     
 		toastStore.trigger(t)
-    if(form.message === "Docente creado!"){
-      window.location.href="/coordinadores";
-    }
   }
 
   const handleSubmit: SubmitFunction = ({data}) =>{

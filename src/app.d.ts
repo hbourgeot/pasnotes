@@ -40,4 +40,19 @@ interface Docente {
   telefono: string;
 }
 
-export {Estudiante, Coordinacion, Docente};
+interface Materia{
+	id: string;
+	nombre: string;
+	prelacion: string;
+	unidad_credito: number;
+	hp: number;
+	ht: number;
+	semestre: number;
+	id_carrera: number;
+	id_docente: string;
+	dia: string;
+	hora_inicio: string;
+	hora_fin: string;
+}
+
+export {Estudiante, Coordinacion, Docente, Materia};

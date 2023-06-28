@@ -21,68 +21,66 @@ const authHandler: Handle = async ({ event, resolve }) => {
     "\x1b[0;36m",
     "Requests for static assets — which includes pages that were already prerendered — are not handled by SvelteKit."
   );
+  if (!event.url.pathname.includes("/logout")) {
+    const accessToken = getAccessToken(event);
+    const verifyToken = accessToken?.split(" ")[1] ?? "";
 
-  const accessToken = getAccessToken(event);
-  const verifyToken = accessToken?.split(" ")[1] ?? "";
-  const secretKey: Secret = "*pasc4lc4gu4.";
+    if (accessToken) {
+      try {
+        const decodedToken = decode(verifyToken) as { exp: number; rol: string };
+        const currentTime = Math.floor(Date.now() / 1000);
+        const rol = decodedToken.rol;
+        if (currentTime <= decodedToken.exp || isLoginRoute(event.url.pathname)) {
+          switch (rol) {
+            case "CO":
+              event.locals.coordinador = (await getUser(
+                accessToken,
+                "coordinacion"
+              )) as unknown as Coordinacion;
+              break;
+            case "D":
+              event.locals.docente = (await getUser(
+                accessToken,
+                "docente"
+              )) as unknown as Docente;
+              break;
+            case "E":
+              event.locals.estudiante = (await getUser(
+                accessToken,
+                "students"
+              )) as unknown as Estudiante;
+              break;
+          }
+        } else {
+          console.log(rol);
+          let redirectUrl = "";
 
-  if (accessToken) {
-    try {
-      const decodedToken = decode(verifyToken) as { exp: number; rol: string };
-      const currentTime = Math.floor(Date.now() / 1000);
-      const rol = decodedToken.rol;
-      if (currentTime <= decodedToken.exp || isLoginRoute(event.url.pathname)) {
-        switch (rol) {
-          case "CO":
-            event.locals.coordinador = (await getUser(
-              accessToken,
-              "coordinacion"
-            )) as unknown as Coordinacion;
-            break;
-          case "D":
-            event.locals.docente = (await getUser(
-              accessToken,
-              "docente"
-            )) as unknown as Docente;
-            break;
-          case "E":
-            event.locals.estudiante = (await getUser(
-              accessToken,
-              "students"
-            )) as unknown as Estudiante;
-            break;
+          switch (rol) {
+            case "CO":
+              redirectUrl = "/coordinadores/login?exp=true";
+              break;
+            case "D":
+              redirectUrl = "/estudiantes/login?exp=true";
+              break;
+            case "E":
+              redirectUrl = "/estudiantes/login?exp=true";
+              break;
+          }
+
+          if (redirectUrl) {
+            return new Response(null, {
+              status: 302,
+              headers: {
+                Location: redirectUrl,
+              },
+            });
+          }
         }
-      } else {
-        console.log("expirated");
-        let redirectUrl = "";
-
-        switch (rol) {
-          case "CO":
-            redirectUrl = "/coordinadores/login?exp=true";
-            break;
-          case "D":
-            redirectUrl = "/estudiantes/login?exp=true";
-            break;
-          case "E":
-            redirectUrl = "/estudiantes/login?exp=true";
-            break;
-        }
-
-        if (redirectUrl) {
-          return new Response(null, {
-            status: 302,
-            headers: {
-              Location: redirectUrl,
-            },
-          });
-        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
   }
-
-  console.log(event.locals.estudiante);
 
   return await resolve(event);
 };
