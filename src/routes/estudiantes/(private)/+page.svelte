@@ -51,7 +51,7 @@
       <button class=" bg-[#5C8984]"
         ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a></button
       >
-      <button>Inscribir materias</button>
+      <button><a href="/estudiantes/inscribir-materias" class="w-full h-full block">Inscribir materias</a></button>
       <button class=" bg-[#9DB2BF]">Generar constancia</button>
     </div>
 
@@ -106,7 +106,7 @@
           </span>
           <span>
             <h2>Estado Academico:</h2>
-            <p>{estudiante.estado}</p>
+            <p class="capitalize">{estudiante.estado}</p>
           </span>
         </div>
       </details>
@@ -121,7 +121,7 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Información de materias
+          Materias inscritas
         </summary>
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
