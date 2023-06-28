@@ -11,15 +11,13 @@
     let table = {
         cantidad_estudiantes: 24
     }
-    const sourceData = [
-    { materia: "Introducción a la administración", estudiantes: table.cantidad_estudiantes},
-  ];
+    const sourceData = data.materias.map(materia => ({materia: materia.nombre, estudiantes: table.cantidad_estudiantes, codigo: materia.id, horasPracticas: materia.hp, horasTeoricas: materia.ht}));
 
   const tableSimple: TableSource = {
     // A list of heading labels.
-    head: ["Materia", "Estudiantes asignados"],
+    head: ["Materia", "Codigo", "Horas prácticas", "Horas teóricas", "Estudiantes asignados"],
     // The data visibly shown in your table body UI.
-    body: tableMapperValues(sourceData, ["materia", "estudiantes"]),
+    body: tableMapperValues(sourceData, ["materia", "codigo", "horasPracticas", "horasTeoricas", "estudiantes"]),
   };
 
 </script>
@@ -31,14 +29,14 @@
              <section class='w-full mb-8'>
                 <h3 class='text-2xl pl-4 py-4'>Acciones</h3>
               <ul class='flex justify-around items-center w-full'>
-                <li>Materias</li>
-                <li>Estudiantes</li>
-                <li><a href="docentes/informacion">Informacion</a></li>
+                <li class="!w-[10%]">Materias</li>
+                <li class="!w-[10%]">Estudiantes</li>
+                <li class="!w-[10%]"><a href="docentes/informacion">Informacion</a></li>
               </ul>
              </section>
         </div>
 
-        <Table source={tableSimple} class='mx-auto w-[98%] text-center lg:w-[80%]'> </Table>
+        <Table source={tableSimple} class='mx-auto w-[98%] lg:w-[60%]'> </Table>
 
     </section>
 </main>
