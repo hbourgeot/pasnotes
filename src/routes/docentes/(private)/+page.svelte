@@ -5,7 +5,7 @@
 
   export let data: PageData;
   
-    let nombre_profesor = data.docente.nombre;
+    let nombre_profesor = data.docente?.nombre;
 
 
     let table = {
