@@ -6,7 +6,9 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			client: client,
-			user: Usuario,
+			estudiante: Estudiante,
+			docente: Docente,
+			coordinador: Coordinacion
 		}
 		// interface PageData {}
 		// interface Platform {}
@@ -24,28 +26,33 @@ interface Estudiante{
 	carrera: number;
 }
 
-interface Pago{
-	id: number;
-	pre_inscripcion: string;
-	inscripcion: string;
-	cuota1: string;
-	cuota2: string;
-	cuota3: string;
-	cuota4: string;
-	cuota5: string;
-	cedula_estudiante: string;
-	montoPreInscripcion: number;
-	montoInscripcion: number;
-	montoCuota1: number;
-	montoCuota2: number;
-	montoCuota3: number;
-	montoCuota4: number;
-	montoCuota5: number;
-	id_pago: number
+interface Coordinacion{
+	cedula: string;
+	nombre: string;
+	correo: string;
+	telefono: string;
 }
 
-interface Usuario {
-	user: string,
+interface Docente {
+  cedula: string;
+  nombre: string;
+  correo: string;
+  telefono: string;
 }
 
-export {Estudiante, Pago, Usuario};
+interface Materia{
+	id: string;
+	nombre: string;
+	prelacion: string;
+	unidad_credito: number;
+	hp: number;
+	ht: number;
+	semestre: number;
+	id_carrera: number;
+	id_docente: string;
+	dia: string;
+	hora_inicio: string;
+	hora_fin: string;
+}
+
+export {Estudiante, Coordinacion, Docente, Materia};

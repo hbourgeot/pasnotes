@@ -1,7 +1,7 @@
 import { writable } from "svelte/store"
 
-export const logStore = writable({
-  log: "none",
+export const expirates = writable({
+  status: "true",
 })
 
 export const createSearchStore = (data: any[]) => {
