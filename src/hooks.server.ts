@@ -3,8 +3,8 @@ import type { Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import type { Coordinacion, Docente, Estudiante } from "./app";
 import { getAccessToken, getUser } from "$lib/server/auth";
-import { verify, type Secret, decode } from "jsonwebtoken";
-
+import jwt from "jsonwebtoken";
+const { decode } = jwt;
 const authHandler: Handle = async ({ event, resolve }) => {
 
   function isLoginRoute(url: string): boolean {
