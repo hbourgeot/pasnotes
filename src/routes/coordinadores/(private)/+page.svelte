@@ -39,10 +39,10 @@
             md:[&>button]:w-[200px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/estudiantes/notas" class="w-full h-full block">Notas de Estudiantes</a></button
+        ><a href="/coordinadores/materias" class="w-full h-full block">Ver Materias</a></button
       >
-      <button>Registrar materias</button>
-      <button class=" bg-[#9DB2BF]">Registrar docentes</button>
+      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/registrar-materia" class="w-full h-full block">Registrar materias</a></button>
+      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/agregar-docente" class="w-full h-full block">Registrar docentes</a></button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
