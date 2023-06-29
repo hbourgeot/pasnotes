@@ -4,6 +4,11 @@
     Toast,
     toastStore,
     type ToastSettings,
+    InputChip,
+    Autocomplete,
+    type AutocompleteOption,
+    type PopupSettings,
+    popup,
   } from "@skeletonlabs/skeleton";
   import type { Docente } from "../../../../app";
   import type { ActionData, PageData } from "./$types";
@@ -12,6 +17,20 @@
   export let form: ActionData;
 
   let docentesSelect: Docente[] = data.docentes as unknown as Docente[];
+  let materias: string[] = data.materias;
+  let materiasAutocomplete: AutocompleteOption[] = data.autocom;
+  let selected: string[] = [];
+  let search: string = "";
+  let focused: boolean = false;
+  let prelacion: string = "";
+  $: if (selected.length > 0) {
+    prelacion = selected.join(" - ")
+    console.log(prelacion);
+  }
+
+  $: if(search){
+    focused = true;
+  }
 
   $: if (form?.message) {
     const t: ToastSettings = {
@@ -30,6 +49,7 @@
     { id: 6, nombre: "Administración Bancaria y Financiera" },
     { id: 7, nombre: "Administración Empresarial" },
   ];
+
   const days = [
     "Lunes",
     "Martes",
@@ -47,6 +67,14 @@
 
     toastStore.trigger(t);
   };
+
+  function onFlavorSelection(event: any): void {
+    search = event.detail.value;
+    focused = false;
+
+    // @ts-ignore
+    window.document.querySelector(".input-chip-field")?.focus();
+  }
 </script>
 
 <div class="container lg:w-1/2 md:w-2/3 mx-auto px-4 py-8">
@@ -114,7 +142,7 @@
             name="semestre"
             id="semestre"
             class="select py-2 px-7"
-            value="1"
+            value="1" required
           >
             <option value="1">1ro</option>
             <option value="2">2do</option>
@@ -145,7 +173,7 @@
             name="id_docente"
             id="docente"
             class="select py-2 px-7"
-            value="{docentesSelect[0].cedula}"
+            value="{docentesSelect[0].cedula}" required
           >
             {#each docentesSelect as docente}
               <option value="{docente.cedula}">{docente.nombre}</option>
@@ -156,7 +184,7 @@
       <div class="flex justify-between items-end gap-x-5">
         <div class="mb-4 w-1/5">
           <label for="dia" class="label">Día de clases</label>
-          <select name="dia" id="dia" class="select py-2 px-7" value="{0}">
+          <select name="dia" id="dia" class="select py-2 px-7" value="{0}" required>
             {#each days as dia, i}
               <option value="{i}">{dia}</option>
             {/each}
@@ -194,6 +222,41 @@
             required
           />
         </div>
+      </div>
+      <div class="mb-4 relative">
+        <label for="prelacion" class="label">Prelación de materias</label>
+        <input type="hidden" name="prelacion" bind:value="{prelacion}" readonly>
+        <InputChip
+          whitelist="{materias}"
+          bind:value="{selected}"
+          bind:input="{search}"
+          name=""
+          required
+          id="prelacion"
+          placeholder="codigo de materia"
+          on:focus="{() => {
+            focused = true;
+          }}"
+          on:blur="{() => {
+            setTimeout(() => {
+              focused = false;
+            }, 500);
+          }}"
+        />
+        {#if focused}
+          <div
+            class="absolute top-full card w-full max-h-48 p-4 overflow-y-auto"
+            tabindex="-1"
+          >
+            <Autocomplete
+              data-popup="popupAutocomplete"
+              bind:input="{search}"
+              options="{materiasAutocomplete}"
+              on:selection="{onFlavorSelection}"
+              denylist="{selected}"
+            />
+          </div>
+        {/if}
       </div>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
         >Registrar materia</button
