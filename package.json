@@ -13,6 +13,7 @@
     "@fontsource/fira-mono": "^5.0.3",
     "@neoconfetti/svelte": "^1.0.0",
     "@skeletonlabs/skeleton": "^1.8.0",
+    "@steeze-ui/material-design-icons": "^1.1.2",
     "@steeze-ui/tabler-icons": "^2.1.1",
     "@sveltejs/adapter-auto": "^2.1.0",
     "@sveltejs/adapter-node": "^1.2.4",

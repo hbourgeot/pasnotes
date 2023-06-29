@@ -1,6 +1,10 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import { Toast, toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+  import {
+    Toast,
+    toastStore,
+    type ToastSettings,
+  } from "@skeletonlabs/skeleton";
   import type { Docente } from "../../../../app";
   import type { ActionData, PageData } from "./$types";
 
@@ -9,22 +13,22 @@
 
   let docentesSelect: Docente[] = data.docentes as unknown as Docente[];
 
-  $: if(form?.message){
+  $: if (form?.message) {
     const t: ToastSettings = {
-      message: form?.message
+      message: form?.message,
     };
-    
-		toastStore.trigger(t)
+
+    toastStore.trigger(t);
   }
 
   const carreras = [
-    {id: 1, nombre:"Informática"},
-    {id: 2, nombre:"Tecnología de Alimentos"},
-    {id: 3, nombre:"Comunicación y Electrónica"},
-    {id: 4, nombre:"Diseño Gráfico"},
-    {id: 5, nombre:"Contabilidad y Costos"},
-    {id: 6, nombre:"Administración Bancaria y Financiera"},
-    {id: 7, nombre:"Administración Empresarial"},
+    { id: 1, nombre: "Informática" },
+    { id: 2, nombre: "Tecnología de Alimentos" },
+    { id: 3, nombre: "Comunicación y Electrónica" },
+    { id: 4, nombre: "Diseño Gráfico" },
+    { id: 5, nombre: "Contabilidad y Costos" },
+    { id: 6, nombre: "Administración Bancaria y Financiera" },
+    { id: 7, nombre: "Administración Empresarial" },
   ];
   const days = [
     "Lunes",
@@ -38,15 +42,15 @@
 
   const triggetToast = (title: string) => {
     const t: ToastSettings = {
-      message: title
+      message: title,
     };
 
-		toastStore.trigger(t)
-  }
+    toastStore.trigger(t);
+  };
 </script>
 
 <div class="container lg:w-1/2 md:w-2/3 mx-auto px-4 py-8">
-    <Toast position="t" />
+  <Toast position="t" />
   <div class="bg-white p-8 rounded shadow">
     <h2 class="text-2xl font-semibold mb-4">Registrar materia</h2>
     <form id="docente-form" method="post" use:enhance>
@@ -73,39 +77,36 @@
       <div class="flex justify-between items-end">
         <div class="mb-4 w-1/5">
           <label for="credito" class="label">Unidades de crédito</label>
-          <input
-            type="number"
-            min="0"
-            max="5"
+          <select
             id="credito"
             name="unidad_credito"
-            class="input py-2 px-7"
+            class="select py-2 px-7"
+            value="1"
             required
-          />
+          >
+            <option value="1">1 U.C.</option>
+            <option value="2">2 U.C.</option>
+            <option value="3">3 U.C.</option>
+            <option value="4">4 U.C.</option>
+          </select>
         </div>
         <div class="mb-4 w-1/5">
           <label for="hp" class="label">Horas prácticas</label>
-          <input
-            type="number"
-            min="0"
-            max="5"
-            id="hp"
-            name="hp"
-            class="input py-2 px-7"
-            required
-          />
+          <select class="select py-2 px-7" value="1" id="hp" name="hp" required>
+            <option value="1">1h</option>
+            <option value="2">2h</option>
+            <option value="3">3h</option>
+            <option value="4">4h</option>
+          </select>
         </div>
         <div class="mb-4 w-1/5">
           <label for="ht" class="label">Horas teóricas</label>
-          <input
-            type="number"
-            min="0"
-            max="5"
-            id="ht"
-            name="ht"
-            class="input py-2 px-7"
-            required
-          />
+          <select class="select py-2 px-7" value="1" id="ht" name="ht" required>
+            <option value="1">1h</option>
+            <option value="2">2h</option>
+            <option value="3">3h</option>
+            <option value="4">4h</option>
+          </select>
         </div>
         <div class="mb-4 w-1/5">
           <label for="semestre" class="label">Semestre</label>
@@ -152,7 +153,7 @@
           </select>
         </div>
       </div>
-      <div class="flex justify-between gap-x-5">
+      <div class="flex justify-between items-end gap-x-5">
         <div class="mb-4 w-1/5">
           <label for="dia" class="label">Día de clases</label>
           <select name="dia" id="dia" class="select py-2 px-7" value="{0}">
@@ -169,7 +170,10 @@
             name="hora_inicio"
             min="12:00"
             max="20:00"
-            on:invalid="{() => triggetToast("Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M.")}"
+            on:invalid="{() =>
+              triggetToast(
+                'Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M.'
+              )}"
             class="input py-2 px-7"
             required
           />
@@ -182,7 +186,10 @@
             name="hora_fin"
             min="12:00"
             max="20:00"
-            on:invalid="{() => triggetToast("Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M.")}"
+            on:invalid="{() =>
+              triggetToast(
+                'Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M.'
+              )}"
             class="input py-2 px-7"
             required
           />
