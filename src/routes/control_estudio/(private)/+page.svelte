@@ -3,23 +3,13 @@
   import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
 
-  import Summary from "$lib/components/Summary.svelte";
-  import type { Estudiante } from "../../../app";
+  import type { Coordinacion } from "../../../app";
 
   export let data: PageData;
 
-  const carreras = [
-    "Informática",
-    "Tecnología de Alimentos",
-    "Comunicación y Electrónica",
-    "Diseño Gráfico",
-    "Contabilidad y Costos",
-    "Administración Bancaria y Financiera",
-    "Administración Empresarial",
-  ];
 
-  let estudiante: Estudiante = data.estudiante;
-
+  let coordinador: Coordinacion = data.coordinador;
+  
   let panel = false;
   let clicked = 0;
 </script>
@@ -38,7 +28,7 @@
   style="min-height: calc(100vh + 10rem);"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
-    ¡Bienvenid@, {estudiante.nombre}!
+    ¡Bienvenid@, {coordinador.nombre}!
   </h1>
   <div
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
@@ -49,10 +39,10 @@
             md:[&>button]:w-[200px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a></button
+        ><a href="/coordinadores/materias" class="w-full h-full block">Ver Materias</a></button
       >
-      <button><a href="/estudiantes/inscribir-materias" class="w-full h-full block">Inscribir materias</a></button>
-      <button class=" bg-[#9DB2BF]">Generar constancia</button>
+      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/registrar-materia" class="w-full h-full block">Registrar materias</a></button>
+      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/agregar-docente" class="w-full h-full block">Registrar docentes</a></button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
@@ -60,7 +50,7 @@
         Informacion general
       </h2>
 
-      <details class="flex w-2/5 mx-auto flex-col items-center justify-center">
+      <details open class="flex w-2/5 mx-auto flex-col items-center justify-center">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -71,22 +61,18 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Informacion del estudiante
+          Informacion del coordinador
         </summary>
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
         >
           <span>
             <h2>Cedula:</h2>
-            <p>{estudiante.cedula}</p>
+            <p>{coordinador.cedula}</p>
           </span>
           <span>
             <h2>Nombre completo:</h2>
-            <p class="capitalize">{estudiante.nombre}</p>
-          </span>
-          <span>
-            <h2>Especialidad:</h2>
-            <p class="capitalize">{carreras[estudiante.carrera - 1]}</p>
+            <p class="capitalize">{coordinador.nombre}</p>
           </span>
           <!-- <span>
             <h2>Lapso Ingreso:</h2>
@@ -101,33 +87,8 @@
             <p>2021/2023</p>
           </span> -->
           <span>
-            <h2>Semestre:</h2>
-            <p>{estudiante.semestre}</p>
-          </span>
-          <span>
-            <h2>Estado Academico:</h2>
-            <p class="capitalize">{estudiante.estado}</p>
-          </span>
-        </div>
-      </details>
-      <details class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center">
-        <summary
-          class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
-        >
-          <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
-          </span>
-          <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
-          </span>
-
-          Materias inscritas
-        </summary>
-        <div
-          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
-        >
-          <span>
-            <h2>Nombre materia:</h2>
+            <h2>Teléfono:</h2>
+            <p>{coordinador.telefono}</p>
           </span>
         </div>
       </details>
@@ -142,7 +103,7 @@
   }
 
   button {
-    background-color: rgba(221, 88, 214, 0.7);
+    background-color: rgba(88, 119, 221, 0.7);
   }
 
   details .expanded {
