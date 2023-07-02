@@ -23,7 +23,7 @@ export const logInControlEstudio = async (
   { locals: { client }, cookies }: RequestEvent,
   { username, password }: { username?: string; password?: string; }
 ) => {
-  const { ok, status, data } = await client.POST("/api/students/login", {
+  const { ok, status, data } = await client.POST("/api/control/login", {
     usuario: username,
     clave: password,
   });
