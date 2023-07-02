@@ -7,11 +7,11 @@ export const actions: Actions = {
         const docente: Docente = Object.fromEntries(await request.formData()) as unknown as Docente;
 
         const payload = {
-            cedula: docente.cedula,
-            fullname: docente.nombre,
-            correo: docente.correo,
-            password: docente.cedula.replace(/[VE]/g, ""),
-            telefono: docente.telefono
+          cedula: docente.cedula,
+          fullname: docente.nombre,
+          correo: docente.correo,
+          password: docente.cedula.replace(/^(V-|E-)/g, ""),
+          telefono: docente.telefono,
         };
         
         const { ok, status, data } = await client.POST("/api/docente/add", payload);
