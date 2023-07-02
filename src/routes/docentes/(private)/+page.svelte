@@ -8,7 +8,6 @@
   
     let nombre_profesor = data.docente.nombre;
 
-
     let table = {
         cantidad_estudiantes: 24
     }
