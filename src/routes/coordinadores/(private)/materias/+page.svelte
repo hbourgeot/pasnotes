@@ -146,7 +146,7 @@
     ],
   };
 
-  // Administración empresarial table
+  // Data para tabla
   const administracionEmpresarial = data.materias.administracionEmpresarial.map(
     (materia) => ({
       codigo: materia.id,
@@ -157,18 +157,19 @@
     })
   );
 
+  // data de tabla
   const administracionEmpresarialTable: TableSource = {
-    head: headTable,
+    head: headTable, // head
     body: tableMapperValues(administracionEmpresarial, [
       "codigo",
       "nombre",
       "docente",
-    ]),
+    ]), // cuerpo
     foot: [
       "Total de materias:",
       "",
       `<code class='code'>${administracionEmpresarial.length}</code>`,
-    ],
+    ], //footer para la cantidad
   };
 
   const redirectTable = (e: CustomEvent) => {
