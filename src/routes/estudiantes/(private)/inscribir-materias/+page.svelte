@@ -18,6 +18,10 @@
     triggerToast(form?.message);
   }
 
+  $: if(data?.message){
+    triggerToast(data?.message);
+  }
+
   let materias: Materia[] = [];
   let materiasData: Materia[] = data.materias;
   let unidadesTotales = 0;

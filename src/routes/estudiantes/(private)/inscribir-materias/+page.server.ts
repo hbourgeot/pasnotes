@@ -4,17 +4,12 @@ import type { Materia } from "../../../../app";
 import { triggerToast } from "$lib/utils/toast";
 
 export const load: PageServerLoad = async ({locals:{client, estudiante}}) => {
-  const { ok, data } = await client.GET("/api/materias");
-  if (!ok) return {materias: []}
+  const { ok, data } = await client.GET(`/api/materias/inscribir/${estudiante.cedula}`);
+  if (!ok) return {materias: [], message: data.message}
 
-  console.log(estudiante.carrera, "career");
-  const materias = data.materias.filter((materia: Materia) => {
-    if (estudiante.semestre == 1 && estudiante.estado == "nuevo ingreso") {
-      return materia.id_carrera === estudiante.carrera && materia.semestre.toString() == "1";
-    }
-  });
-  console.log("mat", materias);
-  return {materias, estudiante}
+  const materias = data.materias;
+  console.log(materias);
+  return {materias, estudiante, message: ''}
 };
 
 export const actions: Actions = {
@@ -28,7 +23,6 @@ export const actions: Actions = {
 
     for (const materia of materias) {
         const { ok, status, data } = await client.POST(`/api/students/add-materia/${materia}`, null, headers);
-        console.log(ok, status, data);
       if (!ok) {
         return fail(400, { message: data.message });
         }

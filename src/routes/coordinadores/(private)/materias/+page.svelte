@@ -173,7 +173,6 @@
   };
 
   const redirectTable = (e: CustomEvent) => {
-    console.log(e.detail);
     window.location.pathname = "/coordinadores/materias/"+e.detail[0]
   }
 </script>
