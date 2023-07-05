@@ -18,7 +18,7 @@
 
 <style scoped>
   main {
-    background: rgba(243, 244, 246, 1);
+    background:  #666666; 
     background: url("$lib/images/layered-waves-haikei.svg") center/cover
       no-repeat;
   }
