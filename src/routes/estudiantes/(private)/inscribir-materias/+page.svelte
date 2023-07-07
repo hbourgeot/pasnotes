@@ -14,11 +14,11 @@
   export let data: PageData;
   export let form: ActionData;
 
-  $: if(form?.message){
+  $: if (form?.message) {
     triggerToast(form?.message);
   }
 
-  $: if(data?.message){
+  $: if (data?.message) {
     triggerToast(data?.message);
   }
 
@@ -144,9 +144,11 @@
 
   onMount(() => {
     if (data.materias.length == 0) {
-      triggerToast(
-        "No hay materias que cumplan tu estado académico, vuelve más tarde."
-      );
+      if (data.message == "") {
+        triggerToast(
+          "No hay materias que cumplan tu estado académico, vuelve más tarde."
+        );
+      }
       goto("/estudiantes");
     }
   });
@@ -219,8 +221,8 @@
     </div>
   {/if}
   {#if materias.length > 0}
-  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
-    >Registrar materias</button
-  >
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
+      >Registrar materias</button
+    >
   {/if}
 </form>

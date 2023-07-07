@@ -65,4 +65,19 @@ interface Materia{
 	cantidad_estudiantes?: string;
 }
 
-export {Estudiante, Coordinacion, Docente, Materia, ControlEstudio};
+interface Config {
+  id: string;
+  ciclo: string;
+  porc1: number;
+  porc2: number;
+  porc3: number;
+  horario_inicio: string;
+  horario_fin: string;
+  cuota1: string;
+  cuota2: string;
+  cuota3: string;
+  cuota4: string;
+  cuota5: string;
+}
+
+export {Estudiante, Coordinacion, Docente, Materia, ControlEstudio, Config};
