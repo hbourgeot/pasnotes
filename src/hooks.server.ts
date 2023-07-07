@@ -67,7 +67,7 @@ const authHandler: Handle = async ({ event, resolve }) => {
               redirectUrl = "/coordinadores/login?exp=true";
               break;
             case "D":
-              redirectUrl = "/estudiantes/login?exp=true";
+              redirectUrl = "/docentes/login?exp=true";
               break;
             case "E":
               redirectUrl = "/estudiantes/login?exp=true";

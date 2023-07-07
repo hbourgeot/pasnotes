@@ -178,7 +178,7 @@
 </script>
 
 <div
-  class="flex items-center p-10 flex-col w-full max-h-auto gap-6 bg-gray-100"
+  class="flex items-center p-10 flex-col w-full max-h-auto gap-6"
   style="min-height: calc(100vh + 10rem);"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">Materias</h1>
@@ -188,7 +188,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -209,7 +209,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -230,7 +230,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -251,7 +251,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -272,7 +272,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -293,7 +293,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -314,7 +314,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />

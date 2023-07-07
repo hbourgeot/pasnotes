@@ -15,7 +15,7 @@
     class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
       ? 'invisible'
       : ''}"
-    on:click="{() => (window.location.pathname = '/coordinadores')}"
+    on:click="{() => (window.location.pathname = '/docentes')}"
     >Volver atrás</button
   >
   <a href="/" class="h-full flex flex-center">

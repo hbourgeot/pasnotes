@@ -62,6 +62,7 @@ interface Materia{
 	dia: string;
 	hora_inicio: string;
 	hora_fin: string;
+	cantidad_estudiantes?: string;
 }
 
 export {Estudiante, Coordinacion, Docente, Materia, ControlEstudio};
