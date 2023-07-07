@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { enhance, type SubmitFunction } from "$app/forms";
+  import { enhance} from "$app/forms";
   import { toastStore, type ToastSettings, Toast } from "@skeletonlabs/skeleton";
   import type { ActionData } from "./$types";
+  import type { SubmitFunction } from "@sveltejs/kit";
 
   export let form: ActionData;
   let identidad: string = "V";
@@ -81,7 +82,7 @@
         />
       </div>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
-        >Submit</button
+        >Registrar docente</button
       >
     </form>
   </div>

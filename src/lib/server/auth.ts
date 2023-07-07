@@ -14,7 +14,7 @@ export const logInStudent = async(
     return {ok, data}
   }
 
-  cookies.set("access_token", data.access_token, {httpOnly: true})
+  cookies.set("access_token", data.access_token, {httpOnly: true, path: '/'})
 
   return { ok, status, data };
 };
@@ -23,7 +23,7 @@ export const logInControlEstudio = async (
   { locals: { client }, cookies }: RequestEvent,
   { username, password }: { username?: string; password?: string; }
 ) => {
-  const { ok, status, data } = await client.POST("/api/students/login", {
+  const { ok, status, data } = await client.POST("/api/control/login", {
     usuario: username,
     clave: password,
   });
@@ -31,7 +31,7 @@ export const logInControlEstudio = async (
     return { ok, data };
   }
 
-  cookies.set("access_token", data.access_token, { httpOnly: true });
+  cookies.set("access_token", data.access_token, { httpOnly: true, path: "/" });
 
   return { ok, status, data };
 };
@@ -48,7 +48,11 @@ export const logInDocente = async (
     return { ok, data };
   }
 
-  cookies.set("access_token", data.access_token, { httpOnly: true });
+    cookies.set("access_token", data.access_token, {
+      httpOnly: true,
+      path: "/",
+    });
+
 
   return { ok, status, data };
 };
@@ -65,7 +69,7 @@ export const logInCoordinacion = async (
     return { ok, data };
   }
 
-  cookies.set("access_token", data.access_token, { httpOnly: true });
+  cookies.set("access_token", data.access_token, { httpOnly: true, path: '/' });
 
   return { ok, status, data };
 };
@@ -93,10 +97,15 @@ export const getUser = async (token: string, endpoint: string) => {
     });
     // console.log(res)
     const { data: user } = await res.json();
-    console.log(user);
 
     return user;
   } catch (error) {
     console.error(error);
   }
 };
+
+export const logOut = async (event: RequestEvent) => {
+  const { cookies } = event;
+
+  cookies.delete("access_token", {path: '/'});
+}

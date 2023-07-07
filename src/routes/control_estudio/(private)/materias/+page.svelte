@@ -146,7 +146,7 @@
     ],
   };
 
-  // Data para tabla
+  // Administración empresarial table
   const administracionEmpresarial = data.materias.administracionEmpresarial.map(
     (materia) => ({
       codigo: materia.id,
@@ -157,28 +157,25 @@
     })
   );
 
-  // data de tabla
   const administracionEmpresarialTable: TableSource = {
-    head: headTable, // head
+    head: headTable,
     body: tableMapperValues(administracionEmpresarial, [
       "codigo",
       "nombre",
       "docente",
-    ]), // cuerpo
+    ]),
     foot: [
       "Total de materias:",
       "",
       `<code class='code'>${administracionEmpresarial.length}</code>`,
-    ], //footer para la cantidad
+    ],
   };
 
-  const redirectTable = (e: CustomEvent) => {
-    window.location.pathname = "/coordinadores/materias/"+e.detail[0]
-  }
+  const redirectTable = (e: CustomEvent) => window.location.pathname = "/control_estudio/materias/"+e.detail[0];
 </script>
 
 <div
-  class="flex items-center p-10 flex-col w-full max-h-auto gap-6"
+  class="flex items-center p-10 flex-col w-full max-h-auto gap-6 bg-gray-100"
   style="min-height: calc(100vh + 10rem);"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">Materias</h1>
@@ -188,7 +185,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -209,7 +206,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -230,7 +227,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -251,7 +248,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -272,7 +269,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -293,7 +290,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
@@ -314,7 +311,7 @@
       class="flex lg:w-2/5 w-3/4 mx-auto flex-col items-center justify-center my-4"
     >
       <summary
-        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded-2xl border bg-white border-gray-200"
+        class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
       >
         <span class="expand">
           <Icon src="{ExpandMore}" class="icon " />
