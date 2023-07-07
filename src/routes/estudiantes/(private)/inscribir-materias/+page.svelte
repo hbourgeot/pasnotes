@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { PageData } from "./$types";
+  import type { ActionData, PageData } from "./$types";
   import type { Materia } from "../../../../app";
   import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
   import type { TableSource } from "@skeletonlabs/skeleton";
@@ -9,8 +9,18 @@
   import { goto } from "$app/navigation";
   import { Icon } from "@steeze-ui/svelte-icon";
   import { Delete } from "@steeze-ui/material-design-icons";
+  import type { SubmitFunction } from "@sveltejs/kit";
 
   export let data: PageData;
+  export let form: ActionData;
+
+  $: if(form?.message){
+    triggerToast(form?.message);
+  }
+
+  $: if(data?.message){
+    triggerToast(data?.message);
+  }
 
   let materias: Materia[] = [];
   let materiasData: Materia[] = data.materias;
@@ -21,7 +31,6 @@
   $: materiaObject = data.materias.findLast(
     (materi: Materia) => materi.id === materia
   );
-
 
   let tableSimple: TableSource = {
     // A list of heading labels.
@@ -82,7 +91,6 @@
       ],
     };
 
-    
     data.materias = data.materias.filter(
       (materi: Materia) => materi.id !== materia
     );
@@ -94,10 +102,14 @@
     let mate = materias.find((materia) => materia.id == materiaDelete);
     materias = materias.filter((materia) => materia.id != materiaDelete);
 
-    unidadesTotales = materias.length !== 0 ?
-      materias
-        .map((materia: Materia) => parseInt(materia.unidad_credito.toString()))
-        ?.reduce((a, b) => a + b) : 0;
+    unidadesTotales =
+      materias.length !== 0
+        ? materias
+            .map((materia: Materia) =>
+              parseInt(materia.unidad_credito.toString())
+            )
+            ?.reduce((a, b) => a + b)
+        : 0;
 
     tableSimple = {
       // A list of heading labels.
@@ -138,6 +150,14 @@
       goto("/estudiantes");
     }
   });
+
+  const handleSubmit: SubmitFunction = ({ data }) => {
+    for (const item of materias) {
+      data.append("materias", item.id);
+    }
+
+    return async ({ update }) => await update();
+  };
 </script>
 
 <!--
@@ -148,14 +168,14 @@
   2. Comprobar si todavía quedan disponibles unidades de crédito
 -->
 <form
-  class="mb-4 lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto p-5 flex flex-col items-center"
-  use:enhance
+  class="mb-4 lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5"
+  use:enhance="{handleSubmit}"
   method="post"
 >
-{#if data.materias.length != 0}
-  <label for="cedula" class="label text-3xl bold mb-4"
-    >Seleccione una materia a agregar</label
-  >
+  {#if data.materias.length != 0}
+    <label for="cedula" class="label text-3xl bold mb-4"
+      >Seleccione una materia a agregar</label
+    >
     <div
       class="input-group input-group-divider grid-cols-[auto_1fr_auto] w-1/2"
     >
@@ -171,23 +191,22 @@
       >
     </div>
   {/if}
-</form>
 
-<div class="lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto">
   <Table source="{tableSimple}" class="md:mx-auto" />
-</div>
 
-<div
-  class="mb-4 lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto p-5 flex flex-col items-center"
->
-{#if materias.length != 0}
-  <label for="cedula" class="label text-3xl bold mb-4"
-    >Seleccione una materia a eliminar</label
-  >
+  {#if materias.length != 0}
+    <label for="cedula" class="label text-3xl bold mb-4"
+      >Seleccione una materia a eliminar</label
+    >
     <div
       class="input-group input-group-divider grid-cols-[auto_1fr_auto] w-1/2"
     >
-      <select name="materia" id="materia" class="select" bind:value="{materiaDelete}">
+      <select
+        name="materia"
+        id="materia"
+        class="select"
+        bind:value="{materiaDelete}"
+      >
         {#each materias as materia}
           <option value="{materia.id}">{materia.id} - {materia.nombre}</option>
         {/each}
@@ -199,4 +218,9 @@
       >
     </div>
   {/if}
-</div>
+  {#if materias.length > 0}
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
+    >Registrar materias</button
+  >
+  {/if}
+</form>

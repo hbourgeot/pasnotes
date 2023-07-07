@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Icon } from "@steeze-ui/svelte-icon";
-  import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
+  import { ExpandMore, ExpandLess, VerticalAlignBottom } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
 
   import Summary from "$lib/components/Summary.svelte";
@@ -24,15 +24,6 @@
   let clicked = 0;
 </script>
 
-<!-- <nav
-    class="w-full h-[60px]"
-    style="border-bottom: 1px solid rgb(229 231 235);
-"
->
-    <a href="/" class="h-full flex flex-center">
-        <img src={Logo} alt="" class="logo" />
-    </a>
-</nav> -->
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
   style="min-height: calc(100vh + 10rem);"
@@ -46,13 +37,13 @@
   >
     <div
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
-            md:[&>button]:w-[200px]"
+            md:[&>button]:w-[240px]"
     >
       <button class=" bg-[#5C8984]"
         ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a></button
       >
       <button><a href="/estudiantes/inscribir-materias" class="w-full h-full block">Inscribir materias</a></button>
-      <button class=" bg-[#9DB2BF]">Generar constancia</button>
+      <button class="bg-[#9DB2BF] flex flex-row-reverse gap-x-2"><Icon src={VerticalAlignBottom} theme="round" size="24px"/> Constancia de estudio</button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">

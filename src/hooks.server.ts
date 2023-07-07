@@ -1,7 +1,7 @@
 import { client } from "$lib/server/fetch";
 import type { Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
-import type { Coordinacion, Docente, Estudiante } from "./app";
+import type { ControlEstudio, Coordinacion, Docente, Estudiante } from "./app";
 import { getAccessToken, getUser } from "$lib/server/auth";
 import jwt from "jsonwebtoken";
 const { decode } = jwt;
@@ -30,8 +30,15 @@ const authHandler: Handle = async ({ event, resolve }) => {
         const decodedToken = decode(verifyToken) as { exp: number; rol: string };
         const currentTime = Math.floor(Date.now() / 1000);
         const rol = decodedToken.rol;
+        console.log(rol);
         if (currentTime <= decodedToken.exp || isLoginRoute(event.url.pathname)) {
           switch (rol) {
+            case "CE":
+              event.locals.controlEstudio = (await getUser(
+                accessToken,
+                "control"
+              )) as unknown as ControlEstudio;
+              break;
             case "CO":
               event.locals.coordinador = (await getUser(
                 accessToken,
@@ -60,7 +67,7 @@ const authHandler: Handle = async ({ event, resolve }) => {
               redirectUrl = "/coordinadores/login?exp=true";
               break;
             case "D":
-              redirectUrl = "/estudiantes/login?exp=true";
+              redirectUrl = "/docentes/login?exp=true";
               break;
             case "E":
               redirectUrl = "/estudiantes/login?exp=true";

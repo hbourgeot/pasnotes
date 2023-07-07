@@ -25,7 +25,6 @@
   let prelacion: string = "";
   $: if (selected.length > 0) {
     prelacion = selected.join(" - ")
-    console.log(prelacion);
   }
 
   $: if(search){

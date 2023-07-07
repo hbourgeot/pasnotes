@@ -171,10 +171,7 @@
     ],
   };
 
-  const redirectTable = (e: CustomEvent) => {
-    console.log(e.detail);
-    window.location.pathname = "/coordinadores/materias/"+e.detail[0]
-  }
+  const redirectTable = (e: CustomEvent) => window.location.pathname = "/control_estudio/materias/"+e.detail[0];
 </script>
 
 <div
