@@ -41,7 +41,7 @@
 	<form
 		use:enhance
 		method="post"
-		class="max-w-[485px] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
+		class="max-w-[485px]  flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
 	>
 		<img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
 		<h1
@@ -67,7 +67,7 @@
 		</label>
 		<label
 			for="password"
-			class="text-xl flex justify-end items-center 
+			class="text-[16px] flex justify-end items-center 
 		 border-1 rounded-lg"
 		>
 			<Icon src={Lock} class="h-14 w-14 p-1 border-r-1" />

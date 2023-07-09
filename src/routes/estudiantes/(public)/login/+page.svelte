@@ -46,7 +46,7 @@
   >
     <img src="{Pascal}" alt="Instituto Pascal" class="w-1/2" />
     <h1 class="text-3xl mb-8 font-bold flex justify-center items-center gap">
-      Bienvenido
+      Bienvenido Estudiante
     </h1>
     {#if form?.message || isExpirated}
       <Toast position="t" />
