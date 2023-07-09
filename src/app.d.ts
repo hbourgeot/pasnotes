@@ -8,7 +8,8 @@ declare global {
 			client: client,
 			estudiante: Estudiante,
 			docente: Docente,
-			coordinador: Coordinacion
+			coordinador: Coordinacion,
+			controlEstudio: ControlEstudio
 		}
 		// interface PageData {}
 		// interface Platform {}
@@ -33,6 +34,14 @@ interface Coordinacion{
 	telefono: string;
 }
 
+interface ControlEstudio{
+	cedula: string;
+	nombre: string;
+	correo: string;
+	telefono: string;
+	rol: string;
+}
+
 interface Docente {
   cedula: string;
   nombre: string;
@@ -53,6 +62,22 @@ interface Materia{
 	dia: string;
 	hora_inicio: string;
 	hora_fin: string;
+	cantidad_estudiantes?: string;
 }
 
-export {Estudiante, Coordinacion, Docente, Materia};
+interface Config {
+  id: string;
+  ciclo: string;
+  porc1: number;
+  porc2: number;
+  porc3: number;
+  horario_inicio: string;
+  horario_fin: string;
+  cuota1: string;
+  cuota2: string;
+  cuota3: string;
+  cuota4: string;
+  cuota5: string;
+}
+
+export {Estudiante, Coordinacion, Docente, Materia, ControlEstudio, Config};

@@ -3,23 +3,21 @@
   import type { TableSource } from "@skeletonlabs/skeleton";
   import type {PageData} from "./$types"
   import type { Materia } from "../../../app";
+  import { goto } from "$app/navigation";
 
   export let data: PageData;
   
     let nombre_profesor = data.docente.nombre;
-
-    let table = {
-        cantidad_estudiantes: 24
-    }
-    const sourceData = data.materias.map((materia: Materia) => ({codigo: materia.id, nombre: materia.nombre, estudiantes: table.cantidad_estudiantes}));
+    
+    const sourceData = data.materias.map((materia: Materia) => ({codigo: materia.id, nombre: materia.nombre, hp: materia.hp, ht: materia.ht, dia: materia.dia, inicio: materia.hora_inicio, fin: materia.hora_fin, estudiantes: materia.cantidad_estudiantes?.toString()}));
 
   const tableSimple: TableSource = {
-    head: ["Código", "Nombre", "Estudiantes asignados"],
-    body: tableMapperValues(sourceData, ["codigo", "nombre", "estudiantes"]),
+    head: ["Código", "Nombre", "Horas prácticas", "Horas teóricas", "Día de clase", "Hora de inicio", "Hora de fin", "Estudiantes asignados"],
+    body: tableMapperValues(sourceData, ["codigo", "nombre", "hp", "ht", "dia", "inicio", "fin", "estudiantes"]),
   };
 
   const handleSelection = (e: CustomEvent) => {
-    console.log(e.detail);
+    goto(`/docentes/${e.detail[0]}`)
   }
 
 </script>

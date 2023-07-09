@@ -3,12 +3,12 @@
   import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
 
-  import type { Coordinacion } from "../../../app";
+  import type { ControlEstudio } from "../../../app";
 
   export let data: PageData;
 
 
-  let coordinador: Coordinacion = data.coordinador;
+  let controlEstudio: ControlEstudio = data.controlEstudio;
   
   let panel = false;
   let clicked = 0;
@@ -28,7 +28,7 @@
   style="min-height: calc(100vh + 10rem);"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
-    ¡Bienvenid@, {coordinador.nombre}!
+    ¡Bienvenid@, {controlEstudio.nombre}!
   </h1>
   <div
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
@@ -39,10 +39,8 @@
             md:[&>button]:w-[200px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/coordinadores/materias" class="w-full h-full block">Ver Materias</a></button
+        ><a href="/control_estudio/materias" class="w-full h-full block">Ver Materias</a></button
       >
-      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/registrar-materia" class="w-full h-full block">Registrar materias</a></button>
-      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/agregar-docente" class="w-full h-full block">Registrar docentes</a></button>
     </div>
 
     <div class="w-11/12 lg:w-10/12">
@@ -61,34 +59,26 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Informacion del coordinador
+          Informacion del personal
         </summary>
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
         >
           <span>
             <h2>Cedula:</h2>
-            <p>{coordinador.cedula}</p>
+            <p>{controlEstudio.cedula}</p>
           </span>
           <span>
             <h2>Nombre completo:</h2>
-            <p class="capitalize">{coordinador.nombre}</p>
+            <p class="capitalize">{controlEstudio.nombre}</p>
           </span>
-          <!-- <span>
-            <h2>Lapso Ingreso:</h2>
-            <p>202101</p>
-          </span>
-          <span>
-            <h2>Lapso en Curso:</h2>
-            <p>2022/2023</p>
-          </span>
-          <span>
-            <h2>Ult. Lapso Cursado:</h2>
-            <p>2021/2023</p>
-          </span> -->
           <span>
             <h2>Teléfono:</h2>
-            <p>{coordinador.telefono}</p>
+            <p>{controlEstudio.telefono}</p>
+          </span>
+          <span>
+            <h2>Rol:</h2>
+            <p>{controlEstudio.rol}</p>
           </span>
         </div>
       </details>

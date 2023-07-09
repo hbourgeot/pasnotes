@@ -12,7 +12,7 @@
   import "../app.postcss";
 </script>
 
-<main class="w-full h-screen">
+<main class="w-full">
   <slot />
 </main>
 
@@ -21,5 +21,6 @@
     background:  #666666; 
     background: url("$lib/images/layered-waves-haikei.svg") center/cover
       no-repeat;
+    background-attachment: fixed;
   }
 </style>

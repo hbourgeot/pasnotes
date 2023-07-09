@@ -26,7 +26,6 @@ export const actions: Actions = {
   default: async ({ locals: { client }, request }) => {
     const materia: Materia = Object.fromEntries(await request.formData()) as unknown as Materia;
 
-    console.log(materia);
     const { ok, status, data } = await client.POST("/api/materias/add", materia);
     if (!ok) {
       return fail(400, data);

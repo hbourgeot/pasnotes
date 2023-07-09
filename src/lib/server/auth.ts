@@ -23,7 +23,7 @@ export const logInControlEstudio = async (
   { locals: { client }, cookies }: RequestEvent,
   { username, password }: { username?: string; password?: string; }
 ) => {
-  const { ok, status, data } = await client.POST("/api/students/login", {
+  const { ok, status, data } = await client.POST("/api/control/login", {
     usuario: username,
     clave: password,
   });
@@ -97,7 +97,6 @@ export const getUser = async (token: string, endpoint: string) => {
     });
     // console.log(res)
     const { data: user } = await res.json();
-    console.log(user);
 
     return user;
   } catch (error) {
