@@ -23,9 +23,7 @@
   </a>
   <form
     method="post"
-    action="{`/logout?red=${
-      $page.url.pathname.replaceAll('/', ' ').split(' ')[1]
-    }`}"
+    action="{`/docentes/logout?red=docentes`}"
   >
     <button
       type="submit"

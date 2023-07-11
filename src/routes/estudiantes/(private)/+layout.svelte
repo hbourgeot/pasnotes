@@ -17,7 +17,7 @@
     class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
       ? 'invisible'
       : ''}"
-    on:click="{() => (window.location.pathname = '/coordinadores')}"
+    on:click="{() => (window.location.pathname = '/estudiantes')}"
     >Volver atrás</button
   >
   <a href="/" class="h-full flex flex-center">
@@ -25,9 +25,7 @@
   </a>
   <form
     method="post"
-    action="{`/logout?red=${
-      $page.url.pathname.replaceAll('/', ' ').split(' ')[1]
-    }`}"
+    action="{`/estudiantes/logout?red=estudiantes`}"
   >
     <button
       type="submit"

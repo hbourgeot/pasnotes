@@ -17,9 +17,7 @@
 </a>
 <form
   method="post"
-  action="{`/logout?red=${
-    $page.url.pathname.replaceAll('/', ' ').split(' ')[1]
-  }`}"
+  action="{`/logout?red=control_estudio`}"
 >
   <button
     type="submit"
