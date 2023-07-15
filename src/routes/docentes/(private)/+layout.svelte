@@ -1,10 +1,12 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
-  let btnInvisible: boolean = false;
+  import {Toast} from "@skeletonlabs/skeleton";
+  let btnInvisible: boolean;
   $: btnInvisible = $page.route.id === "/docentes";
 </script>
 
+<Toast position="t" />
 <nav
   class="w-full flex justify-between items-center h-[70px]"
   style="border-bottom: 1px solid rgb(229 231 235);

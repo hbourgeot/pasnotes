@@ -1,11 +1,17 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { PageData } from "./$types";
+  import type {ActionData, PageData} from "./$types";
   import { Table } from "@skeletonlabs/skeleton";
   import type { TableSource } from "@skeletonlabs/skeleton";
   import { tableMapperValues } from "@skeletonlabs/skeleton";
+  import {triggerToast} from "$lib/utils/toast";
 
   export let data: PageData;
+  export let form: ActionData;
+
+  $: if(form?.message){
+    triggerToast(form?.message)
+  }
 
   const sourceData = data.estudiantes.map((nota: any) => ({
     cedula: nota.cedula,
@@ -105,11 +111,11 @@
       </span>
 
       <div class="w-full p-4 flex justify-center gap-8 mt-8">
-        <button on:click="{() => {
+        <button on:click={() => {
             estudiante = "";
             nota = 0;
             toChange = "0";
-        }}" class="bg-pink-600 p-4 w-52 text-white rounded-xl"
+        }} class="bg-pink-600 p-4 w-52 text-white rounded-xl"
           >Cancelar</button
         >
         <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
@@ -120,7 +126,7 @@
   </section>
 </main>
 
-<style scoped>
+<style>
   input,
   select {
     width: 100%;

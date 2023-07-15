@@ -1,11 +1,11 @@
 import { fail } from "@sveltejs/kit";
-import type { Materia } from "../../../../app";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load = (async ({ params, locals: { client } }) => {
-  const { ok, status, data } = await client.GET(
+  const { ok, data } = await client.GET(
     `/api/materias/${params.materia}`
   );
+  console.log(data)
   if (!ok) return { materia: null };
 
   const carrera = data.materia.carrera;
@@ -36,7 +36,7 @@ export const actions: Actions = {
       Authorization: cookies.get("access_token"),
     };
 
-    const { ok, status, data } = await client.PATCH(
+    const { ok, data } = await client.PATCH(
       "/api/docente/upload",
       obj,
       headers

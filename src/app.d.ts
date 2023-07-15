@@ -80,4 +80,12 @@ interface Config {
   cuota5: string;
 }
 
-export {Estudiante, Coordinacion, Docente, Materia, ControlEstudio, Config};
+interface Notas {
+	materia: string;
+	nota1: number;
+	nota2: number;
+	nota3: number;
+	promedio: number;
+}
+
+export {Estudiante, Coordinacion, Docente, Materia, ControlEstudio, Config, Notas};

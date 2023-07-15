@@ -1,7 +1,6 @@
 import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
-import type { Config, Materia } from "../../../../app";
-import { triggerToast } from "$lib/utils/toast";
+import type { Config } from "../../../../app";
 
 export const load: PageServerLoad = async ({ locals: { client, estudiante } }) => {
   const { ok: isConfig, data: configure } = await client.GET("/api/config")
@@ -28,7 +27,7 @@ export const load: PageServerLoad = async ({ locals: { client, estudiante } }) =
 };
 
 export const actions: Actions = {
-  default: async ({ locals: { estudiante, client }, request, cookies }) => {
+  default: async ({ locals: { client }, request, cookies }) => {
     const materias: string[] = (await request.formData()).getAll("materias") as unknown as string[];
 
     let headers = {
@@ -37,10 +36,12 @@ export const actions: Actions = {
     };
 
     for (const materia of materias) {
-        const { ok, status, data } = await client.POST(`/api/students/add-materia/${materia}`, null, headers);
+        const { ok, data } = await client.POST(`/api/students/add-materia/${materia}`, null, headers);
       if (!ok) {
         return fail(400, { message: data.message });
         }
     }
+
+    return {message: "¡Su horario ha sido inscrito exitosamente!"}
   }
 };

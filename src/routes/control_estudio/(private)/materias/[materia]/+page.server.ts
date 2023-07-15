@@ -1,4 +1,4 @@
-import type {PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 
 export const load = (async ({ params, locals: { client } }) => {
   const { ok, data } = await client.GET(

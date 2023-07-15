@@ -1,21 +1,20 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { ActionData, PageData } from "./$types";
+  import type {ActionData, PageData, SubmitFunction} from "./$types";
   import type { Materia } from "../../../../app";
   import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
   import type { TableSource } from "@skeletonlabs/skeleton";
   import { onMount } from "svelte";
   import { triggerToast } from "$lib/utils/toast";
   import { goto } from "$app/navigation";
-  import { Icon } from "@steeze-ui/svelte-icon";
-  import { Delete } from "@steeze-ui/material-design-icons";
-  import type { SubmitFunction } from "@sveltejs/kit";
 
   export let data: PageData;
   export let form: ActionData;
 
   $: if (form?.message) {
     triggerToast(form?.message);
+
+    if(form?.message == "¡Su horario ha sido inscrito exitosamente!") goto("/estudiantes")
   }
 
   $: if (data?.message) {
@@ -24,7 +23,7 @@
 
   let materias: Materia[] = [];
   let materiasData: Materia[] = data.materias;
-  let unidadesTotales = 0;
+  let unidadesTotales: number | undefined = 0;
   let materia = data.materias[0]?.id ?? null;
   let materiaDelete = "";
   let materiaObject: Materia | undefined;
@@ -175,13 +174,13 @@
   method="post"
 >
   {#if data.materias.length != 0}
-    <label for="cedula" class="label text-3xl bold mb-4"
+    <label for="materiasel" class="label text-3xl bold mb-4"
       >Seleccione una materia a agregar</label
     >
     <div
       class="input-group input-group-divider grid-cols-[auto_1fr_auto] w-1/2"
     >
-      <select name="materia" id="materia" class="select" bind:value="{materia}">
+      <select name="materia" id="materiasel" class="select" bind:value="{materia}">
         {#each data.materias as materia}
           <option value="{materia.id}">{materia.id} - {materia.nombre}</option>
         {/each}
@@ -197,7 +196,7 @@
   <Table source="{tableSimple}" class="md:mx-auto" />
 
   {#if materias.length != 0}
-    <label for="cedula" class="label text-3xl bold mb-4"
+    <label for="materiadel" class="label text-3xl bold mb-4"
       >Seleccione una materia a eliminar</label
     >
     <div
@@ -205,7 +204,7 @@
     >
       <select
         name="materia"
-        id="materia"
+        id="materiadel"
         class="select"
         bind:value="{materiaDelete}"
       >

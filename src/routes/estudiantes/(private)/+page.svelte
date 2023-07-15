@@ -2,9 +2,7 @@
   import { Icon } from "@steeze-ui/svelte-icon";
   import { ExpandMore, ExpandLess, VerticalAlignBottom } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
-
-  import Summary from "$lib/components/Summary.svelte";
-  import type { Estudiante } from "../../../app";
+  import type {Estudiante, Materia} from "../../../app";
 
   export let data: PageData;
 
@@ -19,9 +17,8 @@
   ];
 
   let estudiante: Estudiante = data.estudiante;
+  let materias: Materia[] = data.materias;
 
-  let panel = false;
-  let clicked = 0;
 </script>
 
 <div
@@ -33,7 +30,7 @@
   </h1>
   <div
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
-    style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
+    style="min-height: calc(100vh); box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
   >
     <div
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
@@ -79,18 +76,6 @@
             <h2>Especialidad:</h2>
             <p class="capitalize">{carreras[estudiante.carrera - 1]}</p>
           </span>
-          <!-- <span>
-            <h2>Lapso Ingreso:</h2>
-            <p>202101</p>
-          </span>
-          <span>
-            <h2>Lapso en Curso:</h2>
-            <p>2022/2023</p>
-          </span>
-          <span>
-            <h2>Ult. Lapso Cursado:</h2>
-            <p>2021/2023</p>
-          </span> -->
           <span>
             <h2>Semestre:</h2>
             <p>{estudiante.semestre}</p>
@@ -117,16 +102,24 @@
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
         >
+          {#if !materias.length}
           <span>
-            <h2>Nombre materia:</h2>
+            <h2>Usted no tiene materias asignadas</h2>
           </span>
+          {:else}
+            {#each materias as materia}
+              <span>
+                <h2>{materia}</h2>
+              </span>
+            {/each}
+          {/if}
         </div>
       </details>
     </div>
   </div>
 </div>
 
-<style class="scss" scoped>
+<style class="scss">
   span h2 {
     font-weight: 600;
     padding-left: 16px;

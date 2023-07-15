@@ -4,7 +4,7 @@ import type { Actions } from "./$types";
 
 export const actions: Actions = {
     default: async (event) => {
-        await logOut(event);
+        await logOut(event, {path: "/estudiantes"});
         const redirectUrl = event.url.searchParams.get("red") ?? "/";
 
         throw redirect(302, `/${redirectUrl}/login`);

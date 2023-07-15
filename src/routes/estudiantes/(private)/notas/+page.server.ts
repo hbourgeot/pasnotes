@@ -6,8 +6,8 @@ export const load: PageServerLoad = async ({ locals: { estudiante, client}, cook
      Authorization: cookies.get("access_token"),
   };
   
-  const { ok, status, data } = await client.GET("/api/students/materias", null, headers);
-
+  const { ok, data } = await client.GET("/api/students/materias", null, headers);
+    console.log(data)
   if(!ok) return {estudiante: null, message: "No tienes materias registradas", materias: []}
   return { estudiante, materias: data.materias };
 };
