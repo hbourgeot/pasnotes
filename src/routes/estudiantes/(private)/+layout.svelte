@@ -17,16 +17,13 @@
     class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
       ? 'invisible'
       : ''}"
-    on:click="{() => (window.location.pathname = '/estudiantes')}"
+    on:click={() => (window.location.pathname = "/estudiantes")}
     >Volver atrás</button
   >
   <a href="/" class="h-full flex flex-center">
-    <img src="{Logo}" alt="" class="logo" />
+    <img src={Logo} alt="" class="logo" />
   </a>
-  <form
-    method="post"
-    action="{`/estudiantes/logout?red=estudiantes`}"
-  >
+  <form method="post" action={`/estudiantes/logout?red=estudiantes`}>
     <button
       type="submit"
       class="bg-pink-600 px-3 py-1 rounded-3xl mr-4 h-[50px] text-white"

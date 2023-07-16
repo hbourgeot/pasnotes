@@ -1,8 +1,8 @@
 import { baseURL } from "$env/static/private";
-import type  { RequestEvent } from "@sveltejs/kit";
+import type { RequestEvent } from "@sveltejs/kit";
 import type { Coordinacion, Docente, Estudiante } from "../../app";
 
-export const logInStudent = async(
+export const logInStudent = async (
   { locals: { client }, cookies }: RequestEvent,
   { username, password }: { username?: string; password?: string }
 ) => {
@@ -11,17 +11,20 @@ export const logInStudent = async(
     clave: password,
   });
   if (!ok) {
-    return {ok, data}
+    return { ok, data };
   }
 
-  cookies.set("access_token", data.access_token, {httpOnly: true, path: '/estudiantes'})
+  cookies.set("access_token", data.access_token, {
+    httpOnly: true,
+    path: "/estudiantes",
+  });
 
   return { ok, status, data };
 };
 
 export const logInControlEstudio = async (
   { locals: { client }, cookies }: RequestEvent,
-  { username, password }: { username?: string; password?: string; }
+  { username, password }: { username?: string; password?: string }
 ) => {
   const { ok, status, data } = await client.POST("/api/control/login", {
     usuario: username,
@@ -31,7 +34,10 @@ export const logInControlEstudio = async (
     return { ok, data };
   }
 
-  cookies.set("access_token", data.access_token, { httpOnly: true, path: "/control_estudio" });
+  cookies.set("access_token", data.access_token, {
+    httpOnly: true,
+    path: "/control_estudio",
+  });
 
   return { ok, status, data };
 };
@@ -48,18 +54,17 @@ export const logInDocente = async (
     return { ok, data };
   }
 
-    cookies.set("access_token", data.access_token, {
-      httpOnly: true,
-      path: "/docentes",
-    });
-
+  cookies.set("access_token", data.access_token, {
+    httpOnly: true,
+    path: "/docentes",
+  });
 
   return { ok, status, data };
 };
 
 export const logInCoordinacion = async (
   { locals: { client }, cookies }: RequestEvent,
-  { username, password }: { username?: string; password?: string; }
+  { username, password }: { username?: string; password?: string }
 ) => {
   const { ok, status, data } = await client.POST("/api/coordinacion/login", {
     usuario: username,
@@ -69,7 +74,10 @@ export const logInCoordinacion = async (
     return { ok, data };
   }
 
-  cookies.set("access_token", data.access_token, { httpOnly: true, path: '/coordinadores' });
+  cookies.set("access_token", data.access_token, {
+    httpOnly: true,
+    path: "/coordinadores",
+  });
 
   return { ok, status, data };
 };
@@ -104,7 +112,10 @@ export const getUser = async (token: string, endpoint: string) => {
   }
 };
 
-export const logOut = async (event: RequestEvent, {path}: {path: string}) => {
+export const logOut = async (
+  event: RequestEvent,
+  { path }: { path: string }
+) => {
   const { cookies } = event;
-  cookies.delete("access_token", {path: path});
-}
+  cookies.delete("access_token", { path: path });
+};

@@ -6,9 +6,12 @@ import { getAccessToken, getUser } from "$lib/server/auth";
 import jwt from "jsonwebtoken";
 const { decode } = jwt;
 const authHandler: Handle = async ({ event, resolve }) => {
-
   function isLoginRoute(url: string): boolean {
-    return ["/coordinadores/login", "/estudiantes/login", "/docentes/login"].includes(url);
+    return [
+      "/coordinadores/login",
+      "/estudiantes/login",
+      "/docentes/login",
+    ].includes(url);
   }
 
   console.log("http://localhost:5173/");
@@ -27,11 +30,17 @@ const authHandler: Handle = async ({ event, resolve }) => {
 
     if (accessToken) {
       try {
-        const decodedToken = decode(verifyToken) as { exp: number; rol: string };
+        const decodedToken = decode(verifyToken) as {
+          exp: number;
+          rol: string;
+        };
         const currentTime = Math.floor(Date.now() / 1000);
         const rol = decodedToken.rol;
         console.log(rol);
-        if (currentTime <= decodedToken.exp || isLoginRoute(event.url.pathname)) {
+        if (
+          currentTime <= decodedToken.exp ||
+          isLoginRoute(event.url.pathname)
+        ) {
           switch (rol) {
             case "CE":
               event.locals.controlEstudio = (await getUser(

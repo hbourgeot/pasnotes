@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type {ActionData, PageData, SubmitFunction} from "./$types";
+  import type { ActionData, PageData, SubmitFunction } from "./$types";
   import type { Materia } from "../../../../app";
   import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
   import type { TableSource } from "@skeletonlabs/skeleton";
@@ -14,7 +14,8 @@
   $: if (form?.message) {
     triggerToast(form?.message);
 
-    if(form?.message == "¡Su horario ha sido inscrito exitosamente!") goto("/estudiantes")
+    if (form?.message == "¡Su horario ha sido inscrito exitosamente!")
+      goto("/estudiantes");
   }
 
   $: if (data?.message) {
@@ -170,7 +171,7 @@
 -->
 <form
   class="mb-4 lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5"
-  use:enhance="{handleSubmit}"
+  use:enhance={handleSubmit}
   method="post"
 >
   {#if data.materias.length != 0}
@@ -180,20 +181,25 @@
     <div
       class="input-group input-group-divider grid-cols-[auto_1fr_auto] w-1/2"
     >
-      <select name="materia" id="materiasel" class="select" bind:value="{materia}">
+      <select
+        name="materia"
+        id="materiasel"
+        class="select"
+        bind:value={materia}
+      >
         {#each data.materias as materia}
-          <option value="{materia.id}">{materia.id} - {materia.nombre}</option>
+          <option value={materia.id}>{materia.id} - {materia.nombre}</option>
         {/each}
       </select>
       <button
         type="button"
-        on:click="{addMateria}"
+        on:click={addMateria}
         class="bg-blue-600 text-white px-4 py-2 rounded">Agregar</button
       >
     </div>
   {/if}
 
-  <Table source="{tableSimple}" class="md:mx-auto" />
+  <Table source={tableSimple} class="md:mx-auto" />
 
   {#if materias.length != 0}
     <label for="materiadel" class="label text-3xl bold mb-4"
@@ -206,15 +212,15 @@
         name="materia"
         id="materiadel"
         class="select"
-        bind:value="{materiaDelete}"
+        bind:value={materiaDelete}
       >
         {#each materias as materia}
-          <option value="{materia.id}">{materia.id} - {materia.nombre}</option>
+          <option value={materia.id}>{materia.id} - {materia.nombre}</option>
         {/each}
       </select>
       <button
         type="button"
-        on:click="{deleteMateria}"
+        on:click={deleteMateria}
         class="bg-blue-600 text-white px-4 py-2 rounded">Eliminar</button
       >
     </div>

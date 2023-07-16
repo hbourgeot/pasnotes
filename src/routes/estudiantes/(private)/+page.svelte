@@ -1,8 +1,12 @@
 <script lang="ts">
   import { Icon } from "@steeze-ui/svelte-icon";
-  import { ExpandMore, ExpandLess, VerticalAlignBottom } from "@steeze-ui/material-design-icons";
+  import {
+    ExpandMore,
+    ExpandLess,
+    VerticalAlignBottom,
+  } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
-  import type {Estudiante, Materia} from "../../../app";
+  import type { Estudiante, Materia } from "../../../app";
 
   export let data: PageData;
 
@@ -18,7 +22,6 @@
 
   let estudiante: Estudiante = data.estudiante;
   let materias: Materia[] = data.materias;
-
 </script>
 
 <div
@@ -37,10 +40,18 @@
             md:[&>button]:w-[240px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a></button
+        ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a
+        ></button
       >
-      <button><a href="/estudiantes/inscribir-materias" class="w-full h-full block">Inscribir materias</a></button>
-      <button class="bg-[#9DB2BF] flex flex-row-reverse gap-x-2"><Icon src={VerticalAlignBottom} theme="round" size="24px"/> Constancia de estudio</button>
+      <button
+        ><a href="/estudiantes/inscribir-materias" class="w-full h-full block"
+          >Inscribir materias</a
+        ></button
+      >
+      <button class="bg-[#9DB2BF] flex flex-row-reverse gap-x-2"
+        ><Icon src={VerticalAlignBottom} theme="round" size="24px" /> Constancia
+        de estudio</button
+      >
     </div>
 
     <div class="w-11/12 lg:w-10/12">
@@ -53,10 +64,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Informacion del estudiante
@@ -86,15 +97,17 @@
           </span>
         </div>
       </details>
-      <details class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center">
+      <details
+        class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center"
+      >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Materias inscritas
@@ -103,9 +116,9 @@
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
         >
           {#if !materias.length}
-          <span>
-            <h2>Usted no tiene materias asignadas</h2>
-          </span>
+            <span>
+              <h2>Usted no tiene materias asignadas</h2>
+            </span>
           {:else}
             {#each materias as materia}
               <span>

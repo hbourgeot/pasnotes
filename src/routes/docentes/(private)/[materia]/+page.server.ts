@@ -2,10 +2,8 @@ import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load = (async ({ params, locals: { client } }) => {
-  const { ok, data } = await client.GET(
-    `/api/materias/${params.materia}`
-  );
-  console.log(data)
+  const { ok, data } = await client.GET(`/api/materias/${params.materia}`);
+  console.log(data);
   if (!ok) return { materia: null };
 
   const carrera = data.materia.carrera;
@@ -18,17 +16,17 @@ export const load = (async ({ params, locals: { client } }) => {
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-    default: async ({ params, cookies, request, locals: { client } }) => {
-        const campo = ["nota1", "nota2", "nota3"]
+  default: async ({ params, cookies, request, locals: { client } }) => {
+    const campo = ["nota1", "nota2", "nota3"];
     let obj: any = Object.fromEntries(await request.formData());
 
     obj = {
-        ...obj,
-    nombre_campo: campo[obj.nombre_campo-1],
+      ...obj,
+      nombre_campo: campo[obj.nombre_campo - 1],
       materia: params.materia,
-        };
-        
-        console.log(obj);
+    };
+
+    console.log(obj);
 
     let headers = {
       Accept: "*/*",
@@ -42,7 +40,7 @@ export const actions: Actions = {
       headers
     );
 
-    if(!ok) return fail(400, {message: data.message})
-    return {message: "Modificado!"}
+    if (!ok) return fail(400, { message: data.message });
+    return { message: "Modificado!" };
   },
 };

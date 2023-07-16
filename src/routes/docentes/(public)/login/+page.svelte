@@ -14,27 +14,27 @@
 
   $: if (form?.message) {
     const t: ToastSettings = {
-      message: form?.message
+      message: form?.message,
     };
 
-		toastStore.trigger(t)
+    toastStore.trigger(t);
   }
   let isExpirated = $page.url.searchParams.get("exp") ? true : false;
 
-	if(isExpirated){
-		const t: ToastSettings = {
-      message: "Sesión caducada"
+  if (isExpirated) {
+    const t: ToastSettings = {
+      message: "Sesión caducada",
     };
 
-		toastStore.trigger(t)
-	}
+    toastStore.trigger(t);
+  }
 </script>
 
 <svelte:head>
   <title>Inicio de Sesion</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
-<svelte:window bind:innerHeight="{y}" />
+<svelte:window bind:innerHeight={y} />
 <section
   class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0"
 >
@@ -43,7 +43,7 @@
     method="post"
     class="max-w-[500px] w-[95%] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
   >
-    <img src="{Pascal}" alt="Instituto Pascal" class="w-1/2" />
+    <img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
     <h1 class="text-3xl mb-8 font-bold flex justify-center items-center gap">
       Bienvenido Docente
     </h1>
@@ -54,7 +54,7 @@
       for="username"
       class="text-xl flex justify-end items-center w-full max-w-[340px] border-1 rounded-lg"
     >
-      <Icon src="{User}" class="h-14 w-14 p-1 border-r-1" />
+      <Icon src={User} class="h-14 w-14 p-1 border-r-1" />
       <input
         type="text"
         name="username"
@@ -68,7 +68,7 @@
       class="text-xl flex justify-end items-center
 		 border-1 rounded-lg w-full max-w-[340px]"
     >
-      <Icon src="{Lock}" class="h-14 w-14 p-1 border-r-1" />
+      <Icon src={Lock} class="h-14 w-14 p-1 border-r-1" />
       <input
         type="password"
         name="password"
@@ -82,7 +82,6 @@
       class="w-full max-w-[340px] bg-blue-500 p-4 rounded-lg mb-6 text-white
 			text-xl">Iniciar sesion</button
     >
-
   </form>
 </section>
 
