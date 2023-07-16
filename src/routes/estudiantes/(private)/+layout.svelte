@@ -8,7 +8,7 @@
 
 <Toast position="t" />
 <nav
-  class="w-full flex justify-between items-center h-[70px]"
+  class="w-full flex justify-between items-center h-[70px] sticky top-0"
   style="border-bottom: 1px solid rgb(229 231 235);
 "
 >

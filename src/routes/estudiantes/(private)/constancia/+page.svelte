@@ -6,6 +6,8 @@
   import { onMount } from "svelte";
   import jsPDF from "jspdf";
   import html2canvas from "html2canvas";
+  import { goto } from "$app/navigation";
+  import { triggerToast } from "$lib/utils/toast";
 
   const fechaActual = new Date();
 
@@ -113,11 +115,17 @@
 
       // Guarda el PDF
       pdf.save("constancia.pdf");
+      triggerToast("Constancia de estudios descargada!");
+      goto("/estudiantes");
     });
   });
 </script>
 
-<main class="c28 doc-content" id="constancia">
+<div class="fixed top-0 left-0 z-50 bg-white h-screen w-screen text-xl p-3">
+  Descargando pdf...
+</div>
+
+<main class="c28 doc-content z-2" id="constancia">
   <p class="c13 flex flex-row-reverse justify-between items-center">
     <span
       style="

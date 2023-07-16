@@ -48,9 +48,11 @@
           >Inscribir materias</a
         ></button
       >
-      <button class="bg-[#9DB2BF] flex flex-row-reverse gap-x-2"
+      <a
+        href="/estudiantes/constancia"
+        class="flex flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
         ><Icon src={VerticalAlignBottom} theme="round" size="24px" /> Constancia
-        de estudio</button
+        de estudio</a
       >
     </div>
 
