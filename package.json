@@ -1,6 +1,6 @@
 {
-  "name": "iutp-front",
-  "version": "0.0.1",
+  "name": "uitepas",
+  "version": "0.5.1",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",

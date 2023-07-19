@@ -1,10 +1,17 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
   import type { ActionData, PageData } from "./$types";
-  import { Table } from "@skeletonlabs/skeleton";
-  import type { TableSource } from "@skeletonlabs/skeleton";
+  import {
+    FileDropzone,
+    Modal,
+    modalStore,
+    Table,
+  } from "@skeletonlabs/skeleton";
+  import type { TableSource, ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import { tableMapperValues } from "@skeletonlabs/skeleton";
   import { triggerToast } from "$lib/utils/toast";
+  import ModalFile from "$lib/components/ModalFile.svelte";
+  import type { SubmitFunction } from "@sveltejs/kit";
 
   export let data: PageData;
   export let form: ActionData;
@@ -66,6 +73,53 @@
         nota = e.detail[1];
     }
   };
+
+  let files: FileList;
+  let uploadForm: HTMLFormElement;
+  let myFile: any;
+  $: console.log(myFile);
+
+  const modalComponentRegistry: Record<string, ModalComponent> = {
+    // Custom Modal 1
+    modalFile: {
+      // Pass a reference to your custom component
+      ref: ModalFile,
+    },
+  };
+
+  const handleForm = async () => {
+    try {
+      myFile = await new Promise<FileList>((resolve) => {
+        const modal: ModalSettings = {
+          type: "component",
+          // Pass the component registry key as a string:
+          component: "modalFile",
+          title: "Agregar archivo",
+          body: "Sube tu planificación en formato PDF",
+          response: (r: FileList) => {
+            resolve(r);
+          },
+        };
+        modalStore.trigger(modal);
+      });
+
+      console.log("resolved response:", myFile);
+      myFile = myFile.item(0);
+
+      myFile = myFile; // Force Svelte
+      uploadForm.requestSubmit();
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  const handleSubmit: SubmitFunction = ({ data }) => {
+    data.set("files", myFile);
+    console.log("hola");
+    return async ({ update }) => {
+      await update();
+    };
+  };
 </script>
 
 <main class="flex justify-center items-center bg-transparent">
@@ -122,7 +176,28 @@
         >
       </div>
     </form>
+    <div
+      class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
+    >
+      <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
+        Cargar/Descargar planificación
+      </h3>
+      <button class="btn variant-filled" on:click={() => handleForm()}
+        >Cargar</button
+      >
+      <button class="btn variant-filled">Descargar</button>
+    </div>
   </section>
+  <form
+    action="?/carga"
+    method="post"
+    use:enhance={handleSubmit}
+    class="hidden"
+    bind:this={uploadForm}
+  >
+    <FileDropzone name="files" bind:files={myFile} />
+  </form>
+  <Modal components={modalComponentRegistry} />
 </main>
 
 <style>
