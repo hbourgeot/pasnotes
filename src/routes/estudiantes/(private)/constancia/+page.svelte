@@ -219,7 +219,6 @@
     <tr class="c26">
       <td class="c6" colspan="1" rowspan="1">
         <p class="c1">
-          <span class="c30">Dr.</span><span class="c31">&nbsp;</span>
           <span class="c30">Dr.</span><span class="c31">&nbsp;</span><span
             class="c12">&nbsp;Jos&eacute; Manuel Brice&ntilde;o Soto</span
           >

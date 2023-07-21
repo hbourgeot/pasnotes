@@ -1,30 +1,21 @@
 import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
+let ciclo = "";
 export const load = (async ({ params, locals: { client } }) => {
   const { ok, data } = await client.GET(`/api/materias/${params.materia}`);
-  if (!ok) return { materia: null };
+  if (!ok)
+    return { materia: null, estudiantes: null, carrera: null, file: null };
 
   const carrera = data.materia.carrera;
   const estudiantes = data.materia.estudiantes;
-  const ciclo = data.ciclo;
+  ciclo = data.ciclo;
   const materia = {
     id: data.materia.id,
     nombre: data.materia.nombre,
   };
 
-  const { ok: okFile, data: file } = await client.GET(
-    `/api/archivos/file/planificacion.pdf?folder=${materia.nombre
-      .toLowerCase()
-      .replaceAll(" ", "_")}&ciclo=${ciclo}`
-  );
-  let fileExists = true;
-  console.log(ok, file);
-
-  if (!okFile) fileExists = false;
-
-  console.log(file, fileExists);
-  return { carrera, estudiantes, materia };
+  return { carrera, estudiantes, materia, ciclo };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
@@ -37,8 +28,6 @@ export const actions: Actions = {
       nombre_campo: campo[obj.nombre_campo - 1],
       materia: params.materia,
     };
-
-    console.log(obj);
 
     let headers = {
       Accept: "*/*",
@@ -56,7 +45,20 @@ export const actions: Actions = {
     return { message: "Modificado!" };
   },
 
-  carga: async ({ request, locals: { client } }) => {
-    console.log(Object.fromEntries(await request.formData()));
+  carga: async ({ request, locals: { client }, params }) => {
+    // @ts-ignore
+    const { files } = Object.fromEntries(
+      await request.formData()
+    ) as unknown as File;
+    console.log(files);
+
+    const formData = new FormData();
+    formData.append("file", files, "planificacion.pdf");
+    formData.append("folder", params.materia);
+    formData.append("ciclo", ciclo);
+
+    const { ok, data } = await client.POST(`/api/archivos/upload`, formData);
+
+    console.log(ok, data);
   },
 };

@@ -28,7 +28,9 @@ export const client = async (
       return await res.json();
     } else {
       // Assuming 'blob' for file data
-      return await res.blob();
+      const file = await res.blob();
+      console.log("ola soy jeison", file);
+      return file;
     }
   } catch (error) {
     console.log("error en fetch", error);

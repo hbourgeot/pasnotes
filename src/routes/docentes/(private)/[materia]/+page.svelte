@@ -7,11 +7,16 @@
     modalStore,
     Table,
   } from "@skeletonlabs/skeleton";
-  import type { TableSource, ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
+  import type {
+    TableSource,
+    ModalSettings,
+    ModalComponent,
+  } from "@skeletonlabs/skeleton";
   import { tableMapperValues } from "@skeletonlabs/skeleton";
   import { triggerToast } from "$lib/utils/toast";
   import ModalFile from "$lib/components/ModalFile.svelte";
   import type { SubmitFunction } from "@sveltejs/kit";
+  import { onMount } from "svelte";
 
   export let data: PageData;
   export let form: ActionData;
@@ -50,6 +55,26 @@
   let nota: number = 0;
   let toChange: string = "0";
 
+  let files: FileList;
+  let uploadForm: HTMLFormElement;
+  let myFile: any;
+  let downloadFile: string;
+  let downloadLink: any;
+  $: console.log(myFile);
+
+  onMount(async () => {
+    const response = await fetch(
+      `/api/archivos?ciclo=${data.ciclo}&folder=${data.materia.id}`
+    );
+    const contentType = response.headers.get("content-type");
+    if (contentType && !contentType.includes("application/json")) {
+      const file = await response.blob();
+      downloadFile = URL.createObjectURL(file);
+    } else {
+      downloadFile = "";
+    }
+  });
+
   const handleSelect = (e: CustomEvent) => {
     estudiante = e.detail[0];
     switch (toChange) {
@@ -73,11 +98,6 @@
         nota = e.detail[1];
     }
   };
-
-  let files: FileList;
-  let uploadForm: HTMLFormElement;
-  let myFile: any;
-  $: console.log(myFile);
 
   const modalComponentRegistry: Record<string, ModalComponent> = {
     // Custom Modal 1
@@ -182,10 +202,18 @@
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
         Cargar/Descargar planificación
       </h3>
-      <button class="btn variant-filled" on:click={() => handleForm()}
-        >Cargar</button
-      >
-      <button class="btn variant-filled">Descargar</button>
+      {#if !downloadFile}
+        <button class="btn variant-filled" on:click={() => handleForm()}
+          >Cargar</button
+        >
+      {:else}
+        <a
+          href={downloadFile}
+          bind:this={downloadLink}
+          download="planificacion.pdf"
+          class="btn variant-filled">Descargar</a
+        >
+      {/if}
     </div>
   </section>
   <form
