@@ -8,7 +8,7 @@
 
 <Toast position="t" />
 <nav
-  class="w-full flex justify-between items-center h-[70px]"
+  class="w-full flex justify-between items-center h-[70px] sticky top-0"
   style="border-bottom: 1px solid rgb(229 231 235);
 "
 >
@@ -17,18 +17,13 @@
     class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
       ? 'invisible'
       : ''}"
-    on:click="{() => (window.location.pathname = '/coordinadores')}"
+    on:click={() => (window.location.pathname = "/estudiantes")}
     >Volver atrás</button
   >
   <a href="/" class="h-full flex flex-center">
-    <img src="{Logo}" alt="" class="logo" />
+    <img src={Logo} alt="" class="logo" />
   </a>
-  <form
-    method="post"
-    action="{`/logout?red=${
-      $page.url.pathname.replaceAll('/', ' ').split(' ')[1]
-    }`}"
-  >
+  <form method="post" action={`/estudiantes/logout?red=estudiantes`}>
     <button
       type="submit"
       class="bg-pink-600 px-3 py-1 rounded-3xl mr-4 h-[50px] text-white"

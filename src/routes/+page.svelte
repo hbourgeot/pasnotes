@@ -1,26 +1,15 @@
 <script>
-    import background from '../lib/images/layered-waves-haikei.svg'
+  import background from "../lib/images/layered-waves-haikei.svg";
+  import Header from "$lib/components/Header.svelte";
 </script>
 
-<main class='w-full h-screen'>
-    
-    <div class='w-full h-full flex justify-center items-center gap-2
-    [&>*]:bg-purple-600 [&>*]:p-4 [&>*]:rounded [&>*]:text-white
-    '>
-        <a href="/estudiantes/login">
-            Ir a Estudiantes</a>
-    
-    
-            <a href="/docentes">
-            
-            Ir a Docentes
-            </a>
-    </div>
+<main class="w-full h-screen">
+  <Header />
 </main>
 
-
 <style>
-    main {
-        background: url('../lib/images/layered-waves-haikei.svg') center/cover no-repeat;
-    }
+  main {
+    background: url("../lib/images/layered-waves-haikei.svg") center/cover
+      no-repeat;
+  }
 </style>

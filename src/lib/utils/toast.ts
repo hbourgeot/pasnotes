@@ -6,4 +6,4 @@ export const triggerToast = (title: string) => {
   };
 
   toastStore.trigger(t);
-}
+};

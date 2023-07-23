@@ -24,10 +24,10 @@
   let focused: boolean = false;
   let prelacion: string = "";
   $: if (selected.length > 0) {
-    prelacion = selected.join(" - ")
+    prelacion = selected.join(" - ");
   }
 
-  $: if(search){
+  $: if (search) {
     focused = true;
   }
 
@@ -141,7 +141,8 @@
             name="semestre"
             id="semestre"
             class="select py-2 px-7"
-            value="1" required
+            value="1"
+            required
           >
             <option value="1">1ro</option>
             <option value="2">2do</option>
@@ -159,10 +160,10 @@
             name="id_carrera"
             id="carrera"
             class="select py-2 px-7"
-            value="{carreras[0].id}"
+            value={carreras[0].id}
           >
             {#each carreras as carrera}
-              <option value="{carrera.id}">{carrera.nombre}</option>
+              <option value={carrera.id}>{carrera.nombre}</option>
             {/each}
           </select>
         </div>
@@ -172,10 +173,11 @@
             name="id_docente"
             id="docente"
             class="select py-2 px-7"
-            value="{docentesSelect[0].cedula}" required
+            value={docentesSelect[0].cedula}
+            required
           >
             {#each docentesSelect as docente}
-              <option value="{docente.cedula}">{docente.nombre}</option>
+              <option value={docente.cedula}>{docente.nombre}</option>
             {/each}
           </select>
         </div>
@@ -183,9 +185,15 @@
       <div class="flex justify-between items-end gap-x-5">
         <div class="mb-4 w-1/5">
           <label for="dia" class="label">Día de clases</label>
-          <select name="dia" id="dia" class="select py-2 px-7" value="{0}" required>
+          <select
+            name="dia"
+            id="dia"
+            class="select py-2 px-7"
+            value={0}
+            required
+          >
             {#each days as dia, i}
-              <option value="{i}">{dia}</option>
+              <option value={i}>{dia}</option>
             {/each}
           </select>
         </div>
@@ -197,10 +205,10 @@
             name="hora_inicio"
             min="12:00"
             max="20:00"
-            on:invalid="{() =>
+            on:invalid={() =>
               triggetToast(
-                'Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M.'
-              )}"
+                "Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M."
+              )}
             class="input py-2 px-7"
             required
           />
@@ -213,10 +221,10 @@
             name="hora_fin"
             min="12:00"
             max="20:00"
-            on:invalid="{() =>
+            on:invalid={() =>
               triggetToast(
-                'Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M.'
-              )}"
+                "Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M."
+              )}
             class="input py-2 px-7"
             required
           />
@@ -224,23 +232,23 @@
       </div>
       <div class="mb-4 relative">
         <label for="prelacion" class="label">Prelación de materias</label>
-        <input type="hidden" name="prelacion" bind:value="{prelacion}" readonly>
+        <input type="hidden" name="prelacion" bind:value={prelacion} readonly />
         <InputChip
-          whitelist="{materias}"
-          bind:value="{selected}"
-          bind:input="{search}"
+          whitelist={materias}
+          bind:value={selected}
+          bind:input={search}
           name=""
           required
           id="prelacion"
           placeholder="codigo de materia"
-          on:focus="{() => {
+          on:focus={() => {
             focused = true;
-          }}"
-          on:blur="{() => {
+          }}
+          on:blur={() => {
             setTimeout(() => {
               focused = false;
             }, 500);
-          }}"
+          }}
         />
         {#if focused}
           <div
@@ -249,10 +257,10 @@
           >
             <Autocomplete
               data-popup="popupAutocomplete"
-              bind:input="{search}"
-              options="{materiasAutocomplete}"
-              on:selection="{onFlavorSelection}"
-              denylist="{selected}"
+              bind:input={search}
+              options={materiasAutocomplete}
+              on:selection={onFlavorSelection}
+              denylist={selected}
             />
           </div>
         {/if}

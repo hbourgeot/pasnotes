@@ -7,9 +7,8 @@
 
   export let data: PageData;
 
-
   let coordinador: Coordinacion = data.coordinador;
-  
+
   let panel = false;
   let clicked = 0;
 </script>
@@ -39,10 +38,20 @@
             md:[&>button]:w-[200px]"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/coordinadores/materias" class="w-full h-full block">Ver Materias</a></button
+        ><a href="/coordinadores/materias" class="w-full h-full block"
+          >Ver Materias</a
+        ></button
       >
-      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/registrar-materia" class="w-full h-full block">Registrar materias</a></button>
-      <button class=" bg-[#9DB2BF]"><a href="/coordinadores/agregar-docente" class="w-full h-full block">Registrar docentes</a></button>
+      <button class=" bg-[#9DB2BF]"
+        ><a href="/coordinadores/registrar-materia" class="w-full h-full block"
+          >Registrar materias</a
+        ></button
+      >
+      <button class=" bg-[#9DB2BF]"
+        ><a href="/coordinadores/agregar-docente" class="w-full h-full block"
+          >Registrar docentes</a
+        ></button
+      >
     </div>
 
     <div class="w-11/12 lg:w-10/12">
@@ -50,15 +59,18 @@
         Informacion general
       </h2>
 
-      <details open class="flex w-2/5 mx-auto flex-col items-center justify-center">
+      <details
+        open
+        class="flex w-2/5 mx-auto flex-col items-center justify-center"
+      >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Informacion del coordinador

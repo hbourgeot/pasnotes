@@ -1,11 +1,29 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { PageData } from "./$types";
-  import { Table } from "@skeletonlabs/skeleton";
-  import type { TableSource } from "@skeletonlabs/skeleton";
+  import type { ActionData, PageData } from "./$types";
+  import {
+    FileDropzone,
+    Modal,
+    modalStore,
+    Table,
+  } from "@skeletonlabs/skeleton";
+  import type {
+    TableSource,
+    ModalSettings,
+    ModalComponent,
+  } from "@skeletonlabs/skeleton";
   import { tableMapperValues } from "@skeletonlabs/skeleton";
+  import { triggerToast } from "$lib/utils/toast";
+  import ModalFile from "$lib/components/ModalFile.svelte";
+  import { onMount } from "svelte";
+  import type { Notas } from "../../../../app";
 
   export let data: PageData;
+  export let form: ActionData;
+
+  $: if (form?.message) {
+    triggerToast(form?.message);
+  }
 
   const sourceData = data.estudiantes.map((nota: any) => ({
     cedula: nota.cedula,
@@ -37,6 +55,40 @@
   let nota: number = 0;
   let toChange: string = "0";
 
+  let files: FileList;
+  let uploadForm: HTMLFormElement;
+  let myFile: any;
+  let downloadFile: string;
+  let downloadLink: any;
+  let nota1: number;
+  let nota2: number;
+  let nota3: number;
+
+  let estudianteFind: any = {
+    cedula: "",
+    nota1: 0,
+    nota2: 0,
+    nota3: 0,
+  };
+  $: if (estudiante)
+    estudianteFind = data.estudiantes.find(
+      (item: any) => item.cedula === estudiante
+    );
+  $: console.log(estudianteFind);
+
+  onMount(async () => {
+    const response = await fetch(
+      `/api/archivos?ciclo=${data.ciclo}&folder=${data.materia.id}`
+    );
+    const contentType = response.headers.get("content-type");
+    if (contentType && !contentType.includes("application/json")) {
+      const file = await response.blob();
+      downloadFile = URL.createObjectURL(file);
+    } else {
+      downloadFile = "";
+    }
+  });
+
   const handleSelect = (e: CustomEvent) => {
     estudiante = e.detail[0];
     switch (toChange) {
@@ -52,26 +104,60 @@
         campo = "nota3";
         nota = e.detail[3];
         break;
-      case "4":
-        campo = "promedio";
-        nota = e.detail[4];
-        break;
-      case "5":
-        nota = e.detail[1];
     }
+  };
+
+  const modalComponentRegistry: Record<string, ModalComponent> = {
+    // Custom Modal 1
+    modalFile: {
+      // Pass a reference to your custom component
+      ref: ModalFile,
+    },
+  };
+
+  const handleForm = async () => {
+    try {
+      myFile = await new Promise<FileList>((resolve) => {
+        const modal: ModalSettings = {
+          type: "component",
+          // Pass the component registry key as a string:
+          component: "modalFile",
+          title: "Agregar archivo",
+          body: "Sube tu planificación en formato PDF",
+          response: (r: FileList) => {
+            resolve(r);
+          },
+        };
+        modalStore.trigger(modal);
+      });
+
+      console.log("resolved response:", myFile);
+      myFile = myFile.item(0);
+
+      myFile = myFile; // Force Svelte
+      uploadForm.requestSubmit();
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  const handleSubmit = ({ data }) => {
+    data.set("files", myFile);
+    console.log("hola");
+    return async ({ update }) => {
+      await update();
+    };
   };
 </script>
 
 <main class="flex justify-center items-center bg-transparent">
   <section class="w-full p-5">
-    <Table
-      source="{tableSource}"
-      interactive="{true}"
-      on:selected="{handleSelect}"
-    />
+    <Table source={tableSource} interactive={true} on:selected={handleSelect} />
   </section>
   <section class="w-full sticky">
-    <form use:enhance method="post"
+    <form
+      use:enhance
+      method="post"
       class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
     >
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
@@ -82,45 +168,95 @@
         <label for="estudiante"> Estudiante </label>
         <input
           readonly
-          bind:value="{estudiante}"
+          bind:value={estudiante}
           type="text"
           id="estudiante"
           name="cedula_estudiante"
-          class="w-full"
+          class="w-full input"
         />
       </span>
       <span class="w-[30%]">
         <label for="corte"> Corte </label>
-        <select name="nombre_campo" id="corte" bind:value="{toChange}">
+        <select
+          class="select"
+          name="nombre_campo"
+          id="corte"
+          bind:value={toChange}
+        >
           <option value="0" disabled>Seleccione una nota a cambiar</option>
-          <option value="1">1er corte</option>
-          <option value="2">2do corte</option>
-          <option value="3">3er corte</option>
-          <option value="4">Promedio</option>
+          <option value="1" disabled={estudianteFind.nota1 != 0}
+            >1er corte</option
+          >
+          <option value="2" disabled={estudianteFind.nota2 != 0}
+            >2do corte</option
+          >
+          <option value="3" disabled={estudianteFind.nota3 != 0}
+            >3er corte</option
+          >
         </select>
       </span>
       <span class="w-[30%]">
         <label for="calificacion"> Nota </label>
-        <input name="valor" type="number" bind:value="{nota}" id="calificacion" />
+        <input
+          name="valor"
+          type="number"
+          bind:value={nota}
+          id="calificacion"
+          class="input"
+        />
       </span>
 
       <div class="w-full p-4 flex justify-center gap-8 mt-8">
-        <button on:click="{() => {
+        <button
+          on:click={() => {
             estudiante = "";
             nota = 0;
             toChange = "0";
-        }}" class="bg-pink-600 p-4 w-52 text-white rounded-xl"
-          >Cancelar</button
+          }}
+          class="bg-pink-600 p-4 w-52 text-white rounded-xl">Cancelar</button
         >
         <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
           >Editar</button
         >
       </div>
+      <div>
+        <h3 class="text-xl">¿Hay alguna nota errónea?</h3>
+        <button type="button" class="btn variant-filled">Pedir permiso</button>
+      </div>
     </form>
+    <div
+      class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
+    >
+      <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
+        Cargar/Descargar planificación
+      </h3>
+      {#if !downloadFile}
+        <button class="btn variant-filled" on:click={() => handleForm()}
+          >Cargar</button
+        >
+      {:else}
+        <a
+          href={downloadFile}
+          bind:this={downloadLink}
+          download="planificacion.pdf"
+          class="btn variant-filled">Descargar</a
+        >
+      {/if}
+    </div>
   </section>
+  <form
+    action="?/carga"
+    method="post"
+    use:enhance={handleSubmit}
+    class="hidden"
+    bind:this={uploadForm}
+  >
+    <FileDropzone name="files" bind:files={myFile} />
+  </form>
+  <Modal components={modalComponentRegistry} />
 </main>
 
-<style scoped>
+<style>
   input,
   select {
     width: 100%;

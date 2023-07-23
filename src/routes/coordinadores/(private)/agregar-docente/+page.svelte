@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { enhance} from "$app/forms";
-  import { toastStore, type ToastSettings, Toast } from "@skeletonlabs/skeleton";
+  import { enhance } from "$app/forms";
+  import {
+    toastStore,
+    type ToastSettings,
+    Toast,
+  } from "@skeletonlabs/skeleton";
   import type { ActionData } from "./$types";
   import type { SubmitFunction } from "@sveltejs/kit";
 
@@ -11,39 +15,39 @@
 
   $: cedulaIdentidad = `${identidad}-${cedula}`;
 
-  $: if(form?.message){
+  $: if (form?.message) {
     const t: ToastSettings = {
-      message: form?.message
+      message: form?.message,
     };
-    
-		toastStore.trigger(t)
+
+    toastStore.trigger(t);
   }
 
-  const handleSubmit: SubmitFunction = ({data}) =>{
+  const handleSubmit: SubmitFunction = ({ data }) => {
     data.append("cedula", cedulaIdentidad);
-    return async({update}) => {
-        await update();
-    }
-  }
+    return async ({ update }) => {
+      await update();
+    };
+  };
 </script>
 
 <div class="container lg:w-1/2 md:w-2/3 mx-auto px-4 py-8">
   {#if form?.message}
-      <Toast position="t" />
-    {/if}
+    <Toast position="t" />
+  {/if}
   <div class="bg-white p-8 rounded shadow">
     <h2 class="text-2xl font-semibold mb-4">Añadir Docente</h2>
     <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="cedula" class="label">Cedula</label>
         <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-          <select class="select" bind:value="{identidad}">
+          <select class="select" bind:value={identidad}>
             <option value="V">V</option>
             <option value="E">E</option>
           </select>
           <input
             type="number"
-            bind:value="{cedula}"
+            bind:value={cedula}
             min="1000000"
             id="cedula"
             class="input (text) py-2 px-7"
