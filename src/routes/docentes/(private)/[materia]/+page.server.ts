@@ -5,7 +5,7 @@ let ciclo = "";
 export const load = (async ({ params, locals: { client } }) => {
   const { ok, data } = await client.GET(`/api/materias/${params.materia}`);
   if (!ok)
-    return { materia: null, estudiantes: null, carrera: null, file: null };
+    return { materia: null, estudiantes: null, carrera: null, ciclo: null };
 
   const carrera = data.materia.carrera;
   const estudiantes = data.materia.estudiantes;
@@ -14,6 +14,8 @@ export const load = (async ({ params, locals: { client } }) => {
     id: data.materia.id,
     nombre: data.materia.nombre,
   };
+
+  console.log(data.materia.estudiantes);
 
   return { carrera, estudiantes, materia, ciclo };
 }) satisfies PageServerLoad;

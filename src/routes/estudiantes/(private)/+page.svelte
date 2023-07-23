@@ -7,6 +7,8 @@
   } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
   import type { Estudiante, Materia } from "../../../app";
+  import { onMount, tick } from "svelte";
+  import { FileDownload } from "@steeze-ui/tabler-icons";
 
   export let data: PageData;
 
@@ -21,7 +23,34 @@
   ];
 
   let estudiante: Estudiante = data.estudiante;
-  let materias: Materia[] = data.materias;
+  let materias: {
+    materia: string;
+    id: string | number;
+    download: string;
+  }[] = data.materias;
+
+  let planificaciones: boolean[] = [];
+
+  const update = async () => {
+    for (let i = 0; i < materias.length; i++) {
+      const response = await fetch(
+        `/api/archivos?ciclo=${data.ciclo}&folder=${materias[i].id}`
+      );
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/pdf")) {
+        const file = await response.blob();
+        materias[i].download = URL.createObjectURL(file);
+        planificaciones[i] = true;
+        materias = materias;
+      } else {
+        planificaciones[i] = false;
+      }
+      planificaciones = planificaciones;
+      console.log(planificaciones);
+    }
+  };
+
+  onMount(() => update());
 </script>
 
 <div
@@ -122,9 +151,16 @@
               <h2>Usted no tiene materias asignadas</h2>
             </span>
           {:else}
-            {#each materias as materia}
+            {#each materias as materia, n}
               <span>
-                <h2>{materia}</h2>
+                <h2>{materia.materia}</h2>
+                {#if planificaciones[n]}
+                  <a href={materia.download} download="planificacion.pdf"
+                    >Descargar <Icon src={FileDownload} /></a
+                  >
+                {:else}
+                  <p>No hay planificacion</p>
+                {/if}
               </span>
             {/each}
           {/if}

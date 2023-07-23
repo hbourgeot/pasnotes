@@ -73,71 +73,75 @@
   };
 
   const handleAdd = async () => {
-    try{
-    const materiasIDs = await new Promise<number[]>((resolve) => {
-      const modal: ModalSettings = {
-        type: "component",
-        // Pass the component registry key as a string:
-        component: "modalList",
-        title: "Seleccionar materias",
-        body: "Selecciona las materias que deseas inscribir, vuelve a pulsar en ella para descartarla de la inscripcion",
-        response: (r: number[]) => {
-          resolve(r)
+    try {
+      const materiasIDs = await new Promise<number[]>((resolve) => {
+        const modal: ModalSettings = {
+          type: "component",
+          // Pass the component registry key as a string:
+          component: "modalList",
+          title: "Seleccionar materias",
+          body: "Selecciona las materias que deseas inscribir, vuelve a pulsar en ella para descartarla de la inscripcion",
+          response: (r: number[]) => {
+            resolve(r);
+          },
+        };
+        modalStore.trigger(modal);
+      });
+
+      materias = [];
+      for (const id of materiasIDs) {
+        const materiaFind = materias.find((mat) => mat.id == id.toString());
+        if (!materiaFind) {
+          materias.push(
+            materiasData.find(
+              (materia: Materia) => materia.id == id.toString()
+            ) as unknown as Materia
+          );
+        } else {
+          materias = materias.filter((mat) => mat.id === id.toString());
         }
-      };
-      modalStore.trigger(modal);
-    });
-    
-    materias = []
-    for(const id of materiasIDs){
-      const materiaFind = materias.find(mat => mat.id == id.toString())
-      if(!materiaFind){
-        materias.push(materiasData.find((materia: Materia) => materia.id == id.toString()) as unknown as Materia)
-      } else{
-        materias = materias.filter(mat => mat.id === id.toString())
+        console.log(id, materias, materiasIDs);
       }
-      console.log(id, materias, materiasIDs)
+
+      unidadesTotales =
+        materias.length !== 0
+          ? materias
+              .map((materia: Materia) =>
+                parseInt(materia.unidad_credito.toString())
+              )
+              ?.reduce((a, b) => a + b)
+          : 0;
+
+      tableSimple = {
+        // A list of heading labels.
+        head: [
+          "Código",
+          "Nombre",
+          "Horas Prácticas",
+          "Horas Teóricas",
+          "U.C.",
+          "Docente",
+        ],
+        // The data visibly shown in your table body UI.
+        body: tableMapperValues(materias, [
+          "id",
+          "nombre",
+          "hp",
+          "ht",
+          "unidad_credito",
+          "id_docente",
+        ]),
+        foot: [
+          "Total de U.C",
+          " ",
+          " ",
+          " ",
+          `<code class="code bold text-lg">${unidadesTotales.toString()}</code>`,
+        ],
+      };
+    } catch (e) {
+      console.error(e);
     }
-
-    unidadesTotales =
-      materias.length !== 0
-        ? materias
-            .map((materia: Materia) =>
-              parseInt(materia.unidad_credito.toString())
-            )
-            ?.reduce((a, b) => a + b)
-        : 0;
-
-    tableSimple = {
-      // A list of heading labels.
-      head: [
-        "Código",
-        "Nombre",
-        "Horas Prácticas",
-        "Horas Teóricas",
-        "U.C.",
-        "Docente",
-      ],
-      // The data visibly shown in your table body UI.
-      body: tableMapperValues(materias, [
-        "id",
-        "nombre",
-        "hp",
-        "ht",
-        "unidad_credito",
-        "id_docente",
-      ]),
-      foot: [
-        "Total de U.C",
-        " ",
-        " ",
-        " ",
-        `<code class="code bold text-lg">${unidadesTotales.toString()}</code>`,
-      ],
-    };
-  }catch(e){
-    console.error(e);
-  }
   };
 
   onMount(() => {
@@ -162,21 +166,20 @@
 
 <form
   class="mb-4 lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5"
-  use:enhance="{handleSubmit}"
+  use:enhance={handleSubmit}
   method="post"
 >
-<h3 class="label text-3xl bold mb-4"
-  >Realización del horario</h3
->
+  <h3 class="label text-3xl bold mb-4">Realización del horario</h3>
   {#if data.materias.length != 0}
-      <button
-        type="button"
-        on:click="{handleAdd}"
-        class="bg-blue-600 text-white px-4 py-2 rounded">Seleccionar materias</button
-      >
+    <button
+      type="button"
+      on:click={handleAdd}
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+      >Seleccionar materias</button
+    >
   {/if}
 
-  <Table source="{tableSimple}" class="md:mx-auto" />
+  <Table source={tableSimple} class="md:mx-auto" />
 
   {#if materias.length > 0}
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
@@ -184,4 +187,4 @@
     >
   {/if}
 </form>
-<Modal components="{modalComponentRegistry}" />
+<Modal components={modalComponentRegistry} />

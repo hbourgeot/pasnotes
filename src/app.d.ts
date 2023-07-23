@@ -84,6 +84,7 @@ interface Notas {
   nota2: number;
   nota3: number;
   promedio: number;
+  id: string | number;
 }
 
 export {

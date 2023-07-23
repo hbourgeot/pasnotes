@@ -15,9 +15,14 @@ export const load = (async ({ locals: { estudiante, client }, cookies }) => {
 
   if (!ok) return { estudiante, materias: [] };
 
-  console.log(data.materias);
+  console.log(data.notas);
   return {
     estudiante,
-    materias: data.materias.map((materia: Notas) => materia.materia),
+    materias: data.notas.map((materia: Notas) => ({
+      materia: materia.materia,
+      id: materia.id,
+      download: "",
+    })),
+    ciclo: data.ciclo,
   };
 }) satisfies PageServerLoad;

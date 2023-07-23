@@ -1,9 +1,19 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
-  import { Toast } from "@skeletonlabs/skeleton";
+  import { ModalComponent, Toast } from "@skeletonlabs/skeleton";
+  import ModalForm from "$lib/components/ModalFormNotas.svelte";
+
   let btnInvisible: boolean;
   $: btnInvisible = $page.route.id === "/docentes";
+
+  /*const modalComponentRegistry: Record<string, ModalComponent> = {
+    // Custom Modal 1
+    modalForm: {
+      // Pass a reference to your custom component
+      ref: ModalForm,
+    },
+  };*/
 </script>
 
 <Toast position="t" />

@@ -113,7 +113,7 @@
       const imgData = canvas.toDataURL("image/jpeg", 1.0);
       pdf.addImage(imgData, "JPEG", x, y, scaledWidth, scaledHeight);
 
-      // Guarda el PDF
+      //Guarda el PDF
       pdf.save("constancia.pdf");
       triggerToast("Constancia de estudios descargada!");
       goto("/estudiantes");
@@ -125,20 +125,21 @@
   Descargando pdf...
 </div>
 
-<main class="c28 doc-content z-2" id="constancia">
-  <p class="c13 flex flex-row-reverse justify-between items-center">
-    <span
-      style="
+<main id="constancia">
+  <div class="c28 doc-content z-2 overlay">
+    <p class="c13 flex flex-row-reverse justify-between items-center">
+      <span
+        style="
           overflow: hidden;
           display: inline-block;
           margin: 0 0;
           border: 0 solid #000000;
           width: auto;
         "
-      ><img
-        alt=""
-        src={constancia1}
-        style="
+        ><img
+          alt=""
+          src={constancia1}
+          style="
             margin-left: -0px;
             margin-top: -0px;
             height: 150px;
@@ -146,10 +147,10 @@
             transform: rotate(0rad) translateZ(0px);
             -webkit-transform: rotate(0rad) translateZ(0px);
           "
-        title=""
-      /></span
-    ><span
-      style="
+          title=""
+        /></span
+      ><span
+        style="
           overflow: hidden;
           display: inline-block;
           margin: 0;
@@ -159,10 +160,10 @@
           width: 442.6px;
           height: 134px;
         "
-      ><img
-        alt=""
-        src={constancia2}
-        style="
+        ><img
+          alt=""
+          src={constancia2}
+          style="
             width: 442.6px;
             height: 134px;
             margin-left: 0;
@@ -170,86 +171,88 @@
             transform: rotate(0rad) translateZ(0px);
             -webkit-transform: rotate(0rad) translateZ(0px);
           "
-        title=""
-      /></span
-    >
-  </p>
-  <p class="c13 c3"><span class="c8" /></p>
-  <p class="c3 c13"><span class="c8" /></p>
-  <p class="c1 c3"><span class="c4" /></p>
-  <p class="c1 c3"><span class="c4" /></p>
-  <p class="c1 c3"><span class="c4" /></p>
-  <p class="c1 c3"><span class="c4" /></p>
-  <p class="c1"><span class="c7">CONSTANCIA DE ESTUDIOS</span></p>
-  <p class="c1 c3" id="h.gjdgxs"><span class="c4" /></p>
-  <p class="c1 c3"><span class="c4" /></p>
-  <p class="c1 c3"><span class="c4" /></p>
-  <p class="c5 c23">
-    <span class="c11"
-      >Quien suscribe <span class="c12">Dr. José Manuel Briceño Soto</span>,
-      venezolano, mayor de edad, titular de Cédula de Identidad
-      <span class="c12">N° V-10.371.547</span>, actuando en mi carácter de Sub
-      director del
-      <span class="c12">INSTITUTO UNIVERSITARIO DE TECNOLOGÍA PASCAL</span>, por
-      medio de la presente se hace <span class="c12">constar</span> que el/la
-      bachiller <span class="c12 capitalize">{data.nombre}</span>, titular de la
-      cédula de identidad N° <span class="c12">{data.cedula},</span> es
-      alumno/alumna regular de la institución, registrado bajo el número
-      <span class="c12">Rif.J-30767674-4</span> para cursar el
-      <span class="c12">{data.semestre} semestre</span> en el lapso académico
-      2023-1 en la especialidad de
-      <span class="c12 c20 uppercase">{data.carrera}.</span>
-    </span>
-  </p>
-  <p class="c3 c5"><span class="c2" /></p>
-  <p class="c5 c23">
-    <span class="c2"
-      >Constancia que se expide a solicitud de la parte interesada, en Cagua {fecha}
-    </span>
-  </p>
-  <p class="c5 c23 c3"><span class="c9" /></p>
-  <p class="c10"><span class="c9">Atentamente, </span></p>
-  <p class="c10 c3"><span class="c9" /></p>
-  <table class="c29">
-    <tr class="c15">
-      <td class="c19" colspan="1" rowspan="1">
-        <p class="c18 c3"><span class="c9" /></p>
-      </td>
-    </tr>
-    <tr class="c26">
-      <td class="c6" colspan="1" rowspan="1">
-        <p class="c1">
-          <span class="c30">Dr.</span><span class="c31">&nbsp;</span><span
-            class="c12">&nbsp;Jos&eacute; Manuel Brice&ntilde;o Soto</span
-          >
-        </p>
-      </td>
-    </tr>
-    <tr class="c0">
-      <td class="c24" colspan="1" rowspan="1">
-        <p class="c1"><span class="c14">Sub_Director </span></p>
-      </td>
-    </tr>
-  </table>
-  <p class="c10 c3"><span class="c9" /></p>
-  <p class="c3 c10"><span class="c9" /></p>
-  <p class="c10 c3"><span class="c9" /></p>
-  <p class="c10 c3"><span class="c9" /></p>
-  <p class="c21">
-    <span class="c16"
-      >Gaceta Oficial N&ordm; 36.104 / Decreto Presidencial N&ordm; 1608 / RIF:
-      J-30767674-4</span
-    >
-  </p>
-  <p class="c1">
-    <span class="c20 c22"
-      >Calle Miranda, Sector Barranc&oacute;n. Edificio Mayra 2-16. Cagua 2122,
-      Estado Aragua.
-    </span>
-  </p>
-  <p class="c1">
-    <span class="c20 c22">Correo: controldeestudiospascal@gmail.com</span>
-  </p>
+          title=""
+        /></span
+      >
+    </p>
+    <p class="c13 c3"><span class="c8" /></p>
+    <p class="c3 c13"><span class="c8" /></p>
+    <p class="c1 c3"><span class="c4" /></p>
+    <p class="c1 c3"><span class="c4" /></p>
+    <p class="c1 c3"><span class="c4" /></p>
+    <p class="c1 c3"><span class="c4" /></p>
+    <p class="c1"><span class="c7">CONSTANCIA DE ESTUDIOS</span></p>
+    <p class="c1 c3" id="h.gjdgxs"><span class="c4" /></p>
+    <p class="c1 c3"><span class="c4" /></p>
+    <p class="c1 c3"><span class="c4" /></p>
+    <p class="c5 c23">
+      <span class="c11"
+        >Quien suscribe <span class="c12">Dr. José Manuel Briceño Soto</span>,
+        venezolano, mayor de edad, titular de Cédula de Identidad
+        <span class="c12">N° V-10.371.547</span>, actuando en mi carácter de Sub
+        director del
+        <span class="c12">INSTITUTO UNIVERSITARIO DE TECNOLOGÍA PASCAL</span>,
+        por medio de la presente se hace <span class="c12">constar</span> que
+        el/la bachiller <span class="c12 capitalize">{data.nombre}</span>,
+        titular de la cédula de identidad N°
+        <span class="c12">{data.cedula},</span>
+        es alumno/alumna regular de la institución, registrado bajo el número
+        <span class="c12">Rif.J-30767674-4</span> para cursar el
+        <span class="c12">{data.semestre} semestre</span> en el lapso académico
+        2023-1 en la especialidad de
+        <span class="c12 c20 uppercase">{data.carrera}.</span>
+      </span>
+    </p>
+    <p class="c3 c5"><span class="c2" /></p>
+    <p class="c5 c23">
+      <span class="c2"
+        >Constancia que se expide a solicitud de la parte interesada, en Cagua {fecha}
+      </span>
+    </p>
+    <p class="c5 c23 c3"><span class="c9" /></p>
+    <p class="c10"><span class="c9">Atentamente, </span></p>
+    <p class="c10 c3"><span class="c9" /></p>
+    <table class="c29">
+      <tr class="c15">
+        <td class="c19" colspan="1" rowspan="1">
+          <p class="c18 c3"><span class="c9" /></p>
+        </td>
+      </tr>
+      <tr class="c26">
+        <td class="c6" colspan="1" rowspan="1">
+          <p class="c1">
+            <span class="c30">Dr.</span><span class="c31">&nbsp;</span><span
+              class="c12">&nbsp;Jos&eacute; Manuel Brice&ntilde;o Soto</span
+            >
+          </p>
+        </td>
+      </tr>
+      <tr class="c0">
+        <td class="c24" colspan="1" rowspan="1">
+          <p class="c1"><span class="c14">Sub_Director </span></p>
+        </td>
+      </tr>
+    </table>
+    <p class="c10 c3"><span class="c9" /></p>
+    <p class="c3 c10"><span class="c9" /></p>
+    <p class="c10 c3"><span class="c9" /></p>
+    <p class="c10 c3"><span class="c9" /></p>
+    <p class="c21">
+      <span class="c16"
+        >Gaceta Oficial N&ordm; 36.104 / Decreto Presidencial N&ordm; 1608 /
+        RIF: J-30767674-4</span
+      >
+    </p>
+    <p class="c1">
+      <span class="c20 c22"
+        >Calle Miranda, Sector Barranc&oacute;n. Edificio Mayra 2-16. Cagua
+        2122, Estado Aragua.
+      </span>
+    </p>
+    <p class="c1">
+      <span class="c20 c22">Correo: controldeestudiospascal@gmail.com</span>
+    </p>
+  </div>
 </main>
 
 <style>
@@ -435,7 +438,7 @@
     font-style: normal;
   }
   .c28 {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.85);
     max-width: 540pt;
     padding: 36pt 36pt 36pt 36pt;
   }
@@ -484,5 +487,13 @@
     color: #000000;
     font-size: 10pt;
     font-family: "Times New Roman", serif;
+  }
+  main {
+    background-image: url("$lib/images/pascalConFondo.png");
+    background-repeat: no-repeat;
+    background-size: 540pt;
+    background-position: center bottom;
+    max-width: 540pt;
+    height: auto;
   }
 </style>

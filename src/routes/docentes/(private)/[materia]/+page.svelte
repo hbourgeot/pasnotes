@@ -15,8 +15,8 @@
   import { tableMapperValues } from "@skeletonlabs/skeleton";
   import { triggerToast } from "$lib/utils/toast";
   import ModalFile from "$lib/components/ModalFile.svelte";
-  import type { SubmitFunction } from "@sveltejs/kit";
   import { onMount } from "svelte";
+  import type { Notas } from "../../../../app";
 
   export let data: PageData;
   export let form: ActionData;
@@ -60,7 +60,21 @@
   let myFile: any;
   let downloadFile: string;
   let downloadLink: any;
-  $: console.log(myFile);
+  let nota1: number;
+  let nota2: number;
+  let nota3: number;
+
+  let estudianteFind: any = {
+    cedula: "",
+    nota1: 0,
+    nota2: 0,
+    nota3: 0,
+  };
+  $: if (estudiante)
+    estudianteFind = data.estudiantes.find(
+      (item: any) => item.cedula === estudiante
+    );
+  $: console.log(estudianteFind);
 
   onMount(async () => {
     const response = await fetch(
@@ -90,12 +104,6 @@
         campo = "nota3";
         nota = e.detail[3];
         break;
-      case "4":
-        campo = "promedio";
-        nota = e.detail[4];
-        break;
-      case "5":
-        nota = e.detail[1];
     }
   };
 
@@ -133,7 +141,7 @@
     }
   };
 
-  const handleSubmit: SubmitFunction = ({ data }) => {
+  const handleSubmit = ({ data }) => {
     data.set("files", myFile);
     console.log("hola");
     return async ({ update }) => {
@@ -164,22 +172,38 @@
           type="text"
           id="estudiante"
           name="cedula_estudiante"
-          class="w-full"
+          class="w-full input"
         />
       </span>
       <span class="w-[30%]">
         <label for="corte"> Corte </label>
-        <select name="nombre_campo" id="corte" bind:value={toChange}>
+        <select
+          class="select"
+          name="nombre_campo"
+          id="corte"
+          bind:value={toChange}
+        >
           <option value="0" disabled>Seleccione una nota a cambiar</option>
-          <option value="1">1er corte</option>
-          <option value="2">2do corte</option>
-          <option value="3">3er corte</option>
-          <option value="4">Promedio</option>
+          <option value="1" disabled={estudianteFind.nota1 != 0}
+            >1er corte</option
+          >
+          <option value="2" disabled={estudianteFind.nota2 != 0}
+            >2do corte</option
+          >
+          <option value="3" disabled={estudianteFind.nota3 != 0}
+            >3er corte</option
+          >
         </select>
       </span>
       <span class="w-[30%]">
         <label for="calificacion"> Nota </label>
-        <input name="valor" type="number" bind:value={nota} id="calificacion" />
+        <input
+          name="valor"
+          type="number"
+          bind:value={nota}
+          id="calificacion"
+          class="input"
+        />
       </span>
 
       <div class="w-full p-4 flex justify-center gap-8 mt-8">
@@ -194,6 +218,10 @@
         <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
           >Editar</button
         >
+      </div>
+      <div>
+        <h3 class="text-xl">¿Hay alguna nota errónea?</h3>
+        <button type="button" class="btn variant-filled">Pedir permiso</button>
       </div>
     </form>
     <div
