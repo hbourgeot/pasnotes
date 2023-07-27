@@ -46,15 +46,15 @@
     class="max-w-[485px] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
   >
     <img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
-    <h1 class="text-3xl mb-8 font-bold flex justify-center items-center gap">
-      Bienvenido
+    <h1 class="text-3xl mb-8 font-bold flex justify-center text-center items-center gap">
+      Bienvenido Personal de control de estudio
     </h1>
     {#if form?.message || isExpirated}
       <Toast position="t" />
     {/if}
     <label
       for="username"
-      class="text-xl flex justify-end items-center border-1 rounded-lg"
+      class="text-xl flex justify-end items-center border-1 rounded-lg w-full"
     >
       <Icon src={User} class="h-14 w-14 p-1 border-r-1" />
       <input
@@ -68,7 +68,7 @@
     <label
       for="password"
       class="text-xl flex justify-end items-center
-		 border-1 rounded-lg"
+		 border-1 rounded-lg w-full"
     >
       <Icon src={Lock} class="h-14 w-14 p-1 border-r-1" />
       <input

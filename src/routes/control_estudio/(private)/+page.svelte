@@ -42,6 +42,11 @@
           >Ver Materias</a
         ></button
       >
+      <button class=" bg-[#5C8984]"
+        ><a href="/control_estudio/peticiones" class="w-full h-full block"
+          >Ver Peticiones</a
+        ></button
+      >
     </div>
 
     <div class="w-11/12 lg:w-10/12">

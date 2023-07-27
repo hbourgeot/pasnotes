@@ -1,18 +1,42 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
-  import {type ModalComponent, Toast, Modal } from "@skeletonlabs/skeleton";
+  import {type ModalComponent, Toast, Modal, type ModalSettings, modalStore } from "@skeletonlabs/skeleton";
   import ModalForm from "$lib/components/ModalFormNotas.svelte";
+  import type { LayoutData } from "./$types";
+
+  export let data: LayoutData;
+
+  $: if(data.peticion){
+    console.log("hola")
+    handleModal()
+  }
 
   let btnInvisible: boolean;
   $: btnInvisible = $page.route.id === "/docentes";
+
+  let cedulaEstudiante = data.peticion?.id_estudiante ?? ""
+  let materia = data.peticion?.id_materia ?? ""
+  let nombreCampo = data.peticion?.campo ?? ""
 
   const modalComponentRegistry: Record<string, ModalComponent> = {
     // Custom Modal 1
     modalForm: {
       // Pass a reference to your custom component
       ref: ModalForm,
+      props: {cedulaEstudiante, materia, nombreCampo}
     },
+  };
+
+  const handleModal = async () => {
+    const modal: ModalSettings = {
+      type: "component",
+      // Pass the component registry key as a string:
+      component: "modalForm",
+      title: `¡Oye ${data.docente.nombre}!`,
+      body: `Tu petición #${data.peticion?.id} ha sido aprobada`,
+    };
+    modalStore.trigger(modal);
   };
 </script>
 

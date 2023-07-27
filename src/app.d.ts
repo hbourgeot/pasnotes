@@ -87,6 +87,16 @@ interface Notas {
   id: string | number;
 }
 
+interface Peticiones {
+  campo: string;
+  descripcion: string;
+  estado: string;
+  id: number;
+  id_docente: string;
+  id_estudiante: string;
+  id_materia: string;
+}
+
 export {
   Estudiante,
   Coordinacion,
@@ -94,5 +104,5 @@ export {
   Materia,
   ControlEstudio,
   Config,
-  Notas,
+  Notas, Peticiones
 };
