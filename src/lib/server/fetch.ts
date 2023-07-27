@@ -29,7 +29,6 @@ export const client = async (
     } else {
       // Assuming 'blob' for file data
       const file = await res.blob();
-      console.log("ola soy jeison", file);
       return file;
     }
   } catch (error) {

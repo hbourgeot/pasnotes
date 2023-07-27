@@ -15,8 +15,6 @@ export const load = (async ({ params, locals: { client } }) => {
     nombre: data.materia.nombre,
   };
 
-  console.log(data.materia.estudiantes);
-
   return { carrera, estudiantes, materia, ciclo };
 }) satisfies PageServerLoad;
 
@@ -63,4 +61,20 @@ export const actions: Actions = {
 
     console.log(ok, data);
   },
+
+  peticion: async ({ params, locals: { client, docente }, request }) => {
+    const campo = ["nota1", "nota2", "nota3"];
+    let obj: any = Object.fromEntries(await request.formData());
+
+    obj = {
+      ...obj,
+      campo: campo[obj.nombre_campo - 1],
+      id_materia: params.materia,
+      estado: "Pendiente",
+      id_docente: docente.cedula,
+    };
+
+    const { ok, data } = await client.POST("/api/peticiones/add", obj)
+    console.log(ok, data);
+  }
 };
