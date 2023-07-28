@@ -10,6 +10,12 @@
     type PopupSettings,
     popup,
   } from "@skeletonlabs/skeleton";
+
+  import {
+    TimePicker,
+    TimePickerSelect,
+    SelectItem,
+  } from "carbon-components-svelte";
   import type { Docente } from "../../../../app";
   import type { ActionData, PageData } from "./$types";
 
@@ -23,6 +29,9 @@
   let search: string = "";
   let focused: boolean = false;
   let prelacion: string = "";
+  let horaInicio = "";
+  let horaFin = "";
+
   $: if (selected.length > 0) {
     prelacion = selected.join(" - ");
   }
@@ -38,6 +47,9 @@
 
     toastStore.trigger(t);
   }
+
+  $: if(horaInicio.length == 2) horaInicio += ":"
+  $: if(horaFin.length == 2) horaFin += ":"
 
   const carreras = [
     { id: 1, nombre: "Informática" },
@@ -73,6 +85,18 @@
 
     // @ts-ignore
     window.document.querySelector(".input-chip-field")?.focus();
+  }
+
+  function checkHora(hora: number){
+    return (hora > 12) || (hora > 8 && hora <= 12)
+  }
+
+  function checkHoraLabel(hora: number, fin: boolean){
+    if(hora > 12) return "No se acepta el formato de 24 horas"
+
+    let label = fin ? 'finalizar' : 'comenzar';
+
+    if(hora > 8 && hora < 12) return `La hora de clase no puede ${label} a esta hora`;
   }
 </script>
 
@@ -160,10 +184,10 @@
             name="id_carrera"
             id="carrera"
             class="select py-2 px-7"
-            value={carreras[0].id}
+            value="{carreras[0].id}"
           >
             {#each carreras as carrera}
-              <option value={carrera.id}>{carrera.nombre}</option>
+              <option value="{carrera.id}">{carrera.nombre}</option>
             {/each}
           </select>
         </div>
@@ -173,82 +197,63 @@
             name="id_docente"
             id="docente"
             class="select py-2 px-7"
-            value={docentesSelect[0].cedula}
+            value="{docentesSelect[0].cedula}"
             required
           >
             {#each docentesSelect as docente}
-              <option value={docente.cedula}>{docente.nombre}</option>
+              <option value="{docente.cedula}">{docente.nombre}</option>
             {/each}
           </select>
         </div>
       </div>
-      <div class="flex justify-between items-end gap-x-5">
+      <div class="flex justify-between items-center  gap-x-5">
         <div class="mb-4 w-1/5">
           <label for="dia" class="label">Día de clases</label>
           <select
             name="dia"
             id="dia"
             class="select py-2 px-7"
-            value={0}
+            value="{0}"
             required
           >
             {#each days as dia, i}
-              <option value={i}>{dia}</option>
+              <option value="{i}">{dia}</option>
             {/each}
           </select>
         </div>
         <div class="mb-4 w-1/5">
-          <label for="hora_inicio" class="label">Hora de inicio</label>
-          <input
-            type="time"
-            id="hora_inicio"
-            name="hora_inicio"
-            min="12:00"
-            max="20:00"
-            on:invalid={() =>
-              triggetToast(
-                "Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M."
-              )}
-            class="input py-2 px-7"
-            required
-          />
+          <TimePicker labelText="Hora de inicio" bind:value={horaInicio} invalid={checkHora(parseInt(horaInicio.split(":")[0]))} invalidText={checkHoraLabel(parseInt(horaInicio.split(":")[0]), false)} placeholder="hh:mm" class="input py-2 px-7">
+          </TimePicker>
         </div>
         <div class="mb-4 w-1/5">
-          <label for="hora_fin" class="label">Hora de culminación</label>
-          <input
-            type="time"
-            id="hora_fin"
-            name="hora_fin"
-            min="12:00"
-            max="20:00"
-            on:invalid={() =>
-              triggetToast(
-                "Por favor seleccione una hora entre las 12:00 P.M. y las 8:00 P.M."
-              )}
-            class="input py-2 px-7"
-            required
-          />
+          <TimePicker labelText="Hora de finalización" bind:value={horaFin} invalid={checkHora(parseInt(horaFin.split(":")[0]))} invalidText={checkHoraLabel(parseInt(horaFin.split(":")[0]), true)} placeholder="hh:mm" class="input py-2 px-7">
+          </TimePicker>
         </div>
       </div>
       <div class="mb-4 relative">
         <label for="prelacion" class="label">Prelación de materias</label>
-        <input type="hidden" name="prelacion" bind:value={prelacion} readonly />
+        <input
+          type="hidden"
+          name="prelacion"
+          bind:value="{prelacion}"
+          readonly
+        />
         <InputChip
-          whitelist={materias}
-          bind:value={selected}
-          bind:input={search}
+          whitelist="{materias}"
+          bind:value="{selected}"
+          bind:input="{search}"
           name=""
           required
           id="prelacion"
           placeholder="codigo de materia"
-          on:focus={() => {
+          on:focus="{() => {
             focused = true;
-          }}
-          on:blur={() => {
+          }}"
+          on:blur="{() => {
             setTimeout(() => {
               focused = false;
             }, 500);
-          }}
+          }}"
         />
         {#if focused}
           <div
@@ -257,10 +262,10 @@
           >
             <Autocomplete
               data-popup="popupAutocomplete"
-              bind:input={search}
-              options={materiasAutocomplete}
-              on:selection={onFlavorSelection}
-              denylist={selected}
+              bind:input="{search}"
+              options="{materiasAutocomplete}"
+              on:selection="{onFlavorSelection}"
+              denylist="{selected}"
             />
           </div>
         {/if}
@@ -272,4 +277,9 @@
   </div>
 </div>
 
-<style></style>
+<style>
+  :global(.bx--form-requirement){
+    font-size: 12px;
+    color: #db0098;
+  }
+</style>
