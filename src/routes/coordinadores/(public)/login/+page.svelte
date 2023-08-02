@@ -54,7 +54,7 @@
     {/if}
     <label
       for="username"
-      class="text-xl flex justify-end items-center border-1 rounded-lg"
+      class="text-xl flex w-full  justify-end items-center border-1 rounded-lg"
     >
       <Icon src={User} class="h-14 w-14 p-1 border-r-1" />
       <input
@@ -62,12 +62,12 @@
         name="username"
         id="username"
         placeholder="Usuario"
-        class="w-full border-0 outline-none bg-transparent rounded-lg text-xl"
+        class="w-full border-0  outline-none bg-transparent rounded-lg text-xl"
       />
     </label>
     <label
       for="password"
-      class="text-[16px] flex justify-end items-center
+      class="text-[16px] w-full flex justify-end items-center
 		 border-1 rounded-lg"
     >
       <Icon src={Lock} class="h-14 w-14 p-1 border-r-1" />
