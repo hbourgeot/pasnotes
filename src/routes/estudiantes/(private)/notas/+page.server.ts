@@ -21,5 +21,5 @@ export const load: PageServerLoad = async ({
       message: "No tienes materias registradas",
       materias: [],
     };
-  return { estudiante, materias: data.materias };
+  return { estudiante, materias: data.notas };
 };

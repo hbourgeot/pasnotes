@@ -13,7 +13,7 @@
   "devDependencies": {
     "@fontsource/fira-mono": "^5.0.4",
     "@neoconfetti/svelte": "^1.0.0",
-    "@skeletonlabs/skeleton": "^1.8.0",
+    "@skeletonlabs/skeleton": "^1.11.0",
     "@steeze-ui/material-design-icons": "^1.1.2",
     "@steeze-ui/tabler-icons": "^2.1.1",
     "@sveltejs/adapter-vercel": "^3.0.1",

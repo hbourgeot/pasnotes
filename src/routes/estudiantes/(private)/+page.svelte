@@ -155,7 +155,7 @@
               <span>
                 <h2>{materia.materia}</h2>
                 {#if planificaciones[n]}
-                  <a href={materia.download} download="planificacion.pdf"
+                  <a href={materia.download} class="flex gap-2" download="planificacion.pdf"
                     >Descargar <Icon src={FileDownload} /></a
                   >
                 {:else}
