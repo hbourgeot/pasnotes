@@ -16,9 +16,7 @@
   } from "@skeletonlabs/skeleton";
 
   import {
-    TimePicker,
-    TimePickerSelect,
-    SelectItem,
+    TimePicker
   } from "carbon-components-svelte";
   import type { Docente } from "../../../../app";
   import type { ActionData, PageData } from "./$types";
@@ -46,8 +44,8 @@
     triggerToast(form.message);
   }
 
-  $: if (horaInicio.length == 2) horaInicio += ":";
-  $: if (horaFin.length == 2) horaFin += ":";
+  $: console.log(horaInicio, horaFin);
+
 
   const carreras = [
     { id: 1, nombre: "Informática" },
@@ -113,7 +111,7 @@
   };
 
   function checkHora(hora: number) {
-    return hora > 12 || (hora > 8 && hora <= 12);
+    return hora > 12 || (hora > 8 && hora < 12);
   }
 
   function checkHoraLabel(hora: number, fin: boolean) {
@@ -250,19 +248,23 @@
           <TimePicker
             labelText="Hora de inicio"
             bind:value="{horaInicio}"
+            pattern="^(0[0-9]|1[0-9]):[0-5][0-9]$"
             invalid="{checkHora(parseInt(horaInicio.split(':')[0]))}"
             invalidText="{checkHoraLabel(
               parseInt(horaInicio.split(':')[0]),
               false
             )}"
             placeholder="hh:mm"
+            name="hora_inicio"
             class="input py-2 px-7"
           />
         </div>
         <div class="mb-4 w-1/5">
           <TimePicker
+          name="hora_fin"
             labelText="Hora de finalización"
             bind:value="{horaFin}"
+            pattern="^(0[0-9]|1[0-9]):[0-5][0-9]$"
             invalid="{checkHora(parseInt(horaFin.split(':')[0]))}"
             invalidText="{checkHoraLabel(
               parseInt(horaFin.split(':')[0]),
@@ -279,7 +281,7 @@
         >
         {#if clicked}
         <div>
-          <input type="text" class="input (text) py-2 px-7 my-3" readonly bind:value="{prelacion}" required minlength="1">
+          <input type="text" class="input (text) py-2 px-7 my-3" readonly bind:value="{prelacion}" name="prelacion" required minlength="1">
           <p class="text-sm text-red-400">Nota: cada que hagas click en ese botón, tendrás que elegir la prelación desde cero</p>
         </div>
         {/if}
