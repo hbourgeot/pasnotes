@@ -1,61 +1,58 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
-  import { Toast } from "@skeletonlabs/skeleton";
-
-  let btnInvisible: boolean;
-  $: btnInvisible = $page.route.id === "/coordinadores";
-  const back = () => {
-    let currentURL = window.location.pathname;
-
-  // Si la URL termina con una barra '/', la eliminamos para evitar redirecciones innecesarias
-  if (currentURL.endsWith('/')) {
-    currentURL = currentURL.slice(0, -1);
-  }
-
-  // Dividimos la URL en segmentos
-  const segments = currentURL.split('/');
-
-  // Verificamos si el último segmento es numérico
-  let lastSegment = segments[segments.length - 1];
-  if (!isNaN(parseInt(lastSegment))) {
-    // Eliminamos el último segmento numérico
-    segments.pop();
-  }
-
-  // Reunimos los segmentos restantes para formar la URL de la página superior
-  var parentURL = segments.join('/');
-
-  // Redireccionamos a la página superior
-  window.location.href = parentURL;
-  };
+  import { Toast, AppBar } from "@skeletonlabs/skeleton";
+  import { ChevronRight } from "@steeze-ui/material-design-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  console.log($page.url.pathname.split('/').slice(0).join('/'))
 </script>
 
 <Toast position="t" />
-<nav class="w-full flex justify-between items-center h-[70px] sticky top-0">
-  <!--<button
-    type="button"
-    class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
-      ? 'invisible'
-      : ''}"
-    on:click="{back}">Volver atrás</button
-  >-->
-<ol class="breadcrumb">
-	<li class="crumb"><a class="anchor" href="/elements/breadcrumbs">Skeleton</a></li>
-	<li class="crumb-separator" aria-hidden>&rsaquo;</li>
-	<li class="crumb"><a class="anchor" href="/elements/breadcrumbs">Elements</a></li>
-	<li class="crumb-separator" aria-hidden>&rsaquo;</li>
-	<li>Breadcrumbs</li>
+<AppBar
+  gridColumns="grid-cols-3"
+  slotDefault="place-self-center"
+  slotTrail="place-content-end"
+  class="w-full h-[80px] sticky top-0"
+>
+  <svelte:fragment slot="lead">
+    <ol class="breadcrumb">
+   {#each $page.url.pathname.split('/') as segment, i}
+     {#if segment && !/\d/.test(segment)}
+      {#if i === $page.url.pathname.split('/').length - 1}
+        <!-- Es último segmento, lo mostramos como texto -->
+        <li class="crumb">
+          {segment.charAt(0).toUpperCase() + segment.slice(1)}
+        </li>
+      {:else}
+        <!-- No es último segmento, lo mostramos como un enlace -->
+        <li class="crumb">
+          <a class="no-underline text-[#0879bd]" rel="prefetch" href={$page.url.pathname.split('/').slice(0, i + 1).join('/')}>
+            {segment.charAt(0).toUpperCase() + segment.slice(1)}
+          </a>
+        </li>
+          <li class="crumb-separator" aria-hidden><Icon src={ChevronRight} class="w-5 h-5"/> </li>
+      {/if}
+    {/if}
+  {/each}
 </ol>
+  </svelte:fragment>
   <a href="/" class="h-full flex flex-center">
     <img src="{Logo}" alt="" class="logo" />
   </a>
-  <form method="post" action="{`/coordinadores/logout?red=coordinadores`}">
+  <svelte:fragment slot="trail">
+    <form method="post" action="{`/coordinadores/logout?red=coordinadores`}">
     <button
       type="submit"
-      class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"
+      class="bg-pink-600 text-gray-200 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"
       >Cerrar sesión</button
     >
   </form>
-</nav>
+  </svelte:fragment>
+</AppBar>
 <slot />
+
+<style>
+  .crumb-separator:last-of-type{
+    display:none;
+  }
+</style>

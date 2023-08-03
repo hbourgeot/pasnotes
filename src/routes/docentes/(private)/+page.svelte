@@ -1,84 +1,146 @@
 <script lang="ts">
-  import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
-  import type { TableSource } from "@skeletonlabs/skeleton";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
-  import type { Materia } from "../../../app";
-  import { goto } from "$app/navigation";
+
+  import type { Docente, Materia } from "../../../app";
+  import { onMount } from "svelte";
 
   export let data: PageData;
 
-  let nombre_profesor = data.docente.nombre;
-
-  const sourceData = data.materias.map((materia: Materia) => ({
-    codigo: materia.id,
-    nombre: materia.nombre,
-    hp: materia.hp,
-    ht: materia.ht,
-    dia: materia.dia,
-    inicio: materia.hora_inicio,
-    fin: materia.hora_fin,
-    estudiantes: materia.cantidad_estudiantes?.toString(),
-  }));
-
-  const tableSimple: TableSource = {
-    head: [
-      "Código",
-      "Nombre",
-      "Horas prácticas",
-      "Horas teóricas",
-      "Día de clase",
-      "Hora de inicio",
-      "Hora de fin",
-      "Estudiantes asignados",
-    ],
-    body: tableMapperValues(sourceData, [
-      "codigo",
-      "nombre",
-      "hp",
-      "ht",
-      "dia",
-      "inicio",
-      "fin",
-      "estudiantes",
-    ]),
-  };
-
-  const handleSelection = (e: CustomEvent) => {
-    goto(`/docentes/${e.detail[0]}`);
-  };
+  let docente: Docente = data.docente;
+  let materias: Materia[] = data.materias;
 </script>
 
-<main class="w-full h-screen">
-  <section class="flex flex-col gap-5">
-    <h2 class="text-3xl text-left pl-6 pt-12 lg:pt-16 lg:pl-48">
-      Bienvenid@, {nombre_profesor}!
-    </h2>
-    <h2 class="text-xl text-left pl-10 mt-10">Materias asignadas:</h2>
+<!-- <nav
+    class="w-full h-[60px]"
+    style="border-bottom: 1px solid rgb(229 231 235);
+"
+>
+    <a href="/" class="h-full flex flex-center">
+        <img src={Logo} alt="" class="logo" />
+    </a>
+</nav> -->
+<div
+  class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
+  style="min-height: calc(100vh + 10rem);"
+>
+  <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
+    ¡Bienvenid@, {docente.nombre}!
+  </h1>
+  <div
+    class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
+    style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
+  >
+    <div
+      class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
+            md:[&>button]:w-[200px]"
+    >
+      <button class=" bg-[#5C8984]"
+        ><a href="/docentes/materias" class="w-full h-full block"
+          >Ver Materias</a
+        ></button
+      >
+    </div>
 
-    <Table
-      interactive={true}
-      on:selected={handleSelection}
-      source={tableSimple}
-      class="mx-auto w-[98%] text-center lg:w-[80%]"
-    />
-  </section>
-</main>
+    <div class="w-11/12 lg:w-10/12">
+      <h2 class="text-center text-[18px] font-bold mb-4">
+        Informacion general
+      </h2>
 
-<style scoped>
-  .container {
-    width: 90%;
-    background-color: rgba(209, 203, 203, 10);
-    margin: 0 auto;
+      <details
+        open
+        class="flex w-2/5 mx-auto flex-col items-center justify-center"
+      >
+        <summary
+          class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        >
+          <span class="expand">
+            <Icon src={ExpandMore} class="icon " />
+          </span>
+          <span class="expanded">
+            <Icon src={ExpandLess} class="icon " />
+          </span>
+
+          Informacion del docente
+        </summary>
+        <div
+          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
+        >
+          <span>
+            <h2>Cedula:</h2>
+            <p>{docente.cedula}</p>
+          </span>
+          <span>
+            <h2>Nombre completo:</h2>
+            <p class="capitalize">{docente.nombre}</p>
+          </span>
+          <span>
+            <h2>Teléfono:</h2>
+            <p>{docente.telefono}</p>
+          </span>
+        </div>
+      </details>
+       <details
+        class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center"
+      >
+        <summary
+          class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+        >
+          <span class="expand">
+            <Icon src={ExpandMore} class="icon " />
+          </span>
+          <span class="expanded">
+            <Icon src={ExpandLess} class="icon " />
+          </span>
+
+          Materias impartidas
+        </summary>
+        <div
+          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
+        >
+          {#if !materias.length}
+            <span>
+              <h2>Usted actualmente no imparte materias</h2>
+            </span>
+          {:else}
+            {#each materias as materia, n}
+              <span>
+                <h2>{materia.id}</h2>
+                <h2>{materia.nombre}</h2>
+              </span>
+            {/each}
+          {/if}
+        </div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<style class="scss" scoped>
+  span h2 {
+    font-weight: 600;
+    padding-left: 16px;
   }
 
-  ul > li {
-    width: 80px;
-    height: 80px;
-    background-color: #194bca;
-    color: white;
-    border-radius: 16px;
+  button {
+    background-color: rgba(88, 119, 221, 0.7);
+  }
+
+  details .expanded {
+    display: none;
+  }
+
+  details[open] .expanded {
     display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+
+  details[open] .expand {
+    display: none;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+    width: 0;
   }
 </style>

@@ -12,6 +12,7 @@
   export let cedulaEstudiante: string = "";
 
   export let nombreCampo: string = "";
+  export let idPeticion: string = "";
 
   // Form Data
   const formData = {
@@ -29,6 +30,7 @@
       payload.append("nombre_campo", formData.nombre_campo)
       payload.append("valor", formData.valor.toString())
       payload.append("materia", formData.materia)
+      payload.append("peticion", idPeticion.toString());
       const response = await fetch("/api/notas", { method: "POST", body: payload})
       let {message} = await response.json();
       triggerToast(message);

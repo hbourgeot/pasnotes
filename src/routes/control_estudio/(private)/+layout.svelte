@@ -1,33 +1,76 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
-
-  let btnInvisible: boolean = false;
-  $: btnInvisible = $page.route.id === "/control_estudio";
+  import { Toast, AppBar } from "@skeletonlabs/skeleton";
+  import { ChevronRight } from "@steeze-ui/material-design-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
 </script>
 
-<nav
-  class="w-full flex justify-between items-center h-[70px]"
-  style="border-bottom: 1px solid rgb(229 231 235);
-"
+<Toast position="t" />
+<AppBar
+  gridColumns="grid-cols-3"
+  slotDefault="place-self-center"
+  slotTrail="place-content-end"
+  class="w-full h-[80px] sticky top-0"
 >
-  <button
-    type="button"
-    class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
-      ? 'invisible'
-      : ''}"
-    on:click={() => (window.location.pathname = "/control_estudio")}
-    >Volver atrás</button
-  >
+  <svelte:fragment slot="lead">
+    <ol class="breadcrumb">
+      {#each $page.url.pathname.split("/") as segment, i}
+        {#if segment && !/\d/.test(segment)}
+          {#if i === $page.url.pathname.split("/").length - 1}
+            <!-- Es último segmento, lo mostramos como texto -->
+            <li class="crumb">
+              {#if segment.includes("_")}
+                  {segment.charAt(0).toUpperCase() +
+                    segment.slice(1).replace("_", " de ")}
+                {:else}
+                  {segment.charAt(0).toUpperCase() + segment.slice(1)}
+                {/if}
+            </li>
+          {:else}
+            <!-- No es último segmento, lo mostramos como un enlace -->
+            <li class="crumb">
+              <a
+                class="no-underline text-[#0879bd]"
+                rel="prefetch"
+                href="{$page.url.pathname
+                  .split('/')
+                  .slice(0, i + 1)
+                  .join('/')}"
+              >
+                {#if segment.includes("_")}
+                  {segment.charAt(0).toUpperCase() +
+                    segment.slice(1).replace("_", " de ")}
+                {:else}
+                  {segment.charAt(0).toUpperCase() + segment.slice(1)}
+                {/if}
+              </a>
+            </li>
+            <li class="crumb-separator" aria-hidden>
+              <Icon src="{ChevronRight}" class="w-5 h-5" />
+            </li>
+          {/if}
+        {/if}
+      {/each}
+    </ol>
+  </svelte:fragment>
   <a href="/" class="h-full flex flex-center">
-    <img src={Logo} alt="" class="logo" />
+    <img src="{Logo}" alt="" class="logo" />
   </a>
-  <form method="post" action={`/control_estudio/logout?red=control_estudio`}>
-    <button
-      type="submit"
-      class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"
-      >Cerrar sesión</button
-    >
-  </form>
-</nav>
+  <svelte:fragment slot="trail">
+    <form method="post" action="{`/control_estudio/logout?red=control_estudio`}">
+      <button
+        type="submit"
+        class="bg-pink-600 text-gray-200 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"
+        >Cerrar sesión</button
+      >
+    </form>
+  </svelte:fragment>
+</AppBar>
 <slot />
+
+<style>
+  .crumb-separator:last-of-type {
+    display: none;
+  }
+</style>

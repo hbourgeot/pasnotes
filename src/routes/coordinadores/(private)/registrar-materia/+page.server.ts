@@ -22,15 +22,14 @@ export const load: PageServerLoad = async ({ locals: { client } }) => {
   const materias: string[] = dataMat.materias.map(
     (materia: Materia) => materia.id
   );
-  const materiasAutocomplete: AutocompleteOption[] = dataMat.materias.map(
+  const materiasAutocomplete = dataMat.materias.map(
     (materia: Materia) => ({
-      label: `${materia.id} - ${materia.nombre}`,
-      value: materia.id,
-      keywords: `${materia.nombre}, ${materia.id}, ${materia.semestre}`,
+      nombre: materia.nombre,
+      id: materia.id,
     })
   );
 
-  return { docentes, materias, autocom: materiasAutocomplete };
+  return { docentes, materias, list: materiasAutocomplete };
 };
 
 export const actions: Actions = {

@@ -13,5 +13,9 @@ export const POST: RequestHandler = async ({ locals: { client }, request }) => {
   console.log(ok, data)
 
   if (!ok) return json({ message: data.message, status: 400 });
+
+  const { ok: okPeticion, data: dataPeticion } = await client.PATCH(`/api/peticiones/update/${obj.peticion}`, { estado: 'Terminado' });
+  if (!okPeticion) return json({ message: data.message, status: 400 });
+
   return json({ message: "Modificado!" });
 };

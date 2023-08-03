@@ -40,10 +40,6 @@
     <article>{$modalStore[0].body ?? "(body missing)"}</article>
     <ListBox
       class="border border-surface-500 p-4 rounded-container-token"
-      04125120350
-      10753782
-      Venezuela
-      867
       multiple
     >
       {#each materiasSelect as materia}

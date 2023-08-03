@@ -218,7 +218,6 @@
         >
       </div>
       <details
-        open
         class="flex w-full my-5 mx-auto flex-col items-center justify-center"
       >
         <summary
@@ -278,7 +277,7 @@
       </details>
     </form>
     <div
-      class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
+      class="bg-white flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
     >
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
         Cargar/Descargar planificación

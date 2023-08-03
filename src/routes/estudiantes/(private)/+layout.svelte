@@ -1,53 +1,58 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
-  import { Toast } from "@skeletonlabs/skeleton";
-  let btnInvisible: boolean = false;
-  $: btnInvisible = $page.url.pathname === "/estudiantes";
-
-  const back = () => {
-    const currentURL = window.location.pathname;
-  
-    // Eliminamos la última parte de la URL (último segmento)
-    const segments = currentURL.split('/');
-    console.log(currentURL);
-    segments.pop();
-    
-    // Reunimos los segmentos restantes para formar la URL de la página superior
-    const parentURL = segments.join('/');
-    
-    window.location.href = parentURL;
-  }
+  import { Toast, AppBar } from "@skeletonlabs/skeleton";
+  import { ChevronRight } from "@steeze-ui/material-design-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  console.log($page.url.pathname.split('/').slice(0).join('/'))
 </script>
 
 <Toast position="t" />
-<nav
-  class="w-full flex justify-between items-center h-[70px] sticky top-0"
+<AppBar
+  gridColumns="grid-cols-3"
+  slotDefault="place-self-center"
+  slotTrail="place-content-end"
+  class="w-full h-[80px] sticky top-0"
 >
-  <button
-    type="button"
-    class="bg-pink-600 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50 {btnInvisible
-      ? 'invisible'
-      : ''}"
-    on:click={back}
-    >Volver atrás</button
-  >
+  <svelte:fragment slot="lead">
+    <ol class="breadcrumb">
+   {#each $page.url.pathname.split('/') as segment, i}
+     {#if segment && !/\d/.test(segment)}
+      {#if i === $page.url.pathname.split('/').length - 1}
+        <!-- Es último segmento, lo mostramos como texto -->
+        <li class="crumb">
+          {segment.charAt(0).toUpperCase() + segment.slice(1)}
+        </li>
+      {:else}
+        <!-- No es último segmento, lo mostramos como un enlace -->
+        <li class="crumb">
+          <a class="no-underline text-[#0879bd]" rel="prefetch" href={$page.url.pathname.split('/').slice(0, i + 1).join('/')}>
+            {segment.charAt(0).toUpperCase() + segment.slice(1)}
+          </a>  
+        </li>
+          <li class="crumb-separator" aria-hidden><Icon src={ChevronRight} class="w-5 h-5"/> </li>
+      {/if}
+    {/if}
+  {/each}
+</ol>
+  </svelte:fragment>
   <a href="/" class="h-full flex flex-center">
-    <img src={Logo} alt="" class="logo" />
+    <img src="{Logo}" alt="" class="logo" />
   </a>
-  <form method="post" action={`/estudiantes/logout?red=estudiantes`}>
+  <svelte:fragment slot="trail">
+    <form method="post" action="{`/estudiantes/logout?red=estudiantes`}">
     <button
       type="submit"
-      class="bg-pink-600 px-3 py-1 rounded-3xl mr-4 h-[50px] text-white"
+      class="bg-pink-600 text-gray-200 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"
       >Cerrar sesión</button
     >
   </form>
-</nav>
+  </svelte:fragment>
+</AppBar>
 <slot />
 
 <style>
-  nav{
-    border-bottom: 1px solid rgb(229 231 235);
-    background-color: rgb(255,255,255);
+  .crumb-separator:last-of-type{
+    display:none;
   }
 </style>

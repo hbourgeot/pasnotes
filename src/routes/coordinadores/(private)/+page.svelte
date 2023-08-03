@@ -34,12 +34,17 @@
     style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
   >
     <div
-      class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
-            md:[&>button]:w-[200px]"
+      class="w-full mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
+            md:[&>button]:w-[200px] h-fit"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/coordinadores/materias" class="w-full h-full block"
+        ><a href="/coordinadores/materias" class="flex w-full justify-center items-center h-full"
           >Ver Materias</a
+        ></button
+      >
+      <button class=" bg-[#5C8984]"
+        ><a href="/coordinadores/configuracion" class="flex w-full justify-center items-center h-full"
+          >Configuración</a
         ></button
       >
       <button class=" bg-[#9DB2BF]"
