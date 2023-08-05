@@ -1,6 +1,19 @@
 import { fail } from "@sveltejs/kit";
 import type { Docente } from "../../../../app";
-import type { Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
+
+export const load: PageServerLoad = async ({locals:{client}}) => {
+  const { ok, data } = await client.GET("/api/docente");
+  
+  if (!ok) return {};
+
+  const docentes: Docente[] = data.docente.filter(
+    (docente: Docente, index: any, self: any) =>
+      index === self.findIndex((t: Docente) => t.cedula === docente.cedula)
+  );
+  
+  return {docentes}
+};
 
 export const actions: Actions = {
   default: async ({ locals: { client }, request }) => {

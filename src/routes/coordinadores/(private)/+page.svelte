@@ -38,13 +38,15 @@
             md:[&>button]:w-[200px] h-fit"
     >
       <button class=" bg-[#5C8984]"
-        ><a href="/coordinadores/materias" class="flex w-full justify-center items-center h-full"
-          >Ver Materias</a
+        ><a
+          href="/coordinadores/configuracion"
+          class="flex w-full justify-center items-center h-full"
+          >Configuración</a
         ></button
       >
-      <button class=" bg-[#5C8984]"
-        ><a href="/coordinadores/configuracion" class="flex w-full justify-center items-center h-full"
-          >Configuración</a
+      <button class=" bg-[#9DB2BF]"
+        ><a href="/coordinadores/registrar-docente" class="w-full h-full block"
+          >Registrar docentes</a
         ></button
       >
       <button class=" bg-[#9DB2BF]"
@@ -52,9 +54,10 @@
           >Registrar materias</a
         ></button
       >
-      <button class=" bg-[#9DB2BF]"
-        ><a href="/coordinadores/agregar-docente" class="w-full h-full block"
-          >Registrar docentes</a
+      <button class=" bg-[#5C8984]"
+        ><a
+          href="/coordinadores/materias"
+          class="flex w-full justify-center items-center h-full">Ver Materias</a
         ></button
       >
     </div>
@@ -72,10 +75,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src={ExpandMore} class="icon " />
+            <Icon src="{ExpandMore}" class="icon " />
           </span>
           <span class="expanded">
-            <Icon src={ExpandLess} class="icon " />
+            <Icon src="{ExpandLess}" class="icon " />
           </span>
 
           Informacion del coordinador
