@@ -43,6 +43,7 @@
     "@steeze-ui/svelte-icon": "^1.5.0",
     "jsonwebtoken": "^9.0.0",
     "jspdf": "^2.5.1",
-    "svelte-carousel": "^1.0.25"
+    "svelte-carousel": "^1.0.25",
+    "winston": "^3.10.0"
   }
 }

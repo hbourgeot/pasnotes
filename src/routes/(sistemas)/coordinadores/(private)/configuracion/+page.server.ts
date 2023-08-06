@@ -1,7 +1,9 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { systemLogger } from '$lib/server/logger';
 
-export const load = (async ({ locals: { client } }) => {
+export const load = (async ({ locals: { client, coordinador } }) => {
+    systemLogger.info(`${coordinador.nombre} está viendo las configuraciones del sistema`)
     const { ok, data } = await client.GET("/api/config/1");
     console.log(ok, data);
     
@@ -11,12 +13,14 @@ export const load = (async ({ locals: { client } }) => {
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-    default: async ({request, locals: { client } }) => {
+    default: async ({request, locals: { client, coordinador } }) => {
         const obj: any = Object.fromEntries(await request.formData());
 
         const { ok, data } = await client.PUT("/api/config/update/1", obj);
         if (!ok) return fail(400, { message: data.message });
 
-        return {message: "Modificación cambiada!", ok: true}
+        systemLogger.info(`${coordinador.nombre} cambió la configuración del sistema`);
+
+        return {message: "Configuración cambiada!", ok: true}
     }
 };

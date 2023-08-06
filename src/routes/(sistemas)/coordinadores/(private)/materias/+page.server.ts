@@ -15,8 +15,8 @@ interface MateriasPorCarrera {
   [carreraId: string]: MateriasPorSemestre;
 }
 
-export const load = (async ({ locals: { client, controlEstudio, config } }) => {
-  systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las materias`);
+export const load = (async ({ locals: { client, coordinador, config } }) => {
+  systemLogger.info(`${coordinador.nombre} ha entrado a ver las materias`);
 
   const { ok, data } = await client.GET("/api/carreras");
 
@@ -83,7 +83,7 @@ const obtenerMateriasPorSemestrePorCarrera = (datos: Datos, ciclo: string) => {
         materiasPorSemestrePorCarrera[carreraId][semestre] = 1;
       }
     }
-  });
+  }); 
 
   return materiasPorSemestrePorCarrera;
 };

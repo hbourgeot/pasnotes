@@ -1,5 +1,5 @@
 import type { PageServerLoad } from "./$types";
-import type { Materia, Notas } from "../../../app";
+import type { Materia, Notas } from "../../../../app";
 
 export const load = (async ({ locals: { estudiante, client }, cookies }) => {
   let headers = {
@@ -15,7 +15,6 @@ export const load = (async ({ locals: { estudiante, client }, cookies }) => {
 
   if (!ok) return { estudiante, materias: [] };
 
-  console.log(data.notas);
   return {
     estudiante,
     materias: data.notas.map((materia: Notas) => ({

@@ -3,25 +3,13 @@
   import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
 
-  import type { ControlEstudio } from "../../../app";
+  import type { ControlEstudio } from "../../../../app";
 
   export let data: PageData;
 
   let controlEstudio: ControlEstudio = data.controlEstudio;
 
-  let panel = false;
-  let clicked = 0;
 </script>
-
-<!-- <nav
-    class="w-full h-[60px]"
-    style="border-bottom: 1px solid rgb(229 231 235);
-"
->
-    <a href="/" class="h-full flex flex-center">
-        <img src={Logo} alt="" class="logo" />
-    </a>
-</nav> -->
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
   style="min-height: calc(100vh + 10rem);"

@@ -16,6 +16,7 @@ export const actions: Actions = {
       Object.fromEntries(await event.request.formData());
 
     const { ok, data } = await logInStudent(event, { username, password });
+    console.log(data);
     if (!ok) {
       return fail(400, { message: data.message });
     }

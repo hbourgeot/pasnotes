@@ -1,7 +1,18 @@
-import type { Docente, Materia } from "../../../../../../app";
+import { systemLogger } from "$lib/server/logger";
+import type { Docente, Materia } from "../../../../../../../app";
 import type { PageServerLoad } from "./$types";
 
-export const load = (async ({ locals: { client }, params }) => {
+export const load = (async ({
+  locals: { client, coordinador, config },
+  params,
+}) => {
+  systemLogger.info(
+    `${
+      coordinador.nombre
+    } ha entrado a ver las materias de la carrera con código '${
+      params.carrera
+    }' del ${getSemester(params.semestre)}`
+  );
   const { data } = await client.GET("/api/materias");
   const { data: dataDocentes } = await client.GET("/api/docente");
 
@@ -10,14 +21,15 @@ export const load = (async ({ locals: { client }, params }) => {
 
   const materias = materiasData.filter(
     (materia) =>
-      materia.id_carrera == parseInt(params.carrera) &&
-      materia.semestre == parseInt(params.semestre)
+      materia.id_carrera == params.carrera &&
+      materia.semestre == parseInt(params.semestre) &&
+      materia.ciclo == config.ciclo
   );
 
   return {
     materias,
-    carrera: params.carrera,
-    carreras: data.carreras,
+    idCarrera: params.carrera,
+    carrera: data.carreras.find((carrera: any) => carrera.id == params.carrera),
     docentes,
     semestre: getSemester(params.semestre),
   };

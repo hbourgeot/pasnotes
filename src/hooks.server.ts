@@ -2,7 +2,7 @@ import { client } from "$lib/server/fetch";
 import type { Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import type { ControlEstudio, Coordinacion, Docente, Estudiante } from "./app";
-import { getAccessToken, getUser } from "$lib/server/auth";
+import { getAccessToken, getConfig, getUser } from "$lib/server/auth";
 import jwt from "jsonwebtoken";
 const { decode } = jwt;
 const authHandler: Handle = async ({ event, resolve }) => {
@@ -14,16 +14,8 @@ const authHandler: Handle = async ({ event, resolve }) => {
     ].includes(url);
   }
 
-  console.log("http://localhost:5173/");
-  console.log(
-    "\x1b[35m",
-    "HOOK RUN (This function runs every time the SvelteKit server receives a request — whether that happens while the app is running, or during prerendering)",
-    "https://kit.svelte.dev/docs/hooks"
-  );
-  console.log(
-    "\x1b[0;36m",
-    "Requests for static assets — which includes pages that were already prerendered — are not handled by SvelteKit."
-  );
+  event.locals.config = await getConfig();
+
   if (!event.url.pathname.includes("/logout")) {
     const accessToken = getAccessToken(event);
     const verifyToken = accessToken?.split(" ")[1] ?? "";
@@ -36,7 +28,6 @@ const authHandler: Handle = async ({ event, resolve }) => {
         };
         const currentTime = Math.floor(Date.now() / 1000);
         const rol = decodedToken.rol;
-        console.log(rol);
         if (
           currentTime <= decodedToken.exp ||
           isLoginRoute(event.url.pathname)
@@ -97,7 +88,6 @@ const authHandler: Handle = async ({ event, resolve }) => {
       }
     }
   }
-
   return await resolve(event);
 };
 

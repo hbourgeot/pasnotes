@@ -1,7 +1,7 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
   import type { ActionData, PageData, SubmitFunction } from "./$types";
-  import type { Materia } from "../../../../app";
+  import type { Materia } from "../../../../../app";
   import {
     Modal,
     modalStore,
@@ -20,6 +20,8 @@
 
   export let data: PageData;
   export let form: ActionData;
+
+  let dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
   $: if (form?.message) {
     triggerToast(form?.message);
@@ -49,6 +51,9 @@
       "Nombre",
       "Horas Prácticas",
       "Horas Teóricas",
+      "Día de clases",
+      "Comienza",
+      "Termina",
       "U.C.",
       "Docente",
     ],
@@ -58,6 +63,9 @@
       "nombre",
       "hp",
       "ht",
+      "dia",
+      "hora_inicio",
+      "hora_fin",
       "unidad_credito",
       "id_docente",
     ]),
@@ -103,6 +111,8 @@
         console.log(id, materias, materiasIDs);
       }
 
+      materias = materias.map(materia => ({...materia, dia: dias[parseInt(materia.dia)]}))
+
       unidadesTotales =
         materias.length !== 0
           ? materias
@@ -119,6 +129,9 @@
           "Nombre",
           "Horas Prácticas",
           "Horas Teóricas",
+          "Día de clases",
+          "Comienza",
+          "Termina",
           "U.C.",
           "Docente",
         ],
@@ -128,6 +141,9 @@
           "nombre",
           "hp",
           "ht",
+          "dia",
+          "hora_inicio",
+          "hora_fin",
           "unidad_credito",
           "id_docente",
         ]),
@@ -165,21 +181,21 @@
 </script>
 
 <form
-  class="mb-4 lg:w-1/2 <md:w-2/3 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5"
-  use:enhance={handleSubmit}
+  class="mb-4 lg:w-2/3 <md:w-3/4 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5"
+  use:enhance="{handleSubmit}"
   method="post"
 >
   <h3 class="label text-3xl bold mb-4">Realización del horario</h3>
   {#if data.materias.length != 0}
     <button
       type="button"
-      on:click={handleAdd}
+      on:click="{handleAdd}"
       class="bg-blue-600 text-white px-4 py-2 rounded"
       >Seleccionar materias</button
     >
   {/if}
 
-  <Table source={tableSimple} class="md:mx-auto" />
+  <Table source="{tableSimple}" class="md:mx-auto" />
 
   {#if materias.length > 0}
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
@@ -187,4 +203,4 @@
     >
   {/if}
 </form>
-<Modal components={modalComponentRegistry} />
+<Modal components="{modalComponentRegistry}" />

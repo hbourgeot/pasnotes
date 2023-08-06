@@ -35,7 +35,7 @@
 
 <div class="flex items-center p-10 flex-col w-full max-h-auto gap-6">
   <h2 class="text-4xl capitalize">
-    Materias de la carrera {data.carreras[parseInt(data.carrera) - 1].nombre} ({data.semestre})
+    Materias de la carrera {data.carrera.nombre} ({data.semestre})
   </h2>
   <Table
     on:selected={redirectTable}

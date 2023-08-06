@@ -1,6 +1,7 @@
 import { baseURL } from "$env/static/private";
 import type { RequestEvent } from "@sveltejs/kit";
 import type { Coordinacion, Docente, Estudiante } from "../../app";
+import { systemLogger } from "./logger";
 
 export const logInStudent = async (
   { locals: { client }, cookies }: RequestEvent,
@@ -13,6 +14,8 @@ export const logInStudent = async (
   if (!ok) {
     return { ok, data };
   }
+
+  systemLogger.info(`El estudiante ${data.estudiante.nombre} ha iniciado sesion`);
 
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
@@ -34,6 +37,8 @@ export const logInControlEstudio = async (
     return { ok, data };
   }
 
+  systemLogger.info(`El personal de control de estudio ${data.control_estudio.nombre} ha iniciado sesion`);
+
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
     path: "/control_estudio",
@@ -54,6 +59,8 @@ export const logInDocente = async (
     return { ok, data };
   }
 
+  systemLogger.info(`El docente ${data.docente.nombre} ha iniciado sesion`);
+
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
     path: "/docentes",
@@ -73,6 +80,8 @@ export const logInCoordinacion = async (
   if (!ok) {
     return { ok, data };
   }
+
+  systemLogger.info(`El coordinador ${data.coordinador.nombre} ha iniciado sesion`);
 
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
@@ -112,10 +121,27 @@ export const getUser = async (token: string, endpoint: string) => {
   }
 };
 
+export const getConfig = async () => {
+  try {
+
+    const res: Response = await fetch(`${baseURL}/api/config/1`);
+    // console.log(res)
+    const { data: config } = await res.json();
+
+    return config;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const logOut = async (
   event: RequestEvent,
   { path }: { path: string }
 ) => {
-  const { cookies } = event;
-  cookies.delete("access_token", { path: path });
+  try {
+    const { cookies } = event;
+    cookies.delete("access_token", { path: path });
+  } catch (e) {
+    console.error(e);
+  }
 };

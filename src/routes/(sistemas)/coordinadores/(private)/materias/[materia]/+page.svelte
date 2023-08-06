@@ -50,16 +50,3 @@
     <Table source={tableSource} interactive={true} on:selected={handleSelect} />
   </section>
 </main>
-
-<style>
-  input,
-  select {
-    width: 100%;
-    border: 1px solid gray;
-    padding: 14px;
-    border-radius: 8px;
-  }
-  span label {
-    margin-bottom: 8px;
-  }
-</style>

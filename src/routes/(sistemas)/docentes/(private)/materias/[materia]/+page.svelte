@@ -16,7 +16,7 @@
   import { triggerToast } from "$lib/utils/toast";
   import ModalFile from "$lib/components/ModalFile.svelte";
   import { onMount } from "svelte";
-  import type { Notas } from "../../../../app";
+  import type { Notas } from "../../../../../../app";
   import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
 
@@ -28,6 +28,7 @@
   }
 
   const sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
     nota2: nota.nota2,
@@ -37,6 +38,7 @@
 
   const tableSource: TableSource = {
     head: [
+      "Nombre del Estudiante",
       "Cédula del Estudiante",
       "Nota del 1er corte",
       "Nota del 2do corte",
@@ -44,6 +46,7 @@
       "Promedio de notas",
     ],
     body: tableMapperValues(sourceData, [
+      "nombre",
       "cedula",
       "nota1",
       "nota2",
@@ -67,15 +70,18 @@
   let nota3: number;
 
   let estudianteFind: any = {
+    nombre: "",
     cedula: "",
     nota1: 0,
     nota2: 0,
     nota3: 0,
   };
-  $: if (estudiante)
+  $: if (estudiante) {
     estudianteFind = data.estudiantes.find(
       (item: any) => item.cedula === estudiante
-    );
+      );
+    }
+    $: console.log(estudiante);
   $: console.log(estudianteFind);
 
   onMount(async () => {
@@ -92,19 +98,19 @@
   });
 
   const handleSelect = (e: CustomEvent) => {
-    estudiante = e.detail[0];
+    estudiante = e.detail[1];
     switch (toChange) {
       case "1":
         campo = "nota1";
-        nota = e.detail[1];
+        nota = e.detail[2];
         break;
       case "2":
         campo = "nota2";
-        nota = e.detail[2];
+        nota = e.detail[3];
         break;
       case "3":
         campo = "nota3";
-        nota = e.detail[3];
+        nota = e.detail[4];
         break;
     }
   };
@@ -152,7 +158,7 @@
       on:selected="{handleSelect}"
     />
   </section>
-  <section class="w-full sticky ">
+  <section class="w-full sticky">
     <form
       use:enhance
       method="post"
@@ -300,11 +306,11 @@
     action="?/carga"
     method="post"
     use:enhance="{({ data }) => {
-        data.set('files', myFile);
-        return async ({ update }) => {
-          await update();
-        };
-      }}"
+      data.set('files', myFile);
+      return async ({ update }) => {
+        await update();
+      };
+    }}"
     class="hidden"
     bind:this="{uploadForm}"
   >

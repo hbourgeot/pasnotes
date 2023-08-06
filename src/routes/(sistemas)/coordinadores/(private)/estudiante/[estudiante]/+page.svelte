@@ -32,20 +32,20 @@
       "",
       "",
       "",
-      `<code class='code text-lg rounded-full px-2'>${promedioSemestre}</code>`,
+      `<code class='code text-lg rounded-full px-2'>${promedioSemestre.toFixed(2)}</code>`,
     ],
   };
 </script>
 
 <main class="flex flex-col justify-center items-center gap-8 p-8">
-  <h2 class="text-5xl">
+  <h2 class="text-3xl py-3">
     Notas de <span class="text-sky-700 font-bold capitalize"
       >{estudiante.nombre}</span
     >
   </h2>
   <Table
     source={tableSource}
-    class="w-full mb-5 lg:mx-auto"
+    class="w-10/12 lg:w-3/5 mb-5 lg:mx-auto"
     text="text-xl"
     regionCell="!text-xl"
   />

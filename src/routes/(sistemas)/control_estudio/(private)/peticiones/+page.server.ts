@@ -1,7 +1,9 @@
-import type { Peticiones } from '../../../../app';
+import { systemLogger } from '$lib/server/logger';
+import type { Peticiones } from '../../../../../app';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load = (async ({ locals: { client } }) => {
+export const load = (async ({ locals: { client, controlEstudio } }) => {
+    systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las peticiones`)
     const { ok, data } = await client.GET("/api/peticiones")
     console.log(ok, data)
     if (!ok) return { peticiones: [] }
@@ -12,11 +14,15 @@ export const load = (async ({ locals: { client } }) => {
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-  aprobar: async ({ locals: { client }, request }) => {
+  aprobar: async ({ locals: { client, controlEstudio }, request }) => {
     const { peticion }: { peticion?: string } = Object.fromEntries(
       await request.formData()
+      );
+      
+      systemLogger.info(
+        `${controlEstudio.nombre} ha aprobado la peticion #${peticion}`
     );
-
+    
     const payload = {
       estado: "Aprobado",
     };
@@ -28,9 +34,13 @@ export const actions: Actions = {
     console.log(ok, data);
   },
 
-  denegar: async ({ locals: { client }, request }) => {
+  denegar: async ({ locals: { client, controlEstudio }, request }) => {
     const { peticion }: { peticion?: string } = Object.fromEntries(
       await request.formData()
+    );
+
+    systemLogger.info(
+      `${controlEstudio.nombre} ha denegado la peticion #${peticion}`
     );
 
     const payload = {

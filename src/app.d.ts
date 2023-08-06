@@ -1,6 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 import { client } from "/server/fetch";
+import { logger } from "$lib/server/logger";
 declare global {
   namespace App {
     // interface Error {}
@@ -10,9 +11,8 @@ declare global {
       docente: Docente;
       coordinador: Coordinacion;
       controlEstudio: ControlEstudio;
+      config: Config;
     }
-    // interface PageData {}
-    // interface Platform {}
   }
 }
 interface Estudiante {
@@ -55,12 +55,13 @@ interface Materia {
   hp: number;
   ht: number;
   semestre: number;
-  id_carrera: number;
+  id_carrera: string;
   id_docente: string;
   dia: string;
   hora_inicio: string;
   hora_fin: string;
   cantidad_estudiantes?: string;
+  ciclo: string;
 }
 
 interface Config {

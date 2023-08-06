@@ -1,3 +1,4 @@
+import { systemLogger } from "$lib/server/logger";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
@@ -14,12 +15,13 @@ export const load: PageServerLoad = async ({
     null,
     headers
   );
-  console.log(data);
   if (!ok)
     return {
       estudiante: null,
       message: "No tienes materias registradas",
       materias: [],
     };
+  
+  systemLogger.info(`${estudiante.nombre} ha entrado a ver sus notas`)
   return { estudiante, materias: data.notas };
 };

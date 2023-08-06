@@ -14,9 +14,6 @@
     handleModal()
   }
 
-  let btnInvisible: boolean;
-  $: btnInvisible = $page.route.id === "/docentes";
-
   let cedulaEstudiante = data.peticion?.id_estudiante ?? ""
   let materia = data.peticion?.id_materia ?? ""
   let nombreCampo = data.peticion?.campo ?? "";
@@ -36,7 +33,7 @@
       type: "component",
       // Pass the component registry key as a string:
       component: "modalForm",
-      title: `¡Oye ${data.docente.nombre}!`,
+      title: `¡Oye ${data.nombre}!`,
       body: `Tu petición #${data.peticion?.id} ha sido aprobada`,
     };
     modalStore.trigger(modal);
@@ -95,7 +92,7 @@
     <img src="{Logo}" alt="" class="logo" />
   </a>
   <svelte:fragment slot="trail">
-    <form method="post" action="{`/docentes/logout?red=docentes`}">
+    <form method="post" action="{`/docentes/logout?nombre=${data.nombre}`}">
       <button
         type="submit"
         class="bg-pink-600 text-gray-200 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"

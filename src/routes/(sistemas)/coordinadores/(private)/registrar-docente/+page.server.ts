@@ -1,11 +1,14 @@
 import { fail } from "@sveltejs/kit";
-import type { Docente } from "../../../../app";
+import type { Docente } from "../../../../../app";
 import type { Actions, PageServerLoad } from "./$types";
+import { systemLogger } from "$lib/server/logger";
 
-export const load: PageServerLoad = async ({locals:{client}}) => {
+export const load: PageServerLoad = async ({locals:{client,coordinador}}) => {
   const { ok, data } = await client.GET("/api/docente");
   
   if (!ok) return {};
+
+  systemLogger.info(`${coordinador.nombre} ha entrado a ver los docentes registrados y puede que registre uno`)
 
   const docentes: Docente[] = data.docente.filter(
     (docente: Docente, index: any, self: any) =>
@@ -16,7 +19,7 @@ export const load: PageServerLoad = async ({locals:{client}}) => {
 };
 
 export const actions: Actions = {
-  default: async ({ locals: { client }, request }) => {
+  default: async ({ locals: { client, coordinador }, request }) => {
     const docente: Docente = Object.fromEntries(
       await request.formData()
     ) as unknown as Docente;
@@ -33,6 +36,10 @@ export const actions: Actions = {
     if (!ok) {
       return fail(400, data);
     }
+
+    systemLogger.info(
+      `${coordinador.nombre} ha registrado a un docente llamado ${payload.fullname}`
+    );
 
     return { message: "Docente creado!" };
   },

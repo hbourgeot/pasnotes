@@ -1,10 +1,25 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import type { ActionData, PageData } from "./$types";
-  import { Table } from "@skeletonlabs/skeleton";
-  import type { TableSource } from "@skeletonlabs/skeleton";
+  import {
+    FileDropzone,
+    Modal,
+    modalStore,
+    Table,
+  } from "@skeletonlabs/skeleton";
+  import type {
+    TableSource,
+    ModalSettings,
+    ModalComponent,
+  } from "@skeletonlabs/skeleton";
   import { tableMapperValues } from "@skeletonlabs/skeleton";
   import { triggerToast } from "$lib/utils/toast";
-  import { goto } from "$app/navigation";
+  import ModalFile from "$lib/components/ModalFile.svelte";
+  import { onMount } from "svelte";
+  import type { Notas } from "../../../../../../app";
+  import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import type { SubmitFunction } from "@sveltejs/kit";
 
   export let data: PageData;
   export let form: ActionData;
@@ -14,6 +29,7 @@
   }
 
   const sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
     nota2: nota.nota2,
@@ -23,6 +39,7 @@
 
   const tableSource: TableSource = {
     head: [
+      "Nombre del Estudiante",
       "Cédula del Estudiante",
       "Nota del 1er corte",
       "Nota del 2do corte",
@@ -30,6 +47,7 @@
       "Promedio de notas",
     ],
     body: tableMapperValues(sourceData, [
+      "nombre",
       "cedula",
       "nota1",
       "nota2",
@@ -38,17 +56,168 @@
     ]),
   };
 
+  let estudiante: string = "";
+  let campo: string = "";
+  let nota: number = 0;
+  let toChange: string = "0";
+
+  let estudianteFind: any = {
+    nombre: "",
+    cedula: "",
+    nota1: 0,
+    nota2: 0,
+    nota3: 0,
+  };
+
+  $: if (estudiante)
+      estudianteFind = sourceData.find((item: any) => {
+        console.log(item, "go");
+        return item.cedula === estudiante;
+      });
+
   const handleSelect = (e: CustomEvent) => {
-    let estudiante = e.detail[0];
-    goto(`/coordinadores/estudiante/${estudiante}`);
+    estudiante = e.detail[1];
+    switch (toChange) {
+      case "1":
+        campo = "nota1";
+        nota = e.detail[2];
+        break;
+      case "2":
+        campo = "nota2";
+        nota = e.detail[3];
+        break;
+      case "3":
+        campo = "nota3";
+        nota = e.detail[4];
+        break;
+    }
+  };
+
+  const modalComponentRegistry: Record<string, ModalComponent> = {
+    // Custom Modal 1
+    modalFile: {
+      // Pass a reference to your custom component
+      ref: ModalFile,
+    },
+  };
+
+  const handleSubmit: SubmitFunction = async ({ cancel }) => {
+    let response = await new Promise<string>((resolve) => {
+      const modal: ModalSettings = {
+        type: "prompt",
+        // Data
+        title: "Espere un momento",
+        body: "Ingrese la clave para poder modificar la nota",
+        
+        // Populates the input value and attributes
+        value: "",
+        valueAttr: {
+          type: "password",
+          minlength: 3,
+          maxlength: 10,
+          required: true,
+        },
+        buttonTextSubmit: "Enviar",
+        buttonTextCancel: "Cancelar",
+        // Returns the updated response value
+        response: (r: string) => resolve(r),
+      };
+      modalStore.trigger(modal);
+    });
+
+    console.log(response);
+    if(!response){
+      return cancel();
+    }
+
+    if (response != "1234") {
+      triggerToast("Clave inválida, intente de nuevo");
+      return cancel();
+    }
+
+    return async ({ update }) => {
+      await update();
+    };
   };
 </script>
 
-<main class="container mx-auto p-10 h-screen bg-transparent">
-  <h2 class="text-4xl text-center">Estudiantes de '{data.materia.nombre}'</h2>
+<main class="flex justify-center items-center bg-transparent">
   <section class="w-full p-5">
-    <Table source={tableSource} interactive={true} on:selected={handleSelect} />
+    <Table
+      source="{tableSource}"
+      interactive="{true}"
+      on:selected="{handleSelect}"
+      regionCell="capitalize"
+    />
   </section>
+  <section class="w-full sticky">
+    <form
+      use:enhance="{handleSubmit}"
+      method="post"
+      class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white"
+    >
+      <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
+        Asignacion de Notas
+      </h3>
+
+      <span class="w-[30%]">
+        <label for="estudiante"> Estudiante </label>
+        <input
+          readonly
+          bind:value="{estudiante}"
+          type="text"
+          id="estudiante"
+          name="cedula_estudiante"
+          class="w-full input"
+        />
+      </span>
+      <span class="w-[30%]">
+        <label for="corte"> Corte </label>
+        <select
+          class="select"
+          name="nombre_campo"
+          id="corte"
+          bind:value="{toChange}"
+        >
+          <option value="0" disabled>Seleccione una nota a cambiar</option>
+          <option value="1"
+            >1er corte</option
+          >
+          <option value="2"
+            >2do corte</option
+          >
+          <option value="3"
+            >3er corte</option
+          >
+        </select>
+      </span>
+      <span class="w-[30%]">
+        <label for="calificacion"> Nota </label>
+        <input
+          name="valor"
+          type="number"
+          bind:value="{nota}"
+          id="calificacion"
+          class="input"
+        />
+      </span>
+
+      <div class="w-full p-4 flex justify-center gap-8 mt-8">
+        <button
+          on:click="{() => {
+            estudiante = '';
+            nota = 0;
+            toChange = '0';
+          }}"
+          class="bg-pink-600 p-4 w-52 text-white rounded-xl">Cancelar</button
+        >
+        <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
+          >Editar</button
+        >
+      </div>
+    </form>
+  </section>
+  <Modal components="{modalComponentRegistry}" />
 </main>
 
 <style>
@@ -61,5 +230,9 @@
   }
   span label {
     margin-bottom: 8px;
+  }
+
+  :global(.modal-prompt-input){
+    padding: 10px;
   }
 </style>
