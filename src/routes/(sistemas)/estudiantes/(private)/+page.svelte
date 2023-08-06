@@ -4,11 +4,12 @@
     ExpandMore,
     ExpandLess,
     VerticalAlignBottom,
+    FileDownloadDone,
   } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
   import type { Estudiante, Materia } from "../../../../app";
   import { onMount, tick } from "svelte";
-  import { FileDownload } from "@steeze-ui/tabler-icons";
+  import { Download } from "@steeze-ui/tabler-icons";
 
   export let data: PageData;
 
@@ -67,24 +68,24 @@
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>a]:w-30 [&>a]:p-4 [&>a]:rounded-xl [&>a]:text-white
             md:[&>a]:w-[240px]"
     >
+    <a
+      href="/estudiantes/constancia"
+      class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
+      ><Icon src="{Download}" theme="round" size="24px" /> Constancia
+      de estudio</a
+    >
+    <a
+      href="/estudiantes/historico"
+      class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
+    >
+    <a
+      href="/estudiantes/inscribir-materias"
+      class="w-full btn variant-filled h-full bg-[#e78ae2]"
+      >Inscribir materias</a
+    >
       <a
         href="/estudiantes/notas"
         class="w-full btn variant-filled h-full bg-[#e78ae2]">Notas</a
-      >
-      <a
-        href="/estudiantes/historico"
-        class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
-      >
-      <a
-        href="/estudiantes/inscribir-materias"
-        class="w-full btn variant-filled h-full bg-[#e78ae2]"
-        >Inscribir materias</a
-      >
-      <a
-        href="/estudiantes/constancia"
-        class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
-        ><Icon src="{VerticalAlignBottom}" theme="round" size="24px" /> Constancia
-        de estudio</a
       >
     </div>
 
