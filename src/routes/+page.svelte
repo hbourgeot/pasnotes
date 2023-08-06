@@ -3,13 +3,14 @@
   import Header from "$lib/components/Header.svelte";
 
   import logo from '../lib/images/pascal-fondo.png'
+  import graduados from '$lib/images/graduados.png'
 </script>
 
 <main class="w-full h-screen">
   <Header />
 
   <section class='relative'>
-      <div class='hero relative w-full h-[80vh] block lg:h-[70vh]'>
+      <div class='hero relative w-full h-[90vh] block lg:h-[70vh]'>
         <div class=' backdrop absolute w-full h-full bg-gray-900'></div>
 
         <div class='w-full absolute'>
@@ -32,14 +33,22 @@
   </section>
 
 
-  <section class='w-full h-[500px] bg-blue-600'>
-      <div>
-        <h1>hola</h1>
+  <section class='w-full h-auto p-4 bg-blue-600'>
+      <div class='flex flex-col mx-auto h-[11/12] w-11/12 justify-center items-center gap-4 md:flex-row md:h-[300px]'>
+          <figure class=''>
+            <img src="{graduados}" class='w-[320px] min-w-[310px] max-w-[380px]' alt="">
+          </figure>
+          <div class='max-w-[380px] text-center mt-4 '>
+            <h2 class='pb-8 font-bold'>¿QUIENES SOMOS?</h2>
+            <p class='text-justify text-white text-[18px] font-semibold'>
+              El Instituto Universitario de Tecnología Pascal (IUTPASCAL) es una organización de Educación Superior de carácter privado, que te  ofrece carreras de forma presencial o semipresencial que te permiten estudiar a tu propio ritmo.
+            </p>
+          </div>
       </div>
   </section>
 
   <section class='w-full h-[1000px] bg-white'>
-    
+
   </section>
 </main>
 
@@ -59,4 +68,10 @@
     z-index: 0;
   }
 
+
+h2 {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+}
 </style>
