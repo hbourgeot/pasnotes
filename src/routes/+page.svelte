@@ -32,8 +32,14 @@
   </section>
 
 
-  <section>
-      
+  <section class='w-full h-[500px] bg-blue-600'>
+      <div>
+        <h1>hola</h1>
+      </div>
+  </section>
+
+  <section class='w-full h-[1000px] bg-white'>
+    
   </section>
 </main>
 
@@ -44,10 +50,9 @@
     
   }
 
-  section {
-    background-color: brown;
+  /* section {
     backdrop-filter: blur(10px);
-  }
+  } */
 
   .backdrop {
     opacity: 50%;
