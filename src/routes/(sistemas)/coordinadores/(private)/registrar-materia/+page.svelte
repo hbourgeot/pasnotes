@@ -45,15 +45,7 @@
 
 
 
-  const carreras = [
-    { id: 1, nombre: "Informática" },
-    { id: 2, nombre: "Tecnología de Alimentos" },
-    { id: 3, nombre: "Comunicación y Electrónica" },
-    { id: 4, nombre: "Diseño Gráfico" },
-    { id: 5, nombre: "Contabilidad y Costos" },
-    { id: 6, nombre: "Administración Bancaria y Financiera" },
-    { id: 7, nombre: "Administración Empresarial" },
-  ];
+  const carreras = data.carreras ?? [];
 
   const days = [
     "Lunes",
@@ -122,8 +114,8 @@
   }
 </script>
 
-<div class="container lg:w-1/2 md:w-2/3 mx-auto px-4 py-8">
-  <div class="bg-white p-8 rounded shadow">
+<div class="container lg:w-1/2 md:w-2/3 mx-auto px-4 py-8 screen">
+  <div class="bg-white p-8 rounded-2xl shadow">
     <h2 class="text-2xl font-semibold mb-4">Registrar materia</h2>
     <form id="docente-form" method="post" use:enhance>
       <div class="mb-4">
@@ -297,5 +289,9 @@
   :global(.bx--form-requirement) {
     font-size: 12px;
     color: #db0098;
+  }
+
+  .screen{
+    height: calc(100vh - 80px);
   }
 </style>

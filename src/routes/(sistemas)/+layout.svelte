@@ -1,6 +1,6 @@
 <script lang="ts">
 </script>
-<main class="w-full" data-theme="modern">
+<main class="w-full main-element" data-theme="modern">
   <slot/>
 </main>
 <style>

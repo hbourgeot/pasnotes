@@ -13,15 +13,6 @@
   let clicked = 0;
 </script>
 
-<!-- <nav
-    class="w-full h-[60px]"
-    style="border-bottom: 1px solid rgb(229 231 235);
-"
->
-    <a href="/" class="h-full flex flex-center">
-        <img src={Logo} alt="" class="logo" />
-    </a>
-</nav> -->
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
   style="min-height: calc(100vh + 10rem);"
@@ -34,31 +25,23 @@
     style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
   >
     <div
-      class="w-full mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
-            md:[&>button]:w-[200px] h-fit"
+      class="w-full mt-5 flex flex-wrap gap-5 flex-center"
     >
-      <button class=" bg-[#5C8984]"
-        ><a
-          href="/coordinadores/configuracion"
-          class="flex w-full justify-center items-center h-full"
-          >Configuración</a
-        ></button
-      >
-      <button class=" bg-[#9DB2BF]"
-        ><a href="/coordinadores/registrar-docente" class="w-full h-full block"
-          >Registrar docentes</a
-        ></button
-      >
-      <button class=" bg-[#9DB2BF]"
-        ><a href="/coordinadores/registrar-materia" class="w-full h-full block"
-          >Registrar materias</a
-        ></button
-      >
-      <button class=" bg-[#5C8984]"
-        ><a
-          href="/coordinadores/materias"
-          class="flex w-full justify-center items-center h-full">Ver Materias</a
-        ></button
+      <a
+        href="/coordinadores/configuracion"
+        class="flex btn variant-filled justify-center items-center h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]">Configuración</a
+      ><a
+        href="/coordinadores/registrar-docente"
+        class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Registrar docentes</a
+      ><a
+        href="/coordinadores/registrar-materia"
+        class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Registrar materias</a
+      ><a
+        href="/coordinadores/materias"
+        class="flex w-full justify-center items-center btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Ver Materias</a
       >
     </div>
 

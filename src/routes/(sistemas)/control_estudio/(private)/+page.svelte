@@ -8,8 +8,8 @@
   export let data: PageData;
 
   let controlEstudio: ControlEstudio = data.controlEstudio;
-
 </script>
+
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
   style="min-height: calc(100vh + 10rem);"
@@ -22,18 +22,17 @@
     style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
   >
     <div
-      class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
-            md:[&>button]:w-[200px]"
+      class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center
+            "
     >
-      <button class=" bg-[#5C8984]"
-        ><a href="/control_estudio/materias" class="w-full h-full block"
-          >Ver Materias</a
-        ></button
-      >
-      <button class=" bg-[#5C8984]"
-        ><a href="/control_estudio/peticiones" class="w-full h-full block"
-          >Ver Peticiones</a
-        ></button
+      <a
+        href="/control_estudio/materias"
+        class="w-full h-fit w-30 p-4 rounded-xl text-white md:w-[200px] bg-[#e78ae2] text-center btn variant-filled"
+        >Ver Materias</a
+      ><a
+        href="/control_estudio/peticiones"
+        class="w-full h-full w-30 p-4 rounded-xl text-white md:w-[200px] bg-[#e78ae2] text-center btn variant-filled"
+        >Ver Peticiones</a
       >
     </div>
 
@@ -50,10 +49,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src={ExpandMore} class="icon " />
+            <Icon src="{ExpandMore}" class="icon " />
           </span>
           <span class="expanded">
-            <Icon src={ExpandLess} class="icon " />
+            <Icon src="{ExpandLess}" class="icon " />
           </span>
 
           Informacion del personal

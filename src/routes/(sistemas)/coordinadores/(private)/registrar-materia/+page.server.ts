@@ -35,7 +35,21 @@ export const load: PageServerLoad = async ({ locals: { client, coordinador } }) 
     })
   );
 
-  return { docentes, materias, list: materiasAutocomplete };
+  const { ok: isOk, data: { carreras } } = await client.GET("/api/carreras")
+  
+  let carrerasNoRepetidas: { id: string; nombre: string }[] = carreras
+    .map((carrera: { id: string; nombre: string }) => ({ ...carrera }))
+    .filter(
+      (carrera: { id: string; nombre: string }, index: any, self: any) =>
+        index ===
+        self.findIndex(
+          (t: { id: string; nombre: string }) => t.id === carrera.id
+        )
+  );
+  
+  console.log(carrerasNoRepetidas);
+
+  return { docentes, materias, list: materiasAutocomplete, carreras: carrerasNoRepetidas };
 };
 
 export const actions: Actions = {
