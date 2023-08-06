@@ -5,7 +5,6 @@
 
   export let data: PageData;
 
-  console.log(data.materias);
   const sourceData = data.materias.map((notas: any) => ({
     materia: notas.materia,
     codigo: notas.id,
