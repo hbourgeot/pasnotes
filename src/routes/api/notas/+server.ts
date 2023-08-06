@@ -10,7 +10,6 @@ export const POST: RequestHandler = async ({ locals: { client }, request }) => {
   };
 
   const { ok, data } = await client.PATCH("/api/docente/upload", obj);
-  console.log(ok, data)
 
   if (!ok) return json({ message: data.message, status: 400 });
 

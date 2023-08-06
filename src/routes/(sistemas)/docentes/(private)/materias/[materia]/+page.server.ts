@@ -57,7 +57,6 @@ export const actions: Actions = {
     const { files } = Object.fromEntries(
       await request.formData()
     ) as unknown as File;
-    console.log(files);
 
     const formData = new FormData();
     formData.append("file", files, "planificacion.pdf");

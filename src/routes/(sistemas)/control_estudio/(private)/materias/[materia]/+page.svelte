@@ -71,7 +71,6 @@
 
   $: if (estudiante)
       estudianteFind = sourceData.find((item: any) => {
-        console.log(item, "go");
         return item.cedula === estudiante;
       });
 
@@ -125,7 +124,6 @@
       modalStore.trigger(modal);
     });
 
-    console.log(response);
     if(!response){
       return cancel();
     }

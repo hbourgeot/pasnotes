@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import type { Estudiante, Notas } from "../../../../../app";
+  import type { Estudiante, Notas } from "../../../../../../app";
   import {
     Table,
     type TableSource,
@@ -9,9 +9,8 @@
 
   export let data: PageData;
 
-  let estudiante: Estudiante = data.estudiante;
+  let estudiante: Estudiante = data.estudiante as unknown as Estudiante;
 
-  $: console.log(data.notas);
 
   let notas: Notas[] = data.notas;
 

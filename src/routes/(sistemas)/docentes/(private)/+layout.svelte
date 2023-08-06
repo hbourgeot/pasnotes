@@ -10,7 +10,6 @@
   export let data: LayoutData;
 
   $: if(data.peticion){
-    console.log("hola")
     handleModal()
   }
 

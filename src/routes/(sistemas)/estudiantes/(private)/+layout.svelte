@@ -5,7 +5,6 @@
   import { ChevronRight } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
   import type { LayoutData } from "./$types";
-  console.log($page.url.pathname.split('/').slice(0).join('/'))
 
   export let data: LayoutData
 </script>

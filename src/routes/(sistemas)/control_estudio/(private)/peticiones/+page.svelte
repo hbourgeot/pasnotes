@@ -12,7 +12,6 @@
     peticiones = data.peticiones.filter(
       (peticion) => peticion.estado === toChange
     );
-    console.log(peticiones);
   }
 </script>
 

@@ -13,14 +13,8 @@
   }));
 
   let selected: number[] = [];
-
-  function onClick(e: Event) {
-    console.log( selected)
-  }
-  
   // Handle Form Submission
   function onFormSubmit(): void {
-    console.log( selected)
     if ($modalStore[0].response) $modalStore[0].response(selected);
     modalStore.close();
   }
@@ -46,8 +40,7 @@
         <ListBoxItem
           bind:group="{selected}"
           name="{materia.value}"
-          value="{materia.value}"
-          on:click="{onClick}">{materia.label}</ListBoxItem
+          value="{materia.value}">{materia.label}</ListBoxItem
         >
       {/each}
     </ListBox>

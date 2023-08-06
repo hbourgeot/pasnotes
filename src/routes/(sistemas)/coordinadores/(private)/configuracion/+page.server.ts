@@ -5,7 +5,6 @@ import { systemLogger } from '$lib/server/logger';
 export const load = (async ({ locals: { client, coordinador } }) => {
     systemLogger.info(`${coordinador.nombre} está viendo las configuraciones del sistema`)
     const { ok, data } = await client.GET("/api/config/1");
-    console.log(ok, data);
     
     if (!ok) return {};
 

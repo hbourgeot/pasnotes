@@ -18,7 +18,7 @@
   import {
     TimePicker
   } from "carbon-components-svelte";
-  import type { Docente } from "../../../../app";
+  import type { Docente } from "../../../../../app";
   import type { ActionData, PageData } from "./$types";
   import ModalList from "$lib/components/ModalList.svelte";
   import { triggerToast } from "$lib/utils/toast";
@@ -37,14 +37,12 @@
 
   $: if (materiasIDs.length > 0) {
     prelacion = materiasIDs.join(" - ");
-    console.log(prelacion, "hola");
   }
 
   $: if (form?.message) {
     triggerToast(form.message);
   }
 
-  $: console.log(horaInicio, horaFin);
 
 
   const carreras = [

@@ -16,7 +16,7 @@
     TimePickerSelect,
     SelectItem,
   } from "carbon-components-svelte";
-  import type { Docente } from "../../../../app";
+  import type { Docente } from "../../../../../app";
   import type { ActionData, PageData } from "./$types";
   import { onMount } from "svelte";
   import { triggerToast } from "$lib/utils/toast";
@@ -30,7 +30,6 @@
   }
 
   let config = data.config;
-  console.log(config);
   let years: number[] = [];
 
   onMount(() => {

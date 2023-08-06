@@ -112,7 +112,6 @@ export const getUser = async (token: string, endpoint: string) => {
       method: "GET",
       headers,
     });
-    // console.log(res)
     const { data: user } = await res.json();
 
     return user;
@@ -125,7 +124,6 @@ export const getConfig = async () => {
   try {
 
     const res: Response = await fetch(`${baseURL}/api/config/1`);
-    // console.log(res)
     const { data: config } = await res.json();
 
     return config;

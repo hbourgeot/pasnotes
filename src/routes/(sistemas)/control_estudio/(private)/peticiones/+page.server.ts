@@ -5,7 +5,6 @@ import type { Actions, PageServerLoad } from './$types';
 export const load = (async ({ locals: { client, controlEstudio } }) => {
     systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las peticiones`)
     const { ok, data } = await client.GET("/api/peticiones")
-    console.log(ok, data)
     if (!ok) return { peticiones: [] }
 
     const peticiones: Peticiones[] = data;
@@ -31,7 +30,6 @@ export const actions: Actions = {
       `/api/peticiones/update/${peticion}`,
       payload
     );
-    console.log(ok, data);
   },
 
   denegar: async ({ locals: { client, controlEstudio }, request }) => {
@@ -51,6 +49,5 @@ export const actions: Actions = {
       `/api/peticiones/update/${peticion}`,
       payload
     );
-    console.log(ok, data);
   },
 };

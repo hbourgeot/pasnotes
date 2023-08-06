@@ -108,7 +108,6 @@
         } else {
           materias = materias.filter((mat) => mat.id === id.toString());
         }
-        console.log(id, materias, materiasIDs);
       }
 
       materias = materias.map(materia => ({...materia, dia: dias[parseInt(materia.dia)]}))

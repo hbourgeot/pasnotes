@@ -59,7 +59,6 @@ const authHandler: Handle = async ({ event, resolve }) => {
               break;
           }
         } else {
-          console.log(rol);
           let redirectUrl = "";
 
           switch (rol) {

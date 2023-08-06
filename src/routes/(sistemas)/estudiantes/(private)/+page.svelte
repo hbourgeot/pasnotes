@@ -6,7 +6,7 @@
     VerticalAlignBottom,
   } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
-  import type { Estudiante, Materia } from "../../../app";
+  import type { Estudiante, Materia } from "../../../../app";
   import { onMount, tick } from "svelte";
   import { FileDownload } from "@steeze-ui/tabler-icons";
 
@@ -46,7 +46,6 @@
         planificaciones[i] = false;
       }
       planificaciones = planificaciones;
-      console.log(planificaciones);
     }
   };
 
@@ -65,22 +64,26 @@
     style="min-height: calc(100vh); box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
   >
     <div
-      class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
-            md:[&>button]:w-[240px]"
+      class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>a]:w-30 [&>a]:p-4 [&>a]:rounded-xl [&>a]:text-white
+            md:[&>a]:w-[240px]"
     >
-      <button class=" bg-[#5C8984]"
-        ><a href="/estudiantes/notas" class="w-full h-full block">Notas</a
-        ></button
+      <a
+        href="/estudiantes/notas"
+        class="w-full btn variant-filled h-full bg-[#e78ae2]">Notas</a
       >
-      <button
-        ><a href="/estudiantes/inscribir-materias" class="w-full h-full block"
-          >Inscribir materias</a
-        ></button
+      <a
+        href="/estudiantes/historico"
+        class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
+      >
+      <a
+        href="/estudiantes/inscribir-materias"
+        class="w-full btn variant-filled h-full bg-[#e78ae2]"
+        >Inscribir materias</a
       >
       <a
         href="/estudiantes/constancia"
-        class="flex flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
-        ><Icon src={VerticalAlignBottom} theme="round" size="24px" /> Constancia
+        class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
+        ><Icon src="{VerticalAlignBottom}" theme="round" size="24px" /> Constancia
         de estudio</a
       >
     </div>
@@ -95,10 +98,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src={ExpandMore} class="icon " />
+            <Icon src="{ExpandMore}" class="icon " />
           </span>
           <span class="expanded">
-            <Icon src={ExpandLess} class="icon " />
+            <Icon src="{ExpandLess}" class="icon " />
           </span>
 
           Informacion del estudiante
@@ -135,10 +138,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src={ExpandMore} class="icon " />
+            <Icon src="{ExpandMore}" class="icon " />
           </span>
           <span class="expanded">
-            <Icon src={ExpandLess} class="icon " />
+            <Icon src="{ExpandLess}" class="icon " />
           </span>
 
           Materias inscritas
@@ -155,8 +158,11 @@
               <span>
                 <h2>{materia.materia}</h2>
                 {#if planificaciones[n]}
-                  <a href={materia.download} class="flex gap-2" download="planificacion.pdf"
-                    >Descargar <Icon src={FileDownload} /></a
+                  <a
+                    href="{materia.download}"
+                    class="flex gap-2"
+                    download="planificacion.pdf"
+                    >Descargar <Icon src="{FileDownload}" /></a
                   >
                 {:else}
                   <p>No hay planificacion</p>

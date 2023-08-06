@@ -8,7 +8,6 @@ export const load = (async ({ locals: { docente, client } }) => {
   }
 
   const { ok, data } = await client.GET("/api/peticiones");
-  console.log(data, "put");
   if (!ok) return { peticion: null, nombre: docente.nombre }
   
   let peticion: Peticiones = data.find((peticion: Peticiones) => peticion.id_docente == docente.cedula && peticion.estado === "Aprobado")

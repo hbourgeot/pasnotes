@@ -11,7 +11,6 @@ export const load = (async ({ params, locals: { coordinador, client } }) => {
 
   const carrera = data.materia.carrera;
   const estudiantes = data.materia.estudiantes;
-  console.log(estudiantes);
   const materia = {
     id: data.materia.id,
     nombre: data.materia.nombre,

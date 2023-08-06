@@ -81,11 +81,10 @@
       (item: any) => item.cedula === estudiante
       );
     }
-    $: console.log(estudiante);
-  $: console.log(estudianteFind);
 
   onMount(async () => {
     const response = await fetch(
+      //@ts-ignore
       `/api/archivos?ciclo=${data.ciclo}&folder=${data.materia.id}`
     );
     const contentType = response.headers.get("content-type");
@@ -139,7 +138,6 @@
         modalStore.trigger(modal);
       });
 
-      console.log("resolved response:", myFile);
       myFile = myFile.item(0);
 
       myFile = myFile; // Force Svelte
