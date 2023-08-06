@@ -5,7 +5,7 @@
 </script>
 
 <nav
-  class="w-full h-[80px] relative cursor-default flex justify-center items-center"
+  class="w-full h-[80px] bg-white relative cursor-default flex justify-center items-center"
   style="border-bottom: 1px solid rgb(229 231 235);
 "
 >
