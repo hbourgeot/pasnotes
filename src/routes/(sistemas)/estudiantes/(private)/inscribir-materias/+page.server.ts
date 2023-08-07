@@ -4,8 +4,14 @@ import type { Config, Materia } from "../../../../../app";
 import { systemLogger } from "$lib/server/logger";
 
 export const load: PageServerLoad = async ({
-  locals: { client, estudiante, config },
+  locals: { client, estudiante, config }, cookies,
 }) => {
+
+  let headers = {
+    Accept: "*/*",
+    Authorization: cookies.get("access_token"),
+  };
+
   let inicio = new Date(config.horario_inicio);
   let final = new Date(config.horario_fin);
   let hoy = new Date();
@@ -37,14 +43,21 @@ export const load: PageServerLoad = async ({
     `/api/materias/inscribir/${estudiante.cedula}`
   );  
 
-  if (!ok) return { materias: [], message: data.message };
+  if (!ok) {
+    if (data.message.includes("Usted")) {
+      const { ok, data: {materias} } = await client.GET("/api/students/horario", null, headers)
+      
+      return {materias, estudiante, horarioHecho: true}
+    }
+    return { materias: [], message: data.message }
+  };
 
   systemLogger.warn(
     `El estudiante ${estudiante.nombre} entró a registrar su horario`
   );
 
   const materias = data.materias;
-  return { materias, estudiante, message: "" };
+  return { materias, estudiante, message: "", horarioHecho: false };
 };
 
 export const actions: Actions = {

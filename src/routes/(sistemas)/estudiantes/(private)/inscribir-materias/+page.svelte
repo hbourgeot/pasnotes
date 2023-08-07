@@ -34,7 +34,7 @@
     triggerToast(data?.message);
   }
 
-  let materias: Materia[] = [];
+  let materias: Materia[] = data.horarioHecho ? data.materias : [];
   let materiasData: Materia[] = data.materias;
   let unidadesTotales: number | undefined = 0;
   let materia = data.materias[0]?.id ?? null;
@@ -184,8 +184,8 @@
   use:enhance="{handleSubmit}"
   method="post"
 >
-  <h3 class="label text-3xl bold mb-4">Realización del horario</h3>
-  {#if data.materias.length != 0}
+  <h3 class="label text-3xl bold mb-4">{!data.horarioHecho ? 'Realización del horario' : 'Horario registrado:'}</h3>
+  {#if data.materias.length != 0 && !data.horarioHecho}
     <button
       type="button"
       on:click="{handleAdd}"
@@ -196,7 +196,7 @@
 
   <Table source="{tableSimple}" class="md:mx-auto" />
 
-  {#if materias.length > 0}
+  {#if materias.length > 0 && !data.horarioHecho}
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
       >Registrar materias</button
     >
