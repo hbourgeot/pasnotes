@@ -13,16 +13,6 @@
 
   export let data: PageData;
 
-  const carreras = [
-    "Informática",
-    "Tecnología de Alimentos",
-    "Comunicación y Electrónica",
-    "Diseño Gráfico",
-    "Contabilidad y Costos",
-    "Administración Bancaria y Financiera",
-    "Administración Empresarial",
-  ];
-
   let estudiante: Estudiante = data.estudiante;
   let materias: {
     materia: string;
@@ -120,7 +110,7 @@
           </span>
           <span>
             <h2>Especialidad:</h2>
-            <p class="capitalize">{carreras[estudiante.carrera - 1]}</p>
+            <p class="capitalize">{data.carrera?.nombre}</p>
           </span>
           <span>
             <h2>Semestre:</h2>

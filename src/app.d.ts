@@ -22,7 +22,7 @@ interface Estudiante {
   semestre: number | string;
   telefono: string;
   estado: string;
-  carrera: number;
+  carrera: string;
 }
 
 interface Coordinacion {
