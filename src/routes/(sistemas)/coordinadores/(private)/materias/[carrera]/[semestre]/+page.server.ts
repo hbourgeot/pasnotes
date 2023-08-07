@@ -15,6 +15,7 @@ export const load = (async ({
   );
   const { data } = await client.GET("/api/materias");
   const { data: dataDocentes } = await client.GET("/api/docente");
+  console.log(data);
 
   const materiasData: Materia[] = data.materias;
   const docentes: Docente[] = dataDocentes.docente;

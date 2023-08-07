@@ -6,7 +6,5 @@ export const triggerToast = (title: string, timeout?: number) => {
     timeout
   };
 
-  setInterval(()=> console.log("hola"), 1000)
-
   toastStore.trigger(t);
 };

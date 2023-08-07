@@ -166,6 +166,9 @@
           "No hay materias que cumplan tu estado académico, vuelve más tarde."
         );
       }
+      triggerToast(
+        "Actualmente no hay materias registradas en el sistema, intente más tarde", 3000
+      );
       goto("/estudiantes");
     }
   });

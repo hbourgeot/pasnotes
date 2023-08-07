@@ -16,10 +16,12 @@ export const load = (async ({ locals: { client, controlEstudio, config }, params
       materia.semestre == parseInt(params.semestre) && materia.ciclo == config.ciclo
   );
 
+  const carrera = data.carreras.find((carrera: any) => carrera.id == params.carrera)
+
   return {
     materias,
     idCarrera: params.carrera,
-    carrera: data.carreras.find((carrera: any) => carrera.id == params.carrera),
+    carrera: carrera,
     docentes,
     semestre: getSemester(params.semestre),
   };
