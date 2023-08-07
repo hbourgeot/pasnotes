@@ -51,6 +51,11 @@
         class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Movimientos</a
       >
+      <a
+        href="/superusuario/carreras"
+        class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Carreras</a
+      >
     </div>
 
     <div class="w-11/12 lg:w-10/12">
