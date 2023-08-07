@@ -54,7 +54,6 @@
     "Jueves",
     "Viernes",
     "Sábado",
-    "Domingo",
   ];
 
   const modalComponentRegistry: Record<string, ModalComponent> = {
@@ -235,6 +234,19 @@
           </select>
         </div>
         <div class="mb-4 w-1/5">
+          <label for="modalidad" class="label">Modalidad</label>
+          <select
+            name="modalidad"
+            id="modalidad"
+            class="select py-2 px-7"
+            value="{0}"
+            required
+          >
+              <option value="Presencial">Presencial</option>
+              <option value="Digital">Digital</option>
+          </select>
+        </div>
+        <div class="mb-4 w-1/5">
           <TimePicker
             labelText="Hora de inicio"
             bind:value="{horaInicio}"
@@ -266,7 +278,7 @@
         </div>
       </div>
       <div class="mb-4 flex flex-row-reverse items-center justify-between">
-        <button type="button" on:click="{handleAdd}" class="bg-blue-600 w-full text-white px-4 py-2 rounded"
+        <button type="button" on:click="{handleAdd}" class="bg-blue-600 text-white px-4 py-2 rounded"
           >Seleccionar prelación de materias</button
         >
         {#if clicked}

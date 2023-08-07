@@ -169,7 +169,6 @@
       triggerToast(
         "Actualmente no hay materias registradas en el sistema, intente más tarde", 3000
       );
-      goto("/estudiantes");
     }
   });
 
@@ -188,7 +187,8 @@
   method="post"
 >
   <h3 class="label text-3xl bold mb-4">{!data.horarioHecho ? 'Realización del horario' : 'Horario registrado:'}</h3>
-  {#if data.materias.length != 0 && !data.horarioHecho}
+  {#if data.materias.length != 0}
+  {#if !data.horarioHecho}
     <button
       type="button"
       on:click="{handleAdd}"
@@ -203,6 +203,7 @@
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
       >Registrar materias</button
     >
+  {/if}
   {/if}
 </form>
 <Modal components="{modalComponentRegistry}" />
