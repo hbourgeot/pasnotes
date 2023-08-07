@@ -114,7 +114,7 @@
   }
 </script>
 
-<div class="container lg:w-1/2 md:w-2/3 mx-auto px-4 py-8 screen">
+<div class="container flex flex-col justify-center items-center lg:w-1/2 md:w-2/3 mx-auto px-4 py-8 screen">
   <div class="bg-white p-8 rounded-2xl shadow">
     <h2 class="text-2xl font-semibold mb-4">Registrar materia</h2>
     <form id="docente-form" method="post" use:enhance>
@@ -266,7 +266,7 @@
         </div>
       </div>
       <div class="mb-4 flex flex-row-reverse items-center justify-between">
-        <button type="button" on:click="{handleAdd}" class="bg-blue-600 text-white px-4 py-2 rounded"
+        <button type="button" on:click="{handleAdd}" class="bg-blue-600 w-full text-white px-4 py-2 rounded"
           >Seleccionar prelación de materias</button
         >
         {#if clicked}
@@ -276,7 +276,7 @@
         </div>
         {/if}
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
+      <button type="submit" class="bg-blue-600 w-full text-white px-4 py-2 rounded"
         >Registrar materia</button
       >
     </form>
