@@ -6,6 +6,7 @@
     Modal,
     modalStore,
     Table,
+    toastStore,
   } from "@skeletonlabs/skeleton";
   import type {
     TableSource,
@@ -15,11 +16,9 @@
   import { tableMapperValues } from "@skeletonlabs/skeleton";
   import { triggerToast } from "$lib/utils/toast";
   import ModalFile from "$lib/components/ModalFile.svelte";
-  import { onMount } from "svelte";
-  import type { Notas } from "../../../../../../app";
-  import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
-  import { Icon } from "@steeze-ui/svelte-icon";
   import type { SubmitFunction } from "@sveltejs/kit";
+  import { browser } from "$app/environment";
+  import { onMount } from "svelte";
 
   export let data: PageData;
   export let form: ActionData;
@@ -28,7 +27,7 @@
     triggerToast(form?.message);
   }
 
-  const sourceData = data.estudiantes.map((nota: any) => ({
+  let sourceData = data.estudiantes.map((nota: any) => ({
     nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
@@ -37,7 +36,9 @@
     promedio: nota.promedio,
   }));
 
-  const tableSource: TableSource = {
+  $: console.log(sourceData);
+
+  let tableSource: TableSource = {
     head: [
       "Nombre del Estudiante",
       "Cédula del Estudiante",
@@ -70,9 +71,46 @@
   };
 
   $: if (estudiante)
-      estudianteFind = sourceData.find((item: any) => {
-        return item.cedula === estudiante;
-      });
+    estudianteFind = sourceData.find((item: any) => {
+      return item.cedula === estudiante;
+    });
+
+  onMount(() => {
+    if (browser) {
+      if (sourceData[0].cedula === null) {
+        triggerToast("La materia no tiene estudiantes asignados", 5000);
+        setTimeout(() => window.history.back(), 3000);
+      }
+    }
+  });
+
+  $: sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
+    cedula: nota.cedula,
+    nota1: nota.nota1,
+    nota2: nota.nota2,
+    nota3: nota.nota3,
+    promedio: nota.promedio,
+  }));
+
+  $: tableSource = {
+    head: [
+      "Nombre del Estudiante",
+      "Cédula del Estudiante",
+      "Nota del 1er corte",
+      "Nota del 2do corte",
+      "Nota del 3er corte",
+      "Promedio de notas",
+    ],
+    body: tableMapperValues(sourceData, [
+      "nombre",
+      "cedula",
+      "nota1",
+      "nota2",
+      "nota3",
+      "promedio",
+    ]),
+  };
 
   const handleSelect = (e: CustomEvent) => {
     estudiante = e.detail[1];
@@ -107,7 +145,7 @@
         // Data
         title: "Espere un momento",
         body: "Ingrese la clave para poder modificar la nota",
-        
+
         // Populates the input value and attributes
         value: "",
         valueAttr: {
@@ -124,7 +162,7 @@
       modalStore.trigger(modal);
     });
 
-    if(!response){
+    if (!response) {
       return cancel();
     }
 
@@ -139,7 +177,8 @@
   };
 </script>
 
-<main class="flex justify-center items-center bg-transparent">
+<main class="flex h-screen justify-center items-center bg-transparent">
+  {#if sourceData[0].cedula !== null}
   <section class="w-full p-5">
     <Table
       source="{tableSource}"
@@ -178,15 +217,9 @@
           bind:value="{toChange}"
         >
           <option value="0" disabled>Seleccione una nota a cambiar</option>
-          <option value="1"
-            >1er corte</option
-          >
-          <option value="2"
-            >2do corte</option
-          >
-          <option value="3"
-            >3er corte</option
-          >
+          <option value="1">1er corte</option>
+          <option value="2">2do corte</option>
+          <option value="3">3er corte</option>
         </select>
       </span>
       <span class="w-[30%]">
@@ -216,6 +249,7 @@
     </form>
   </section>
   <Modal components="{modalComponentRegistry}" />
+  {/if}
 </main>
 
 <style>
@@ -230,7 +264,7 @@
     margin-bottom: 8px;
   }
 
-  :global(.modal-prompt-input){
+  :global(.modal-prompt-input) {
     padding: 10px;
   }
 </style>

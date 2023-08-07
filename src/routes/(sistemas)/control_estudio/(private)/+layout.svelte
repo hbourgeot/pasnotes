@@ -9,7 +9,7 @@
   export let data: LayoutData;
 </script>
 
-<Toast position="t" />
+<Toast position="t" zIndex="z-[999]" />
 <AppBar
   gridColumns="grid-cols-3"
   slotDefault="place-self-center"
