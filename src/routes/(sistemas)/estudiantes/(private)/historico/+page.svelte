@@ -4,6 +4,10 @@
   import type { TableSource } from "@skeletonlabs/skeleton";
   import pascalConFondo from "$lib/images/pascalConFondo.png";
 
+  import { Icon } from '@steeze-ui/svelte-icon'
+
+  import { FileDownload } from '@steeze-ui/material-design-icons'
+
   export let data: PageData;
 
   const sourceData = data.materias.map((notas: any) => ({
@@ -60,7 +64,11 @@
   <button
     bind:this="{printBtn}"
     class="btn bg-pink-600 absolute top-5 right-5 text-white save"
-    on:click="{print}">Descargar histórico</button
+    on:click="{print}">
+    
+    <Icon class='w-8 h-8' src={FileDownload}/>
+
+    </button
   >
   <header
     bind:this="{header}"

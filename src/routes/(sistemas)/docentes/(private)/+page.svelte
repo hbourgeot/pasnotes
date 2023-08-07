@@ -22,15 +22,14 @@
     </a>
 </nav> -->
 <div
-  class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
-  style="min-height: calc(100vh + 10rem);"
+  class="flex flex-center flex-col w-full max-h-auto gap-6 h-[91.5vh] overflow-auto"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
     ¡Bienvenid@, {docente.nombre}!
   </h1>
   <div
-    class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
-    style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
+    class="w-[98%] max-w-[600px] flex flex-col items-center gap-10 bg-white rounded-lg"
+    style=" max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
   >
     <div
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>button]:w-30 [&>button]:p-4 [&>button]:rounded-xl [&>button]:text-white
@@ -50,7 +49,7 @@
 
       <details
         open
-        class="flex w-2/5 mx-auto flex-col items-center justify-center"
+        class="flex w-full mx-auto flex-col items-center justify-center"
       >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
@@ -82,7 +81,7 @@
         </div>
       </details>
        <details
-        class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center"
+        class="flex w-full mx-auto flex-col my-5 items-center justify-center"
       >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"

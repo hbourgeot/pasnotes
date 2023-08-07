@@ -10,8 +10,18 @@
 
   // Finally, your application's global stylesheet (sometimes labeled 'app.css')
   import "../app.postcss";
+
+  import fondo from '$lib/images/layered-waves-haikei.svg'
 </script>
 
 <main class="w-full">
   <slot />
 </main>
+
+<style>
+  main {
+    background: url('../lib/images/layered-waves-haikei.svg') center/cover no-repeat;
+  }
+</style>
+
+
