@@ -11,9 +11,10 @@
     TimePicker, Label
   } from "attractions";
   import type { Docente } from "../../../../../app";
-  import type { ActionData, PageData } from "./$types";
+  import type { ActionData, PageData, SubmitFunction } from "./$types";
   import ModalList from "$lib/components/ModalList.svelte";
   import { triggerToast } from "$lib/utils/toast";
+  import moment from "moment";
 
   export let data: PageData;
   export let form: ActionData;
@@ -24,8 +25,8 @@
   let materiasIDs: string[] = [];
   let clicked: boolean = false;
   let prelacion: string = "";
-  let horaInicio = "";
-  let horaFin = "";
+  let horaInicio: any = null;
+  let horaFin: any = null;
 
   $: if (materiasIDs.length > 0) {
     prelacion = materiasIDs.join(" - ");
@@ -89,24 +90,19 @@
     }
   };
 
-  function checkHora(hora: number) {
-    return hora > 12 || (hora > 8 && hora < 12);
-  }
-
-  function checkHoraLabel(hora: number, fin: boolean) {
-    if (hora > 12) return "No se acepta el formato de 24 horas";
-
-    let label = fin ? "finalizar" : "comenzar";
-
-    if (hora > 8 && hora < 12)
-      return `La hora de clase no puede ${label} a esta hora`;
+  const handleSubmit: SubmitFunction = ({formData}) => {
+    formData.append("hora_inicio", moment(horaInicio, "hh:mm A").format("hh:mm A"))
+    formData.append("hora_fin", moment(horaFin, "hh:mm A").format("hh:mm A"))
+    return async ({update}) => {
+      await update();
+    }
   }
 </script>
 
 <div class="container flex flex-col justify-center items-center lg:w-1/2 md:w-2/3 mx-auto px-4 py-8 screen">
   <div class="bg-white p-8 rounded-2xl shadow">
     <h2 class="text-2xl font-semibold mb-4">Registrar materia</h2>
-    <form id="docente-form" method="post" use:enhance>
+    <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="id" class="label">Código de materia</label>
         <input
@@ -233,12 +229,12 @@
             required
           >
               <option value="Presencial">Presencial</option>
-              <option value="Digital">Digital</option>
+              <option value="Virtual">Virtual</option>
           </select>
         </div>
         <div class="mb-4 w-1/5">
           <label for="" class="label">Hora inicio</label>
-          <TimePicker format="%H:%M %P" inputClass="!input !(date)" >
+          <TimePicker format="%H:%M %P" inputClass="!input !(date)" bind:value={horaInicio}>
             <svelte:fragment slot="hours-label"><Label>Horas</Label></svelte:fragment>
             <svelte:fragment slot="minutes-label"><Label>Minutos</Label></svelte:fragment>
             <svelte:fragment slot="now-label"><Label>Hora Actual</Label></svelte:fragment>
@@ -246,25 +242,23 @@
         </div>
         <div class="mb-4 w-1/5">
           <label for="" class="label">Hora fin</label>
-          <TimePicker format="%H:%M %P" inputClass="!input !(date)" >
+          <TimePicker format="%H:%M %P" inputClass="!input !(date)" bind:value={horaFin}>
             <svelte:fragment slot="hours-label"><Label>Horas</Label></svelte:fragment>
             <svelte:fragment slot="minutes-label"><Label>Minutos</Label></svelte:fragment>
             <svelte:fragment slot="now-label"><Label>Hora Actual</Label></svelte:fragment>
           </TimePicker>
         </div>
       </div>
-      <div class="mb-4 flex flex-row-reverse items-center justify-between">
-        <button type="button" on:click="{handleAdd}" class="bg-blue-600 text-white px-4 py-2 rounded"
+      <div class="mb-4 flex flex-row-reverse items-center justify-between gap-3">
+        <button type="button" on:click="{handleAdd}" class="bg-blue-600 text-white px-4 py-2 rounded-xl"
           >Seleccionar prelación de materias</button
         >
-        {#if clicked}
         <div>
-          <input type="text" class="input (text) py-2 px-7 my-3" readonly bind:value="{prelacion}" name="prelacion" required minlength="1">
+          <input type="text" class="input (text) py-2 px-7 my-3" readonly bind:value="{prelacion}" name="prelacion" minlength="1">
           <p class="text-sm text-red-400">Nota: cada que hagas click en ese botón, tendrás que elegir la prelación desde cero</p>
         </div>
-        {/if}
       </div>
-      <button type="submit" class="bg-blue-600 w-full text-white px-4 py-2 rounded"
+      <button type="submit" class="bg-blue-600 w-full text-white px-4 py-2 rounded-xl"
         >Registrar materia</button
       >
     </form>
