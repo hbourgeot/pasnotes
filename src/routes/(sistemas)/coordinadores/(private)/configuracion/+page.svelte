@@ -26,7 +26,7 @@
 
   $: if(form?.message){
     triggerToast(form.message);
-    if(form.ok) window.location.href = "/coordinadores"
+    if(form.ok) setTimeout(() => window.location.href = "/coordinadores", 3000)
   }
 
   let config = data.config;

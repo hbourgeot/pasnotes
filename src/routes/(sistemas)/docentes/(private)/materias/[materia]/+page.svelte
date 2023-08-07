@@ -16,10 +16,8 @@
   import { triggerToast } from "$lib/utils/toast";
   import ModalFile from "$lib/components/ModalFile.svelte";
   import { onMount } from "svelte";
-  import type { Notas } from "../../../../../../app";
   import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
-  import { invalidateAll } from "$app/navigation";
 
   export let data: PageData;
   export let form: ActionData;
@@ -308,7 +306,6 @@
       data.set('files', myFile);
       return async ({ update }) => {
         await update();
-        await invalidateAll()
       };
     }}"
     class="hidden"

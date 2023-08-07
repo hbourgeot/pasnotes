@@ -9,8 +9,9 @@
   } from "@skeletonlabs/skeleton";
   import type { ActionData, PageData } from "./$types";
   import type { SubmitFunction } from "@sveltejs/kit";
-  import type { Docente } from "../../../../app";
+  import type { Docente } from "../../../../../app";
   import { triggerToast } from "$lib/utils/toast";
+  import { invalidateAll } from "$app/navigation";
 
   export let form: ActionData;
   export let data: PageData;
@@ -22,11 +23,7 @@
   $: cedulaIdentidad = `${identidad}-${cedula}`;
 
   $: if (form?.message) {
-    const t: ToastSettings = {
-      message: form?.message,
-    };
-
-    toastStore.trigger(t);
+    triggerToast(form?.message)
   }
 
   const handleSubmit: SubmitFunction = ({ data, cancel }) => {
@@ -45,9 +42,27 @@
     };
   };
 
-  const sourceData = data.docentes as unknown as Docente[];
-
-  const tableSource: TableSource = {
+  let docentes =  data.docentes as unknown as Docente[];
+  let sourceData = docentes;
+  
+  let tableSource: TableSource = {
+    head: [
+      "Cédula",
+      "Correo",
+      "Nombre",
+      "Teléfono",
+    ],
+    body: tableMapperValues(sourceData, [
+      "cedula",
+      "correo",
+      "nombre",
+      "telefono",
+    ]),
+  };
+  
+  $: docentes = data.docentes as unknown as Docente[];
+  $: sourceData = docentes;
+  $: tableSource = {
     head: [
       "Cédula",
       "Correo",
