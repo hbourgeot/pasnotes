@@ -44,15 +44,15 @@
 </script>
 
 <div
-  class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
-  style="min-height: calc(100vh + 10rem);"
+  class="flex flex-center flex-col w-full max-h-auto gap-6 "
+  style="min-height: 100vh"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
     ¡Bienvenid@, {estudiante.nombre}!
   </h1>
   <div
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
-    style="min-height: calc(100vh); box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
+    style="box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
   >
     <div
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>a]:w-30 [&>a]:p-4 [&>a]:rounded-xl [&>a]:text-white
@@ -84,7 +84,7 @@
         Informacion general
       </h2>
 
-      <details class="flex w-2/5 mx-auto flex-col items-center justify-center">
+      <details class="flex w-[90%] lg:w-2/5 mx-auto flex-col items-center justify-center">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -123,7 +123,7 @@
         </div>
       </details>
       <details
-        class="flex w-2/5 mx-auto flex-col my-5 items-center justify-center"
+        class="flex w-[90%] lg:w-2/5 mx-auto flex-col my-5 items-center justify-center"
       >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
@@ -168,6 +168,7 @@
 </div>
 
 <style class="scss">
+
   span h2 {
     font-weight: 600;
     padding-left: 16px;
