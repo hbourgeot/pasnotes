@@ -45,8 +45,7 @@
 
   const handleClick = (e: CustomEvent) => {
     cedula = e.detail[0].split(/^(V-|E-)/g)[2];
-    identidad = e.detail[0].split(/^(V-|E-)/g)[1].replace("-", "")
-    console.log(identidad);
+    identidad = e.detail[0].split(/^(V-|E-)/g)[1].replace("-", "");
     cde = {
       cedula: "",
       correo: e.detail[1],

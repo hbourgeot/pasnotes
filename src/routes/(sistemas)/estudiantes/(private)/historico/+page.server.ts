@@ -15,7 +15,6 @@ export const load: PageServerLoad = async ({
     null,
     headers
   );
-  console.log(data);
   if (!ok)
     return {
       estudiante: null,

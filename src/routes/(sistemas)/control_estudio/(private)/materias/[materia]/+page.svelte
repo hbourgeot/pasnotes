@@ -36,8 +36,6 @@
     promedio: nota.promedio,
   }));
 
-  $: console.log(sourceData);
-
   let tableSource: TableSource = {
     head: [
       "Nombre del Estudiante",

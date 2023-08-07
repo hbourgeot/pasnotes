@@ -16,7 +16,6 @@ export const actions: Actions = {
       Object.fromEntries(await event.request.formData());
 
     const { ok, data } = await logInSuperUsuario(event, { username, password });
-    console.log(ok, data);
     if (!ok) {
       return fail(400, { message: data.message });
     }

@@ -87,7 +87,6 @@ const authHandler: Handle = async ({ event, resolve }) => {
             
             if (redirectUrl) {
               if (i < 1) {
-                console.log(i);
                 i++
                 return new Response(null, {
                   status: 302,

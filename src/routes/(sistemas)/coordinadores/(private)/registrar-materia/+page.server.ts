@@ -46,8 +46,6 @@ export const load: PageServerLoad = async ({ locals: { client, coordinador } }) 
           (t: { id: string; nombre: string }) => t.id === carrera.id
         )
   );
-  
-  console.log(carrerasNoRepetidas);
 
   return { docentes, materias, list: materiasAutocomplete, carreras: carrerasNoRepetidas };
 };

@@ -46,6 +46,11 @@
         class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Agregar CDE</a
       >
+      <a
+        href="/superusuario/movimientos"
+        class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Movimientos</a
+      >
     </div>
 
     <div class="w-11/12 lg:w-10/12">

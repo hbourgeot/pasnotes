@@ -43,6 +43,8 @@
     ]),
   };
 
+  console.log(data.materias, sourceData);
+
   const handleSelection = (e: CustomEvent) => {
     goto(`/docentes/materias/${e.detail[0]}`);
   };
@@ -50,14 +52,16 @@
 
 <main class="w-full h-screen">
   <section class="flex flex-col gap-5">
-    <h2 class="text-3xl text-center pl-10 mt-10">Materias asignadas:</h2>
-
+    <h2 class="text-3xl text-center pl-10 mt-10">{#if data.materias[0].id} Materias asignadas: {:else} Usted no tiene materias asignadas. {/if}</h2>
+    
+    {#if data.materias[0].id}
     <Table
       interactive={true}
       on:selected={handleSelection}
       source={tableSimple}
       class="mx-auto w-[98%] text-center lg:w-[80%]"
     />
+    {/if}
   </section>
 </main>
 

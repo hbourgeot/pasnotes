@@ -10,8 +10,6 @@ export const load: PageServerLoad = async ({locals:{client,superUsuario}}) => {
 
   systemLogger.info(`${superUsuario.nombre} ha entrado a ver los coordinadors registrados y puede que registre uno`)
 
-  console.log(data);
-
   const coordinadores: Coordinacion[] = data.filter(
     (coordinador: Docente, index: any, self: any) =>
       index === self.findIndex((t: Docente) => t.cedula === coordinador.cedula)

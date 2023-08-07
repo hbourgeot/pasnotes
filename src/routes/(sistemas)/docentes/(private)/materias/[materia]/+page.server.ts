@@ -1,12 +1,12 @@
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { systemLogger } from "$lib/server/logger";
 
 let ciclo = "";
 export const load = (async ({ params, locals: { client, docente } }) => {
   const { ok, data } = await client.GET(`/api/materias/${params.materia}`);
-  if (!ok)
-    return { materia: null, estudiantes: null, carrera: null, ciclo: null };
+  if (!ok || data.materia.id === "")
+    throw redirect(300, "/docentes/materias");
 
   systemLogger.info(`El docente ${docente.nombre} está viendo su materia ${params.materia}`)
 
