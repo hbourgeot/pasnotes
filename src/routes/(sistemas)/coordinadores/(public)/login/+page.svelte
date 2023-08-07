@@ -46,8 +46,8 @@
     class="max-w-[485px] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
   >
     <img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
-    <h1 class="text-3xl mb-8 font-bold flex justify-center items-center gap">
-      Bienvenido
+    <h1 class="text-3xl mb-8 font-bold text-center flex justify-center items-center gap">
+      Bienvenido a <br/> Coordinadores
     </h1>
     {#if form?.message || isExpirated}
       <Toast position="t" />
@@ -81,7 +81,7 @@
     </label>
     <button
       type="submit"
-      class="w-full bg-blue-500 p-4 rounded-lg text-light-100
+      class="w-full bg-blue-500 p-4 rounded-lg text-white
 			text-xl">Iniciar sesion</button
     >
   </form>
