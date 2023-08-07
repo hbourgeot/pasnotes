@@ -26,7 +26,7 @@
     triggerToast(form?.message);
   }
 
-  const sourceData = data.estudiantes.map((nota: any) => ({
+  let sourceData = data.estudiantes.map((nota: any) => ({
     nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
@@ -35,7 +35,7 @@
     promedio: nota.promedio,
   }));
 
-  const tableSource: TableSource = {
+  let tableSource: TableSource = {
     head: [
       "Nombre del Estudiante",
       "Cédula del Estudiante",
@@ -80,6 +80,34 @@
       (item: any) => item.cedula === estudiante
       );
     }
+
+  $: sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
+    cedula: nota.cedula,
+    nota1: nota.nota1,
+    nota2: nota.nota2,
+    nota3: nota.nota3,
+    promedio: nota.promedio,
+  }));
+
+  $: tableSource = {
+    head: [
+      "Nombre del Estudiante",
+      "Cédula del Estudiante",
+      "Nota del 1er corte",
+      "Nota del 2do corte",
+      "Nota del 3er corte",
+      "Promedio de notas",
+    ],
+    body: tableMapperValues(sourceData, [
+      "nombre",
+      "cedula",
+      "nota1",
+      "nota2",
+      "nota3",
+      "promedio",
+    ]),
+  };
 
   onMount(async () => {
     const response = await fetch(
@@ -224,7 +252,7 @@
           }}"
           class="bg-pink-600 p-4 w-52 text-white rounded-xl">Cancelar</button
         >
-        <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
+        <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl" formaction="?/notas"
           >Editar</button
         >
       </div>
