@@ -13,18 +13,24 @@
     <img src={Logo} class="w-12 h-12 md:w-15 md:h-15" alt="" />
   </a>
 
-  <details class="absolute w-full">
+  <details class="absolute w-full z-10">
     <summary class="">
       <Icon src={Menu} class="ml-4 w-10 h-10 ease" />
     </summary>
 
-    <div style="width: 100%" class="w-full mt-4 h-auto bg-gray-300 border">
+    <div style="width: 100%" class="w-full mt-4 h-auto nav bg-gray-900 text-white">
       <ul class="w-full h-full">
         <li>
-          <a href="/estudiantes">Estudiantes</a>
+          <a href="/estudiantes/login">Estudiantes</a>
         </li>
         <li>
-          <a href="/docentes">Docentes</a>
+          <a href="/docentes/login">Docentes</a>
+        </li>
+        <li>
+          <a href="/control_estudio/login">Control de Estudio</a>
+        </li>
+        <li>
+          <a href="/coordinadores/login">Coordinacion</a>
         </li>
       </ul>
     </div>
@@ -46,9 +52,12 @@
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    border-bottom: 1px solid rgb(182, 182, 182);
+
   }
 
+  .nav ul li:hover {
+    background-color: #0b101a;
+  }
   ul li:hover {
     font-weight: bold;
   }

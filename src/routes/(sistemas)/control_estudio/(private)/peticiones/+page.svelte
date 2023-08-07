@@ -15,7 +15,7 @@
   }
 </script>
 
-<main class="container mx-auto p-4">
+<main class="container mx-auto p-4 h-screen">
   <div class="table-container">
     <h1 class="text-4xl p-3 text-center">Peticiones hasta el momento</h1>
     <div class="container w-1/5 flex flex-col gap-2 my-2">
