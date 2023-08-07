@@ -17,9 +17,8 @@ export const load: PageServerLoad = async ({
     return {
       materias: [],
       estudiante: null,
-      message: `Aun no puede inscribir materias. espere al ${inicio.getDate()}-${
-        inicio.getMonth() + 1
-      }`,
+      message: `Aun no puede inscribir materias. espere al ${inicio.getDate()}-${inicio.getMonth() + 1
+        }`,
     };
   }
 
