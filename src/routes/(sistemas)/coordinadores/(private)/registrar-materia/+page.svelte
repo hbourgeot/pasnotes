@@ -1,14 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
   import {
-    Toast,
-    toastStore,
-    type ToastSettings,
-    InputChip,
-    Autocomplete,
-    type AutocompleteOption,
-    type PopupSettings,
-    popup,
     type ModalSettings,
     modalStore,
     type ModalComponent,
@@ -16,8 +8,8 @@
   } from "@skeletonlabs/skeleton";
 
   import {
-    TimePicker
-  } from "carbon-components-svelte";
+    TimePicker, Label
+  } from "attractions";
   import type { Docente } from "../../../../../app";
   import type { ActionData, PageData } from "./$types";
   import ModalList from "$lib/components/ModalList.svelte";
@@ -42,8 +34,6 @@
   $: if (form?.message) {
     triggerToast(form.message);
   }
-
-
 
   const carreras = data.carreras ?? [];
 
@@ -247,34 +237,20 @@
           </select>
         </div>
         <div class="mb-4 w-1/5">
-          <TimePicker
-            labelText="Hora de inicio"
-            bind:value="{horaInicio}"
-            pattern="^(0[0-9]|1[0-9]):[0-5][0-9]$"
-            invalid="{checkHora(parseInt(horaInicio.split(':')[0]))}"
-            invalidText="{checkHoraLabel(
-              parseInt(horaInicio.split(':')[0]),
-              false
-            )}"
-            placeholder="hh:mm"
-            name="hora_inicio"
-            class="input py-2 px-7"
-          />
+          <label for="" class="label">Hora inicio</label>
+          <TimePicker format="%H:%M %P" inputClass="!input !(date)" >
+            <svelte:fragment slot="hours-label"><Label>Horas</Label></svelte:fragment>
+            <svelte:fragment slot="minutes-label"><Label>Minutos</Label></svelte:fragment>
+            <svelte:fragment slot="now-label"><Label>Hora Actual</Label></svelte:fragment>
+          </TimePicker>
         </div>
         <div class="mb-4 w-1/5">
-          <TimePicker
-          name="hora_fin"
-            labelText="Hora de finalización"
-            bind:value="{horaFin}"
-            pattern="^(0[0-9]|1[0-9]):[0-5][0-9]$"
-            invalid="{checkHora(parseInt(horaFin.split(':')[0]))}"
-            invalidText="{checkHoraLabel(
-              parseInt(horaFin.split(':')[0]),
-              true
-            )}"
-            placeholder="hh:mm"
-            class="input py-2 px-7"
-          />
+          <label for="" class="label">Hora fin</label>
+          <TimePicker format="%H:%M %P" inputClass="!input !(date)" >
+            <svelte:fragment slot="hours-label"><Label>Horas</Label></svelte:fragment>
+            <svelte:fragment slot="minutes-label"><Label>Minutos</Label></svelte:fragment>
+            <svelte:fragment slot="now-label"><Label>Hora Actual</Label></svelte:fragment>
+          </TimePicker>
         </div>
       </div>
       <div class="mb-4 flex flex-row-reverse items-center justify-between">
