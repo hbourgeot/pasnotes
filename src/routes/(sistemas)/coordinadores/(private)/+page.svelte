@@ -21,7 +21,7 @@
     ¡Bienvenid@, {coordinador.nombre}!
   </h1>
   <div
-    class="w-[98%] flex flex-col items-center gap-10 p-8 bg-white rounded-lg"
+    class="w-[70%] flex flex-col items-center gap-10 p-8 bg-white rounded-lg"
     style=" max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
   >
     <div

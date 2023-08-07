@@ -51,7 +51,7 @@
     ¡Bienvenid@, {estudiante.nombre}!
   </h1>
   <div
-    class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
+    class="w-[70%] flex flex-col items-center gap-10 bg-white rounded-lg"
     style="box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
   >
     <div
