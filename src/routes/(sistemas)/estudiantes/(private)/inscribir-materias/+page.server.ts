@@ -35,7 +35,7 @@ export const load: PageServerLoad = async ({
 
   const { ok, data } = await client.GET(
     `/api/materias/inscribir/${estudiante.cedula}`
-  );
+  );  
 
   if (!ok) return { materias: [], message: data.message };
 

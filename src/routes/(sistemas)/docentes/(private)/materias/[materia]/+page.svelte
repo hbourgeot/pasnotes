@@ -16,7 +16,6 @@
   import { triggerToast } from "$lib/utils/toast";
   import ModalFile from "$lib/components/ModalFile.svelte";
   import { onMount } from "svelte";
-  import type { Notas } from "../../../../../../app";
   import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
 
@@ -142,6 +141,8 @@
 
       myFile = myFile; // Force Svelte
       uploadForm.requestSubmit();
+
+      triggerToast("Planificacion cargada exitosamente")
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -150,13 +151,19 @@
 
 <main class="flex justify-center items-center bg-transparent">
   <section class="w-full p-5">
+    ¨
+    {#if sourceData[0].cedula !== null}
     <Table
       source="{tableSource}"
       interactive="{true}"
       on:selected="{handleSelect}"
     />
+    {:else}
+    <h3 class="text-xl font-bold">La materia no tiene estudiantes registrados</h3>
+    {/if}
   </section>
   <section class="w-full sticky">
+    {#if sourceData[0].cedula !== null}
     <form
       use:enhance
       method="post"
@@ -280,24 +287,16 @@
         </form>
       </details>
     </form>
+    {/if}
     <div
       class="bg-white flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
     >
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
-        Cargar/Descargar planificación
+        Cargar planificación
       </h3>
-      {#if !downloadFile}
-        <button class="btn variant-filled" on:click="{() => handleForm()}"
-          >Cargar</button
+      <button class="btn variant-filled" on:click="{() => handleForm()}"
+        >Cargar</button
         >
-      {:else}
-        <a
-          href="{downloadFile}"
-          bind:this="{downloadLink}"
-          download="planificacion.pdf"
-          class="btn variant-filled">Descargar</a
-        >
-      {/if}
     </div>
   </section>
   <form

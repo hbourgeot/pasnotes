@@ -15,8 +15,8 @@ interface MateriasPorCarrera {
   [carreraId: string]: MateriasPorSemestre;
 }
 
-export const load = (async ({ locals: { client, controlEstudio, config } }) => {
-  systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las materias`);
+export const load = (async ({ locals: { client, coordinador, config } }) => {
+  systemLogger.info(`${coordinador.nombre} ha entrado a ver las materias`);
 
   const { ok, data } = await client.GET("/api/carreras");
 
@@ -30,60 +30,5 @@ export const load = (async ({ locals: { client, controlEstudio, config } }) => {
         )
     );
 
-  const materiasPorSemestrePorCarrera = obtenerMateriasPorSemestrePorCarrera(
-    data,
-    config.ciclo
-  );
-
-  carreras = carreras.filter((carrera) => {
-    let cantidadTotal = materiasPorSemestrePorCarrera[carrera.id]?.primero ?? 0;
-    cantidadTotal += materiasPorSemestrePorCarrera[carrera.id]?.segundo ?? 0;
-    cantidadTotal += materiasPorSemestrePorCarrera[carrera.id]?.tercero ?? 0;
-    cantidadTotal += materiasPorSemestrePorCarrera[carrera.id]?.cuarto ?? 0;
-    cantidadTotal += materiasPorSemestrePorCarrera[carrera.id]?.quinto ?? 0;
-    cantidadTotal += materiasPorSemestrePorCarrera[carrera.id]?.sexto ?? 0;
-    if (cantidadTotal != 0) {
-      return { ...carrera };
-    }
-  });
-
-  return { carreras, cantidadMaterias: materiasPorSemestrePorCarrera };
+  return { carreras };
 }) satisfies PageServerLoad;
-
-const obtenerNombreSemestre = (semestre: any) => {
-  const numerosEnPalabras = [
-    "primero",
-    "segundo",
-    "tercero",
-    "cuarto",
-    "quinto",
-    "sexto",
-  ];
-  const numSemestre = parseInt(semestre, 10);
-  if (numSemestre >= 1 && numSemestre <= numerosEnPalabras.length) {
-    return numerosEnPalabras[numSemestre - 1];
-  }
-  return semestre;
-};
-
-const obtenerMateriasPorSemestrePorCarrera = (datos: Datos, ciclo: string) => {
-  const materiasPorSemestrePorCarrera: MateriasPorCarrera = {};
-
-  datos.materias.forEach((materia) => {
-    const carreraId = materia.id_carrera;
-    const semestre = obtenerNombreSemestre(materia.semestre);
-    if (materia.ciclo == ciclo) {
-      if (!materiasPorSemestrePorCarrera[carreraId]) {
-        materiasPorSemestrePorCarrera[carreraId] = {};
-      }
-
-      if (materiasPorSemestrePorCarrera[carreraId][semestre]) {
-        materiasPorSemestrePorCarrera[carreraId][semestre]++;
-      } else {
-        materiasPorSemestrePorCarrera[carreraId][semestre] = 1;
-      }
-    }
-  });
-
-  return materiasPorSemestrePorCarrera;
-};
