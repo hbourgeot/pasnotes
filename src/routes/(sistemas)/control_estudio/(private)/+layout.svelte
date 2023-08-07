@@ -2,7 +2,7 @@
   import { page } from "$app/stores";
   import Logo from "$lib/images/logo.jpg";
   import { Toast, AppBar } from "@skeletonlabs/skeleton";
-  import { ChevronRight } from "@steeze-ui/material-design-icons";
+  import { ChevronRight, Logout } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
   import type { LayoutData } from "./$types";
 
@@ -64,8 +64,10 @@
     <form method="post" action="{`/control_estudio/logout?nombre=${data.nombre}`}">
       <button
         type="submit"
-        class="bg-pink-600 text-gray-200 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"
-        >Cerrar sesión</button
+        class="bg-pink-600 text-gray-200 px-3 py-1 rounded-2xl ml-4 h-[50px] text-light-50"
+        >
+        <Icon class='w-8 h-8' src={Logout}/>
+        </button
       >
     </form>
   </svelte:fragment>
