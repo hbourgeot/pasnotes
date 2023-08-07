@@ -12,6 +12,7 @@ declare global {
       coordinador: Coordinacion;
       controlEstudio: ControlEstudio;
       config: Config;
+      superUsuario: SuperUsuario;
     }
   }
 }
@@ -98,6 +99,12 @@ interface Peticiones {
   id_materia: string;
 }
 
+interface SuperUsuario {
+  cedula: string;
+  nombre: string;
+  correo: string;
+}
+
 export {
   Estudiante,
   Coordinacion,
@@ -105,5 +112,5 @@ export {
   Materia,
   ControlEstudio,
   Config,
-  Notas, Peticiones
+  Notas, Peticiones, SuperUsuario
 };

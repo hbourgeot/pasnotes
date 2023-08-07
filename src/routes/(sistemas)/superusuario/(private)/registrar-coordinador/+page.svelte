@@ -9,8 +9,10 @@
   } from "@skeletonlabs/skeleton";
   import type { ActionData, PageData } from "./$types";
   import type { SubmitFunction } from "@sveltejs/kit";
-  import type { Docente } from "../../../../app";
+  import type { Docente } from "../../../../../app";
   import { triggerToast } from "$lib/utils/toast";
+  import type { Coordinacion } from "../../../../../app";
+  import type { Unlink } from "@steeze-ui/tabler-icons";
 
   export let form: ActionData;
   export let data: PageData;
@@ -45,9 +47,26 @@
     };
   };
 
-  const sourceData = data.docentes as unknown as Docente[];
+  let sourceData = data.coordinadores as unknown as Coordinacion[];
 
-  const tableSource: TableSource = {
+  let tableSource: TableSource = {
+    head: [
+      "Cédula",
+      "Correo",
+      "Nombre",
+      "Teléfono",
+    ],
+    body: tableMapperValues(sourceData, [
+      "cedula",
+      "correo",
+      "nombre",
+      "telefono",
+    ]),
+  };
+
+  $: sourceData = data.coordinadores as unknown as Coordinacion[]
+
+  $: tableSource = {
     head: [
       "Cédula",
       "Correo",
@@ -68,7 +87,7 @@
     <Toast position="t" />
   {/if}
   <div class="p-8 rounded-xl shadow h-full w-1/2">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Docente</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Coordinación</h2>
     <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="cedula" class="label">Cedula</label>
@@ -119,13 +138,13 @@
         />
       </div>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
-        >Registrar docente</button
+        >Registrar Coordinador</button
       >
     </form>
   </div>
 
   <div class="p-8 rounded-xl shadow h-full w-full">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Docentes registrados</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-center">Coordinadores registrados</h2>
     <Table source={tableSource} />
   </div>
 </div>

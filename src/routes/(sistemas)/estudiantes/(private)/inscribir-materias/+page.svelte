@@ -34,7 +34,7 @@
     triggerToast(data?.message);
   }
 
-  let materias: Materia[] = data.horarioHecho ? data.materias : [];
+  let materias: Materia[] = data.horarioHecho ? data.materias.map((materia: Materia) => ({...materia, dia: dias[parseInt(materia.dia)]})) : [];
   let materiasData: Materia[] = data.materias;
   let unidadesTotales: number | undefined = 0;
   let materia = data.materias[0]?.id ?? null;
