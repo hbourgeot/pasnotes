@@ -56,8 +56,8 @@
             <td class="!align-middle">{peticion.estudiante.cedula} - {peticion.estudiante.nombre}</td>
             <td class="!align-middle">{peticion.materia.id} - {peticion.materia.nombre}</td>
             <td class="align-top"
-              ><form use:enhance={({data})=>{
-                data.append("peticion", peticion.id.toString())
+              ><form use:enhance={({formData})=>{
+                formData.append("peticion", peticion.peticion.id.toString())
                 return async({update}) => {
                     await update();
                 }
