@@ -11,7 +11,7 @@ export const load = (async ({ locals: { docente, client } }) => {
   if (!ok) return { peticion: null, nombre: docente.nombre }
   
   let peticion: Peticiones = data.find((peticion: Peticiones) => peticion.id_docente == docente.cedula && peticion.estado === "Aprobado")
-  if (peticion) return { peticion, docente }
+  if (peticion) return { peticion, docente, nombre: docente.nombre }
   
   return {peticion: null, nombre: docente.nombre}
 }) satisfies LayoutServerLoad;

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { ActionData, PageData } from "./$types";
+  import type { ActionData, PageData, SubmitFunction } from "./$types";
   import {
     FileDropzone,
     Modal,
@@ -175,6 +175,23 @@
       console.error("An error occurred:", error);
     }
   };
+  
+  const handleSubmit: SubmitFunction = ({formData, cancel}) => {
+    if(estudiante==""){
+      triggerToast("Por favor seleccione un estudiante");
+      return cancel();
+    }
+
+    if(toChange=="0"){
+      triggerToast("Por favor seleccione un corte");
+      return cancel();
+    }
+
+    return async({update}) => {
+      await update();
+      estudiante = "";
+    }
+  }
 </script>
 
 <main class="flex justify-center items-center bg-transparent">
@@ -193,7 +210,7 @@
   <section class="w-full sticky">
     {#if sourceData[0].cedula !== null}
     <form
-      use:enhance
+      use:enhance={handleSubmit}
       method="post"
       class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white"
     >
@@ -209,6 +226,7 @@
           type="text"
           id="estudiante"
           name="cedula_estudiante"
+          required
           class="w-full input"
         />
       </span>
@@ -217,6 +235,7 @@
         <select
           class="select"
           name="nombre_campo"
+          required
           id="corte"
           bind:value="{toChange}"
         >
@@ -237,6 +256,7 @@
         <input
           name="valor"
           type="number"
+          required
           bind:value="{nota}"
           id="calificacion"
           class="input"
@@ -244,7 +264,7 @@
       </span>
 
       <div class="w-full p-4 flex justify-center gap-8 mt-8">
-        <button
+        <button type="button"
           on:click="{() => {
             estudiante = '';
             nota = 0;
@@ -337,7 +357,7 @@
       };
     }}"
     class="hidden"
-    bind:this="{uploadForm}"
+    bind:this={uploadForm}
   >
     <FileDropzone name="files" bind:files="{myFile}" />
   </form>

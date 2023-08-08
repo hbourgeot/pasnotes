@@ -8,6 +8,7 @@
   let peticiones = data.peticiones;
 
   let toChange = "Pendiente";
+  console.log(peticiones);
   $: if (toChange) {
     peticiones = data.peticiones.filter(
       (peticion) => peticion.estado === toChange
@@ -29,6 +30,7 @@
         <option value="Pendiente">Pendientes</option>
         <option value="Denegado">Denegadas</option>
         <option value="Aprobado">Aprobadas</option>
+        <option value="Terminado">Terminadas</option>
       </select>
     </div>
 
@@ -41,7 +43,7 @@
           <th>Estado</th>
           <th>Cédula del estudiante</th>
           <th>Código de la materia</th>
-          <th>Acciones</th>
+          <th class="{toChange != 'Pendiente' ? 'hidden' : ''}">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -62,8 +64,8 @@
               }} method="post"
                 class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion.estado != 'Pendiente' ? 'hidden' : ''} py-0"
               >
-                <button title="Aprobar petición" on:click={() => toChange = "Aprobado"} formaction="?/aprobar" class="py-0"><Icon src={Check} theme="rounded" size="15px" /></button>
-                <button title="Denegar petición" on:click={() => toChange = "Denegado"} formaction="?/denegar" class="py-0"><Icon src={Close} theme="rounded" size="15px" /></button>
+                <button title="Aprobar petición" formaction="?/aprobar" class="py-0"><Icon src={Check} theme="rounded" size="15px" /></button>
+                <button title="Denegar petición" formaction="?/denegar" class="py-0"><Icon src={Close} theme="rounded" size="15px" /></button>
               </form></td
             >
           </tr>

@@ -34,6 +34,8 @@
       component: "modalForm",
       title: `¡Oye ${data.nombre}!`,
       body: `Tu petición #${data.peticion?.id} ha sido aprobada`,
+      buttonTextCancel: "Cancelar",
+      buttonTextSubmit: "Enviar"
     };
     modalStore.trigger(modal);
   };

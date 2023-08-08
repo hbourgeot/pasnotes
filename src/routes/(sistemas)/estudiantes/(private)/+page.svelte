@@ -51,7 +51,7 @@
     ¡Bienvenid@, {estudiante.nombre}!
   </h1>
   <div
-    class="w-[70%] flex flex-col items-center gap-10 bg-white rounded-lg"
+    class="w-[90%] md:w-[70%] flex flex-col items-center gap-10 bg-white rounded-lg"
     style="box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
   >
     <div
@@ -60,7 +60,7 @@
     >
     <a
       href="/estudiantes/constancia"
-      class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
+      class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white bg-[#e78ae2] w-full"
       ><Icon src="{Download}" theme="round" size="24px" /> Constancia
       de estudio</a
     >
@@ -84,7 +84,7 @@
         Informacion general
       </h2>
 
-      <details class="flex w-[90%] lg:w-2/5 mx-auto flex-col items-center justify-center">
+      <details class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -98,7 +98,7 @@
           Informacion del estudiante
         </summary>
         <div
-          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
+          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200 text-sm lg:text-xl"
         >
           <span>
             <h2>Cedula:</h2>
@@ -153,7 +153,7 @@
                     href="{materia.download}"
                     class="flex gap-2"
                     download="planificacion.pdf"
-                    >Descargar <Icon src="{FileDownload}" /></a
+                    >Descargar <Icon src="{Download}" /></a
                   >
                 {:else}
                   <p>No hay planificacion</p>
