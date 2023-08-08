@@ -62,7 +62,7 @@
                     await update();
                 }
               }} method="post"
-                class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion.estado != 'Pendiente' ? 'hidden' : ''} py-0"
+                class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion.peticion.estado != 'Pendiente' ? 'hidden' : ''} py-0"
               >
                 <button title="Aprobar petición" formaction="?/aprobar" class="py-0"><Icon src={Check} theme="rounded" size="15px" /></button>
                 <button title="Denegar petición" formaction="?/denegar" class="py-0"><Icon src={Close} theme="rounded" size="15px" /></button>
