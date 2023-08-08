@@ -72,10 +72,6 @@
             <h2>Teléfono:</h2>
             <p>{controlEstudio.telefono}</p>
           </span>
-          <span>
-            <h2>Rol:</h2>
-            <p>{controlEstudio.rol}</p>
-          </span>
         </div>
       </details>
     </div>

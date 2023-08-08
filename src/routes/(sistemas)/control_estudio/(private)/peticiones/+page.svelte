@@ -8,10 +8,10 @@
   let peticiones = data.peticiones;
 
   let toChange = "Pendiente";
-  console.log(peticiones);
   $: if (toChange) {
+    console.log(peticiones);
     peticiones = data.peticiones.filter(
-      (peticion) => peticion.estado === toChange
+      (peticion) => peticion.peticion.estado === toChange
     );
   }
 </script>
@@ -38,23 +38,23 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Cédula del Emisor</th>
+          <th>Emisor</th>
           <th>Mensaje</th>
           <th>Estado</th>
-          <th>Cédula del estudiante</th>
-          <th>Código de la materia</th>
+          <th>Estudiante</th>
+          <th>Materia</th>
           <th class="{toChange != 'Pendiente' ? 'hidden' : ''}">Acciones</th>
         </tr>
       </thead>
       <tbody>
         {#each peticiones as peticion}
           <tr>
-            <td class="!align-middle">{peticion.id}</td>
-            <td class="!align-middle">{peticion.id_docente}</td>
-            <td class="!align-middle">{peticion.descripcion}</td>
-            <td class="!align-middle">{peticion.estado}</td>
-            <td class="!align-middle">{peticion.id_estudiante}</td>
-            <td class="!align-middle">{peticion.id_materia}</td>
+            <td class="!align-middle">{peticion.peticion.id}</td>
+            <td class="!align-middle">{peticion.docente.cedula} - {peticion.docente.nombre}</td>
+            <td class="!align-middle">{peticion.peticion.descripcion}</td>
+            <td class="!align-middle">{peticion.peticion.estado}</td>
+            <td class="!align-middle">{peticion.estudiante.cedula} - {peticion.estudiante.nombre}</td>
+            <td class="!align-middle">{peticion.materia.id} - {peticion.materia.nombre}</td>
             <td class="align-top"
               ><form use:enhance={({data})=>{
                 data.append("peticion", peticion.id.toString())

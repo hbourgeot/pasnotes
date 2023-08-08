@@ -38,7 +38,6 @@ interface ControlEstudio {
   nombre: string;
   correo: string;
   telefono: string;
-  rol: string;
 }
 
 interface Docente {

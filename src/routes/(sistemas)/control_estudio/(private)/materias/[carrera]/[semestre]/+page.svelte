@@ -8,34 +8,53 @@
 
   export let data: PageData;
 
-  const headTable = ["Código", "Nombre", "Docente"];
+  const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
   const materiaData = data.materias.map((materia) => ({
+    ...materia,
     codigo: materia.id,
     nombre: materia.nombre,
+    dia: dias[parseInt(materia.dia)],
     docente: data.docentes.find(
       (docente) => materia.id_docente === docente.cedula
     )?.nombre,
   }));
 
-  const tableSource: TableSource = {
-    head: headTable,
-    body: tableMapperValues(materiaData, ["codigo", "nombre", "docente"]),
-    foot: [
-      "Total de materias:",
-      "",
-      `<code class='code'>${materiaData.length}</code>`,
+  let tableSource: TableSource = {
+    // A list of heading labels.
+    head: [
+      "Código",
+      "Nombre",
+      "Horas Prácticas",
+      "Horas Teóricas",
+      "Día de clases",
+      "Comienza",
+      "Termina",
+      "U.C.",
+      "Docente",
     ],
+    // The data visibly shown in your table body UI.
+    body: tableMapperValues(materiaData, [
+      "id",
+      "nombre",
+      "hp",
+      "ht",
+      "dia",
+      "hora_inicio",
+      "hora_fin",
+      "unidad_credito",
+      "docente",
+    ]),
   };
 
   const redirectTable = (e: CustomEvent) => {
-    window.location.pathname = "/control_estudio/materias/" + e.detail[0];
+    window.location.pathname = "/coordinadores/materias/" + e.detail[0];
   };
 </script>
 
-<div class="flex items-center p-10 flex-col w-full max-h-auto gap-6">
+<div class="flex h-screen items-center p-10 flex-col w-full max-h-auto gap-6">
   <h2 class="text-4xl capitalize">
-    Materias de la carrera {data.carrera?.nombre} ({data?.semestre})
+    Materias de la carrera {data.carrera.nombre} ({data.semestre})
   </h2>
   <Table
     on:selected={redirectTable}

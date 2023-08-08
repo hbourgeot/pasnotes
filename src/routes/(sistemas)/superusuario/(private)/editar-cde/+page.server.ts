@@ -33,7 +33,6 @@ export const actions: Actions = {
       correo: control.correo,
       password: control.cedula.replace(/^(V-|E-)/g, ""),
       telefono: control.telefono,
-      rol: control.rol,
     };
 
     const { ok, status, data } = await client.PUT("/api/control/update/" + control.cedula, payload);

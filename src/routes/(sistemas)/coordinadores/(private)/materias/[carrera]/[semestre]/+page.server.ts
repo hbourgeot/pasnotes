@@ -26,6 +26,8 @@ export const load = (async ({
       materia.ciclo == config.ciclo
   );
 
+  console.log(materias);
+
   return {
     materias,
     idCarrera: params.carrera,

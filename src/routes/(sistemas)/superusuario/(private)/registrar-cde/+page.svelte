@@ -134,13 +134,6 @@
           required
         />
       </div>
-      <div class="mb-4">
-        <label for="nombre" class="label">Rol</label>
-        <select class="select"  id="rol" name="rol">
-            <option value="Supervisor">Supervisor</option>
-            <option value="Asistente">Asistente</option>
-          </select>
-      </div>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
         >Registrar personal</button
       >

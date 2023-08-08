@@ -51,7 +51,6 @@
       correo: e.detail[1],
       nombre: e.detail[2],
       telefono: e.detail[3],
-      rol: e.detail[4],
     };
   };
 
@@ -140,13 +139,6 @@
           value={cde?.telefono ?? ''}
           required
         />
-      </div>
-      <div class="mb-4">
-        <label for="nombre" class="label">Rol</label>
-        <select class="select" id="rol" name="rol" value={cde?.rol ?? "Supervisor"} disabled={disabled}>
-          <option value="Supervisor">Supervisor</option>
-          <option value="Asistente">Asistente</option>
-        </select>
       </div>
       <button type="reset" on:click="{() => disabled = true}" class="bg-pink-600 rounded-2xl mr-2 text-white px-4 py-2 rounded"
         >Resetear campos</button
