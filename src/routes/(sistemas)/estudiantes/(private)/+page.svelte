@@ -59,7 +59,7 @@
             md:[&>a]:w-[240px]"
     >
     <a
-      href="/estudiantes/constancia" 
+      href="/estudiantes/constancia" target="_blank"
       class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white bg-[#e78ae2] w-full"
       ><Icon src="{Download}" theme="round" size="24px" /> Constancia
       de estudio</a
