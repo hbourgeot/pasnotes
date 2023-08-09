@@ -234,7 +234,7 @@
         </div>
         <div class="mb-4 w-1/5">
           <label for="" class="label">Hora inicio</label>
-          <TimePicker format="%H:%M %P" inputClass="!input !(date)" bind:value={horaInicio}>
+          <TimePicker format="%H:%M %P"  bind:value={horaInicio}>
             <svelte:fragment slot="hours-label"><Label>Horas</Label></svelte:fragment>
             <svelte:fragment slot="minutes-label"><Label>Minutos</Label></svelte:fragment>
             <svelte:fragment slot="now-label"><Label>Hora Actual</Label></svelte:fragment>
@@ -242,7 +242,7 @@
         </div>
         <div class="mb-4 w-1/5">
           <label for="" class="label">Hora fin</label>
-          <TimePicker format="%H:%M %P" inputClass="!input !(date)" bind:value={horaFin}>
+          <TimePicker format="%H:%M %P"  bind:value={horaFin}>
             <svelte:fragment slot="hours-label"><Label>Horas</Label></svelte:fragment>
             <svelte:fragment slot="minutes-label"><Label>Minutos</Label></svelte:fragment>
             <svelte:fragment slot="now-label"><Label>Hora Actual</Label></svelte:fragment>
@@ -275,5 +275,19 @@
 
   .screen{
     height: calc(100vh - 80px);
+  }
+
+  :global(.text-field){
+    width: 75% !important;
+  }
+
+  :global(.text-field > input){
+    background-color: rgb(216,217,252) !important;
+    border: #9799fc solid 3px !important;
+    color: #3751a0;
+    border-radius: 24px !important;
+  }
+  :global(.time-picker,.handle){
+    width: 100% !important;
   }
 </style>
