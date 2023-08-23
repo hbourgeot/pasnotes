@@ -89,13 +89,27 @@ interface Notas {
 }
 
 interface Peticiones {
-  campo: string;
-  descripcion: string;
-  estado: string;
-  id: number;
-  id_docente: string;
-  id_estudiante: string;
-  id_materia: string;
+  docente: {
+    cedula: string;
+    nombre: string;
+  },
+  estudiante: {
+    cedula: string;
+    nombre: string;
+  },
+  materia: {
+    id: string;
+    nombre: string;
+  },
+  peticion: {
+    campo: string | null,
+    descripcion: string;
+    estado: string;
+    id: number,
+    id_docente: string;
+    id_estudiante: string;
+    id_materia: string;
+  }
 }
 
 interface SuperUsuario {
