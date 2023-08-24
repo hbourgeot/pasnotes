@@ -8,13 +8,18 @@
   import { Icon } from "@steeze-ui/svelte-icon";
   import { FileUpload } from "@steeze-ui/tabler-icons";
 
-  let theFiles: FileList;
+  let theFiles: FileList | null;
+ 
 
   // We've created a custom submit function to pass the response and close the modal.
 
   function onFormSubmit(): void {
     if ($modalStore[0].response) $modalStore[0].response(theFiles);
     modalStore.close();
+  }
+
+  $: if(theFiles){
+    if(theFiles[0].type != "application/pdf") theFiles = null 
   }
 
   // Base Classes
@@ -36,7 +41,7 @@
       <FileDropzone
         name="files"
         bind:files="{theFiles}"
-        accept="application/pdf"
+        accept=".pdf"
       >
         <svelte:fragment slot="lead">
           {#if !theFiles}

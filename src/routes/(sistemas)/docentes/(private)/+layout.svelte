@@ -49,7 +49,7 @@
   class="w-full h-[80px] sticky top-0 z-40"
 >
   <svelte:fragment slot="lead">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb lg:text-xl">
       {#each $page.url.pathname.split("/") as segment, i}
         {#if segment && !/\d/.test(segment)}
           {#if i === $page.url.pathname.split("/").length - 1}

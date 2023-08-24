@@ -194,7 +194,7 @@
   }
 </script>
 
-<main class="flex justify-center items-center bg-transparent">
+<main class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]">
   <section class="w-full p-5">
     ¨
     {#if sourceData[0].cedula !== null}
@@ -217,7 +217,6 @@
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
         Asignacion de Notas
       </h3>
-
       <span class="w-[30%]">
         <label for="estudiante"> Estudiante </label>
         <input

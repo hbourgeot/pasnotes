@@ -177,11 +177,11 @@
 </script>
 
 <form
-  class="mb-4 lg:w-2/3 <md:w-3/4 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5"
+  class="mb-4 lg:w-2/3 <md:w-3/4 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5 h-[calc(100vh-80px)]"
   use:enhance="{handleSubmit}"
   method="post"
 >
-  <h3 class="label text-3xl bold mb-4">{!data.horarioHecho ? 'Realización del horario' : 'Horario registrado:'}</h3>
+  <h3 class="label text-3xl bold my-4">{!data.horarioHecho ? 'Realización del horario' : 'Horario registrado:'}</h3>
   {#if data.materias.length != 0}
   {#if !data.horarioHecho}
     <button
