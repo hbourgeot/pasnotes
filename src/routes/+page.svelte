@@ -20,10 +20,10 @@
 <svelte:head>
   <title>Instituto Universitario de Tecnología Pascal</title>
 </svelte:head>
-<main class="w-full h-screen">
+<main class="w-full">
   <Header />
 
-  <section class="relative">
+  <section>
     <div class="hero relative w-full h-[90vh] block lg:h-[70vh]">
       <div class=" backdrop absolute w-full h-full bg-gray-900"></div>
 
@@ -45,7 +45,7 @@
 
   <section class="w-full h-auto p-4 bg-pink-600">
     <div
-      class="flex flex-col mx-auto max-h-full w-11/12 justify-center items-center gap-4 md:flex-row md:h-auto"
+      class="flex flex-col mx-auto max-h-full w-11/12 justify-center items-center gap-4 md:flex-row md:h-auto z-40"
     >
       <figure class="">
         <img src="{graduados}" class="w-2/3 max-h-full" alt="" />

@@ -6,7 +6,7 @@
 </script>
 <svelte:window bind:innerWidth="{x}"/>
 <nav
-  class="w-full h-[80px] bg-white sticky top-0 z-[55] cursor-default flex {x > 768 ? 'justify-between px-1' : 'justify-center'} items-center"
+  class="w-full h-[80px] bg-white !sticky top-0 z-50 cursor-default flex {x > 768 ? 'justify-between px-1' : 'justify-center'} items-center"
   style="border-bottom: 1px solid rgb(229 231 235);
 "
 >
