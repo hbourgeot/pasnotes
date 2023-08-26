@@ -369,4 +369,8 @@
     color: white;
     font-weight: bold;
   }
+
+  :global(.sc-carousel-button,.sc-carousel-progress__indicator){
+    background-color: white !important;
+  }
 </style>
