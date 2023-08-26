@@ -46,7 +46,9 @@
     goto(`/coordinadores/estudiante/${estudiante}`);
   };
 </script>
-
+<svelte:head>
+  <title>Estudiantes de la materia {data.materia.id} | Coordinadores | IUTEPAS</title>
+</svelte:head>
 <main class="container mx-auto p-10 h-screen bg-transparent">
   <h2 class="text-4xl text-center">Estudiantes de '{data.materia.nombre}'</h2>
   <section class="w-full p-5">

@@ -3,14 +3,16 @@
   import Header from "$lib/components/Header.svelte";
 
   import logo from "../lib/images/pascal-fondo.png";
-  import graduados from "$lib/images/graduados.png";
+  import graduados from "$lib/images/est5.jpg";
 
-  import first from "$lib/images/landing-2.png";
-  import second from "$lib/images/landing3.png";
+  import first from "$lib/images/est4.jpg";
+  import second from "$lib/images/est3.jpg";
 
   import footer from "$lib/images/footer-banner.jpg"
 </script>
-
+<svelte:head>
+  <title>Instituto Universitario de Tecnología Pascal</title>
+</svelte:head>
 <main class="w-full h-screen">
   <Header />
 
@@ -34,21 +36,21 @@
     </div>
   </section>
 
-  <section class="w-full h-auto p-4 bg-blue-600">
+  <section class="w-full h-auto p-4 bg-pink-600">
     <div
-      class="flex flex-col mx-auto h-[11/12] w-11/12 justify-center items-center gap-4 md:flex-row md:h-auto"
+      class="flex flex-col mx-auto max-h-full w-11/12 justify-center items-center gap-4 md:flex-row md:h-auto"
     >
       <figure class="">
         <img
           src={graduados}
-          class=""
+          class="w-2/3 max-h-full"
           alt=""
         />
       </figure>
       <div class="max-w-[600px] text-center mt-4 lg:pl-5">
-        <h2 class="pb-8 font-bold">¿QUIENES SOMOS?</h2>
+        <h2 class="pb-8 font-bold">¿QUIÉNES SOMOS?</h2>
         <p class="text-justify text-white text-[20px] leading-10 font-semibold">
-          El Instituto Universitario de Tecnología Pascal (IUTPASCAL) es una
+          El Instituto Universitario de Tecnología Pascal (IUTEPAS) es una
           organización de Educación Superior de carácter privado, que te ofrece
           carreras de forma presencial o semipresencial que te permiten estudiar
           a tu propio ritmo.
@@ -59,15 +61,14 @@
 
   <section class=" w-full h-auto bg-white">
     <div
-      class="w-11/12 mx-auto flex justify-center flex-col p-4 gap-8 text-black font-medium text-[20px] leading-8  lg:flex-row lg:p-8"
-      style='border-bottom: 2px solid gray'
+      class="w-11/12 mx-auto flex justify-center flex-col p-4 gap-8 text-black font-medium text-[20px] leading-8  lg:flex-row lg:p-8 border-b-pink-500 border-b-2"
     >
       <div class='lg:w-[50%] h-auto'>
-        <figure class=" mx-auto ">
-          <img src={second} class="" alt="" />
+        <figure class=" w-fit">
+          <img src={second} class="w-1/2 mx-auto" alt="" />
         </figure>
         <div>
-          <h2 class="!text-blue-700 text-center py-8">MISION</h2>
+          <h2 class="!text-pink-600 text-center py-8">MISIÓN</h2>
           <ul class='flex flex-col gap-6'>
             <li class="text-justify">
               •  Favorecer, a través de los estudios de nivel superior el
@@ -85,13 +86,13 @@
       </div>
 
       <div class='lg:w-[50%] h-auto'>
-        <figure class=" mx-auto ">
-          <img src={first} alt="" class="" />
+        <figure class="  ">
+          <img src={first} alt="" class="w-1/2 mx-auto" />
         </figure>
         <div>
-          <h2 class="!text-blue-700 text-center py-8">VISION</h2>
+          <h2 class="!text-pink-600 text-center py-8">VISIÓN</h2>
           <p class="text-justify">
-            El Instituto Universitario de Tecnología Pascal (IUTPASCAL) es una
+            El Instituto Universitario de Tecnología Pascal (IUTEPAS) es una
             organización de Educación Superior de carácter privado, sin fines de
             lucro, cuyo objetivo es formar Técnicos Superiores Universitarios en
             áreas prioritarias de las ciencias tecnológicas, el cual ofrece a
@@ -114,7 +115,8 @@
 
 <style>
   .hero {
-    background: url("../lib/images/fondo-landing.png") center/cover no-repeat;
+    background: url("../lib/images/est6.jpg") center/cover no-repeat;
+    background-attachment: fixed;
   }
 
   /* section {

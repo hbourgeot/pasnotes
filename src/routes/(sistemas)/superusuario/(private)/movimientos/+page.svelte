@@ -20,7 +20,9 @@
     })
   }
 </script>
-
+<svelte:head>
+  <title>Movimientos | Super usuario | IUTEPAS</title>
+</svelte:head>
 <section class="p-4 w-full">
   <h2 class="text-5xl mt-5 mb-10 ml-4 font-bold text-sky-600 text-center">
     Movimientos registrados

@@ -12,7 +12,9 @@
   let panel = false;
   let clicked = 0;
 </script>
-
+<svelte:head>
+  <title>Coordinadores | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6"
   style="min-height: 91vh;"
@@ -31,11 +33,11 @@
         href="/coordinadores/configuracion"
         class="flex btn variant-filled justify-center items-center h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]">Configuración</a
       ><a
-        href="/coordinadores/registrar-docente"
+        href="/coordinadores/registrar_docente"
         class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Registrar docentes</a
       ><a
-        href="/coordinadores/registrar-materia"
+        href="/coordinadores/registrar_materia"
         class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Registrar materias</a
       ><a

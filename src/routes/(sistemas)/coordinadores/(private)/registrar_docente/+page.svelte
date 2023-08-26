@@ -77,7 +77,9 @@
     ]),
   };
 </script>
-
+<svelte:head>
+  <title>Registrar docentes | Coordinadores | IUTEPAS</title>
+</svelte:head>
 <div class='h-screen flex flex-col lg:justify-center lg:items-center'>
   <div class="container h-auto lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white">
     {#if form?.message}

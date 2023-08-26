@@ -98,7 +98,9 @@
     }
   }
 </script>
-
+<svelte:head>
+  <title>Registrar materia | Coordinadores | IUTEPAS</title>
+</svelte:head>
 <div class="container flex flex-col justify-center items-center lg:w-1/2 md:w-2/3 mx-auto px-4 py-8 screen">
   <div class="bg-white p-8 rounded-2xl shadow">
     <h2 class="text-2xl font-semibold mb-4">Registrar materia</h2>

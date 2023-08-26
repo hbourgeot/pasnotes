@@ -59,7 +59,9 @@
     document.querySelector(".app-bar")?.classList.toggle("hidden");
   };
 </script>
-
+<svelte:head>
+  <title>Histórico de notas | Estudiantes | IUTEPAS</title>
+</svelte:head>
 <main class="h-[calc(100vh-80px)] relative print:z-1200">
   <button
     bind:this="{printBtn}"

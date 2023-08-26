@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { TableSource, ToastSettings } from "@skeletonlabs/skeleton";
+  import type {TableSource, ToastSettings} from "@skeletonlabs/skeleton"
   import {
     toastStore,
     Toast,
@@ -9,8 +9,10 @@
   } from "@skeletonlabs/skeleton";
   import type { ActionData, PageData } from "./$types";
   import type { SubmitFunction } from "@sveltejs/kit";
-  import type { ControlEstudio, Docente } from "../../../../../app";
+  import type { Docente } from "../../../../../app";
   import { triggerToast } from "$lib/utils/toast";
+  import type { Coordinacion } from "../../../../../app";
+  import type { Unlink } from "@steeze-ui/tabler-icons";
 
   export let form: ActionData;
   export let data: PageData;
@@ -30,32 +32,30 @@
   }
 
   const handleSubmit: SubmitFunction = ({ data, cancel }) => {
+    if(sourceData.find(docente => docente.cedula === cedulaIdentidad)){
+      triggerToast(`El docente con la cédula ${cedulaIdentidad} ya ha sido previamente registrado, pruebe con otra`);
+      return cancel();
+    }
+
+    if(sourceData.find(docente => docente.correo === correo)){
+      triggerToast(`El docente con el correo ${correo} ya ha sido previamente registrado, pruebe con otro`);
+      return cancel();
+    }
     data.append("cedula", cedulaIdentidad);
     return async ({ update }) => {
       await update();
     };
   };
 
-  let sourceData = data.controlEstudio as unknown as ControlEstudio[];
-  $: sourceData = data.controlEstudio as unknown as ControlEstudio[];
-
-  let disabled = true;
-  let cde: ControlEstudio;
-  $: disabled = cde ? false : true;
-
-  const handleClick = (e: CustomEvent) => {
-    cedula = e.detail[0].split(/^(V-|E-)/g)[2];
-    identidad = e.detail[0].split(/^(V-|E-)/g)[1].replace("-", "");
-    cde = {
-      cedula: "",
-      correo: e.detail[1],
-      nombre: e.detail[2],
-      telefono: e.detail[3],
-    };
-  };
+  let sourceData = data.coordinadores as unknown as Coordinacion[];
 
   let tableSource: TableSource = {
-    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
+    head: [
+      "Cédula",
+      "Correo",
+      "Nombre",
+      "Teléfono",
+    ],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -64,8 +64,15 @@
     ]),
   };
 
+  $: sourceData = data.coordinadores as unknown as Coordinacion[]
+
   $: tableSource = {
-    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
+    head: [
+      "Cédula",
+      "Correo",
+      "Nombre",
+      "Teléfono",
+    ],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -74,32 +81,29 @@
     ]),
   };
 </script>
-
-<div
-  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
->
+<svelte:head>
+  <title>Registrar coordinador | Super usuario | IUTEPAS</title>
+</svelte:head>
+<div class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white">
   {#if form?.message}
     <Toast position="t" />
   {/if}
   <div class="p-8 rounded-xl shadow h-full w-1/2">
-    <h2 class="text-2xl font-semibold mb-4 text-center">
-      Editar Personal de Control de Estudio
-    </h2>
-    <form id="docente-form" method="post" use:enhance="{handleSubmit}">
+    <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Coordinación</h2>
+    <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="cedula" class="label">Cedula</label>
         <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-          <select class="select" bind:value="{identidad}" disabled>
+          <select class="select" bind:value={identidad}>
             <option value="V">V</option>
             <option value="E">E</option>
           </select>
           <input
             type="number"
-            bind:value="{cedula}"
+            bind:value={cedula}
             min="1000000"
             id="cedula"
             class="input (text) py-2 px-7"
-            disabled
             required
           />
         </div>
@@ -109,10 +113,8 @@
         <input
           type="text"
           id="nombre"
-          value={cde?.nombre ?? ""}
           name="nombre"
           class="input (text) py-2 px-7"
-          disabled="{disabled}"
           required
         />
       </div>
@@ -122,9 +124,8 @@
           type="email"
           id="correo"
           name="correo"
-          value="{cde?.correo ?? ''}"
+          bind:value="{correo}"
           class="input (text) py-2 px-7"
-          disabled="{disabled}"
           required
         />
       </div>
@@ -135,26 +136,17 @@
           id="telefono"
           name="telefono"
           class="input py-2 px-7"
-          disabled="{disabled}"
-          value={cde?.telefono ?? ''}
           required
         />
       </div>
-      <button type="reset" on:click="{() => disabled = true}" class="bg-pink-600 rounded-2xl mr-2 text-white px-4 py-2 rounded"
-        >Resetear campos</button
-      >
-      <button type="submit" class="bg-blue-600 rounded-2xl text-white px-4 py-2 rounded"
-        >Editar personal</button
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
+        >Registrar Coordinador</button
       >
     </form>
   </div>
 
   <div class="p-8 rounded-xl shadow h-full w-full">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Personal registrado</h2>
-    <Table
-      source="{tableSource}"
-      interactive="{true}"
-      on:selected="{handleClick}"
-    />
+    <h2 class="text-2xl font-semibold mb-4 text-center">Coordinadores registrados</h2>
+    <Table source={tableSource} />
   </div>
 </div>

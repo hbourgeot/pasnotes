@@ -66,7 +66,7 @@
             <!-- No es último segmento, lo mostramos como un enlace -->
             <li class="crumb">
               <a
-                class="no-underline text-[#0879bd]"
+                class="no-underline text-[#0879bd] font-bold"
                 rel="prefetch"
                 href="{$page.url.pathname
                   .split('/')

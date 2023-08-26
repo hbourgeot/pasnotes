@@ -12,7 +12,9 @@
   let panel = false;
   let clicked = 0;
 </script>
-
+<svelte:head>
+  <title>Super usuario | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 bg-gray-100"
   style="min-height: calc(100vh + 10rem);"
@@ -28,21 +30,21 @@
       class="w-full mt-5 flex flex-wrap gap-5 flex-center"
     >
       <a
-        href="/superusuario/editar-cde"
+        href="/superusuario/editar_cde"
         class="flex btn variant-filled justify-center items-center h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]">Editar CDE</a
       >
       <a
-        href="/superusuario/editar-coordinador"
+        href="/superusuario/editar_coordinador"
         class="flex w-full justify-center items-center btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Editar coordinadores</a
       >
       <a
-        href="/superusuario/registrar-coordinador"
+        href="/superusuario/registrar_coordinador"
         class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Agregar coordinadores</a
       >
       <a
-        href="/superusuario/registrar-cde"
+        href="/superusuario/registrar_cde"
         class="w-full btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Agregar CDE</a
       >

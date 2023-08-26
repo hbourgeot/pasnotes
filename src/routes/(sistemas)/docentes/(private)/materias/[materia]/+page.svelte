@@ -193,10 +193,12 @@
     }
   }
 </script>
-
+<svelte:head>
+  <title>{data.materia.nombre} | Docentes | IUTEPAS</title>
+</svelte:head>
 <main class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]">
   <section class="w-full p-5">
-    ¨
+    <h1 class="text-3xl capitalize font-bold text-primary-500">{data.materia.nombre}</h1>
     {#if sourceData[0].cedula !== null}
     <Table
       source="{tableSource}"

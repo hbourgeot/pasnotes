@@ -33,8 +33,7 @@
 </script>
 
 <svelte:head>
-  <title>Inicio de Sesion</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>Inicio de Sesión | Control de estudio | IUTEPAS</title>
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
 <a href="/" class="btn variant-ghost-primary absolute top-3 left-3"><Icon src={ChevronLeft} class="h-5 w-5 mr-1"/> Volver al inicio</a>

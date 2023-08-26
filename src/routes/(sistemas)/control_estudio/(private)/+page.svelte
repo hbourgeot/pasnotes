@@ -9,7 +9,9 @@
 
   let controlEstudio: ControlEstudio = data.controlEstudio;
 </script>
-
+<svelte:head>
+  <title>Control de estudio | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center h-screen  flex-col w-full max-h-auto gap-6"
   

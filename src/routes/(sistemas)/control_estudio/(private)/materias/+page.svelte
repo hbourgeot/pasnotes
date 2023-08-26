@@ -8,7 +8,9 @@
 
   let carreras = data.carreras;
 </script>
-
+<svelte:head>
+  <title>Materias | Control de estudio | IUTEPAS</title>
+</svelte:head>
 <div class="flex items-center p-10 flex-col w-full max-h-auto gap-6">
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">Materias del ciclo actual</h1>
 

@@ -9,10 +9,8 @@
   } from "@skeletonlabs/skeleton";
   import type { ActionData, PageData } from "./$types";
   import type { SubmitFunction } from "@sveltejs/kit";
-  import type { Docente } from "../../../../../app";
+  import type { ControlEstudio, Docente } from "../../../../../app";
   import { triggerToast } from "$lib/utils/toast";
-  import type { Coordinacion } from "../../../../../app";
-  import type { Unlink } from "@steeze-ui/tabler-icons";
 
   export let form: ActionData;
   export let data: PageData;
@@ -47,7 +45,8 @@
     };
   };
 
-  let sourceData = data.coordinadores as unknown as Coordinacion[];
+  let sourceData = data.controlEstudio as unknown as ControlEstudio[];
+  $: sourceData = data.controlEstudio as unknown as ControlEstudio[];
 
   let tableSource: TableSource = {
     head: [
@@ -64,8 +63,6 @@
     ]),
   };
 
-  $: sourceData = data.coordinadores as unknown as Coordinacion[]
-
   $: tableSource = {
     head: [
       "Cédula",
@@ -81,13 +78,15 @@
     ]),
   };
 </script>
-
+<svelte:head>
+  <title>Registrar personal | Super usuario | IUTEPAS</title>
+</svelte:head>
 <div class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white">
   {#if form?.message}
     <Toast position="t" />
   {/if}
   <div class="p-8 rounded-xl shadow h-full w-1/2">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Coordinación</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Personal de Control de Estudio</h2>
     <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="cedula" class="label">Cedula</label>
@@ -138,13 +137,13 @@
         />
       </div>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
-        >Registrar Coordinador</button
+        >Registrar personal</button
       >
     </form>
   </div>
 
   <div class="p-8 rounded-xl shadow h-full w-full">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Coordinadores registrados</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-center">Personal registrado</h2>
     <Table source={tableSource} />
   </div>
 </div>

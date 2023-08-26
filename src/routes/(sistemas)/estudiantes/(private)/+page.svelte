@@ -42,7 +42,9 @@
 
   onMount(() => update());
 </script>
-
+<svelte:head>
+  <title>Estudiantes | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 "
   style="min-height: 100vh"
@@ -69,7 +71,7 @@
       class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
     >
     <a
-      href="/estudiantes/inscribir-materias"
+      href="/estudiantes/horario"
       class="w-full btn variant-filled h-full bg-[#e78ae2]"
       >Inscribir materias</a
     >
