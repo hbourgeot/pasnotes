@@ -146,8 +146,8 @@
               expresar tu creatividad. Aprende a utilizar herramientas digitales
               y conceptos estéticos para comunicar mensajes visuales efectivos.
             </p>
-            <a href="/PENSUM DISEÑO GRAFICO (1).docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/diseno_grafico" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
@@ -178,8 +178,8 @@
               toma de decisiones estratégicas y en el crecimiento sostenible de
               las empresas.
             </p>
-            <a href="/PENSUM CONTABILIDAD Y COSTOS (1).docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/contabilidad_costos" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
@@ -211,8 +211,8 @@
               economía global y cómo puedes contribuir al éxito financiero de
               individuos y empresas.
             </p>
-            <a href="/PENSUM ADMINISTRACION BANCARIA Y FINANCIERA.docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/admin_bancaria_finan" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
@@ -242,8 +242,8 @@
               habilidades de comunicación, la ética empresarial y la innovación
               pueden influir en el éxito a largo plazo de las organizaciones.
             </p>
-            <a href="/PENSUM ADMINISTRACION DE EMPRESAS (1).docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/admin_empresas" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
@@ -272,8 +272,8 @@
               tecnología informática está transformando industrias y mejorando
               la vida de las personas en todo el mundo.
             </p>
-            <a href="/PENSUM INFORMATICA (1).docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/informatica" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
@@ -302,8 +302,8 @@
               Descubre cómo contribuir a la innovación en la industria
               alimentaria y aportar soluciones para una alimentación sostenible.
             </p>
-            <a href="/PENSUM TECNOLOGIA DE ALIMENTOS.docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/tecnologia_de_alimentos" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
@@ -333,8 +333,8 @@
               soluciones de comunicación están conectando a las personas en todo
               el mundo y revolucionando la forma en que nos comunicamos.
             </p>
-            <a href="/PENSUM COMUNICACION Y ELECTRONICA (1).docx" download="pensum.docx" class="mt-4 btn variant-filled-surface bg-pink-600"
-              >Descargar Pensum</a
+            <a href="/comunicacion_electronica" target="_blank" class="mt-4 btn variant-filled-surface bg-pink-600"
+              >Ver Pensum</a
             >
           </div>
         </div>
