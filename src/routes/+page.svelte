@@ -24,20 +24,18 @@
   <Header />
 
   <section>
-    <div class="hero relative w-full h-[90vh] block lg:h-[70vh]">
+    <div class="hero relative w-full h-[90vh] block">
       <div class=" backdrop absolute w-full h-full bg-gray-900"></div>
 
-      <div class="w-full absolute">
-        <figure class="w-full">
-          <img class="w-[250px] mx-auto py-12" src="{logo}" alt="" />
+      <div class="w-full h-full absolute lg:flex lg:flex-row-reverse">
+        <figure class="w-full flex justify-center items-center lg:w-[40%] lg:h-full">
+          <img class="w-[70%]  md:w-[300px] lg:max-w-[700px] mx-auto py-12 lg:w-full" src="{logo}" alt="" />
         </figure>
 
         <span
-          class="text-center text-[30px] flex flex-col gap-8 text-white font-bold"
+          class="text-center flex flex-col gap-8 text-white font-bold  lg:w-1/2  lg:flex lg:justify-center lg:items-center"
         >
-          <p style="line-height: 40px">INSTITUTO UNIVERSITARIO DE TECNOLOGIA</p>
-          <p class="text-[54px]">PASCAL</p>
-          <p style="line-height: 40px">PORQUE TU FUTURO ES HOY</p>
+          <p class='font-medium text-start lg:text-[70px] lg:leading-[100px] '>Instituto Universitario de Tecnologia Pascal</p>
         </span>
       </div>
     </div>
@@ -350,6 +348,10 @@
 </main>
 
 <style>
+
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
   .hero {
     background: url("../lib/images/est6.jpg") center/cover no-repeat;
     background-attachment: fixed;
@@ -360,7 +362,7 @@
   } */
 
   .backdrop {
-    opacity: 50%;
+    opacity: 80%;
     z-index: 0;
   }
 
