@@ -113,32 +113,33 @@
   </section>
 
   <section class="w-full h-auto p-4 bg-pink-600">
-    <div class="mx-auto max-h-full w-11/12 md:h-auto p-3">
+    <div class="mx-auto max-h-full w-full md:w-11/12 md:h-auto py-3 md:p-3">
       <h2 class="pb-8 font-bold uppercase text-center">nuestras carreras</h2>
       <Carousel
         autoplay
         autoplayDuration="{5000}"
         autoplayProgressVisible
         pauseOnFocus
+
       >
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{disgraf}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">Diseño Gráfico</h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Embárcate en un viaje creativo con el Diseño Gráfico. Descubre
               cómo dar vida a tus ideas a través de la combinación de imágenes y
               texto. Explora los fundamentos del diseño, la composición y la
               comunicación visual mientras creas impactantes piezas gráficas.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde la creación de logotipos hasta la maquetación de revistas,
               el Diseño Gráfico abarca una amplia gama de posibilidades para
               expresar tu creatividad. Aprende a utilizar herramientas digitales
@@ -152,23 +153,23 @@
 
         <!-- Contabilidad y Costos -->
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{cyc}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">Contabilidad y Costos</h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Sumérgete en el mundo financiero con la carrera de Contabilidad y
               Costos. Aprende a interpretar los números detrás de las
               operaciones empresariales y a tomar decisiones informadas para
               optimizar los recursos financieros.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde el análisis de estados financieros hasta la planificación
               tributaria, esta carrera te proporcionará las habilidades
               necesarias para mantener el equilibrio financiero de las
@@ -184,25 +185,25 @@
 
         <!-- Administración Bancaria y Financiera -->
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{admban}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">
               Administración Bancaria y Financiera
             </h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Descubre el mundo de las finanzas y la banca a través de esta
               emocionante carrera. Aprende cómo funcionan las instituciones
               financieras, explora los mercados y comprende los conceptos clave
               de la gestión de riesgos y las inversiones.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde la banca minorista hasta las estrategias de inversión, esta
               carrera te proporcionará una base sólida en el sector financiero.
               Explora cómo las decisiones económicas y políticas influyen en la
@@ -217,23 +218,23 @@
 
         <!-- Administración de Empresas -->
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{admemp}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">Administración de Empresas</h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desarrolla habilidades de liderazgo y gestión con la carrera de
               Administración de Empresas. Aprende a coordinar equipos, tomar
               decisiones estratégicas y optimizar recursos para alcanzar los
               objetivos corporativos.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde la gestión de proyectos hasta la planificación estratégica,
               esta carrera te proporcionará las herramientas necesarias para
               enfrentar los desafíos del mundo empresarial. Explora cómo las
@@ -248,22 +249,22 @@
 
         <!-- Informática -->
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{informatica}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">Informática</h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Adéntrate en el emocionante mundo de la Informática. Aprende a
               programar, desarrollar software y crear soluciones tecnológicas
               innovadoras para abordar los desafíos modernos.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde la codificación hasta la arquitectura de sistemas, esta
               carrera te proporcionará habilidades en lenguajes de programación,
               diseño de algoritmos y desarrollo de aplicaciones. Explora cómo la
@@ -278,22 +279,22 @@
 
         <!-- Tecnología de Alimentos -->
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{tda}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">Tecnología de Alimentos</h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Explora la ciencia y la creatividad detrás de la Tecnología de
               Alimentos. Aprende cómo crear, procesar y mejorar productos
               alimenticios seguros y deliciosos para el consumo humano.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde la investigación de ingredientes hasta la producción y
               distribución, esta carrera te proporcionará conocimientos sobre
               nutrición, seguridad alimentaria y tecnologías de procesamiento.
@@ -308,23 +309,23 @@
 
         <!-- Comunicación y Electrónica -->
         <div
-          class="relative h-64 bg-cover bg-center"
+          class="relative h-[500px] bg-cover bg-center"
           style="background-image: url('{cye}');"
         >
           <div
-            class="absolute inset-0 bg-sky-600/60 transition duration-300"
+            class="absolute inset-0 bg-sky-600/80 transition duration-300"
           ></div>
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white p-4 max-w-[900px] w-full mx-auto"
           >
             <h2 class="text-2xl font-semibold">Comunicación y Electrónica</h2>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Descubre la fusión entre la tecnología y la comunicación con la
               carrera de Comunicación y Electrónica. Aprende cómo diseñar y
               desarrollar sistemas electrónicos para transmitir información de
               manera efectiva.
             </p>
-            <p class="text-sm mt-2">
+            <p class="text-sm lg:text-base my-2">
               Desde las telecomunicaciones hasta la electrónica de consumo, esta
               carrera te proporcionará conocimientos sobre circuitos, señales y
               tecnologías de transmisión. Explora cómo las redes digitales y las
@@ -374,5 +375,9 @@
 
   :global(.sc-carousel-button,.sc-carousel-progress__indicator){
     background-color: white !important;
+  }
+
+  :global(.sc-carousel__content-container, .sc-carousel__pages-container){
+    height: 500px !important;
   }
 </style>
