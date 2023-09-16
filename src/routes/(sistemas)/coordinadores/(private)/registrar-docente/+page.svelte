@@ -49,7 +49,7 @@
     head: [
       "Cédula",
       "Correo",
-      "Nombre",
+      "Nombre y Apellido",
       "Teléfono",
     ],
     body: tableMapperValues(sourceData, [
@@ -66,7 +66,7 @@
     head: [
       "Cédula",
       "Correo",
-      "Nombre",
+      "Nombre y Apellido",
       "Teléfono",
     ],
     body: tableMapperValues(sourceData, [
@@ -87,7 +87,7 @@
       <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Docente</h2>
       <form id="docente-form" method="post" use:enhance={handleSubmit}>
         <div class="mb-4">
-          <label for="cedula" class="label">Cedula</label>
+          <label for="cedula outline-none" class="label">Cédula</label>
           <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
             <select class="select" bind:value={identidad}>
               <option value="V">V</option>
@@ -98,18 +98,18 @@
               bind:value={cedula}
               min="1000000"
               id="cedula"
-              class="input (text) py-2 px-7"
+              class="input (text) py-2 px-7 outline-none"
               required
             />
           </div>
         </div>
         <div class="mb-4">
-          <label for="nombre" class="label">Nombre</label>
+          <label for="nombre" class="label">Nombre y Apellido</label>
           <input
             type="text"
             id="nombre"
             name="nombre"
-            class="input (text) py-2 px-7"
+            class="input (text) py-2 px-7 outline-none"
             required
           />
         </div>
@@ -120,29 +120,29 @@
             id="correo"
             name="correo"
             bind:value="{correo}"
-            class="input (text) py-2 px-7"
+            class="input (text) py-2 px-7 outline-none"
             required
           />
         </div>
         <div class="mb-4">
-          <label for="telefono" class="label">Telefono</label>
+          <label for="telefono" class="label">Teléfono</label>
           <input
             type="tel"
             id="telefono"
             name="telefono"
-            class="input py-2 px-7"
+            class="input py-2 px-7 outline-none"
             required
           />
         </div>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
-          >Registrar docente</button
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md"
+          >Registrar Docente</button
         >
       </form>
     </div>
   
     <div class="p-8 rounded-xl shadow h-full w-full">
-      <h2 class="text-2xl font-semibold mb-4 text-center">Docentes registrados</h2>
-      <Table source={tableSource} />
+      <h2 class="text-2xl font-semibold mb-4 text-center">Docentes Registrados</h2>
+      <Table source={tableSource} regionHeadCell="text-center" regionCell="text-center"/>
     </div>
   </div>
   
