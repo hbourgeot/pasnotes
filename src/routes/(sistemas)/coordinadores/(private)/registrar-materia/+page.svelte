@@ -63,8 +63,23 @@
 
   let name = 'dia';
 
-  function handle(e: any) {
+  /*function handle(e: any) {
     console.log(e.detail)
+  }*/
+
+  let diasDeClase = [''];
+  let showExtraDays = false;
+
+  function cambioDiaClase(e: any) {
+    diasDeClase = e.detail;
+  }
+
+  $: { 
+    showExtraDays = diasDeClase.length === 2;
+
+    if(diasDeClase.length === 0) {
+      showExtraDays = false
+    }
   }
 
   const modalComponentRegistry: Record<string, ModalComponent> = {
@@ -158,10 +173,10 @@
               value="1"
               required
             >
-              <option value="1">1 U.C.</option>
-              <option value="2">2 U.C.</option>
-              <option value="3">3 U.C.</option>
-              <option value="4">4 U.C.</option>
+              <option value="1">1 U.C</option>
+              <option value="2">2 U.C</option>
+              <option value="3">3 U.C</option>
+              <option value="4">4 U.C</option>
             </select>
 
             <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5"/>
@@ -261,7 +276,7 @@
               <option value="{i}">{dia}</option>
             {/each}
           </select>-->
-          <Select items={days} multiple id="dia" {name} placeholder="Seleccione" required on:change={handle} --border-radius="24px" --background="#d8d9fc" --list-background="#d8d9fc" --border="3px solid #9294f5" --border-hover="3px solid #9294f5" --border-focused="3px solid #9294f5"/>
+          <Select items={days} multiple id="dia" {name} placeholder="Seleccione" required on:change={cambioDiaClase} --border-radius="24px" --background="#d8d9fc" --list-background="#d8d9fc" --border="3px solid #9294f5" --border-hover="3px solid #9294f5" --border-focused="3px solid #9294f5"/>
         </div>
         <div class="mb-4 w-1/3">
           <TimePicker
@@ -294,6 +309,54 @@
           />
         </div>
       </div>
+      {#if showExtraDays}
+        <div class="flex justify-between items-center gap-x-5">
+          <div class="mb-4 w-1/3">
+            <label for="dia" class="label">Día de Clases 2</label>
+            <select
+              name="dia2"
+              id="dia2"
+              class="select py-2 px-7 outline-none"
+              value="{0}"
+              required
+            >
+              {#each days as dia, i}
+                <option value={i}>{dia.label}</option>
+              {/each}
+            </select>
+          </div>
+          <div class="mb-4 w-1/3">
+            <TimePicker
+              labelText="Hora de Inicio"
+              bind:value="{horaInicio}"
+              pattern="^(0[0-9]|1[0-9]):[0-5][0-9]$"
+              invalid="{checkHora(parseInt(horaInicio.split(':')[0]))}"
+              invalidText="{checkHoraLabel(
+                parseInt(horaInicio.split(':')[0]),
+                false
+              )}"
+              placeholder="hh:mm"
+              name="hora_inicio"
+              class="input py-2 px-7 outline-none"
+            />
+          </div>
+          <div class="mb-4 w-1/3">
+            <TimePicker
+            name="hora_fin"
+              labelText="Hora de Finalización"
+              bind:value="{horaFin}"
+              pattern="^(0[0-9]|1[0-9]):[0-5][0-9]$"
+              invalid="{checkHora(parseInt(horaFin.split(':')[0]))}"
+              invalidText="{checkHoraLabel(
+                parseInt(horaFin.split(':')[0]),
+                true
+              )}"
+              placeholder="hh:mm"
+              class="input py-2 px-7 outline-none"
+            />
+          </div>
+        </div>
+      {/if}
       <div class="mb-4 flex flex-row-reverse items-center justify-between">
         <button type="button" on:click="{handleAdd}" class="bg-blue-600 w-full text-white px-4 py-2 rounded-md"
           >Seleccionar prelación de materias</button
