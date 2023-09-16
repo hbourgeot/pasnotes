@@ -1,19 +1,5 @@
 import { systemLogger } from "$lib/server/logger";
-import type { Docente, Materia } from "../../../../../app";
 import type { PageServerLoad } from "./$types";
-
-interface Datos {
-  carreras: { id: string; nombre: string }[];
-  materias: Materia[];
-}
-
-interface MateriasPorSemestre {
-  [semestre: string]: number;
-}
-
-interface MateriasPorCarrera {
-  [carreraId: string]: MateriasPorSemestre;
-}
 
 export const load = (async ({ locals: { client, coordinador, config } }) => {
   systemLogger.info(`${coordinador.nombre} ha entrado a ver las materias`);

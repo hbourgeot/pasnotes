@@ -91,6 +91,30 @@ export const logInCoordinacion = async (
   return { ok, status, data };
 };
 
+export const logInSuperUsuario = async (
+  { locals: { client }, cookies }: RequestEvent,
+  { username, password }: { username?: string; password?: string }
+) => {
+  const { ok, status, data } = await client.POST("/api/superUsuario/login", {
+    usuario: username,
+    clave: password,
+  });
+  if (!ok) {
+    return { ok, data };
+  }
+
+  systemLogger.info(
+    `El super usuario ${data.superUsuario.nombre} ha iniciado sesion`
+  );
+
+  cookies.set("access_token", data.access_token, {
+    httpOnly: true,
+    path: "/superusuario",
+  });
+
+  return { ok, status, data };
+};
+
 export const getAccessToken = (event: RequestEvent) => {
   const { cookies } = event;
 

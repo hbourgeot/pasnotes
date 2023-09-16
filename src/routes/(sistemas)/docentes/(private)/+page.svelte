@@ -11,16 +11,9 @@
   let docente: Docente = data.docente;
   let materias: Materia[] = data.materias;
 </script>
-
-<!-- <nav
-    class="w-full h-[60px]"
-    style="border-bottom: 1px solid rgb(229 231 235);
-"
->
-    <a href="/" class="h-full flex flex-center">
-        <img src={Logo} alt="" class="logo" />
-    </a>
-</nav> -->
+<svelte:head>
+  <title>Docentes | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 h-[91.5vh] overflow-auto"
 >

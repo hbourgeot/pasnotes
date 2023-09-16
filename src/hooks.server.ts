@@ -1,10 +1,11 @@
 import { client } from "$lib/server/fetch";
 import type { Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
-import type { ControlEstudio, Coordinacion, Docente, Estudiante } from "./app";
+import type { ControlEstudio, Coordinacion, Docente, Estudiante, SuperUsuario } from "./app";
 import { getAccessToken, getConfig, getUser } from "$lib/server/auth";
 import jwt from "jsonwebtoken";
 const { decode } = jwt;
+let i = 0;
 const authHandler: Handle = async ({ event, resolve }) => {
   function isLoginRoute(url: string): boolean {
     return [
@@ -57,11 +58,19 @@ const authHandler: Handle = async ({ event, resolve }) => {
                 "students"
               )) as unknown as Estudiante;
               break;
+            case "S":
+              event.locals.superUsuario = (await getUser(
+                accessToken,
+                "superUsuario"
+              )) as unknown as SuperUsuario;
+              break;
           }
         } else {
           let redirectUrl = "";
 
           switch (rol) {
+            case "CE":
+              redirectUrl = "/control_estudio/login?exp=true"
             case "CO":
               redirectUrl = "/coordinadores/login?exp=true";
               break;
@@ -71,15 +80,21 @@ const authHandler: Handle = async ({ event, resolve }) => {
             case "E":
               redirectUrl = "/estudiantes/login?exp=true";
               break;
-          }
-
-          if (redirectUrl) {
-            return new Response(null, {
-              status: 302,
-              headers: {
-                Location: redirectUrl,
-              },
-            });
+            case "S":
+              redirectUrl = "/superusuario/login?exp=true";
+              break;
+            }
+            
+            if (redirectUrl) {
+              if (i < 1) {
+                i++
+                return new Response(null, {
+                  status: 302,
+                  headers: {
+                    Location: redirectUrl,
+                  },
+                });
+            }
           }
         }
       } catch (e) {

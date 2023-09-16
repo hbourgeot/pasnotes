@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Lock, User } from "@steeze-ui/tabler-icons";
+  import { ChevronLeft, Lock, User } from "@steeze-ui/tabler-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
   import Pascal from "$lib/images/pascalConFondo.png";
   import { enhance } from "$app/forms";
@@ -31,17 +31,17 @@
 </script>
 
 <svelte:head>
-  <title>Inicio de Sesion</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>Inicio de Sesión | Docentes | IUTEPAS</title>
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
+<a href="/" class="btn variant-ghost-primary absolute top-3 left-3"><Icon src={ChevronLeft} class="h-5 w-5 mr-1"/> Volver al inicio</a>
 <section
   class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0"
 >
   <form
     use:enhance
     method="post"
-    class="max-w-[500px] w-[95%] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
+    class="max-w-[500px] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
   >
     <img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
     <h1 class="text-3xl mb-8 font-bold flex justify-center items-center gap">

@@ -2,7 +2,7 @@ import {createLogger, format, transports} from "winston";
 
 const logger = createLogger({
   level: process.env.LOG_LEVEL || "info",
-  format: format.combine(format.timestamp(), format.json()),
+  format: format.combine(format.timestamp({format: "DD-MM-YYYY HH:mm:ss"}), format.json()),
   transports: [
     new transports.Console(),
     new transports.File({ filename: "sistema.log" }),

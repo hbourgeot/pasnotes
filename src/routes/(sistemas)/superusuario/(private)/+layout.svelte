@@ -23,7 +23,7 @@
       {#if i === $page.url.pathname.split('/').length - 1}
         <!-- Es último segmento, lo mostramos como texto -->
         <li class="crumb">
-          {segment.charAt(0).toUpperCase() + segment.slice(1)}
+          {segment.charAt(0).toUpperCase() + segment.slice(1).replace("-", " ")}
         </li>
       {:else}
         <!-- No es último segmento, lo mostramos como un enlace -->
@@ -42,7 +42,7 @@
     <img src="{Logo}" alt="" class="logo" />
   </a>
   <svelte:fragment slot="trail">
-    <form method="post" action="{`/coordinadores/logout?nombre=${data.nombre}`}">
+    <form method="post" action="{`/superusuario/logout?nombre=${data.nombre}`}">
     <button
       type="submit"
       class="bg-pink-600 text-gray-200 px-3 py-1 rounded-3xl ml-4 h-[50px] text-light-50"

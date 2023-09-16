@@ -14,6 +14,7 @@
   }
 
   const sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
     nota2: nota.nota2,
@@ -23,6 +24,7 @@
 
   const tableSource: TableSource = {
     head: [
+      "Nombre del Estudiante",
       "Cédula del Estudiante",
       "Nota del 1er corte",
       "Nota del 2do corte",
@@ -30,6 +32,7 @@
       "Promedio de notas",
     ],
     body: tableMapperValues(sourceData, [
+      "nombre",
       "cedula",
       "nota1",
       "nota2",
@@ -43,10 +46,16 @@
     goto(`/coordinadores/estudiante/${estudiante}`);
   };
 </script>
-
+<svelte:head>
+  <title>Estudiantes de la materia {data.materia.id} | Coordinadores | IUTEPAS</title>
+</svelte:head>
 <main class="container mx-auto p-10 h-screen bg-transparent">
   <h2 class="text-4xl text-center">Estudiantes de '{data.materia.nombre}'</h2>
   <section class="w-full p-5">
+    {#if sourceData[0].cedula}
     <Table source={tableSource} interactive={true} on:selected={handleSelect} />
+    {:else}
+    <p class="text-xl">No hay estudiantes registrados</p>
+    {/if}
   </section>
 </main>

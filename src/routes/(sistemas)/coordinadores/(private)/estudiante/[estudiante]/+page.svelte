@@ -35,7 +35,9 @@
     ],
   };
 </script>
-
+<svelte:head>
+  <title>Notas de {estudiante.nombre} | Coordinadores | IUTEPAS</title>
+</svelte:head>
 <main class="flex flex-col justify-center items-center gap-8 p-8">
   <h2 class="text-3xl py-3">
     Notas de <span class="text-sky-700 font-bold capitalize"

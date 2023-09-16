@@ -6,7 +6,7 @@
 
   import { Icon } from '@steeze-ui/svelte-icon'
 
-  import { FileDownload } from '@steeze-ui/material-design-icons'
+  import { Download } from '@steeze-ui/tabler-icons'
 
   export let data: PageData;
 
@@ -59,14 +59,16 @@
     document.querySelector(".app-bar")?.classList.toggle("hidden");
   };
 </script>
-
+<svelte:head>
+  <title>Histórico de notas | Estudiantes | IUTEPAS</title>
+</svelte:head>
 <main class="h-[calc(100vh-80px)] relative print:z-1200">
   <button
     bind:this="{printBtn}"
     class="btn bg-pink-600 absolute top-5 right-5 text-white save"
     on:click="{print}">
     
-    <Icon class='w-8 h-8' src={FileDownload}/>
+    <Icon class='w-8 h-8' src={Download}/>
 
     </button
   >

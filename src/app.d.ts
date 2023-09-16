@@ -12,6 +12,7 @@ declare global {
       coordinador: Coordinacion;
       controlEstudio: ControlEstudio;
       config: Config;
+      superUsuario: SuperUsuario;
     }
   }
 }
@@ -37,7 +38,6 @@ interface ControlEstudio {
   nombre: string;
   correo: string;
   telefono: string;
-  rol: string;
 }
 
 interface Docente {
@@ -89,13 +89,33 @@ interface Notas {
 }
 
 interface Peticiones {
-  campo: string;
-  descripcion: string;
-  estado: string;
-  id: number;
-  id_docente: string;
-  id_estudiante: string;
-  id_materia: string;
+  docente: {
+    cedula: string;
+    nombre: string;
+  },
+  estudiante: {
+    cedula: string;
+    nombre: string;
+  },
+  materia: {
+    id: string;
+    nombre: string;
+  },
+  peticion: {
+    campo: string | null,
+    descripcion: string;
+    estado: string;
+    id: number,
+    id_docente: string;
+    id_estudiante: string;
+    id_materia: string;
+  }
+}
+
+interface SuperUsuario {
+  cedula: string;
+  nombre: string;
+  correo: string;
 }
 
 export {
@@ -105,5 +125,5 @@ export {
   Materia,
   ControlEstudio,
   Config,
-  Notas, Peticiones
+  Notas, Peticiones, SuperUsuario
 };

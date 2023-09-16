@@ -9,12 +9,15 @@
 
   let toChange = "Pendiente";
   $: if (toChange) {
+    console.log(peticiones);
     peticiones = data.peticiones.filter(
-      (peticion) => peticion.estado === toChange
+      (peticion) => peticion.peticion.estado === toChange
     );
   }
 </script>
-
+<svelte:head>
+  <title>Peticiones | Control de estudio | IUTEPAS</title>
+</svelte:head>
 <main class="container mx-auto p-4 h-screen">
   <div class="table-container">
     <h1 class="text-4xl p-3 text-center">Peticiones hasta el momento</h1>
@@ -29,6 +32,7 @@
         <option value="Pendiente">Pendientes</option>
         <option value="Denegado">Denegadas</option>
         <option value="Aprobado">Aprobadas</option>
+        <option value="Terminado">Terminadas</option>
       </select>
     </div>
 
@@ -36,34 +40,34 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Cédula del Emisor</th>
+          <th>Emisor</th>
           <th>Mensaje</th>
           <th>Estado</th>
-          <th>Cédula del estudiante</th>
-          <th>Código de la materia</th>
-          <th>Acciones</th>
+          <th>Estudiante</th>
+          <th>Materia</th>
+          <th class="{toChange != 'Pendiente' ? 'hidden' : ''}">Acciones</th>
         </tr>
       </thead>
       <tbody>
         {#each peticiones as peticion}
           <tr>
-            <td class="!align-middle">{peticion.id}</td>
-            <td class="!align-middle">{peticion.id_docente}</td>
-            <td class="!align-middle">{peticion.descripcion}</td>
-            <td class="!align-middle">{peticion.estado}</td>
-            <td class="!align-middle">{peticion.id_estudiante}</td>
-            <td class="!align-middle">{peticion.id_materia}</td>
+            <td class="!align-middle">{peticion.peticion.id}</td>
+            <td class="!align-middle">{peticion.docente.cedula} - {peticion.docente.nombre}</td>
+            <td class="!align-middle">{peticion.peticion.descripcion}</td>
+            <td class="!align-middle">{peticion.peticion.estado}</td>
+            <td class="!align-middle">{peticion.estudiante.cedula} - {peticion.estudiante.nombre}</td>
+            <td class="!align-middle">{peticion.materia.id} - {peticion.materia.nombre}</td>
             <td class="align-top"
-              ><form use:enhance={({data})=>{
-                data.append("peticion", peticion.id.toString())
+              ><form use:enhance={({formData})=>{
+                formData.append("peticion", peticion.peticion.id.toString())
                 return async({update}) => {
                     await update();
                 }
               }} method="post"
-                class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion.estado != 'Pendiente' ? 'hidden' : ''} py-0"
+                class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion.peticion.estado != 'Pendiente' ? 'hidden' : ''} py-0"
               >
-                <button title="Aprobar petición" on:click={() => toChange = "Aprobado"} formaction="?/aprobar" class="py-0"><Icon src={Check} theme="rounded" size="15px" /></button>
-                <button title="Denegar petición" on:click={() => toChange = "Denegado"} formaction="?/denegar" class="py-0"><Icon src={Close} theme="rounded" size="15px" /></button>
+                <button title="Aprobar petición" formaction="?/aprobar" class="py-0"><Icon src={Check} theme="rounded" size="15px" /></button>
+                <button title="Denegar petición" formaction="?/denegar" class="py-0"><Icon src={Close} theme="rounded" size="15px" /></button>
               </form></td
             >
           </tr>

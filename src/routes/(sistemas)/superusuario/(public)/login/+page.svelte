@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Lock, User } from "@steeze-ui/tabler-icons";
+  import { ChevronLeft, Lock, User } from "@steeze-ui/tabler-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
   import Pascal from "$lib/images/pascalConFondo.png";
   import { enhance } from "$app/forms";
@@ -33,10 +33,10 @@
 </script>
 
 <svelte:head>
-  <title>Inicio de Sesion</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>Inicio de Sesión | Super usuario | IUTEPAS</title>
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
+<a href="/" class="btn variant-ghost-primary absolute top-3 left-3"><Icon src={ChevronLeft} class="h-5 w-5 mr-1"/> Volver al inicio</a>
 <section
   class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0"
 >

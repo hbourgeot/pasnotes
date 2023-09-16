@@ -9,7 +9,9 @@
 
   let controlEstudio: ControlEstudio = data.controlEstudio;
 </script>
-
+<svelte:head>
+  <title>Control de estudio | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center h-screen  flex-col w-full max-h-auto gap-6"
   
@@ -72,10 +74,6 @@
             <h2>Teléfono:</h2>
             <p>{controlEstudio.telefono}</p>
           </span>
-          <span>
-            <h2>Rol:</h2>
-            <p>{controlEstudio.rol}</p>
-          </span>
         </div>
       </details>
     </div>
@@ -86,10 +84,6 @@
   span h2 {
     font-weight: 600;
     padding-left: 16px;
-  }
-
-  button {
-    background-color: rgba(88, 119, 221, 0.7);
   }
 
   details .expanded {

@@ -42,7 +42,9 @@
 
   onMount(() => update());
 </script>
-
+<svelte:head>
+  <title>Estudiantes | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 "
   style="min-height: 100vh"
@@ -51,7 +53,7 @@
     ¡Bienvenid@, {estudiante.nombre}!
   </h1>
   <div
-    class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
+    class="w-[90%] md:w-[70%] flex flex-col items-center gap-10 bg-white rounded-lg"
     style="box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;"
   >
     <div
@@ -59,8 +61,8 @@
             md:[&>a]:w-[240px]"
     >
     <a
-      href="/estudiantes/constancia"
-      class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white md:w-[240px] bg-[#e78ae2]"
+      href="/estudiantes/constancia" target="_blank"
+      class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white bg-[#e78ae2] w-full"
       ><Icon src="{Download}" theme="round" size="24px" /> Constancia
       de estudio</a
     >
@@ -69,7 +71,7 @@
       class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
     >
     <a
-      href="/estudiantes/inscribir-materias"
+      href="/estudiantes/horario"
       class="w-full btn variant-filled h-full bg-[#e78ae2]"
       >Inscribir materias</a
     >
@@ -84,7 +86,7 @@
         Informacion general
       </h2>
 
-      <details class="flex w-[90%] lg:w-2/5 mx-auto flex-col items-center justify-center">
+      <details class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -95,13 +97,13 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Informacion del estudiante
+          Información del estudiante
         </summary>
         <div
-          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
+          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200 text-sm lg:text-xl"
         >
           <span>
-            <h2>Cedula:</h2>
+            <h2>C´rdula:</h2>
             <p>{estudiante.cedula}</p>
           </span>
           <span>
@@ -117,14 +119,12 @@
             <p>{estudiante.semestre}</p>
           </span>
           <span>
-            <h2>Estado Academico:</h2>
+            <h2>Estado Académico:</h2>
             <p class="capitalize">{estudiante.estado}</p>
           </span>
         </div>
       </details>
-      <details
-        class="flex w-[90%] lg:w-2/5 mx-auto flex-col my-5 items-center justify-center"
-      >
+       <details class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4">
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
@@ -138,7 +138,7 @@
           Materias inscritas
         </summary>
         <div
-          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
+          class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200 text-sm lg:text-xl"
         >
           {#if !materias.length}
             <span>
@@ -153,7 +153,7 @@
                     href="{materia.download}"
                     class="flex gap-2"
                     download="planificacion.pdf"
-                    >Descargar <Icon src="{FileDownload}" /></a
+                    >Descargar <Icon src="{Download}" /></a
                   >
                 {:else}
                   <p>No hay planificacion</p>
@@ -172,10 +172,6 @@
   span h2 {
     font-weight: 600;
     padding-left: 16px;
-  }
-
-  button {
-    background-color: rgba(221, 88, 214, 0.7);
   }
 
   details .expanded {

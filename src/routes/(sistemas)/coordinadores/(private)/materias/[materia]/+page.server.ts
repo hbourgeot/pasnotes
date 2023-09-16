@@ -15,5 +15,7 @@ export const load = (async ({ params, locals: { coordinador, client } }) => {
     id: data.materia.id,
     nombre: data.materia.nombre,
   };
+
+  
   return { carrera, estudiantes, materia };
 }) satisfies PageServerLoad;

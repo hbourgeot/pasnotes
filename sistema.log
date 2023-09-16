@@ -362,3 +362,38 @@
 {"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"2023-09-16T05:48:05.953Z"}
 {"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"2023-09-16T19:33:48.247Z"}
 {"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"2023-09-16T19:33:50.849Z"}
+{"level":"info","message":"El super usuario Henrry Francisco Bourgeot ha iniciado sesion","timestamp":"08-08-2023 21:12:43"}
+{"level":"info","message":"Henrry Francisco Bourgeot va a ver, editar y/o crear carreras","timestamp":"08-08-2023 21:12:52"}
+{"level":"info","message":"El super usuario Henrry Francisco Bourgeot ha cerrado sesión","timestamp":"08-08-2023 21:17:52"}
+{"level":"info","message":"El coordinador Hilda Aurora Silva ha iniciado sesion","timestamp":"08-08-2023 21:18:05"}
+{"level":"info","message":"Hilda Aurora Silva ha entrado a registrar una nueva materia","timestamp":"08-08-2023 21:18:09"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"24-08-2023 05:14:58"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha generado su constancia de estudios","timestamp":"24-08-2023 05:16:01"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"24-08-2023 05:16:07"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"24-08-2023 05:16:24"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión in logout","timestamp":"24-08-2023 05:16:48"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"24-08-2023 05:18:06"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:10"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 05:18:15"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:19"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:33"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 05:18:41"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:43"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión","timestamp":"24-08-2023 05:18:49"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"24-08-2023 05:19:23"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"24-08-2023 05:26:44"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"24-08-2023 08:40:19"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 08:40:22"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 08:40:23"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 08:44:37"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 08:45:01"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"12-09-2023 22:04:03"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión","timestamp":"12-09-2023 22:04:10"}
+{"level":"info","message":"El estudiante henrry francisco bourgeot silva ha iniciado sesion","timestamp":"12-09-2023 22:04:58"}
+{"level":"info","message":"El estudiante henrry francisco bourgeot silva ha cerrado sesión","timestamp":"12-09-2023 22:05:02"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"12-09-2023 22:27:37"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión","timestamp":"12-09-2023 22:28:44"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"14-09-2023 21:39:27"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"14-09-2023 21:39:30"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"14-09-2023 21:39:32"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión","timestamp":"14-09-2023 21:40:05"}

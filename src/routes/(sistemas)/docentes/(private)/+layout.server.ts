@@ -10,8 +10,8 @@ export const load = (async ({ locals: { docente, client } }) => {
   const { ok, data } = await client.GET("/api/peticiones");
   if (!ok) return { peticion: null, nombre: docente.nombre }
   
-  let peticion: Peticiones = data.find((peticion: Peticiones) => peticion.id_docente == docente.cedula && peticion.estado === "Aprobado")
-  if (peticion) return { peticion, docente }
+  let peticion: Peticiones = data.find((peticion: Peticiones) => peticion.peticion.id_docente == docente.cedula && peticion.peticion.estado === "Aprobado")
+  if (peticion) return { peticion: peticion.peticion, docente, nombre: docente.nombre }
   
   return {peticion: null, nombre: docente.nombre}
 }) satisfies LayoutServerLoad;

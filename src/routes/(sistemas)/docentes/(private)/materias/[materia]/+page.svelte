@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { ActionData, PageData } from "./$types";
+  import type { ActionData, PageData, SubmitFunction } from "./$types";
   import {
     FileDropzone,
     Modal,
@@ -26,7 +26,7 @@
     triggerToast(form?.message);
   }
 
-  const sourceData = data.estudiantes.map((nota: any) => ({
+  let sourceData = data.estudiantes.map((nota: any) => ({
     nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
@@ -35,7 +35,7 @@
     promedio: nota.promedio,
   }));
 
-  const tableSource: TableSource = {
+  let tableSource: TableSource = {
     head: [
       "Nombre del Estudiante",
       "Cédula del Estudiante",
@@ -80,6 +80,34 @@
       (item: any) => item.cedula === estudiante
       );
     }
+
+  $: sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
+    cedula: nota.cedula,
+    nota1: nota.nota1,
+    nota2: nota.nota2,
+    nota3: nota.nota3,
+    promedio: nota.promedio,
+  }));
+
+  $: tableSource = {
+    head: [
+      "Nombre del Estudiante",
+      "Cédula del Estudiante",
+      "Nota del 1er corte",
+      "Nota del 2do corte",
+      "Nota del 3er corte",
+      "Promedio de notas",
+    ],
+    body: tableMapperValues(sourceData, [
+      "nombre",
+      "cedula",
+      "nota1",
+      "nota2",
+      "nota3",
+      "promedio",
+    ]),
+  };
 
   onMount(async () => {
     const response = await fetch(
@@ -147,11 +175,30 @@
       console.error("An error occurred:", error);
     }
   };
-</script>
+  
+  const handleSubmit: SubmitFunction = ({formData, cancel}) => {
+    if(estudiante==""){
+      triggerToast("Por favor seleccione un estudiante");
+      return cancel();
+    }
 
-<main class="flex justify-center items-center bg-transparent">
+    if(toChange=="0"){
+      triggerToast("Por favor seleccione un corte");
+      return cancel();
+    }
+
+    return async({update}) => {
+      await update();
+      estudiante = "";
+    }
+  }
+</script>
+<svelte:head>
+  <title>{data.materia.nombre} | Docentes | IUTEPAS</title>
+</svelte:head>
+<main class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]">
   <section class="w-full p-5">
-    ¨
+    <h1 class="text-3xl capitalize font-bold text-primary-500">{data.materia.nombre}</h1>
     {#if sourceData[0].cedula !== null}
     <Table
       source="{tableSource}"
@@ -165,14 +212,13 @@
   <section class="w-full sticky">
     {#if sourceData[0].cedula !== null}
     <form
-      use:enhance
+      use:enhance={handleSubmit}
       method="post"
       class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white"
     >
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
         Asignacion de Notas
       </h3>
-
       <span class="w-[30%]">
         <label for="estudiante"> Estudiante </label>
         <input
@@ -181,6 +227,7 @@
           type="text"
           id="estudiante"
           name="cedula_estudiante"
+          required
           class="w-full input"
         />
       </span>
@@ -189,6 +236,7 @@
         <select
           class="select"
           name="nombre_campo"
+          required
           id="corte"
           bind:value="{toChange}"
         >
@@ -209,6 +257,7 @@
         <input
           name="valor"
           type="number"
+          required
           bind:value="{nota}"
           id="calificacion"
           class="input"
@@ -216,7 +265,7 @@
       </span>
 
       <div class="w-full p-4 flex justify-center gap-8 mt-8">
-        <button
+        <button type="button"
           on:click="{() => {
             estudiante = '';
             nota = 0;
@@ -224,7 +273,7 @@
           }}"
           class="bg-pink-600 p-4 w-52 text-white rounded-xl">Cancelar</button
         >
-        <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
+        <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl" formaction="?/notas"
           >Editar</button
         >
       </div>
@@ -309,7 +358,7 @@
       };
     }}"
     class="hidden"
-    bind:this="{uploadForm}"
+    bind:this={uploadForm}
   >
     <FileDropzone name="files" bind:files="{myFile}" />
   </form>

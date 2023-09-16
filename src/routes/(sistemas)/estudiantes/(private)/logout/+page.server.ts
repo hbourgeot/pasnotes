@@ -8,7 +8,7 @@ export const actions: Actions = {
     const nombre = event.url.searchParams.get("nombre") ?? "";
     try {
       await logOut(event, { path: "/estudiantes" });
-      systemLogger.info(`El estudiante ${nombre} ha cerrado sesión in logout`);
+      systemLogger.info(`El estudiante ${nombre} ha cerrado sesión`);
     } catch (e) {
       console.log(e);
     }
