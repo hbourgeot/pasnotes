@@ -44,6 +44,7 @@
     "jsonwebtoken": "^9.0.0",
     "jspdf": "^2.5.1",
     "svelte-carousel": "^1.0.25",
+    "svelte-select": "^5.7.0",
     "winston": "^3.10.0"
   }
 }
