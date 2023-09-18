@@ -19,10 +19,27 @@
   import type { Notas } from "../../../../../../app";
   import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
+  import { ChevronDown, FileDownload } from "@steeze-ui/tabler-icons";
   import type { SubmitFunction } from "@sveltejs/kit";
+  import pascalConFondo from "$lib/images/pascalConFondo.png";
 
   export let data: PageData;
   export let form: ActionData;
+
+  let printBtn: HTMLButtonElement;
+  let header: HTMLElement;
+
+  const print = () => {
+    header.classList.toggle("hidden");
+    header.classList.toggle("flex");
+    document.querySelector(".app-bar")?.classList.toggle("hidden");
+    document.querySelector(".formField")?.classList.toggle("hidden");
+    window.print();
+    header.classList.toggle("hidden");
+    header.classList.toggle("flex");
+    document.querySelector(".app-bar")?.classList.toggle("hidden");
+    document.querySelector(".formField")?.classList.toggle("hidden");
+  };
 
   $: if (form?.message) {
     triggerToast(form?.message);
@@ -39,12 +56,12 @@
 
   const tableSource: TableSource = {
     head: [
-      "Nombre del Estudiante",
-      "Cédula del Estudiante",
-      "Nota del 1er corte",
-      "Nota del 2do corte",
-      "Nota del 3er corte",
-      "Promedio de notas",
+      "Nombre",
+      "Cédula",
+      "1er corte",
+      "2do corte",
+      "3er corte",
+      "Promedio",
     ],
     body: tableMapperValues(sourceData, [
       "nombre",
@@ -139,16 +156,56 @@
   };
 </script>
 
+
+<header bind:this="{header}" class="w-[800px] bg-white py-5 justify-start items-center px-8 hidden">
+  <img src="{pascalConFondo}" alt="" class="h-[fit-content] w-[200px]" />
+  <section class="text-center w-7/11">
+    <h2 class="text-2xl">S.C. IUTEPAS</h2>
+    <p class="text-sm">
+      Gaceta Oficial N° 36.104 / Decreto Presidencial de la República N° 1608
+    </p>
+    <p class="text-sm">RIF: J-307676744</p>
+    <p class="text-sm">
+      Calle Mariño C/C Páez, Edif.: 102-02-10, Piso 1, Apt S/N
+    </p>
+    <p class="text-sm">Sector Barrancón, Cagua, Edo. Aragua, ZP 2122</p>
+    <p class="text-sm">Telfs.: (0244) 395.93.89</p>
+  </section>
+  <section class="text-center w-[fit-content] text-sm bg-blue-400 border-1 border-blue-400 border-solid h-auto rounded-lg">
+    <p class="text-light-50 align-text-top text-center h-[30px]">
+      Fecha del reporte
+    </p>
+    <div class="p-1 !bg-[#EEEEEEEE] rounded-br-lg px-3 rounded-bl-lg">
+      <span>{new Date().toLocaleString()}</span>
+    </div>
+  </section>
+</header>
+
 <main class="flex justify-center items-center bg-transparent">
-  <section class="w-full p-5">
+  <section class="w-full h-[90vh] p-5">
     <Table
       source="{tableSource}"
       interactive="{true}"
       on:selected="{handleSelect}"
       regionCell="capitalize"
+      regionHeadCell="text-center"
+      class="mt-12"
     />
   </section>
-  <section class="w-full sticky">
+  <section class="w-full h-[90vh] sticky formField">
+
+    <div class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5">
+      <button
+      bind:this="{printBtn}"
+      class="btn bg-pink-600 text-white save"
+      on:click="{print}">
+    
+        <Icon class='w-8 h-8' src={FileDownload}/>
+
+        Descargar Notas
+      </button>
+    </div>
+
     <form
       use:enhance="{handleSubmit}"
       method="post"
@@ -166,28 +223,30 @@
           type="text"
           id="estudiante"
           name="cedula_estudiante"
-          class="w-full input"
+          class="w-full input outline-none"
         />
       </span>
       <span class="w-[30%]">
-        <label for="corte"> Corte </label>
-        <select
-          class="select"
-          name="nombre_campo"
-          id="corte"
-          bind:value="{toChange}"
-        >
-          <option value="0" disabled>Seleccione una nota a cambiar</option>
-          <option value="1"
-            >1er corte</option
+        <label for="corte" class="relative"> Corte 
+          <select
+            class="select outline-none text-ellipsis"
+            name="nombre_campo"
+            id="corte"
+            bind:value="{toChange}"
           >
-          <option value="2"
-            >2do corte</option
-          >
-          <option value="3"
-            >3er corte</option
-          >
-        </select>
+            <option value="0" disabled>Seleccione una nota a cambiar</option>
+            <option value="1"
+              >1er corte</option
+            >
+            <option value="2"
+              >2do corte</option
+            >
+            <option value="3"
+              >3er corte</option
+            >
+          </select>
+          <Icon src="{ChevronDown}" class="absolute w-5 h-5 top-10 right-2" />
+        </label>
       </span>
       <span class="w-[30%]">
         <label for="calificacion"> Nota </label>
@@ -196,7 +255,7 @@
           type="number"
           bind:value="{nota}"
           id="calificacion"
-          class="input"
+          class="input outline-none"
         />
       </span>
 
@@ -226,9 +285,14 @@
     padding: 14px;
     border-radius: 8px;
   }
-  span label {
-    margin-bottom: 8px;
+
+  .select {
+    appearance: none;
   }
+
+  /*span label {
+    margin-bottom: 8px;
+  }*/
 
   :global(.modal-prompt-input){
     padding: 10px;
