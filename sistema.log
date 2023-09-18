@@ -431,3 +431,51 @@
 {"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"2023-09-17T22:01:27.633Z"}
 {"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión in logout","timestamp":"2023-09-17T23:21:21.568Z"}
 {"level":"info","message":"El personal de control de estudio hilda silva ha cerrado sesión","timestamp":"2023-09-17T23:21:53.534Z"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"17-09-2023 23:47:02"}
+{"level":"info","message":"leonel curalli ha entrado a ver los docentes registrados y puede que registre uno","timestamp":"17-09-2023 23:47:05"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"17-09-2023 23:47:10"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"17-09-2023 23:47:19"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"17-09-2023 23:48:04"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"17-09-2023 23:48:25"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"17-09-2023 23:48:27"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"17-09-2023 23:48:30"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión","timestamp":"17-09-2023 23:48:46"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"17-09-2023 23:49:04"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"17-09-2023 23:49:07"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"17-09-2023 23:49:10"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:49:12"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"17-09-2023 23:49:28"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 2do semestre","timestamp":"17-09-2023 23:49:30"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 3er semestre","timestamp":"17-09-2023 23:49:34"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 1er semestre","timestamp":"17-09-2023 23:49:37"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 2do semestre","timestamp":"17-09-2023 23:49:40"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 1er semestre","timestamp":"17-09-2023 23:49:43"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '4' del 1er semestre","timestamp":"17-09-2023 23:49:45"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '2' del 1er semestre","timestamp":"17-09-2023 23:49:47"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"17-09-2023 23:51:40"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:51:44"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 2do semestre","timestamp":"17-09-2023 23:52:18"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 1er semestre","timestamp":"17-09-2023 23:53:50"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:53:54"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:54:30"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:54:32"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:55:59"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"17-09-2023 23:56:02"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"17-09-2023 23:56:27"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"17-09-2023 23:56:29"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"17-09-2023 23:56:44"}
+{"level":"info","message":"El docente elibeth curalli ha iniciado sesion","timestamp":"17-09-2023 23:58:17"}
+{"level":"info","message":"elibeth curalli ha entrado a ver las materias que imparte","timestamp":"17-09-2023 23:58:18"}
+{"level":"info","message":"El docente elibeth curalli está viendo su materia 2525","timestamp":"17-09-2023 23:58:21"}
+{"level":"warn","message":"El docente elibeth curalli realizó una petición de modificación de nota del corte nro 1 en la materia 2525 para el estudiante V-29890437","timestamp":"18-09-2023 00:00:11"}
+{"level":"info","message":"El docente elibeth curalli está viendo su materia 2525","timestamp":"18-09-2023 00:00:11"}
+{"level":"info","message":"El docente elibeth curalli ha cerrado sesión","timestamp":"18-09-2023 00:00:20"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"18-09-2023 00:01:07"}
+{"level":"info","message":"hilda silva ha entrado a ver las materias","timestamp":"18-09-2023 00:01:10"}
+{"level":"info","message":"hilda silva ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"18-09-2023 00:01:20"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia 2525","timestamp":"18-09-2023 00:01:55"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia 2525","timestamp":"18-09-2023 00:11:08"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha cerrado sesión","timestamp":"18-09-2023 00:11:25"}
+{"level":"info","message":"El docente elibeth curalli ha iniciado sesion","timestamp":"18-09-2023 00:11:50"}
+{"level":"info","message":"elibeth curalli ha entrado a ver las materias que imparte","timestamp":"18-09-2023 00:11:53"}
+{"level":"info","message":"El docente elibeth curalli está viendo su materia 2525","timestamp":"18-09-2023 00:11:56"}

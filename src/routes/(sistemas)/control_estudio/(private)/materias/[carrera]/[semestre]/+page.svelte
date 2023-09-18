@@ -48,7 +48,7 @@
   };
 
   const redirectTable = (e: CustomEvent) => {
-    window.location.pathname = "/coordinadores/materias/" + e.detail[0];
+    window.location.pathname = "/control_estudio/materias/" + e.detail[0];
   };
 </script>
 <svelte:head>
