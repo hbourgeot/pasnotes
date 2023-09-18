@@ -8,13 +8,14 @@
 
   export let data: PageData;
 
-  const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
   const materiaData = data.materias.map((materia) => ({
     ...materia,
     codigo: materia.id,
     nombre: materia.nombre,
-    dia: dias[parseInt(materia.dia)],
+    dia: materia.dia2 ? `${materia.dia}, ${materia.dia2}` : materia.dia,
+    hora_inicio: materia.dia2 ? `${materia.hora_inicio}, ${materia.hora_inicio2}` : materia.hora_inicio,
+    hora_fin: materia.dia2 ? `${materia.hora_fin}, ${materia.hora_fin2}` : materia.hora_fin,
     docente: data.docentes.find(
       (docente) => materia.id_docente === docente.cedula
     )?.nombre,
@@ -27,7 +28,7 @@
       "Nombre",
       "Horas Prácticas",
       "Horas Teóricas",
-      "Día de clases",
+      "Día(s) de clases",
       "Comienza",
       "Termina",
       "U.C.",

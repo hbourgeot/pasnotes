@@ -60,6 +60,10 @@ interface Materia {
   dia: string;
   hora_inicio: string;
   hora_fin: string;
+  dia2: string;
+  hora_inicio2: string;
+  hora_fin2: string;
+  maximo: number;
   cantidad_estudiantes?: string;
   ciclo: string;
 }

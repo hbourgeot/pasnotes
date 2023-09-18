@@ -14,7 +14,7 @@
   gridColumns="grid-cols-3"
   slotDefault="place-self-center"
   slotTrail="place-content-end"
-  class="w-full h-[80px] sticky top-0"
+  class="w-full h-[80px] sticky top-0 z-[999]"
 >
   <svelte:fragment slot="lead">
     <ol class="breadcrumb lg:text-xl">

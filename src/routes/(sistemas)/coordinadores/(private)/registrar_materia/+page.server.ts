@@ -25,15 +25,16 @@ export const load: PageServerLoad = async ({ locals: { client, coordinador } }) 
     return { docentes: docentes, materias: [], autocom: [] };
   }
 
-  const materias: string[] = dataMat.materias.map(
+  const materias: string[] = dataMat.materias.filter((materia: Materia) => materia.id !== null).map(
     (materia: Materia) => materia.id
   );
-  const materiasAutocomplete = dataMat.materias.map(
-    (materia: Materia) => ({
+
+  const materiasAutocomplete = dataMat.materias
+    .filter((materia: Materia) => materia.id !== null)
+    .map((materia: Materia) => ({
       nombre: materia.nombre,
       id: materia.id,
-    })
-  );
+    }));
 
   const { ok: isOk, data: { carreras } } = await client.GET("/api/carreras")
   
