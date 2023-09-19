@@ -47,6 +47,7 @@ export const load: PageServerLoad = async ({
     if (data.message.includes("Usted")) {
       const { ok, data: {materias} } = await client.GET("/api/students/horario", null, headers)
       
+      
       return {materias, estudiante, horarioHecho: true}
     }
     return { materias: [], message: data.message }

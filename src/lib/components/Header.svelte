@@ -78,41 +78,17 @@
   </nav>
 </div>-->
 
-<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end" background="bg-white" padding="py-4" style="border-bottom: 1px solid rgb(229 231 235);">
+<AppBar gridColumns="grid-cols-2" slotDefault="place-self-start" slotTrail="place-content-end" background="bg-white" padding="py-4" style="border-bottom: 1px solid rgb(229 231 235);">
 	<svelte:fragment slot="lead">
-    <a href="/" class="hidden xl:block">
-      <img src={Logo} class="ml-4 w-12 h-12 md:w-15 md:h-15" alt="logo" />
-    </a>
-
-    <details class="xl:hidden absolute w-full z-10">
-      <summary>
-        <Icon src={Menu} class="ml-4 w-10 h-10 ease" />
-      </summary>
-      <div style="width: 100%" class="w-full mt-5 h-auto nav bg-gray-900 text-white">
-        <ul class="w-full h-full">
-          <li>
-            <a href="/estudiantes/login">Estudiantes</a>
-          </li>
-          <li>
-            <a href="/docentes/login">Docentes</a>
-          </li>
-          <li>
-            <a href="/control_estudio/login">Control de Estudio</a>
-          </li>
-          <li>
-            <a href="/coordinadores/login">Coordinacion</a>
-          </li>
-        </ul>
-      </div>
-    </details>
+    
   </svelte:fragment>
 	
-  <a href="/" class="xl:hidden w-full text-center">
+  <a href="/" class="xl:hidden w-full mx-3">
     <img src={Logo} class="inline-block w-12 h-12 md:w-15 md:h-15" alt="logo" />
   </a>
 
 	<svelte:fragment slot="trail">
-    <div class="xl:block hidden relative mr-4">
+    <div class="block relative mr-4">
       <TreeView>
         <TreeViewItem>
           Iniciar Sesión
@@ -128,16 +104,6 @@
                 <span class="w-full text-center">
                   <a href="/docentes/login">Docentes</a>
                 </span>  
-              </TreeViewItem>
-              <TreeViewItem regionSymbol="hidden">
-                <span class="w-full text-center">
-                  <a href="/control_estudio/login">Control de Estudio</a>
-                </span>
-              </TreeViewItem>
-              <TreeViewItem regionSymbol="hidden">
-                <span class="w-full text-center">
-                  <a href="/coordinadores/login">Coordinacion</a>
-                </span>
               </TreeViewItem>
             </div>
           </svelte:fragment>
