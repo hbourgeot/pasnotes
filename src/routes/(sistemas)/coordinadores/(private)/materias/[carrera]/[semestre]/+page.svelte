@@ -28,7 +28,7 @@
       "Nombre",
       "Horas Prácticas",
       "Horas Teóricas",
-      "Día(s) de clases",
+      "Día/dias de clases",
       "Comienza",
       "Termina",
       "U.C.",
@@ -59,7 +59,7 @@
 
 <div class="flex h-screen items-center p-10 flex-col w-full max-h-auto gap-6 relative">
   
-  <h2 class="text-4xl capitalize">
+  <h2 class="text-4xl">
     Materias de la carrera {data.carrera.nombre} ({data.semestre})
   </h2>
   <Table
