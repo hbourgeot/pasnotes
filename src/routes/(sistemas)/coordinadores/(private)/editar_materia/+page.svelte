@@ -32,7 +32,7 @@
   let horaFin: any = null;
   let horaInicio2: any = null;
   let horaFin2: any = null;
-  let listOpen: boolean = true;
+  let listOpen: boolean = false;
 
   $: if (materiasIDs.length > 0) {
     prelacion = materiasIDs.join(" - ");
@@ -62,7 +62,7 @@
   function cambioDiaClase(e: any) {
     diasDeClase = e.detail;
     console.log(diasDeClase);
-    showExtraDays = diasDeClase.length === 2;
+    showExtraDays = diasDeClase?.length === 2;
     days = showExtraDays ? [] : [...daysBackup]
   }
 
@@ -323,6 +323,7 @@
             on:input="{cambioDiaClase}"
             on:clear="{() => {
               showExtraDays = false;
+              diasDeClase=[];
               horaFin2 = null;
               horaInicio2 = null;
             }}"
