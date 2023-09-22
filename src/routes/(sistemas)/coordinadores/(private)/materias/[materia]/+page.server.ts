@@ -1,8 +1,9 @@
 import { systemLogger } from "$lib/server/logger";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load = (async ({ params, locals: { coordinador, client } }) => {
+  if(params.materia === "editar") throw redirect(302, '/materias/editar')
   systemLogger.info(
     `${coordinador.nombre} ha entrado a ver la materia ${params.materia}`
   );

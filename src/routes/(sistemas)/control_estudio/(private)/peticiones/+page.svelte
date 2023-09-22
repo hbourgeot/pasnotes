@@ -15,7 +15,9 @@
     );
   }
 </script>
-
+<svelte:head>
+  <title>Peticiones | Control de estudio | IUTEPAS</title>
+</svelte:head>
 <main class="container mx-auto p-4 h-screen">
   <div class="table-container">
     <h1 class="text-4xl p-3 text-center">Peticiones hasta el momento</h1>

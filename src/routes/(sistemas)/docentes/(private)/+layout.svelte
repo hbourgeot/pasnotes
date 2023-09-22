@@ -49,7 +49,7 @@
   class="w-full h-[80px] sticky top-0 z-40"
 >
   <svelte:fragment slot="lead">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb lg:text-xl">
       {#each $page.url.pathname.split("/") as segment, i}
         {#if segment && !/\d/.test(segment)}
           {#if i === $page.url.pathname.split("/").length - 1}
@@ -66,7 +66,7 @@
             <!-- No es último segmento, lo mostramos como un enlace -->
             <li class="crumb">
               <a
-                class="no-underline text-[#0879bd]"
+                class="no-underline text-[#0879bd] font-bold"
                 rel="prefetch"
                 href="{$page.url.pathname
                   .split('/')

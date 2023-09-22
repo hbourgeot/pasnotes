@@ -20,7 +20,9 @@
     })
   }
 </script>
-
+<svelte:head>
+  <title>Movimientos | Super usuario | IUTEPAS</title>
+</svelte:head>
 <section class="p-4 w-full">
   <h2 class="text-5xl mt-5 mb-10 ml-4 font-bold text-sky-600 text-center">
     Movimientos registrados
@@ -43,7 +45,7 @@
     <div class="mb-4 h-[73px]">
       <label for="" class="label">Mostrar registros entre:</label>
       <div>
-        <DatePicker format="%d-%m-%Y" range bottom locale="es-ES" bind:value="{fecha}" inputClass="!input !(date) !m-0" on:change={filtrarPorFecha}>
+        <DatePicker format="%d-%m-%Y" range top={false} locale="es-ES" bind:value="{fecha}" on:change={filtrarPorFecha}>
           <svelte:fragment slot="between-inputs"><span class="mx-2">a</span></svelte:fragment>
         </DatePicker>
       </div>
@@ -64,3 +66,11 @@
     {/each}
   </div>
 </section>
+<style lang="scss">
+  :global(.text-field > input){
+    background-color: rgb(216,217,252) !important;
+    border: #9799fc solid 3px !important;
+    color: #3751a0;
+    border-radius: 24px !important;
+  }
+</style>

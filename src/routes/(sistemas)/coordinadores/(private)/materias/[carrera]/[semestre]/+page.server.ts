@@ -1,6 +1,8 @@
 import { systemLogger } from "$lib/server/logger";
+import { redirect } from "@sveltejs/kit";
 import type { Docente, Materia } from "../../../../../../../app";
 import type { PageServerLoad } from "./$types";
+import { triggerToast } from "$lib/utils/toast";
 
 export const load = (async ({
   locals: { client, coordinador, config },
@@ -13,8 +15,12 @@ export const load = (async ({
       params.carrera
     }' del ${getSemester(params.semestre)}`
   );
-  const { data } = await client.GET("/api/materias");
+  const { ok,data } = await client.GET("/api/materias");
   const { data: dataDocentes } = await client.GET("/api/docente");
+  if (!ok) {
+    triggerToast('No hay materias')
+    throw redirect(302, '/coordinadores/materias')
+  }
 
   const materiasData: Materia[] = data.materias;
   const docentes: Docente[] = dataDocentes.docente;
@@ -26,7 +32,7 @@ export const load = (async ({
       materia.ciclo == config.ciclo
   );
 
-  console.log(materias);
+  console.log(data);
 
   return {
     materias,

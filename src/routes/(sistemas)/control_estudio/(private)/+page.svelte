@@ -9,7 +9,9 @@
 
   let controlEstudio: ControlEstudio = data.controlEstudio;
 </script>
-
+<svelte:head>
+  <title>Control de estudio | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center h-screen  flex-col w-full max-h-auto gap-6"
   
@@ -33,6 +35,11 @@
         href="/control_estudio/peticiones"
         class="w-full h-full w-30 p-4 rounded-xl text-white md:w-[200px] bg-[#e78ae2] text-center btn variant-filled"
         >Ver Peticiones</a
+      >
+      <a
+        href="/control_estudio/estudiantes"
+        class="flex w-full justify-center items-center btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Ver Estudiantes</a
       >
     </div>
 

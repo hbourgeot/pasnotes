@@ -41,7 +41,9 @@
     }
   });
 </script>
-
+<svelte:head>
+  <title>Configuraciones | Coordinadores | IUTEPAS</title>
+</svelte:head>
 <div class="container lg:w-2/5 md:w-2/3 mx-auto px-4 py-8">
   <div class="bg-white p-8 rounded-3xl shadow">
     <h2 class="text-2xl font-semibold mb-4">Realizar configuraciones</h2>

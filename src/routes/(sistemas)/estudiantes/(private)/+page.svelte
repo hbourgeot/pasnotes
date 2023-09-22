@@ -42,7 +42,9 @@
 
   onMount(() => update());
 </script>
-
+<svelte:head>
+  <title>Estudiantes | IUTEPAS</title>
+</svelte:head>
 <div
   class="flex flex-center flex-col w-full max-h-auto gap-6 "
   style="min-height: 100vh"
@@ -69,7 +71,7 @@
       class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
     >
     <a
-      href="/estudiantes/inscribir-materias"
+      href="/estudiantes/horario"
       class="w-full btn variant-filled h-full bg-[#e78ae2]"
       >Inscribir materias</a
     >
@@ -95,13 +97,13 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Informacion del estudiante
+          Información del estudiante
         </summary>
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200 text-sm lg:text-xl"
         >
           <span>
-            <h2>Cedula:</h2>
+            <h2>C´rdula:</h2>
             <p>{estudiante.cedula}</p>
           </span>
           <span>
@@ -117,7 +119,7 @@
             <p>{estudiante.semestre}</p>
           </span>
           <span>
-            <h2>Estado Academico:</h2>
+            <h2>Estado Académico:</h2>
             <p class="capitalize">{estudiante.estado}</p>
           </span>
         </div>
@@ -170,10 +172,6 @@
   span h2 {
     font-weight: 600;
     padding-left: 16px;
-  }
-
-  button {
-    background-color: rgba(221, 88, 214, 0.7);
   }
 
   details .expanded {

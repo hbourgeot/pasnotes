@@ -362,3 +362,297 @@
 {"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"2023-09-16T05:48:05.953Z"}
 {"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"2023-09-16T19:33:48.247Z"}
 {"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"2023-09-16T19:33:50.849Z"}
+{"level":"info","message":"El super usuario Henrry Francisco Bourgeot ha iniciado sesion","timestamp":"08-08-2023 21:12:43"}
+{"level":"info","message":"Henrry Francisco Bourgeot va a ver, editar y/o crear carreras","timestamp":"08-08-2023 21:12:52"}
+{"level":"info","message":"El super usuario Henrry Francisco Bourgeot ha cerrado sesión","timestamp":"08-08-2023 21:17:52"}
+{"level":"info","message":"El coordinador Hilda Aurora Silva ha iniciado sesion","timestamp":"08-08-2023 21:18:05"}
+{"level":"info","message":"Hilda Aurora Silva ha entrado a registrar una nueva materia","timestamp":"08-08-2023 21:18:09"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"24-08-2023 05:14:58"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha generado su constancia de estudios","timestamp":"24-08-2023 05:16:01"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"24-08-2023 05:16:07"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"24-08-2023 05:16:24"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión in logout","timestamp":"24-08-2023 05:16:48"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"24-08-2023 05:18:06"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:10"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 05:18:15"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:19"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:33"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 05:18:41"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 05:18:43"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión","timestamp":"24-08-2023 05:18:49"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"24-08-2023 05:19:23"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"24-08-2023 05:26:44"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"24-08-2023 08:40:19"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"24-08-2023 08:40:22"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 08:40:23"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 08:44:37"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"24-08-2023 08:45:01"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"12-09-2023 22:04:03"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión","timestamp":"12-09-2023 22:04:10"}
+{"level":"info","message":"El estudiante henrry francisco bourgeot silva ha iniciado sesion","timestamp":"12-09-2023 22:04:58"}
+{"level":"info","message":"El estudiante henrry francisco bourgeot silva ha cerrado sesión","timestamp":"12-09-2023 22:05:02"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"12-09-2023 22:27:37"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión","timestamp":"12-09-2023 22:28:44"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"14-09-2023 21:39:27"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"14-09-2023 21:39:30"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"14-09-2023 21:39:32"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión","timestamp":"14-09-2023 21:40:05"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"2023-09-17T20:27:40.729Z"}
+{"level":"info","message":"hilda silva ha entrado a ver las peticiones","timestamp":"2023-09-17T20:28:06.626Z"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia materia","timestamp":"2023-09-17T20:30:46.587Z"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia carrera","timestamp":"2023-09-17T20:31:16.029Z"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia materia","timestamp":"2023-09-17T20:56:35.052Z"}
+{"level":"info","message":"hilda silva ha entrado a ver las peticiones","timestamp":"2023-09-17T20:56:41.051Z"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha cerrado sesión","timestamp":"2023-09-17T20:56:43.931Z"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"2023-09-17T20:56:57.999Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"2023-09-17T20:57:08.382Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 3er semestre","timestamp":"2023-09-17T20:57:10.239Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"2023-09-17T20:57:12.163Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"2023-09-17T20:57:13.852Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 1er semestre","timestamp":"2023-09-17T20:57:16.444Z"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"2023-09-17T20:57:19.742Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver los docentes registrados y puede que registre uno","timestamp":"2023-09-17T20:57:30.133Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver los docentes registrados y puede que registre uno","timestamp":"2023-09-17T20:57:33.055Z"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"2023-09-17T20:57:45.712Z"}
+{"level":"info","message":"leonel curalli está viendo las configuraciones del sistema","timestamp":"2023-09-17T20:58:42.222Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"2023-09-17T20:58:51.523Z"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 2do semestre","timestamp":"2023-09-17T20:58:53.855Z"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"2023-09-17T20:59:00.138Z"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"2023-09-17T20:59:31.877Z"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"2023-09-17T20:59:36.378Z"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"2023-09-17T21:02:15.101Z"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"2023-09-17T21:02:17.968Z"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"2023-09-17T21:02:19.735Z"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión in logout","timestamp":"2023-09-17T21:02:36.688Z"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"2023-09-17T21:02:58.085Z"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia materia","timestamp":"2023-09-17T21:03:12.646Z"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión in logout","timestamp":"2023-09-17T22:01:03.595Z"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"2023-09-17T22:01:23.133Z"}
+{"level":"info","message":"elibeth leonela curalli jaimes ha entrado a ver sus notas","timestamp":"2023-09-17T22:01:27.633Z"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión in logout","timestamp":"2023-09-17T23:21:21.568Z"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha cerrado sesión","timestamp":"2023-09-17T23:21:53.534Z"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"17-09-2023 23:47:02"}
+{"level":"info","message":"leonel curalli ha entrado a ver los docentes registrados y puede que registre uno","timestamp":"17-09-2023 23:47:05"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"17-09-2023 23:47:10"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"17-09-2023 23:47:19"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"17-09-2023 23:48:04"}
+{"level":"info","message":"El docente Yriz silva ha iniciado sesion","timestamp":"17-09-2023 23:48:25"}
+{"level":"info","message":"Yriz silva ha entrado a ver las materias que imparte","timestamp":"17-09-2023 23:48:27"}
+{"level":"info","message":"El docente Yriz silva está viendo su materia 1234","timestamp":"17-09-2023 23:48:30"}
+{"level":"info","message":"El docente Yriz silva ha cerrado sesión","timestamp":"17-09-2023 23:48:46"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"17-09-2023 23:49:04"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"17-09-2023 23:49:07"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"17-09-2023 23:49:10"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:49:12"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"17-09-2023 23:49:28"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 2do semestre","timestamp":"17-09-2023 23:49:30"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 3er semestre","timestamp":"17-09-2023 23:49:34"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 1er semestre","timestamp":"17-09-2023 23:49:37"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 2do semestre","timestamp":"17-09-2023 23:49:40"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 1er semestre","timestamp":"17-09-2023 23:49:43"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '4' del 1er semestre","timestamp":"17-09-2023 23:49:45"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '2' del 1er semestre","timestamp":"17-09-2023 23:49:47"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"17-09-2023 23:51:40"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:51:44"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 2do semestre","timestamp":"17-09-2023 23:52:18"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '10' del 1er semestre","timestamp":"17-09-2023 23:53:50"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:53:54"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:54:30"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:54:32"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-09-2023 23:55:59"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"17-09-2023 23:56:02"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"17-09-2023 23:56:27"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"17-09-2023 23:56:29"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"17-09-2023 23:56:44"}
+{"level":"info","message":"El docente elibeth curalli ha iniciado sesion","timestamp":"17-09-2023 23:58:17"}
+{"level":"info","message":"elibeth curalli ha entrado a ver las materias que imparte","timestamp":"17-09-2023 23:58:18"}
+{"level":"info","message":"El docente elibeth curalli está viendo su materia 2525","timestamp":"17-09-2023 23:58:21"}
+{"level":"warn","message":"El docente elibeth curalli realizó una petición de modificación de nota del corte nro 1 en la materia 2525 para el estudiante V-29890437","timestamp":"18-09-2023 00:00:11"}
+{"level":"info","message":"El docente elibeth curalli está viendo su materia 2525","timestamp":"18-09-2023 00:00:11"}
+{"level":"info","message":"El docente elibeth curalli ha cerrado sesión","timestamp":"18-09-2023 00:00:20"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"18-09-2023 00:01:07"}
+{"level":"info","message":"hilda silva ha entrado a ver las materias","timestamp":"18-09-2023 00:01:10"}
+{"level":"info","message":"hilda silva ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"18-09-2023 00:01:20"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia 2525","timestamp":"18-09-2023 00:01:55"}
+{"level":"info","message":"hilda silva ha entrado a ver la materia 2525","timestamp":"18-09-2023 00:11:08"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha cerrado sesión","timestamp":"18-09-2023 00:11:25"}
+{"level":"info","message":"El docente elibeth curalli ha iniciado sesion","timestamp":"18-09-2023 00:11:50"}
+{"level":"info","message":"elibeth curalli ha entrado a ver las materias que imparte","timestamp":"18-09-2023 00:11:53"}
+{"level":"info","message":"El docente elibeth curalli está viendo su materia 2525","timestamp":"18-09-2023 00:11:56"}
+{"level":"info","message":"El docente elibeth curalli ha cerrado sesión","timestamp":"18-09-2023 00:14:17"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"18-09-2023 00:28:54"}
+{"level":"info","message":"hilda silva ha entrado a ver las materias","timestamp":"18-09-2023 00:28:56"}
+{"level":"info","message":"hilda silva ha entrado a ver las materias","timestamp":"18-09-2023 00:29:00"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha cerrado sesión","timestamp":"18-09-2023 00:30:42"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"18-09-2023 00:35:59"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"18-09-2023 00:43:24"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"18-09-2023 00:43:30"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"18-09-2023 00:45:48"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 00:47:53"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"18-09-2023 00:48:43"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"18-09-2023 00:48:45"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"18-09-2023 00:48:50"}
+{"level":"info","message":"leonel curalli ha entrado a ver la materia 2525","timestamp":"18-09-2023 00:50:50"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:36:10"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:36:47"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:37:08"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:38:30"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:38:42"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:42:36"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:45:18"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:53:42"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:54:03"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 10:54:19"}
+{"level":"info","message":"leonel curalli ha registrado una materia llamada Prueba","timestamp":"18-09-2023 11:23:40"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"18-09-2023 11:23:40"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"18-09-2023 11:23:55"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 3er semestre","timestamp":"18-09-2023 11:24:25"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 3er semestre","timestamp":"18-09-2023 11:27:13"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"18-09-2023 22:12:47"}
+{"level":"info","message":"leonel curalli está viendo las configuraciones del sistema","timestamp":"18-09-2023 22:12:51"}
+{"level":"info","message":"leonel curalli cambió la configuración del sistema","timestamp":"18-09-2023 22:16:02"}
+{"level":"info","message":"leonel curalli está viendo las configuraciones del sistema","timestamp":"18-09-2023 22:16:02"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"18-09-2023 22:19:01"}
+{"level":"info","message":"El estudiante henrry francisco bourgeot silva ha iniciado sesion","timestamp":"18-09-2023 22:20:54"}
+{"level":"warn","message":"El estudiante henrry francisco bourgeot silva entró a registrar su horario","timestamp":"18-09-2023 22:21:12"}
+{"level":"warn","message":"El estudiante henrry francisco bourgeot silva ha terminado de registrar su horario satisfactoriamente","timestamp":"18-09-2023 22:21:21"}
+{"level":"info","message":"henrry francisco bourgeot silva ha entrado a ver sus notas","timestamp":"18-09-2023 22:23:29"}
+{"level":"info","message":"El estudiante henrry francisco bourgeot silva ha cerrado sesión","timestamp":"18-09-2023 22:51:15"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"18-09-2023 23:15:05"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"18-09-2023 23:15:09"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 1er semestre","timestamp":"18-09-2023 23:15:51"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 1er semestre","timestamp":"18-09-2023 23:16:58"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias de la carrera con código '7' del 1er semestre","timestamp":"18-09-2023 23:19:21"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"19-09-2023 05:54:08"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 05:56:01"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 05:56:30"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:00:20"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:00:45"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:01:27"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:02:48"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:02:52"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:02:55"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:25"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:28"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:28"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:31"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:31"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:32"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:03:56"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:03:56"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:03:58"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:04:04"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:04:33"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:04:37"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:04:49"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:04:56"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:04:59"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:05:27"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:06:04"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:06:23"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:07:37"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:07:38"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:07:39"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:07:43"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:07:43"}
+{"level":"info","message":"leonel curalli ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:07:46"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:07:55"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"19-09-2023 06:09:42"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"19-09-2023 06:10:04"}
+{"level":"info","message":"hilda silva ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:12:25"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:12:29"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:12:38"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:12:40"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:12:47"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:13:40"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:13:42"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:14:57"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:15:06"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:15:31"}
+{"level":"info","message":"hilda silva ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:16:34"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:16:35"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:16:38"}
+{"level":"info","message":"hilda silva ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 06:16:38"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:16:59"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:17:02"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:02"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:17:11"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:11"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:17:12"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:12"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:17:12"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:12"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:17:13"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:13"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 06:17:13"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:13"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 06:17:28"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:17:30"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 06:18:47"}
+{"level":"info","message":"El personal de control de estudio hilda silva ha iniciado sesion","timestamp":"19-09-2023 09:15:28"}
+{"level":"info","message":"hilda silva ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 09:15:30"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 09:15:32"}
+{"level":"info","message":"hilda silva ha entrado al módulo de los estudiantes","timestamp":"19-09-2023 09:15:34"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 09:15:55"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:15:58"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:17:08"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:17:39"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 09:17:52"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-12345678","timestamp":"19-09-2023 09:17:54"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 09:17:54"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:17:58"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:18:18"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:18:22"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:18:25"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:18:45"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:18:49"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:18:51"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:19:43"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:19:48"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:20:27"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:20:31"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:21:16"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:21:20"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:21:51"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:21:54"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 09:21:55"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:22:00"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:22:11"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:22:32"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:22:45"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:23:09"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:23:11"}
+{"level":"info","message":"hilda silva ha entrado a ver las notas del estudiante con cédula V-29890437","timestamp":"19-09-2023 09:23:12"}
+{"level":"info","message":"hilda silva ha entrado a ver la lista de los estudiantes","timestamp":"19-09-2023 09:24:34"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"20-09-2023 04:39:06"}
+{"level":"info","message":"leonel curalli ha entrado a ver los docentes registrados y puede que registre uno","timestamp":"20-09-2023 04:39:20"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 04:59:07"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:01:58"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:02:02"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:03:28"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:05:56"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:06:34"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:07:26"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:13:57"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:14:22"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:14:24"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:14:40"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:16:08"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:16:40"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:16:48"}
+{"level":"info","message":"leonel curalli va a ver, editar y/o crear carreras","timestamp":"20-09-2023 05:17:42"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:17:56"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:19:16"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:19:34"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:19:49"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:20:04"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:20:17"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:22:57"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 05:23:28"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"20-09-2023 05:24:42"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"20-09-2023 05:25:10"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"20-09-2023 05:26:46"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"20-09-2023 06:25:05"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"20-09-2023 06:25:11"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"20-09-2023 06:25:13"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"20-09-2023 06:25:14"}

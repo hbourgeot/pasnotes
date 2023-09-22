@@ -14,10 +14,10 @@
   gridColumns="grid-cols-3"
   slotDefault="place-self-center"
   slotTrail="place-content-end"
-  class="w-full h-[80px] sticky top-0"
+  class="w-full h-[80px] sticky top-0 z-[999]"
 >
   <svelte:fragment slot="lead">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb lg:text-xl">
    {#each $page.url.pathname.split('/') as segment, i}
      {#if segment && !/\d/.test(segment)}
       {#if i === $page.url.pathname.split('/').length - 1}
@@ -28,7 +28,7 @@
       {:else}
         <!-- No es último segmento, lo mostramos como un enlace -->
         <li class="crumb">
-          <a class="no-underline text-[#0879bd]" rel="prefetch" href={$page.url.pathname.split('/').slice(0, i + 1).join('/')}>
+          <a class="no-underline text-[#0879bd] font-bold" rel="prefetch" href={$page.url.pathname.split('/').slice(0, i + 1).join('/')}>
             {segment.charAt(0).toUpperCase() + segment.slice(1)}
           </a>
         </li>

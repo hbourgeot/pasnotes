@@ -17,7 +17,10 @@
   import ModalFile from "$lib/components/ModalFile.svelte";
   import { onMount } from "svelte";
   import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
+  
   import { Icon } from "@steeze-ui/svelte-icon";
+  import pascalConFondo from "$lib/images/pascalConFondo.png";
+  import { FileDownload } from "@steeze-ui/tabler-icons";
 
   export let data: PageData;
   export let form: ActionData;
@@ -109,6 +112,21 @@
     ]),
   };
 
+  let printBtn: HTMLButtonElement;
+  let header: HTMLElement;
+
+  const print = () => {
+    header.classList.toggle("hidden");
+    header.classList.toggle("flex");
+    document.querySelector(".app-bar")?.classList.toggle("hidden");
+    document.querySelector(".formField")?.classList.toggle("hidden");
+    window.print();
+    header.classList.toggle("hidden");
+    header.classList.toggle("flex");
+    document.querySelector(".app-bar")?.classList.toggle("hidden");
+    document.querySelector(".formField")?.classList.toggle("hidden");
+  };
+
   onMount(async () => {
     const response = await fetch(
       //@ts-ignore
@@ -193,10 +211,35 @@
     }
   }
 </script>
-
-<main class="flex justify-center items-center bg-transparent">
+<svelte:head>
+  <title>{data.materia.nombre} | Docentes | IUTEPAS</title>
+</svelte:head>
+<header bind:this="{header}" class="w-[800px] bg-white py-5 justify-start items-center px-8 hidden">
+  <img src="{pascalConFondo}" alt="" class="h-[fit-content] w-[200px]" />
+  <section class="text-center w-7/11">
+    <h2 class="text-2xl">S.C. IUTEPAS</h2>
+    <p class="text-sm">
+      Gaceta Oficial N° 36.104 / Decreto Presidencial de la República N° 1608
+    </p>
+    <p class="text-sm">RIF: J-307676744</p>
+    <p class="text-sm">
+      Calle Mariño C/C Páez, Edif.: 102-02-10, Piso 1, Apt S/N
+    </p>
+    <p class="text-sm">Sector Barrancón, Cagua, Edo. Aragua, ZP 2122</p>
+    <p class="text-sm">Telfs.: (0244) 395.93.89</p>
+  </section>
+  <section class="text-center w-[fit-content] text-sm bg-blue-400 border-1 border-blue-400 border-solid h-auto rounded-lg">
+    <p class="text-light-50 align-text-top text-center h-[30px]">
+      Fecha del reporte
+    </p>
+    <div class="p-1 !bg-[#EEEEEEEE] rounded-br-lg px-3 rounded-bl-lg">
+      <span>{new Date().toLocaleString()}</span>
+    </div>
+  </section>
+</header>
+<main class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]">
   <section class="w-full p-5">
-    ¨
+    <h1 class="text-3xl capitalize font-bold text-primary-500">{data.materia.nombre}</h1>
     {#if sourceData[0].cedula !== null}
     <Table
       source="{tableSource}"
@@ -208,6 +251,17 @@
     {/if}
   </section>
   <section class="w-full sticky">
+    <div class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5">
+      <button
+      bind:this="{printBtn}"
+      class="btn bg-pink-600 text-white save"
+      on:click="{print}">
+    
+        <Icon class='w-8 h-8' src={FileDownload}/>
+
+        Descargar Notas
+      </button>
+    </div>
     {#if sourceData[0].cedula !== null}
     <form
       use:enhance={handleSubmit}
@@ -217,7 +271,6 @@
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
         Asignacion de Notas
       </h3>
-
       <span class="w-[30%]">
         <label for="estudiante"> Estudiante </label>
         <input
