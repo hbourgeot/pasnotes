@@ -6,10 +6,13 @@
     type ModalComponent,
     Modal,
     Table,
+    type TableSource,
+    tableMapperValues,
+    Paginator,
   } from "@skeletonlabs/skeleton";
 
   import { TimePicker, Label } from "attractions";
-  import type { Docente } from "../../../../../app";
+  import type { Docente, Materia } from "../../../../../app";
   import type { ActionData, PageData, SubmitFunction } from "./$types";
   import ModalList from "$lib/components/ModalList.svelte";
   import { triggerToast } from "$lib/utils/toast";
@@ -24,6 +27,7 @@
 
   let docentesSelect: Docente[] = data.docentes as unknown as Docente[];
   let materias: string[] = data.materias;
+  let tableMaterias = data.tableMaterias;
   let listMaterias = data.list;
   let materiasIDs: string[] = [];
   let clicked: boolean = false;
@@ -33,17 +37,15 @@
   let horaInicio2: any = null;
   let horaFin2: any = null;
   let listOpen: boolean = false;
-
-  $: if (materiasIDs.length > 0) {
-    prelacion = materiasIDs.join(" - ");
-  }
-
-  $: if (form?.message) {
-    triggerToast(form.message);
-  }
-
-  const carreras = data.carreras ?? [];
-
+  let sourceData: Materia[] = tableMaterias;
+  let paginationSettings = {
+    limit: 5,
+    size: sourceData.length,
+    amounts: [1, 3, 5, 10],
+    offset: 0,
+  };
+  let diasDeClase: { label: string; value: string }[] = [];
+  let showExtraDays = false;
   let days = [
     { value: "lunes", label: "Lunes" },
     { value: "martes", label: "Martes" },
@@ -53,19 +55,19 @@
     { value: "sabado", label: "Sábado" },
     { value: "domingo", label: "Domingo" },
   ];
+  let tableSource: TableSource = {
+    head: ["ID", "Nombre", "U.C", "Semestre", "Prelación"],
+    body: tableMapperValues(sourceData, [
+      "id",
+      "nombre",
+      "unidad_credito",
+      "semestre",
+      "prelacion",
+    ]),
+  };
 
+  const carreras = data.carreras ?? [];
   const daysBackup = days;
-
-  let diasDeClase: { label: string; value: string }[] = [];
-  let showExtraDays = false;
-
-  function cambioDiaClase(e: any) {
-    diasDeClase = e.detail;
-    console.log(diasDeClase);
-    showExtraDays = diasDeClase?.length === 2;
-    days = showExtraDays ? [] : [...daysBackup]
-  }
-
   const modalComponentRegistry: Record<string, ModalComponent> = {
     // Custom Modal 1
     modalList: {
@@ -74,6 +76,41 @@
       props: { materias: listMaterias },
     },
   };
+
+  $: if (materiasIDs.length > 0) {
+    prelacion = materiasIDs.join(" - ");
+  }
+
+  $: if (form?.message) {
+    triggerToast(form.message);
+  }
+
+  $: tableMaterias = data.tableMaterias;
+  $: sourceData = data.tableMaterias.slice(
+    paginationSettings.offset * paginationSettings.limit,
+    paginationSettings.offset * paginationSettings.limit +
+      paginationSettings.limit
+  );
+
+  $: tableSource = {
+    head: ["ID", "Nombre", "U.C", "Semestre", "Prelación"],
+    body: tableMapperValues(sourceData, [
+      "id",
+      "nombre",
+      "unidad_credito",
+      "semestre",
+      "prelacion",
+    ]),
+  };
+
+  $: console.log(sourceData, paginationSettings);
+
+  function cambioDiaClase(e: any) {
+    diasDeClase = e.detail;
+    console.log(diasDeClase);
+    showExtraDays = diasDeClase?.length === 2;
+    days = showExtraDays ? [] : [...daysBackup];
+  }
 
   const handleAdd = async () => {
     try {
@@ -133,17 +170,18 @@
       await update();
     };
   };
+
+  const handleClick = (e: CustomEvent) => {};
 </script>
 
 <svelte:head>
-  <title>Carreras | Super usuario | IUTEPAS</title>
+  <title>Editar materias | Coordinadorss | IUTEPAS</title>
 </svelte:head>
 <div
   class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
 >
   <div class="p-8 rounded-xl shadow h-full w-1/2">
     <h2 class="text-2xl font-semibold mb-4 text-center">Editar materia</h2>
-    <h2 class="text-2xl font-semibold mb-4">Registrar Materia</h2>
     <form id="docente-form" method="post" use:enhance="{handleSubmit}">
       <div class="flex justify-between items-end gap-4">
         <div class="mb-4">
@@ -323,7 +361,7 @@
             on:input="{cambioDiaClase}"
             on:clear="{() => {
               showExtraDays = false;
-              diasDeClase=[];
+              diasDeClase = [];
               horaFin2 = null;
               horaInicio2 = null;
             }}"
@@ -431,18 +469,26 @@
       <button
         type="submit"
         class="bg-blue-600 w-full text-white px-4 py-2 rounded-md"
-        >Registrar materia</button
+        >Editar materia</button
       >
     </form>
   </div>
 
   <div class="p-8 rounded-xl shadow h-full w-1/2">
     <h2 class="text-2xl font-semibold mb-4 text-center">
-      Carreras registradas
+      Materias registradas
     </h2>
-    <!-- <Table source="{tableSource}" on:selected="{handleClick}" /> -->
+    <Table source="{tableSource}" on:selected={handleClick} interactive={true} />
+    <Paginator
+      bind:settings="{paginationSettings}"
+      showFirstLastButtons="{true}"
+      amountText="registros"
+      class="my-3"
+      separatorText="de"
+    />
   </div>
 </div>
+<Modal components="{modalComponentRegistry}" />
 
 <style>
   :global(.svelte-select input) {

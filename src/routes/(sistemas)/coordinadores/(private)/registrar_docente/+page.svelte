@@ -55,19 +55,18 @@
   };
 
   let paginationSettings = {
-    page: 0,
     limit: 3,
     size: sourceData.length,
     amounts: [1, 3, 5, 10],
-    offset: 1,
+    offset: 0,
   };
 
   $: docentes = data.docentes as unknown as Docente[];
   $: sourceData = docentes.slice(
-        paginationSettings.page * paginationSettings.limit,
-        paginationSettings.page * paginationSettings.limit +
-          paginationSettings.limit
-      );
+    paginationSettings.offset * paginationSettings.limit,
+    paginationSettings.offset * paginationSettings.limit +
+      paginationSettings.limit
+  );
   $: tableSource = {
     head: ["Cédula", "Correo", "Nombre", "Teléfono"],
     body: tableMapperValues(sourceData, [
@@ -77,7 +76,6 @@
       "telefono",
     ]),
   };
-
 </script>
 
 <svelte:head>
