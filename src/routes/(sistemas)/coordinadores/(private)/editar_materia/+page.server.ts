@@ -61,24 +61,16 @@ export const load = (async ({ locals: { client, coordinador, config } }) => {
     carreras: carrerasNoRepetidas,
     tableMaterias: dataMat.materias
       .filter((materia: Materia) => materia.id !== null)
-      .map((materia: Materia) => ({
-        ...materia,
-        prelacion:
-          materia.prelacion === "" || materia.prelacion === null
-            ? "no tiene"
-            : materia.prelacion,
-      })),
   };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-  default: async ({ locals: { client, superUsuario }, request, params }) => {
+  default: async ({ locals: { client, coordinador }, request }) => {
     const materia: any = Object.fromEntries(await request.formData());
     console.log(materia);
 
     const { ok, data } = await client.PUT(
-      "/api/materias/update/" + params,
-      materia
+      "/api/materias/update/" + materia.id, materia
     );
 
     console.log(ok, data);
@@ -86,7 +78,7 @@ export const actions: Actions = {
     if (!ok) return fail(400, { message: data.message });
 
     systemLogger.info(
-      `${superUsuario.nombre} ha editado la materia ${materia.nombre}`
+      `${coordinador.nombre} ha editado la materia ${materia.nombre}`
     );
 
     return { message: "Modificado exitosamente!" };
