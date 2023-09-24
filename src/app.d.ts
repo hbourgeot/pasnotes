@@ -64,6 +64,7 @@ interface Materia {
   hora_inicio2: string;
   hora_fin2: string;
   maximo: number;
+  modalidad: string;
   cantidad_estudiantes?: string;
   ciclo: string;
 }

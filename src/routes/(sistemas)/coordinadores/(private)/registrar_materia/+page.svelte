@@ -31,6 +31,7 @@
   let horaFin: any = null;
   let horaInicio2: any = null;
   let horaFin2: any = null;
+  let semestre = "1"
 
   $: if (materiasIDs.length > 0) {
     prelacion = materiasIDs.join(" - ");
@@ -239,7 +240,7 @@
               name="semestre"
               id="semestre"
               class="select py-2 px-7 outline-none"
-              value="1"
+              bind:value="{semestre}"
               required
             >
               <option value="1">1ro</option>
@@ -391,6 +392,7 @@
         <button
           type="button"
           on:click="{handleAdd}"
+          disabled={semestre == 1}
           class="bg-blue-600 text-white px-4 py-2 rounded-xl"
           >Seleccionar prelación de materias</button
         >
