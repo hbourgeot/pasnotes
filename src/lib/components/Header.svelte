@@ -12,7 +12,7 @@
     
   </svelte:fragment>
 	
-  <a href="/" class="xl:hidden w-full mx-3">
+  <a href="/" class="w-full mx-3">
     <img src={Logo} class="inline-block w-12 h-12 md:w-15 md:h-15" alt="logo" />
   </a>
 
