@@ -45,7 +45,7 @@
   let sourceData = docentes;
 
   let tableSource: TableSource = {
-    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
+    head: ["Cédula", "Correo", "Nombres y Apellidos", "Teléfono"],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -68,7 +68,7 @@
       paginationSettings.limit
   );
   $: tableSource = {
-    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
+    head: ["Cédula", "Correo", "Nombres y Apellidos", "Teléfono"],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",

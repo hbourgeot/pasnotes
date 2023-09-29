@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ locals: { client, coordinador } }) 
   })).filter(
     (docente: Docente, index: any, self: any) =>
       index === self.findIndex((t: Docente) => t.cedula === docente.cedula)
-  );;
+  );
 
   const { ok: okey, data: dataMat } = await client.GET("/api/materias");
   if (!okey) {

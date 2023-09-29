@@ -67,7 +67,7 @@
       "hora_inicio",
       "hora_fin",
       "unidad_credito",
-      "id_docente",
+      "docente",
     ]),
   };
 
@@ -144,7 +144,7 @@
           "hora_inicio",
           "hora_fin",
           "unidad_credito",
-          "id_docente",
+          "docente",
         ]),
         foot: [
           "Total de U.C",
