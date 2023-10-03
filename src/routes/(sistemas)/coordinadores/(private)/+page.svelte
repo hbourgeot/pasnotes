@@ -3,7 +3,7 @@
   import { ExpandMore, ExpandLess } from "@steeze-ui/material-design-icons";
   import type { PageData } from "./$types";
 
-  import type { Coordinacion } from "../../../app";
+  import type { Coordinacion } from "../../../../app";
 
   export let data: PageData;
 
@@ -44,6 +44,10 @@
         href="/coordinadores/materias"
         class="flex w-full justify-center items-center btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
         >Ver Materias</a
+      ><a
+        href="/coordinadores/estudiantes"
+        class="flex w-full justify-center items-center btn variant-filled h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Ver Estudiantes</a
       >
     </div>
 

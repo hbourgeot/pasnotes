@@ -11,7 +11,10 @@
 <svelte:head>
   <title>Materias | Coordinadores | IUTEPAS</title>
 </svelte:head>
-<div class='h-screen'>
+<div class='main relative'>
+  <div class="absolute top-5 right-5">
+    <a href="/coordinadores/editar_materia" class="btn variant-filled-primary">Editar materias</a>
+  </div>
   <div class="flex items-center p-10 flex-col w-full max-h-auto gap-6">
     <h1 class="w-[90%] text-2xl font-bold text-center capitalize">Materias del ciclo actual</h1>
   
@@ -58,3 +61,8 @@
     </div>
   </div>
 </div>
+<style lang="scss">
+  .main{
+    height: calc(100vh - 80px);
+  }
+</style>

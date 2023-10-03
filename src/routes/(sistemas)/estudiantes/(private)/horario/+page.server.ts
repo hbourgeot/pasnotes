@@ -1,6 +1,6 @@
 import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
-import type { Config, Materia } from "../../../../../app";
+import type { Docente, Materia } from "../../../../../app";
 import { systemLogger } from "$lib/server/logger";
 
 export const load: PageServerLoad = async ({
@@ -47,17 +47,35 @@ export const load: PageServerLoad = async ({
     if (data.message.includes("Usted")) {
       const { ok, data: {materias} } = await client.GET("/api/students/horario", null, headers)
       
+      
       return {materias, estudiante, horarioHecho: true}
     }
     return { materias: [], message: data.message }
   };
 
+  const materias: Materia[] = data.materias;
+
+  const { ok: okey, data: {docente: docentes} }: {ok: boolean, data: {docente: Docente[]}} = await client.GET('/api/docente')
+  console.log(okey,docentes);
+  if (!okey) {
+    return {materias, estudiante, message: "", horarioHecho: false}
+  }
+
+  const newMaterias: any[] = materias.map(item => ({
+    ...item,
+    docente: docentes.find((doc: Docente)=>doc.cedula==item.id_docente)?.nombre
+  }))
+
   systemLogger.warn(
     `El estudiante ${estudiante.nombre} entró a registrar su horario`
   );
 
-  const materias = data.materias;
-  return { materias, estudiante, message: "", horarioHecho: false };
+  return {
+    materias: newMaterias,
+    estudiante,
+    message: "",
+    horarioHecho: false,
+  };
 };
 
 export const actions: Actions = {

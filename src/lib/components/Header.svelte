@@ -1,89 +1,46 @@
-<script lang="ts">
+<script>
   import Logo from "$lib/images/logo.jpg";
   import { Icon } from "@steeze-ui/svelte-icon";
-  import { Menu } from "@steeze-ui/material-design-icons";
-  let x: number;
+  import { Menu, ArrowDropDown } from "@steeze-ui/material-design-icons";
+
+  import { AppBar } from '@skeletonlabs/skeleton';
+  import { TreeView, TreeViewItem } from "@skeletonlabs/skeleton";
 </script>
-<svelte:window bind:innerWidth="{x}"/>
-<nav
-  class="w-full h-[80px] bg-white !sticky top-0 z-50 cursor-default flex {x > 768 ? 'justify-between px-1' : 'justify-center'} items-center"
-  style="border-bottom: 1px solid rgb(229 231 235);
-"
->
-  <a href="/" class="h-full w-20 flex flex-center">
-    <img src="{Logo}" class="w-12 h-12 md:w-15 md:h-15" alt="" />
+
+<AppBar gridColumns="grid-cols-2" slotDefault="place-self-start" slotTrail="place-content-end" background="bg-white" padding="py-4" style="border-bottom: 1px solid rgb(229 231 235);">
+	<svelte:fragment slot="lead">
+    
+  </svelte:fragment>
+	
+  <a href="/" class="w-full mx-3">
+    <img src={Logo} class="inline-block w-12 h-12 md:w-15 md:h-15" alt="logo" />
   </a>
 
-  <ul class="h-full {x > 768 ? 'flex justify-between w-3/4 items-center' : 'hidden'}">
-    <li>
-      <a
-        href="/estudiantes/login"
-        class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500 hover:text-white"
-        >Estudiantes</a
-      >
-    </li>
-    <li>
-      <a
-        href="/docentes/login"
-        class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500 hover:text-white"
-        >Docentes</a
-      >
-    </li>
-    <li>
-      <a
-        href="/control_estudio/login"
-        class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500 hover:text-white"
-        >Control de Estudio</a
-      >
-    </li>
-    <li>
-      <a
-        href="/coordinadores/login"
-        class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500 hover:text-white"
-        >Coordinacion</a
-      >
-    </li>
-  </ul>
-
-  <details class="absolute w-full z-10 {x > 768 ? 'hidden' : ''}">
-    <summary class="">
-      <Icon src="{Menu}" class="ml-4 w-10 h-10 ease" />
-    </summary>
-
-    <div class="w-full mt-4 h-auto nav bg-pink-700 text-white">
-      <ul class="w-full h-full">
-        <li>
-          <a
-            href="/estudiantes/login"
-            class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500"
-            >Estudiantes</a
-          >
-        </li>
-        <li>
-          <a
-            href="/docentes/login"
-            class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500"
-            >Docentes</a
-          >
-        </li>
-        <li>
-          <a
-            href="/control_estudio/login"
-            class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500"
-            >Control de Estudio</a
-          >
-        </li>
-        <li>
-          <a
-            href="/coordinadores/login"
-            class="w-full h-20 flex justify-center items-center transition-colors hover:bg-pink-500"
-            >Coordinacion</a
-          >
-        </li>
-      </ul>
-    </div>
-  </details>
-</nav>
+	<svelte:fragment slot="trail">
+    <div class="block relative mr-4">
+      <TreeView>
+        <TreeViewItem>
+          Iniciar Sesión
+  
+          <svelte:fragment slot="children">
+            <div class="absolute bg-white z-10 mt-4 w-full rounded-sm p-2">
+              <TreeViewItem regionSymbol="hidden">
+                <span class="w-full text-center">
+                  <a href="/estudiantes/login">Estudiantes</a>
+                </span>
+              </TreeViewItem>
+              <TreeViewItem regionSymbol="hidden">
+                <span class="w-full text-center">
+                  <a href="/docentes/login">Docentes</a>
+                </span>  
+              </TreeViewItem>
+            </div>
+          </svelte:fragment>
+        </TreeViewItem>
+      </TreeView>
+    </div> 
+  </svelte:fragment>
+</AppBar>
 
 <style>
   summary::marker {
@@ -97,10 +54,15 @@
 
   ul li {
     width: 100%;
+    padding: 20px;
     text-align: center;
     cursor: pointer;
+
   }
 
+  .nav ul li:hover {
+    background-color: #0b101a;
+  }
   ul li:hover {
     font-weight: bold;
   }
