@@ -53,10 +53,15 @@ export const load: PageServerLoad = async ({
     return { materias: [], message: data.message }
   };
 
-  const materias: Materia[] = data.materias;
+  let materias: Materia[] = data.materias;
+  
+  materias = materias.map(mat => ({
+    ...mat,
+    disponible: mat?.cantidad_estudiantes !== mat?.maximo
+  }))
 
   const { ok: okey, data: {docente: docentes} }: {ok: boolean, data: {docente: Docente[]}} = await client.GET('/api/docente')
-  console.log(okey,docentes);
+  // console.log(okey,docentes);
   if (!okey) {
     return {materias, estudiante, message: "", horarioHecho: false}
   }
@@ -65,6 +70,8 @@ export const load: PageServerLoad = async ({
     ...item,
     docente: docentes.find((doc: Docente)=>doc.cedula==item.id_docente)?.nombre
   }))
+
+  console.log(newMaterias);
 
   systemLogger.warn(
     `El estudiante ${estudiante.nombre} entró a registrar su horario`
