@@ -34,6 +34,7 @@ export const load: PageServerLoad = async ({ locals: { client, coordinador } }) 
     .map((materia: Materia) => ({
       nombre: materia.nombre,
       id: materia.id,
+      disponible: materia?.cantidad_estudiantes !== materia?.maximo
     }));
 
   const { ok: isOk, data: { carreras } } = await client.GET("/api/carreras")

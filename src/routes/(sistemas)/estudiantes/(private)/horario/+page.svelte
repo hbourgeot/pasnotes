@@ -34,11 +34,10 @@
     triggerToast(data?.message);
   }
 
-  let materias: Materia[] = data.horarioHecho ? data.materias.map((materia: Materia) => ({...materia, docente: materia.id_docente})) : [];
+  let materias: Materia[] = data.horarioHecho ? data.materias.map((materia: Materia) => ({...materia, docente: materia.id_docente})) : data.materias;
   let materiasData: Materia[] = data.materias;
   let unidadesTotales: number | undefined = 0;
   let materia = data.materias[0]?.id ?? null;
-  let materiaDelete = "";
   let materiaObject: Materia | undefined;
   $: materiaObject = data.materias.findLast(
     (materi: Materia) => materi.id === materia

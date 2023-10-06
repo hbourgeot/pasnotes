@@ -57,7 +57,7 @@
         "No hay estudiantes que coincidan con esos términos de búsqueda",
         3000
       );
-      goto("/estudiantes");
+      goto("/coordinadores/estudiantes", { replaceState: true });
     }
   }
 
@@ -85,53 +85,57 @@
   <title>Filtrado de estudiantes - Administración IUTEPAS</title>
 </svelte:head>
 <section class="p-2 pt-5">
-  <div class="flex flex-col px-5 py-3 bg-white rounded-3xl w-full overflow-y-auto">
+  <div
+    class="flex flex-col px-5 py-3 bg-white rounded-3xl w-full overflow-y-auto"
+  >
     <h1 class="text-4xl text-center my-8">Lista de estudiantes</h1>
-    <table class="!text-lg table">
-      <thead>
-        <th>Cédula de Identidad</th>
-        <th>Nombres y Apellidos</th>
-        <th>Teléfono</th>
-        <th>Semestre</th>
-        <th>Estado</th>
-        <th>Carrera</th>
-        <th>Acciones</th>
-      </thead>
-      <tbody>
-        {#each paginatedSource as estudiante}
-          <tr>
-            <td class="!align-middle !text-lg">{estudiante.cedula}</td>
-            <td class="!align-middle !text-lg capitalize"
-              >{estudiante.nombre}</td
-            >
-            <td class="!align-middle !text-lg">{estudiante.telefono}</td>
-            <td class="!align-middle !text-lg">{estudiante.semestre}</td>
-            <td class="!align-middle !text-lg capitalize"
-              >{estudiante.estado}</td
-            >
-            <td class="!align-middle !text-lg capitalize"
-              >{estudiante.carrera}</td
-            >
-            <td class="!align-middle !text-lg">
-              <a
-                title="Ver notas"
-                href="/coordinadores/estudiantes/{estudiante.cedula}"
-                class="font-bold btn btn-icon variant-filled-primary"
-                ><Icon src="{Eye}" /></a
+    <div class="overflow-x-auto">
+      <table class="!text-lg table whitespace-nowrap">
+        <thead>
+          <th>Cédula de Identidad</th>
+          <th>Nombres y Apellidos</th>
+          <th>Teléfono</th>
+          <th>Semestre</th>
+          <th>Estado</th>
+          <th>Carrera</th>
+          <th>Acciones</th>
+        </thead>
+        <tbody>
+          {#each paginatedSource as estudiante}
+            <tr>
+              <td class="!align-middle !text-lg">{estudiante.cedula}</td>
+              <td class="!align-middle !text-lg capitalize"
+                >{estudiante.nombre}</td
               >
-              <button
-                type="button"
-                class="btn btn-icon variant-filled-secondary"
-                title="Descargar ficha"
-                on:click="{() => generate(estudiante.cedula)}"
+              <td class="!align-middle !text-lg">{estudiante.telefono}</td>
+              <td class="!align-middle !text-lg">{estudiante.semestre}</td>
+              <td class="!align-middle !text-lg capitalize"
+                >{estudiante.estado}</td
               >
-                <Icon src="{Download}" />
-              </button>
-            </td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
+              <td class="!align-middle !text-lg capitalize"
+                >{estudiante.carrera}</td
+              >
+              <td class="!align-middle !text-lg">
+                <a
+                  title="Ver notas"
+                  href="/coordinadores/estudiantes/{estudiante.cedula}"
+                  class="font-bold btn btn-icon variant-filled-primary"
+                  ><Icon src="{Eye}" /></a
+                >
+                <button
+                  type="button"
+                  class="btn btn-icon variant-filled-secondary"
+                  title="Descargar ficha"
+                  on:click="{() => generate(estudiante.cedula)}"
+                >
+                  <Icon src="{Download}" />
+                </button>
+              </td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
     <Paginator
       bind:settings="{paginationSettings}"
       showFirstLastButtons="{true}"

@@ -59,8 +59,8 @@
 
 <div class="flex h-screen items-center p-10 flex-col w-full max-h-auto gap-6 relative">
   
-  <h2 class="text-4xl">
-    Materias de la carrera {data.carrera.nombre} ({data.semestre})
+  <h2 class="text-3xl">
+    Materias de la Carrera {data.carrera.nombre} ({data.semestre})
   </h2>
   <Table
     on:selected={redirectTable}
