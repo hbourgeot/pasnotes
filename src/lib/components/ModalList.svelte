@@ -5,6 +5,7 @@
   // Props
   /** Exposes parent props to this component. */
   export let parent: any;
+  export let estudiantes: boolean;
   export let materias: Materia[];
 
   let materiasSelect = materias.map((materia) => ({
@@ -41,7 +42,10 @@
       {$modalStore[0].title ?? "(title missing)"}
     </header>
     <article>{$modalStore[0].body ?? "(body missing)"}
-    <p class="text-sm mt-3"><span class="text-orange-600 font-bold">ADVERTENCIA:</span> las materias que tengan una línea por encima, es porque ya no aceptan más inscripciones</p></article>
+      {#if estudiantes}
+    <p class="text-sm mt-3"><span class="text-orange-600 font-bold">ADVERTENCIA:</span> las materias que tengan una línea por encima, es porque ya no aceptan más inscripciones</p>
+    {/if}
+  </article>
     <ListBox
       class="border border-surface-500 p-4 rounded-container-token"
       multiple

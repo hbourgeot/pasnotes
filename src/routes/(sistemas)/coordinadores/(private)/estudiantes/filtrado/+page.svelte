@@ -115,7 +115,7 @@
             <td class="!align-middle !text-lg">
               <a
                 title="Ver notas"
-                href="/control_estudio/estudiantes/{estudiante.cedula}"
+                href="/coordinadores/estudiantes/{estudiante.cedula}"
                 class="font-bold btn btn-icon variant-filled-primary"
                 ><Icon src="{Eye}" /></a
               >
