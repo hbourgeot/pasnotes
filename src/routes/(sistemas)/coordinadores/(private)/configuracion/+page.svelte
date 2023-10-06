@@ -1,21 +1,5 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import {
-    Toast,
-    toastStore,
-    type ToastSettings,
-    InputChip,
-    Autocomplete,
-    type AutocompleteOption,
-    type PopupSettings,
-    popup,
-  } from "@skeletonlabs/skeleton";
-
-  import {
-    TimePicker,
-    TimePickerSelect,
-    SelectItem,
-  } from "carbon-components-svelte";
   import type { Docente } from "../../../../../app";
   import type { ActionData, PageData } from "./$types";
   import { onMount } from "svelte";
@@ -199,7 +183,7 @@
       </div>
       <div>
         <label for="horario_fin"
-          >Horario de Cierre para inscribir horarios:</label
+          >Fecha de Cierre para inscribir horarios:</label
         >
         <input
           class="input (date) h-10 p-2"

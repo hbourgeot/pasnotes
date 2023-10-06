@@ -69,7 +69,7 @@
 
   // Obtener la fecha formateada
   var fecha =
-    "En Cagua a los " +
+    "a los " +
     numerosPalabras[dia - 1] +
     " días del mes de " +
     meses[mes] +

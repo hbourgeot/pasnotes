@@ -79,15 +79,15 @@
     ]),
   };
 
-  const generate = async (cedula: string) => {
+  const generate = async () => {
     try {
-      const response = await fetch(`/api/archivos/docenterias`);
+      const response = await fetch(`/api/archivos/docenteria`);
 
       const el = document.createElement("a");
       const file = await response.blob();
       const fileHref = URL.createObjectURL(file);
       el.href = fileHref;
-      el.download = `${cedula}.pdf`;
+      el.download = `lista_docentes_materias.pdf`;
       el.click();
     } catch (e) {
       console.error(e);
@@ -99,7 +99,7 @@
   <title>Registrar docentes | Coordinadores | IUTEPAS</title>
 </svelte:head>
 <div class="h-screen flex flex-col lg:justify-center lg:items-center relative">
-<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-full absolute top-5 right-5 flex gap-3"
+<button type="button" on:click="{generate}" class="bg-blue-600 text-white px-4 py-2 rounded-full absolute top-5 right-5 flex gap-3"
           ><Icon src={FileDownload}/> Lista de docentes con materias</button
         >
   <div

@@ -23,7 +23,6 @@
     "@types/jsonwebtoken": "^9.0.2",
     "attractions": "^3.7.0",
     "autoprefixer": "^10.4.14",
-    "carbon-components-svelte": "^0.79.0",
     "html2canvas": "^1.4.1",
     "postcss": "^8.4.24",
     "postcss-load-config": "^4.0.1",

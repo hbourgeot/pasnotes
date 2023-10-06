@@ -34,7 +34,7 @@
     triggerToast(data?.message);
   }
 
-  let materias: Materia[] = data.horarioHecho ? data.materias.map((materia: Materia) => ({...materia, dia: dias[parseInt(materia.dia)]})) : [];
+  let materias: Materia[] = data.horarioHecho ? data.materias.map((materia: Materia) => ({...materia, docente: materia.id_docente})) : [];
   let materiasData: Materia[] = data.materias;
   let unidadesTotales: number | undefined = 0;
   let materia = data.materias[0]?.id ?? null;
@@ -76,7 +76,7 @@
     modalList: {
       // Pass a reference to your custom component
       ref: ModalList,
-      props: { materias: data.materias },
+      props: { materias: data.materias, estudiantes: true },
     },
   };
 
@@ -194,7 +194,7 @@
     >
   {/if}
 
-  <Table source="{tableSimple}" class="md:mx-auto" />
+  <Table source="{tableSimple}" class="md:mx-auto" regionHeadCell="normal-case"/>
 
   {#if materias.length > 0 && !data.horarioHecho}
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"
@@ -204,3 +204,7 @@
   {/if}
 </form>
 <Modal components="{modalComponentRegistry}" />
+
+<style>
+
+</style>
