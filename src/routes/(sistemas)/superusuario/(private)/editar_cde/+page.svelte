@@ -74,6 +74,7 @@
     ]),
   };
 </script>
+
 <svelte:head>
   <title>Editar personal | Super usuario | IUTEPAS</title>
 </svelte:head>

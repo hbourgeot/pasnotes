@@ -41,9 +41,9 @@ export const actions: Actions = {
     }
 
     systemLogger.info(
-      `${superUsuario.nombre} ha registrado a un control llamado ${payload.fullname}`
+      `${superUsuario.nombre} ha editado a un control llamado ${payload.fullname}`
     );
 
-    return { message: "Personal creado!" };
+    return { message: "Personal editado exitosamente" };
   },
 };

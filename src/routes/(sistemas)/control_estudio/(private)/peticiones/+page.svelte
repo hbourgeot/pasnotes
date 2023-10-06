@@ -11,7 +11,7 @@
   $: if (toChange) {
     console.log(peticiones);
     peticiones = data.peticiones.filter(
-      (peticion) => peticion.peticion.estado === toChange
+      (peticion) => peticion.peticion.estado.includes(toChange)
     );
   }
 </script>

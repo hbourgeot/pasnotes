@@ -84,6 +84,7 @@ export const actions: Actions = {
     
     const { ok, data } = await client.POST("/api/peticiones/add", obj)
     systemLogger.warn(`El docente ${docente.nombre} realizó una petición de modificación de nota del corte nro ${obj.nombre_campo} en la materia ${params.materia} para el estudiante ${obj.id_estudiante}`)
+    if(!ok) return {message: "Hubo un problema al realizar la petición, por favor intente de nuevo"}
 
     return {message: "Petición realizada"}
   }

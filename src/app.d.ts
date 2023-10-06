@@ -64,8 +64,10 @@ interface Materia {
   hora_inicio2: string;
   hora_fin2: string;
   maximo: number;
-  cantidad_estudiantes?: string;
+  modalidad: string;
+  cantidad_estudiantes?: number;
   ciclo: string;
+  disponible?: boolean;
 }
 
 interface Config {
