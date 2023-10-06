@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({
   if (!ok) return { cedula: "", carrera: "", nombre: "" };
 
   let carrera: string = data.carreras.find(
-    (carrera: { id: number; nombre: string }) =>
+    (carrera: { id: string; nombre: string }) =>
       carrera.id === estudiante.carrera
   ).nombre;
 

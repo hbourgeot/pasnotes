@@ -2,19 +2,12 @@ import { systemLogger } from '$lib/server/logger';
 import type { Peticiones } from '../../../../../app';
 import type { Actions, PageServerLoad } from './$types';
 
-interface PeticionesData{
-  docente: { cedula: string, nombre: string },
-  estudiante: { cedula: string, nombre: string },
-  materia: { id: string, nombre: string },
-  peticion: Peticiones
-}
-
 export const load = (async ({ locals: { client, controlEstudio } }) => {
     systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las peticiones`)
     const { ok, data } = await client.GET("/api/peticiones")
     if (!ok) return { peticiones: [] }
 
-  const peticiones: PeticionesData[] = data;
+  const peticiones: Peticiones[] = data;
   
   console.log(peticiones);
     

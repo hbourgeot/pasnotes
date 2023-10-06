@@ -64,16 +64,17 @@
     nombreCarrera = e.detail[1];
   };
 </script>
+
 <svelte:head>
   <title>Carreras | Super usuario | IUTEPAS</title>
 </svelte:head>
 <div
-  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
+  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center rounded-xl"
 >
   {#if form?.message}
     <Toast position="t" />
   {/if}
-  <div class="p-8 rounded-xl shadow h-full w-1/2">
+  <div class="p-8 rounded-xl shadow h-full w-1/2 flex flex-col justify-center bg-white">
     <h2 class="text-2xl font-semibold mb-4 text-center">
       {#if isEditar}Editar{:else}Agregar{/if} Carrera
     </h2>
@@ -122,12 +123,11 @@
       name="isEditar"
       active="bg-primary-500"
       class="my-3"
-      size="lg"
-      >Cambiar modo</SlideToggle
+      size="lg">Cambiar modo</SlideToggle
     >
   </div>
 
-  <div class="p-8 rounded-xl shadow h-full w-full">
+  <div class="p-8 rounded-xl shadow h-full w-full flex flex-col justify-center bg-white">
     <h2 class="text-2xl font-semibold mb-4 text-center">
       Carreras registradas
     </h2>
@@ -138,3 +138,9 @@
     />
   </div>
 </div>
+
+<style>
+  .container {
+    height: calc(100vh - 82px);
+  }
+</style>

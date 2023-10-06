@@ -62,7 +62,7 @@
 
     <div class="w-11/12 lg:w-10/12">
       <h2 class="text-center text-[18px] font-bold mb-4">
-        Informacion general
+        Información general
       </h2>
 
       <details
@@ -79,13 +79,13 @@
             <Icon src="{ExpandLess}" class="icon " />
           </span>
 
-          Informacion del super usuario
+          Información del super usuario
         </summary>
         <div
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200"
         >
           <span>
-            <h2>Cedula:</h2>
+            <h2>Cédula:</h2>
             <p>{superUsuario.cedula}</p>
           </span>
           <span>

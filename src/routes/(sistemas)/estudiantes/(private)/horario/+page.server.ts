@@ -1,12 +1,12 @@
 import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
-import type { Config, Materia } from "../../../../../app";
+import type { Docente, Materia } from "../../../../../app";
 import { systemLogger } from "$lib/server/logger";
 
 export const load: PageServerLoad = async ({
-  locals: { client, estudiante, config }, cookies,
+  locals: { client, estudiante, config },
+  cookies,
 }) => {
-
   let headers = {
     Accept: "*/*",
     Authorization: cookies.get("access_token"),
@@ -23,8 +23,9 @@ export const load: PageServerLoad = async ({
     return {
       materias: [],
       estudiante: null,
-      message: `Aun no puede inscribir materias. espere al ${inicio.getDate()}-${inicio.getMonth() + 1
-        }`,
+      message: `Aun no puede inscribir materias. espere al ${inicio.getDate()}-${
+        inicio.getMonth() + 1
+      }`,
     };
   }
 
@@ -41,24 +42,54 @@ export const load: PageServerLoad = async ({
 
   const { ok, data } = await client.GET(
     `/api/materias/inscribir/${estudiante.cedula}`
-  );  
+  );
 
   if (!ok) {
     if (data.message.includes("Usted")) {
-      const { ok, data: {materias} } = await client.GET("/api/students/horario", null, headers)
-      
-      
-      return {materias, estudiante, horarioHecho: true}
+      const {
+        ok,
+        data: { materias },
+      } = await client.GET("/api/students/horario", null, headers);
+      console.log(materias);
+
+      return { materias, estudiante, horarioHecho: true };
     }
-    return { materias: [], message: data.message }
-  };
+    return { materias: [], message: data.message };
+  }
+
+  let materias: Materia[] = data.materias;
+
+  materias = materias.map((mat) => ({
+    ...mat,
+    dia: `${mat.dia}${mat.dia2 ? ", " + mat.dia2 : ""}`,
+    disponible: mat?.cantidad_estudiantes !== mat?.maximo,
+    docente: docentes.find((doc: Docente) => doc.cedula == mat.id_docente)
+      ?.nombre,
+  }));
+
+  const {
+    ok: okey,
+    data: { docente: docentes },
+  }: { ok: boolean; data: { docente: Docente[] } } = await client.GET(
+    "/api/docente"
+  );
+  // console.log(okey,docentes);
+  if (!okey) {
+    return { materias, estudiante, message: "", horarioHecho: false };
+  }
+
+  console.log(materias);
 
   systemLogger.warn(
     `El estudiante ${estudiante.nombre} entró a registrar su horario`
   );
 
-  const materias = data.materias;
-  return { materias, estudiante, message: "", horarioHecho: false };
+  return {
+    materias: materias,
+    estudiante,
+    message: "",
+    horarioHecho: false,
+  };
 };
 
 export const actions: Actions = {
@@ -84,45 +115,44 @@ export const actions: Actions = {
     }
 
     for (const materia of materiasIDs) {
-       const currentMateria: Materia = materias.find(
-         (mat: Materia) => mat.id === materia
-       ) as unknown as Materia;
+      const currentMateria: Materia = materias.find(
+        (mat: Materia) => mat.id === materia
+      ) as unknown as Materia;
 
-       const demasMaterias = materias.filter(
-         (mat: Materia) =>
-           mat.id !== currentMateria.id && mat.dia === currentMateria.dia
-       );
+      const demasMaterias = materias.filter(
+        (mat: Materia) =>
+          mat.id !== currentMateria.id && mat.dia === currentMateria.dia
+      );
 
-       const [currentHoraInicioH, currentHoraInicioM] =
-         currentMateria.hora_inicio.split(":").map(Number);
-       const [currentHoraFinalH, currentHoraFinalM] = currentMateria.hora_fin
-         .split(":")
-         .map(Number);
+      const [currentHoraInicioH, currentHoraInicioM] =
+        currentMateria.hora_inicio.split(":").map(Number);
+      const [currentHoraFinalH, currentHoraFinalM] = currentMateria.hora_fin
+        .split(":")
+        .map(Number);
 
-       const materiaEnConflicto = demasMaterias.find((mat: Materia) => {
-         const [matHoraInicioH, matHoraInicioM] = mat.hora_inicio
-           .split(":")
-           .map(Number);
-         const [matHoraFinalH, matHoraFinalM] = mat.hora_fin
-           .split(":")
-           .map(Number);
+      const materiaEnConflicto = demasMaterias.find((mat: Materia) => {
+        const [matHoraInicioH, matHoraInicioM] = mat.hora_inicio
+          .split(":")
+          .map(Number);
+        const [matHoraFinalH, matHoraFinalM] = mat.hora_fin
+          .split(":")
+          .map(Number);
 
-         return (
-           ((matHoraInicioH > currentHoraInicioH ||
-             (matHoraInicioH === currentHoraInicioH &&
-               matHoraInicioM >= currentHoraInicioM)) &&
-             (matHoraInicioH < currentHoraFinalH ||
-               (matHoraInicioH === currentHoraFinalH &&
-                 matHoraInicioM < currentHoraFinalM))) ||
-           ((matHoraFinalH > currentHoraInicioH ||
-             (matHoraFinalH === currentHoraInicioH &&
-               matHoraFinalM > currentHoraInicioM)) &&
-             (matHoraFinalH < currentHoraFinalH ||
-               (matHoraFinalH === currentHoraFinalH &&
-                 matHoraFinalM <= currentHoraFinalM)))
-         );
-       });
-
+        return (
+          ((matHoraInicioH > currentHoraInicioH ||
+            (matHoraInicioH === currentHoraInicioH &&
+              matHoraInicioM >= currentHoraInicioM)) &&
+            (matHoraInicioH < currentHoraFinalH ||
+              (matHoraInicioH === currentHoraFinalH &&
+                matHoraInicioM < currentHoraFinalM))) ||
+          ((matHoraFinalH > currentHoraInicioH ||
+            (matHoraFinalH === currentHoraInicioH &&
+              matHoraFinalM > currentHoraInicioM)) &&
+            (matHoraFinalH < currentHoraFinalH ||
+              (matHoraFinalH === currentHoraFinalH &&
+                matHoraFinalM <= currentHoraFinalM)))
+        );
+      });
 
       if (materiaEnConflicto) {
         return fail(400, {
@@ -140,7 +170,9 @@ export const actions: Actions = {
       }
     }
 
-    systemLogger.warn(`El estudiante ${estudiante.nombre} ha terminado de registrar su horario satisfactoriamente`)
+    systemLogger.warn(
+      `El estudiante ${estudiante.nombre} ha terminado de registrar su horario satisfactoriamente`
+    );
 
     return { message: "¡Su horario ha sido inscrito exitosamente!" };
   },
