@@ -74,7 +74,7 @@
           <option value="disabled" disabled>Filtrar por carrera</option>
           <option value="">Todas las carreras</option>
           {#each carreras as carrera}
-            <option value="{carrera.id}">{carrera.nombre}</option>
+            <option value="{carrera.nombre.toLowerCase()}">{carrera.nombre}</option>
           {/each}
         </select>
       </label>

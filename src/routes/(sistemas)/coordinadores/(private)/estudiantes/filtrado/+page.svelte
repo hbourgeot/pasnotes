@@ -43,7 +43,9 @@
     amounts: [3, 5, 10, 20],
     offset: 0,
   };
+
   let paginatedSource = $estudianteSearch.filtered;
+
   $: paginatedSource = $estudianteSearch.filtered.slice(
     paginationSettings.offset * paginationSettings.limit,
     paginationSettings.offset * paginationSettings.limit +

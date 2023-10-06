@@ -6,6 +6,7 @@
     Toast,
     tableMapperValues,
     Table,
+    Paginator,
   } from "@skeletonlabs/skeleton";
   import type { ActionData, PageData } from "./$types";
   import type { SubmitFunction } from "@sveltejs/kit";
@@ -37,7 +38,18 @@
   };
 
   let sourceData = data.controlEstudio as unknown as ControlEstudio[];
-  $: sourceData = data.controlEstudio as unknown as ControlEstudio[];
+  let paginationSettings = {
+    limit: 5,
+    size: sourceData.length,
+    amounts: [3, 5, 10, 20],
+    offset: 0,
+  };
+  
+  $: sourceData = data.controlEstudio?.slice(
+    paginationSettings.offset * paginationSettings.limit,
+    paginationSettings.offset * paginationSettings.limit +
+      paginationSettings.limit
+  ) as unknown as ControlEstudio[];
 
   let disabled = true;
   let cde: ControlEstudio;
@@ -74,22 +86,23 @@
     ]),
   };
 </script>
+
 <svelte:head>
   <title>Editar personal | Super usuario | IUTEPAS</title>
 </svelte:head>
 <div
-  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
+  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col-reverse lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white full"
 >
   {#if form?.message}
     <Toast position="t" />
   {/if}
-  <div class="p-8 rounded-xl shadow h-full w-1/2">
+  <div class="p-8 rounded-xl shadow w-full lg:w-1/2">
     <h2 class="text-2xl font-semibold mb-4 text-center">
       Editar Personal de Control de Estudio
     </h2>
     <form id="docente-form" method="post" use:enhance="{handleSubmit}">
       <div class="mb-4">
-        <label for="cedula" class="label">Cedula</label>
+        <label for="cedula" class="label">Cédula</label>
         <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
           <select class="select" bind:value="{identidad}" disabled>
             <option value="V">V</option>
@@ -111,7 +124,7 @@
         <input
           type="text"
           id="nombre"
-          value={cde?.nombre ?? ""}
+          value="{cde?.nombre ?? ''}"
           name="nombre"
           class="input (text) py-2 px-7"
           disabled="{disabled}"
@@ -131,32 +144,52 @@
         />
       </div>
       <div class="mb-4">
-        <label for="telefono" class="label">Telefono</label>
+        <label for="telefono" class="label">Teléfono (Sólo números)</label>
         <input
           type="tel"
+          pattern="[0-9]"
           id="telefono"
           name="telefono"
           class="input py-2 px-7"
           disabled="{disabled}"
-          value={cde?.telefono ?? ''}
+          value="{cde?.telefono ?? ''}"
           required
         />
       </div>
-      <button type="reset" on:click="{() => disabled = true}" class="bg-pink-600 rounded-2xl mr-2 text-white px-4 py-2 rounded"
-        >Resetear campos</button
-      >
-      <button type="submit" class="bg-blue-600 rounded-2xl text-white px-4 py-2 rounded"
-        >Editar personal</button
-      >
+      <div class="flex flex-wrap gap-3">
+        <button
+          type="reset"
+          on:click="{() => (disabled = true)}"
+          class="bg-pink-600 rounded-2xl mr-2 text-white px-4 py-2"
+          >Resetear campos</button
+        >
+        <button
+          type="submit"
+          class="bg-blue-600 rounded-2xl text-white px-4 py-2"
+          >Editar personal</button
+        >
+      </div>
     </form>
   </div>
 
-  <div class="p-8 rounded-xl shadow h-full w-full">
+  <div class="p-8 rounded-xl shadow w-full">
     <h2 class="text-2xl font-semibold mb-4 text-center">Personal registrado</h2>
     <Table
       source="{tableSource}"
       interactive="{true}"
       on:selected="{handleClick}"
     />
+    <Paginator
+      bind:settings="{paginationSettings}"
+      showFirstLastButtons="{true}"
+      amountText="registros"
+      class="mt-3 mb-3"
+      separatorText="de"
+    />
   </div>
 </div>
+<style>
+  .full{
+    height: calc(100vh - 80px);
+  }
+</style>
