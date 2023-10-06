@@ -78,7 +78,7 @@
   <title>Editar personal | Super usuario | IUTEPAS</title>
 </svelte:head>
 <div
-  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
+  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-start gap-3 rounded-xl min-h-[95vh]"
 >
   {#if form?.message}
     <Toast position="t" />
