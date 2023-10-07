@@ -83,7 +83,7 @@
 
     <div class="w-11/12 lg:w-10/12">
       <h2 class="text-center text-[18px] font-bold mb-4">
-        Informacion general
+        Información general
       </h2>
 
       <details class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4">
@@ -103,7 +103,7 @@
           class="w-full mt-6 h-auto flex flex-wrap flex-col gap-6 [&>span]:w-full [&>span]:flex [&>span]:justify-between [&>span]:border-b [&>span]:border-gray-200 text-sm lg:text-xl"
         >
           <span>
-            <h2>C´rdula:</h2>
+            <h2>Cédula:</h2>
             <p>{estudiante.cedula}</p>
           </span>
           <span>
@@ -156,7 +156,7 @@
                     >Descargar <Icon src="{Download}" /></a
                   >
                 {:else}
-                  <p>No hay planificacion</p>
+                  <p>No hay planificación</p>
                 {/if}
               </span>
             {/each}

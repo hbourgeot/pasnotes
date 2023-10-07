@@ -31,7 +31,7 @@
   let horaFin: any = null;
   let horaInicio2: any = null;
   let horaFin2: any = null;
-  let semestre = "1"
+  let semestre = 1
 
   $: if (materiasIDs.length > 0) {
     prelacion = materiasIDs.join(" - ");
@@ -75,7 +75,7 @@
     modalList: {
       // Pass a reference to your custom component
       ref: ModalList,
-      props: { materias: listMaterias },
+      props: { materias: listMaterias,  estudiantes: false },
     },
   };
 
@@ -87,7 +87,7 @@
           // Pass the component registry key as a string:
           component: "modalList",
           title: "Seleccionar materias",
-          body: "Selecciona las materias que deseas inscribir, vuelve a pulsar en ella para descartarla de la inscripcion",
+          body: "Selecciona las materias que deseas para la prelación",
           response: (r: string[]) => {
             resolve(r);
           },
@@ -243,12 +243,12 @@
               bind:value="{semestre}"
               required
             >
-              <option value="1">1ro</option>
-              <option value="2">2do</option>
-              <option value="3">3ro</option>
-              <option value="4">4to</option>
-              <option value="5">5to</option>
-              <option value="6">6to</option>
+              <option value={1}>1ro</option>
+              <option value={2}>2do</option>
+              <option value={3}>3ro</option>
+              <option value={4}>4to</option>
+              <option value={5}>5to</option>
+              <option value={6}>6to</option>
             </select>
 
             <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />

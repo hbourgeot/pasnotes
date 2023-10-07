@@ -16,7 +16,7 @@
     <a href="/coordinadores/editar_materia" class="btn variant-filled-primary">Editar materias</a>
   </div>
   <div class="flex items-center p-10 flex-col w-full max-h-auto gap-6">
-    <h1 class="w-[90%] text-2xl font-bold text-center capitalize">Materias del ciclo actual</h1>
+    <h1 class="w-[90%] text-2xl font-bold text-center">Materias del Ciclo Actual</h1>
   
     <div class="bg-[#56befb] rounded-2xl p-4 lg:w-2/5 w-3/4 mx-auto">
       <TreeView regionChildren="w-full">
