@@ -23,13 +23,13 @@
       {#if i === $page.url.pathname.split('/').length - 1}
         <!-- Es último segmento, lo mostramos como texto -->
         <li class="crumb">
-          {segment.charAt(0).toUpperCase() + segment.slice(1)}
+          {segment.charAt(0).toUpperCase() + segment.slice(1).replace("_", " ")}
         </li>
       {:else}
         <!-- No es último segmento, lo mostramos como un enlace -->
         <li class="crumb">
           <a class="no-underline text-[#0879bd] font-bold" rel="prefetch" href={$page.url.pathname.split('/').slice(0, i + 1).join('/')}>
-            {segment.charAt(0).toUpperCase() + segment.slice(1)}
+            {segment.charAt(0).toUpperCase() + segment.slice(1).replace("_", " ")}
           </a>
         </li>
           <li class="crumb-separator" aria-hidden><Icon src={ChevronRight} class="w-5 h-5"/> </li>
