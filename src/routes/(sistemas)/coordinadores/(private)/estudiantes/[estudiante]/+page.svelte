@@ -25,8 +25,7 @@
     } catch (e) {
       console.error(e);
       triggerToast("El estudiante no tiene materias inscritas");
-      goto('/coordinadores');
-      
+      goto("/coordinadores");
     }
   }
 
@@ -62,7 +61,7 @@
     >
   </h2>
   <Table
-    source="{tableSource}"
+    source={tableSource}
     class="w-10/12 lg:w-3/5 mb-5 lg:mx-auto"
     text="text-xl"
     regionCell="!text-xl"

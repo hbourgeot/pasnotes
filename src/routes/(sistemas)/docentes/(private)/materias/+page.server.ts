@@ -7,6 +7,8 @@ export const load = (async ({ locals: { client, docente } }) => {
   );
   if (!ok) return { docente: null, materias: [] };
 
-  systemLogger.info(`${docente.nombre} ha entrado a ver las materias que imparte`)
+  systemLogger.info(
+    `${docente.nombre} ha entrado a ver las materias que imparte`
+  );
   return { docente: data.docente, materias: data.materias };
 }) satisfies PageServerLoad;

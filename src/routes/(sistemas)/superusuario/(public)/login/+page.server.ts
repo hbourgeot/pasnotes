@@ -1,6 +1,6 @@
 import { fail, redirect } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
-import {  logInSuperUsuario } from "$lib/server/auth";
+import { logInSuperUsuario } from "$lib/server/auth";
 
 export const load = (async ({ locals: { superUsuario } }) => {
   if (superUsuario) {

@@ -79,28 +79,30 @@
   <title>Editar personal | Super usuario | IUTEPAS</title>
 </svelte:head>
 <div
-  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-start gap-3 rounded-xl min-h-[95vh] "
+  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-start gap-3 rounded-xl min-h-[95vh]"
 >
   {#if form?.message}
     <Toast position="t" />
   {/if}
 
-  <section class='flex bg-white shadow rounded-xl'> 
-    <div class="p-8  h-full w-1/2">
+  <section class="flex bg-white shadow rounded-xl">
+    <div class="p-8 h-full w-1/2">
       <h2 class="text-2xl font-semibold mb-4 text-center">
         Editar Personal de Control de Estudio
       </h2>
-      <form id="docente-form" method="post" use:enhance="{handleSubmit}">
+      <form id="docente-form" method="post" use:enhance={handleSubmit}>
         <div class="mb-4">
           <label for="cedula" class="label">Cedula</label>
-          <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-            <select class="select" bind:value="{identidad}" disabled>
+          <div
+            class="input-group input-group-divider grid-cols-[auto_1fr_auto]"
+          >
+            <select class="select" bind:value={identidad} disabled>
               <option value="V">V</option>
               <option value="E">E</option>
             </select>
             <input
               type="number"
-              bind:value="{cedula}"
+              bind:value={cedula}
               min="1000000"
               id="cedula"
               class="input (text) py-2 px-7"
@@ -117,7 +119,7 @@
             value={cde?.nombre ?? ""}
             name="nombre"
             class="input (text) py-2 px-7"
-            disabled="{disabled}"
+            {disabled}
             required
           />
         </div>
@@ -127,9 +129,9 @@
             type="email"
             id="correo"
             name="correo"
-            value="{cde?.correo ?? ''}"
+            value={cde?.correo ?? ""}
             class="input (text) py-2 px-7"
-            disabled="{disabled}"
+            {disabled}
             required
           />
         </div>
@@ -140,28 +142,34 @@
             id="telefono"
             name="telefono"
             class="input py-2 px-7"
-            disabled="{disabled}"
-            value={cde?.telefono ?? ''}
+            {disabled}
+            value={cde?.telefono ?? ""}
             required
           />
         </div>
-        <button type="reset" on:click="{() => disabled = true}" class="bg-pink-600 rounded-2xl mr-2 text-white px-4 py-2 rounded"
+        <button
+          type="reset"
+          on:click={() => (disabled = true)}
+          class="bg-pink-600 rounded-2xl mr-2 text-white px-4 py-2 rounded"
           >Resetear campos</button
         >
-        <button type="submit" class="bg-blue-600 rounded-2xl text-white px-4 py-2 rounded"
+        <button
+          type="submit"
+          class="bg-blue-600 rounded-2xl text-white px-4 py-2 rounded"
           >Editar personal</button
         >
       </form>
     </div>
-  
-    <div class="p-8  h-full w-full">
-      <h2 class="text-2xl font-semibold mb-4 text-center">Personal registrado</h2>
-      <Table
-        source="{tableSource}"
-        interactive="{true}"
-        on:selected="{handleClick}"
-      />
-    </div> 
-  </section>
 
+    <div class="p-8 h-full w-full">
+      <h2 class="text-2xl font-semibold mb-4 text-center">
+        Personal registrado
+      </h2>
+      <Table
+        source={tableSource}
+        interactive={true}
+        on:selected={handleClick}
+      />
+    </div>
+  </section>
 </div>

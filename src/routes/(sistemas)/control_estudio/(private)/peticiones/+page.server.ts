@@ -1,29 +1,29 @@
-import { systemLogger } from '$lib/server/logger';
-import type { Peticiones } from '../../../../../app';
-import type { Actions, PageServerLoad } from './$types';
+import { systemLogger } from "$lib/server/logger";
+import type { Peticiones } from "../../../../../app";
+import type { Actions, PageServerLoad } from "./$types";
 
 export const load = (async ({ locals: { client, controlEstudio } }) => {
-    systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las peticiones`)
-    const { ok, data } = await client.GET("/api/peticiones")
-    if (!ok) return { peticiones: [] }
+  systemLogger.info(`${controlEstudio.nombre} ha entrado a ver las peticiones`);
+  const { ok, data } = await client.GET("/api/peticiones");
+  if (!ok) return { peticiones: [] };
 
   const peticiones: Peticiones[] = data;
-  
+
   console.log(peticiones);
-    
-    return {peticiones};
+
+  return { peticiones };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
   aprobar: async ({ locals: { client, controlEstudio }, request }) => {
     const { peticion }: { peticion?: string } = Object.fromEntries(
       await request.formData()
-      );
-      
-      systemLogger.info(
-        `${controlEstudio.nombre} ha aprobado la peticion #${peticion}`
     );
-    
+
+    systemLogger.info(
+      `${controlEstudio.nombre} ha aprobado la peticion #${peticion}`
+    );
+
     const payload = {
       estado: "Aprobado",
     };

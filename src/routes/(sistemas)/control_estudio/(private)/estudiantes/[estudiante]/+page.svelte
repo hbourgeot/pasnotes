@@ -1,14 +1,13 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-  import type { Estudiante, Notas } from "../../../../../../app";
+  import { browser } from "$app/environment";
+  import { triggerToast } from "$lib/utils/toast";
   import {
     Table,
-    type TableSource,
     tableMapperValues,
+    type TableSource,
   } from "@skeletonlabs/skeleton";
-  import { goto } from "$app/navigation";
-  import { triggerToast } from "$lib/utils/toast";
-  import { browser } from "$app/environment";
+  import type { Estudiante, Notas } from "../../../../../../app";
+  import type { PageData } from "./$types";
 
   export let data: PageData;
 
@@ -61,7 +60,7 @@
     >
   </h2>
   <Table
-    source="{tableSource}"
+    source={tableSource}
     class="w-10/12 lg:w-3/5 mb-5 lg:mx-auto"
     text="text-xl"
     regionCell="!text-xl"

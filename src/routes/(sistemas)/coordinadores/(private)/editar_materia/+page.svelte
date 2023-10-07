@@ -252,14 +252,14 @@
   >
     <div class="p-8 rounded-xl shadow h-full w-1/2">
       <h2 class="text-2xl font-semibold mb-4 text-center">Editar materia</h2>
-      <form id="docente-form" method="post" use:enhance="{handleSubmit}">
+      <form id="docente-form" method="post" use:enhance={handleSubmit}>
         <div class="flex justify-between items-end gap-4">
           <div class="mb-4">
             <label for="id" class="label">Código de Materia</label>
             <input
               type="text"
               readonly
-              bind:value="{materia.id}"
+              bind:value={materia.id}
               id="id"
               name="id"
               class="input (text) py-2 px-7 outline-none"
@@ -271,7 +271,7 @@
             <input
               type="text"
               id="nombre"
-              bind:value="{materia.nombre}"
+              bind:value={materia.nombre}
               name="nombre"
               class="input (text) py-2 px-7 outline-none"
               required
@@ -283,7 +283,7 @@
               type="number"
               id="maximo"
               name="maximo"
-              bind:value="{materia.maximo}"
+              bind:value={materia.maximo}
               class="input (number) py-2 px-7 outline-none"
               min="0"
               required
@@ -297,7 +297,7 @@
               <select
                 id="credito"
                 name="unidad_credito"
-                bind:value="{materia.unidad_credito}"
+                bind:value={materia.unidad_credito}
                 class="select py-2 px-7 outline-none"
                 required
               >
@@ -307,10 +307,7 @@
                 <option value="4">4 U.C</option>
               </select>
 
-              <Icon
-                src="{ChevronDown}"
-                class="absolute top-8 right-4 w-5 h-5"
-              />
+              <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
             </label>
           </div>
           <div class="mb-4 w-1/3">
@@ -319,7 +316,7 @@
               <select
                 class="select py-2 px-7 outline-none"
                 id="hp"
-                bind:value="{materia.hp}"
+                bind:value={materia.hp}
                 name="hp"
                 required
               >
@@ -329,10 +326,7 @@
                 <option value="4">4h</option>
               </select>
 
-              <Icon
-                src="{ChevronDown}"
-                class="absolute top-8 right-4 w-5 h-5"
-              />
+              <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
             </label>
           </div>
           <div class="mb-4 w-1/3">
@@ -340,7 +334,7 @@
               >Horas Teóricas
               <select
                 class="select py-2 px-7 outline-none"
-                bind:value="{materia.ht}"
+                bind:value={materia.ht}
                 id="ht"
                 name="ht"
                 required
@@ -351,10 +345,7 @@
                 <option value="4">4h</option>
               </select>
 
-              <Icon
-                src="{ChevronDown}"
-                class="absolute top-8 right-4 w-5 h-5"
-              />
+              <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
             </label>
           </div>
         </div>
@@ -366,7 +357,7 @@
                 name="semestre"
                 id="semestre"
                 class="select py-2 px-7 outline-none"
-                bind:value="{materia.semestre}"
+                bind:value={materia.semestre}
                 required
               >
                 <option value="1">1ro</option>
@@ -377,10 +368,7 @@
                 <option value="6">6to</option>
               </select>
 
-              <Icon
-                src="{ChevronDown}"
-                class="absolute top-8 right-4 w-5 h-5"
-              />
+              <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
             </label>
           </div>
           <div class="mb-4 w-1/3">
@@ -390,17 +378,14 @@
                 name="id_carrera"
                 id="carrera"
                 class="select py-2 px-7 outline-none"
-                bind:value="{materia.id_carrera}"
+                bind:value={materia.id_carrera}
               >
                 {#each carreras as carrera}
-                  <option value="{carrera.id}">{carrera.nombre}</option>
+                  <option value={carrera.id}>{carrera.nombre}</option>
                 {/each}
               </select>
 
-              <Icon
-                src="{ChevronDown}"
-                class="absolute top-8 right-4 w-5 h-5"
-              />
+              <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
             </label>
           </div>
           <div class="mb-4 w-1/3">
@@ -410,7 +395,7 @@
               id="modalidad"
               class="select py-2 px-7"
               required
-              bind:value="{materia.modalidad}"
+              bind:value={materia.modalidad}
             >
               <option value="Presencial">Presencial</option>
               <option value="Virtual">Virtual</option>
@@ -425,30 +410,22 @@
                 name="id_docente"
                 id="docente"
                 class="select py-2 px-3 outline-none"
-                bind:value="{materia.id_docente}"
+                bind:value={materia.id_docente}
                 required
               >
                 {#each docentesSelect as docente}
-                  <option value="{docente.cedula}">{docente.nombre}</option>
+                  <option value={docente.cedula}>{docente.nombre}</option>
                 {/each}
               </select>
 
-              <Icon
-                src="{ChevronDown}"
-                class="absolute top-8 right-4 w-5 h-5"
-              />
+              <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
             </label>
           </div>
           <div class="mb-4 w-1/2">
             <label for="dia" class="label">Primer Día de Clase</label>
-            <select
-              name="dia"
-              id="dia"
-              class="select"
-              bind:value="{materia.dia}"
-            >
+            <select name="dia" id="dia" class="select" bind:value={materia.dia}>
               {#each days as day}
-                <option value="{day.value}">{day.label}</option>
+                <option value={day.value}>{day.label}</option>
               {/each}
             </select>
           </div>
@@ -458,11 +435,11 @@
               <select
                 name="dia2"
                 id="dia2"
-                bind:value="{materia.dia2}"
+                bind:value={materia.dia2}
                 class="select"
               >
                 {#each days as day}
-                  <option value="{day.value}">{day.label}</option>
+                  <option value={day.value}>{day.label}</option>
                 {/each}
               </select>
             </div>
@@ -471,7 +448,7 @@
         <div class="flex justify-between items-center gap-x-5">
           <div class="mb-4 w-1/4">
             <label for="" class="label">Hora inicio</label>
-            <TimePicker format="%H:%M %P" bind:value="{horaInicio}">
+            <TimePicker format="%H:%M %P" bind:value={horaInicio}>
               <svelte:fragment slot="hours-label"
                 ><Label>Horas</Label></svelte:fragment
               >
@@ -485,7 +462,7 @@
           </div>
           <div class="mb-4 w-1/3">
             <label for="" class="label">Hora fin</label>
-            <TimePicker format="%H:%M %P" bind:value="{horaFin}">
+            <TimePicker format="%H:%M %P" bind:value={horaFin}>
               <svelte:fragment slot="hours-label"
                 ><Label>Horas</Label></svelte:fragment
               >
@@ -500,7 +477,7 @@
           {#if showExtraDays}
             <div class="mb-4 w-1/3">
               <label for="" class="label">Hora inicio Día 2</label>
-              <TimePicker format="%H:%M %P" bind:value="{horaInicio2}">
+              <TimePicker format="%H:%M %P" bind:value={horaInicio2}>
                 <svelte:fragment slot="hours-label"
                   ><Label>Horas</Label></svelte:fragment
                 >
@@ -514,7 +491,7 @@
             </div>
             <div class="mb-4 w-1/3">
               <label for="" class="label">Hora fin Dia 2</label>
-              <TimePicker format="%H:%M %P" bind:value="{horaFin2}">
+              <TimePicker format="%H:%M %P" bind:value={horaFin2}>
                 <svelte:fragment slot="hours-label"
                   ><Label>Horas</Label></svelte:fragment
                 >
@@ -533,8 +510,8 @@
         >
           <button
             type="button"
-            on:click="{handleAdd}"
-            disabled="{materia.semestre == 1}"
+            on:click={handleAdd}
+            disabled={materia.semestre == 1}
             class="bg-blue-600 text-white px-4 py-2 rounded-xl"
             >Seleccionar prelación</button
           >
@@ -543,7 +520,7 @@
               type="text"
               class="input (text) py-2 px-7 my-3"
               readonly
-              bind:value="{prelacion}"
+              bind:value={prelacion}
               name="prelacion"
               minlength="1"
             />
@@ -554,11 +531,11 @@
           </div>
         </div>
         <SlideToggle
-          bind:checked="{showExtraDays}"
+          bind:checked={showExtraDays}
           active="bg-primary-500"
           name=""
           class="my-3"
-          disabled="{materia.id == ''}"
+          disabled={materia.id == ""}
           size="lg"
           >{showExtraDays
             ? "Dos días a la semana"
@@ -577,13 +554,13 @@
         Materias registradas
       </h2>
       <Table
-        source="{tableSource}"
-        on:selected="{handleClick}"
-        interactive="{true}"
+        source={tableSource}
+        on:selected={handleClick}
+        interactive={true}
       />
       <Paginator
-        bind:settings="{paginationSettings}"
-        showFirstLastButtons="{true}"
+        bind:settings={paginationSettings}
+        showFirstLastButtons={true}
         amountText="registros"
         class="my-3"
         separatorText="de"
@@ -591,7 +568,7 @@
     </div>
   </div>
 </section>
-<Modal components="{modalComponentRegistry}" />
+<Modal components={modalComponentRegistry} />
 
 <style>
   :global(.bx--form-requirement) {

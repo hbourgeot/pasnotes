@@ -10,11 +10,12 @@
   let toChange = "Pendiente";
   $: if (toChange) {
     console.log(peticiones);
-    peticiones = data.peticiones.filter(
-      (peticion) => peticion.peticion.estado.includes(toChange)
+    peticiones = data.peticiones.filter((peticion) =>
+      peticion.peticion.estado.includes(toChange)
     );
   }
 </script>
+
 <svelte:head>
   <title>Peticiones | Control de estudio | IUTEPAS</title>
 </svelte:head>
@@ -27,7 +28,7 @@
         class="select mx-auto"
         name="nombre_campo"
         id="corte"
-        bind:value="{toChange}"
+        bind:value={toChange}
       >
         <option value="Pendiente">Pendientes</option>
         <option value="Denegado">Denegadas</option>
@@ -45,29 +46,50 @@
           <th>Estado</th>
           <th>Estudiante</th>
           <th>Materia</th>
-          <th class="{toChange != 'Pendiente' ? 'hidden' : ''}">Acciones</th>
+          <th class={toChange != "Pendiente" ? "hidden" : ""}>Acciones</th>
         </tr>
       </thead>
       <tbody>
         {#each peticiones as peticion}
           <tr>
             <td class="!align-middle">{peticion.peticion.id}</td>
-            <td class="!align-middle">{peticion.docente.cedula} - {peticion.docente.nombre}</td>
+            <td class="!align-middle"
+              >{peticion.docente.cedula} - {peticion.docente.nombre}</td
+            >
             <td class="!align-middle">{peticion.peticion.descripcion}</td>
             <td class="!align-middle">{peticion.peticion.estado}</td>
-            <td class="!align-middle">{peticion.estudiante.cedula} - {peticion.estudiante.nombre}</td>
-            <td class="!align-middle">{peticion.materia.id} - {peticion.materia.nombre}</td>
+            <td class="!align-middle"
+              >{peticion.estudiante.cedula} - {peticion.estudiante.nombre}</td
+            >
+            <td class="!align-middle"
+              >{peticion.materia.id} - {peticion.materia.nombre}</td
+            >
             <td class="align-top"
-              ><form use:enhance={({formData})=>{
-                formData.append("peticion", peticion.peticion.id.toString())
-                return async({update}) => {
+              ><form
+                use:enhance={({ formData }) => {
+                  formData.append("peticion", peticion.peticion.id.toString());
+                  return async ({ update }) => {
                     await update();
-                }
-              }} method="post"
-                class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion.peticion.estado != 'Pendiente' ? 'hidden' : ''} py-0"
+                  };
+                }}
+                method="post"
+                class="btn-group variant-ghost-primary [&>*+*]:border-red-500 {peticion
+                  .peticion.estado != 'Pendiente'
+                  ? 'hidden'
+                  : ''} py-0"
               >
-                <button title="Aprobar petición" formaction="?/aprobar" class="py-0"><Icon src={Check} theme="rounded" size="15px" /></button>
-                <button title="Denegar petición" formaction="?/denegar" class="py-0"><Icon src={Close} theme="rounded" size="15px" /></button>
+                <button
+                  title="Aprobar petición"
+                  formaction="?/aprobar"
+                  class="py-0"
+                  ><Icon src={Check} theme="rounded" size="15px" /></button
+                >
+                <button
+                  title="Denegar petición"
+                  formaction="?/denegar"
+                  class="py-0"
+                  ><Icon src={Close} theme="rounded" size="15px" /></button
+                >
               </form></td
             >
           </tr>
@@ -76,8 +98,8 @@
       <tfoot>
         <tr>
           <th colspan="3">Total de peticiones: </th>
-          <td></td>
-          <td></td>
+          <td />
+          <td />
           <td>{peticiones.length}</td>
         </tr>
       </tfoot>

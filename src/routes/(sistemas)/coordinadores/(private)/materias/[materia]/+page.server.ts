@@ -3,7 +3,7 @@ import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load = (async ({ params, locals: { coordinador, client } }) => {
-  if(params.materia === "editar") throw redirect(302, '/materias/editar')
+  if (params.materia === "editar") throw redirect(302, "/materias/editar");
   systemLogger.info(
     `${coordinador.nombre} ha entrado a ver la materia ${params.materia}`
   );
@@ -17,6 +17,5 @@ export const load = (async ({ params, locals: { coordinador, client } }) => {
     nombre: data.materia.nombre,
   };
 
-  
   return { carrera, estudiantes, materia };
 }) satisfies PageServerLoad;

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import {DatePicker} from "attractions"
+  import { DatePicker } from "attractions";
   import moment from "moment";
 
   export let data: PageData;
@@ -13,13 +13,14 @@
   $: console.log(fecha);
 
   const filtrarPorFecha = () => {
-    logs = data.logs.filter(log => {
+    logs = data.logs.filter((log) => {
       let logDate = moment(log.timestamp, "DD-MM-YYYY");
       console.log(logDate, log.timestamp);
       return fecha.start <= logDate && logDate <= fecha.end;
-    })
-  }
+    });
+  };
 </script>
+
 <svelte:head>
   <title>Movimientos | Super usuario | IUTEPAS</title>
 </svelte:head>
@@ -32,10 +33,12 @@
       <label for="filtro" class="label mb-2">Tipo de movimiento</label><select
         name="filtro"
         id="filtro"
-        bind:value="{tipo}"
+        bind:value={tipo}
         class="select"
-        on:change="{() =>
-          (logs = data.logs.filter((log) => tipo !== "" ? log.level === tipo : log))}"
+        on:change={() =>
+          (logs = data.logs.filter((log) =>
+            tipo !== "" ? log.level === tipo : log
+          ))}
       >
         <option value="">Todos</option>
         <option value="info">Información</option>
@@ -45,13 +48,32 @@
     <div class="mb-4 h-[73px]">
       <label for="" class="label">Mostrar registros entre:</label>
       <div>
-        <DatePicker format="%d-%m-%Y" range top={false} locale="es-ES" bind:value="{fecha}" on:change={filtrarPorFecha}>
-          <svelte:fragment slot="between-inputs"><span class="mx-2">a</span></svelte:fragment>
+        <DatePicker
+          format="%d-%m-%Y"
+          range
+          top={false}
+          locale="es-ES"
+          bind:value={fecha}
+          on:change={filtrarPorFecha}
+        >
+          <svelte:fragment slot="between-inputs"
+            ><span class="mx-2">a</span></svelte:fragment
+          >
         </DatePicker>
       </div>
     </div>
-    <button type="button" class="btn variant-filled bg-sky-500 p-4 h-fit" on:click="{() => {fecha = null; logs = data.logs; tipo=""}}">Resetear campos</button>
-    <button class="btn variant-filled bg-[#db0081] h-fit p-4">Descargar movimientos</button>
+    <button
+      type="button"
+      class="btn variant-filled bg-sky-500 p-4 h-fit"
+      on:click={() => {
+        fecha = null;
+        logs = data.logs;
+        tipo = "";
+      }}>Resetear campos</button
+    >
+    <button class="btn variant-filled bg-[#db0081] h-fit p-4"
+      >Descargar movimientos</button
+    >
   </div>
 
   <div class="p-5 font-mono bg-gray-200 w-full overflow-y-auto h-[68.5vh]">
@@ -66,9 +88,10 @@
     {/each}
   </div>
 </section>
+
 <style lang="scss">
-  :global(.text-field > input){
-    background-color: rgb(216,217,252) !important;
+  :global(.text-field > input) {
+    background-color: rgb(216, 217, 252) !important;
     border: #9799fc solid 3px !important;
     color: #3751a0;
     border-radius: 24px !important;

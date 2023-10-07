@@ -71,10 +71,10 @@
   >
 </svelte:head>
 <header
-  bind:this="{header}"
+  bind:this={header}
   class="w-[800px] bg-white py-5 justify-start items-center px-8 hidden"
 >
-  <img src="{pascalConFondo}" alt="" class="h-[fit-content] w-[200px]" />
+  <img src={pascalConFondo} alt="" class="h-[fit-content] w-[200px]" />
   <section class="text-center w-7/11">
     <h2 class="text-2xl">S.C. IUTEPAS</h2>
     <p class="text-sm">
@@ -101,11 +101,11 @@
 <main class="mx-auto p-10 h-screen bg-transparent relative">
   <div class="absolute top-5 right-3">
     <button
-      bind:this="{printBtn}"
+      bind:this={printBtn}
       class="btn bg-pink-600 text-white save"
-      on:click="{print}"
+      on:click={print}
     >
-      <Icon class="w-8 h-8" src="{FileDownload}" />
+      <Icon class="w-8 h-8" src={FileDownload} />
 
       Descargar Notas
     </button>
@@ -114,9 +114,9 @@
   <section class="w-full p-5">
     {#if sourceData[0].cedula}
       <Table
-        source="{tableSource}"
-        interactive="{true}"
-        on:selected="{handleSelect}"
+        source={tableSource}
+        interactive={true}
+        on:selected={handleSelect}
       />
     {:else}
       <p class="text-xl">No hay estudiantes registrados</p>

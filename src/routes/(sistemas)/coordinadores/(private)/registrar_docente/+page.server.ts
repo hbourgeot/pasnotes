@@ -3,19 +3,23 @@ import type { Docente } from "../../../../../app";
 import type { Actions, PageServerLoad } from "./$types";
 import { systemLogger } from "$lib/server/logger";
 
-export const load: PageServerLoad = async ({locals:{client,coordinador}}) => {
+export const load: PageServerLoad = async ({
+  locals: { client, coordinador },
+}) => {
   let { ok, data } = await client.GET("/api/docente");
-  
+
   if (!ok) return {};
 
-  systemLogger.info(`${coordinador.nombre} ha entrado a ver los docentes registrados y puede que registre uno`)
+  systemLogger.info(
+    `${coordinador.nombre} ha entrado a ver los docentes registrados y puede que registre uno`
+  );
 
   let docentes: Docente[] = data.docente.filter(
     (docente: Docente, index: any, self: any) =>
       index === self.findIndex((t: Docente) => t.cedula === docente.cedula)
   );
-  
-  return {docentes}
+
+  return { docentes };
 };
 
 export const actions: Actions = {

@@ -36,7 +36,9 @@
   <title>Inicio de Sesión | Super usuario | IUTEPAS</title>
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
-<a href="/seleccione" class="btn variant-ghost-primary absolute top-3 left-3"><Icon src={ChevronLeft} class="h-5 w-5 mr-1"/> Volver al inicio</a>
+<a href="/seleccione" class="btn variant-ghost-primary absolute top-3 left-3"
+  ><Icon src={ChevronLeft} class="h-5 w-5 mr-1" /> Volver al inicio</a
+>
 <section
   class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0"
 >
@@ -54,7 +56,7 @@
     {/if}
     <label
       for="username"
-      class="text-xl flex w-full  justify-end items-center border-1 rounded-lg"
+      class="text-xl flex w-full justify-end items-center border-1 rounded-lg"
     >
       <Icon src={User} class="h-14 w-14 p-1 border-r-1" />
       <input
@@ -62,7 +64,7 @@
         name="username"
         id="username"
         placeholder="Usuario"
-        class="w-full border-0  outline-none bg-transparent rounded-lg text-xl"
+        class="w-full border-0 outline-none bg-transparent rounded-lg text-xl"
       />
     </label>
     <label

@@ -9,7 +9,6 @@
   import { FileUpload } from "@steeze-ui/tabler-icons";
 
   let theFiles: FileList | null;
- 
 
   // We've created a custom submit function to pass the response and close the modal.
 
@@ -18,8 +17,8 @@
     modalStore.close();
   }
 
-  $: if(theFiles){
-    if(theFiles[0].type != "application/pdf") theFiles = null 
+  $: if (theFiles) {
+    if (theFiles[0].type != "application/pdf") theFiles = null;
   }
 
   // Base Classes
@@ -32,21 +31,17 @@
 
 {#if $modalStore[0]}
   <div class="modal-example-form {cBase}">
-    <header class="{cHeader}">
+    <header class={cHeader}>
       {$modalStore[0].title ?? "(title missing)"}
     </header>
     <article>{$modalStore[0].body ?? "(body missing)"}</article>
     <!-- Enable for debugging: -->
     <form class="modal-form {cForm}">
-      <FileDropzone
-        name="files"
-        bind:files="{theFiles}"
-        accept=".pdf"
-      >
+      <FileDropzone name="files" bind:files={theFiles} accept=".pdf">
         <svelte:fragment slot="lead">
           {#if !theFiles}
             <Icon
-              src="{FileUpload}"
+              src={FileUpload}
               theme="rounded"
               class="h-[90px] w-[90px] mx-auto"
             />

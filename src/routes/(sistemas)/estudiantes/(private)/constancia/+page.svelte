@@ -258,7 +258,7 @@
 <style>
   @import url(https://themes.googleusercontent.com/fonts/css?kit=fpjTOVmNbO4Lz34iLyptLaIg6ghpHn1vhFthO1ORc08MRJdvAhQIE_EQ1n0u-GCfh-IFCFI2Ux9-D7ryZG0yUw);
 
-  #constancia{
+  #constancia {
     min-width: 700px;
   }
   table td {

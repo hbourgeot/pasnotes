@@ -35,7 +35,10 @@ export const actions: Actions = {
       telefono: control.telefono,
     };
 
-    const { ok, status, data } = await client.PUT("/api/control/update/" + control.cedula, payload);
+    const { ok, status, data } = await client.PUT(
+      "/api/control/update/" + control.cedula,
+      payload
+    );
     if (!ok) {
       return fail(400, data);
     }

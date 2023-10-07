@@ -7,7 +7,9 @@ export const actions: Actions = {
   default: async (event) => {
     await logOut(event, { path: "/control_estudio" });
     const nombre = event.url.searchParams.get("nombre") ?? "";
-    systemLogger.info(`El personal de control de estudio ${nombre} ha cerrado sesión`);
+    systemLogger.info(
+      `El personal de control de estudio ${nombre} ha cerrado sesión`
+    );
 
     throw redirect(302, `/control_estudio/login`);
   },

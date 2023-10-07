@@ -1,14 +1,19 @@
 import { systemLogger } from "$lib/server/logger";
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async ({ locals: { client, controlEstudio }, url }) => {
+export const load: PageServerLoad = async ({
+  locals: { client, controlEstudio },
+  url,
+}) => {
   const { ok, data: estudiantes } = await client.GET("/api/students");
   const { ok: isOk, data } = await client.GET("/api/carreras");
   if (!ok || !isOk) {
     return { estudiantes: [], carreras: [] };
   }
 
-  systemLogger.info(controlEstudio.nombre + " ha entrado a ver la lista de los estudiantes");
+  systemLogger.info(
+    controlEstudio.nombre + " ha entrado a ver la lista de los estudiantes"
+  );
 
   const carreras: {
     id: string;
@@ -22,5 +27,9 @@ export const load: PageServerLoad = async ({ locals: { client, controlEstudio },
           (t: { id: string; nombre: string }) => t.id === carrera.id
         )
     );
-  return { estudiantes: estudiantes, carreras, query: url.searchParams.get("s") };
+  return {
+    estudiantes: estudiantes,
+    carreras,
+    query: url.searchParams.get("s"),
+  };
 };

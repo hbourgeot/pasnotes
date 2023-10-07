@@ -1,19 +1,18 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import ModalForm from "$lib/components/ModalFormNotas.svelte";
   import Logo from "$lib/images/logo.jpg";
   import {
-    type ModalComponent,
-    Toast,
-    Modal,
     AppBar,
-    type ModalSettings,
+    Modal,
+    Toast,
     modalStore,
+    type ModalComponent,
+    type ModalSettings,
   } from "@skeletonlabs/skeleton";
-  import ModalForm from "$lib/components/ModalFormNotas.svelte";
-  import type { LayoutData } from "./$types";
   import { ChevronRight, Logout } from "@steeze-ui/material-design-icons";
   import { Icon } from "@steeze-ui/svelte-icon";
-  import { triggerToast } from "$lib/utils/toast";
+  import type { LayoutData } from "./$types";
 
   export let data: LayoutData;
 
@@ -100,10 +99,10 @@
               <a
                 class="no-underline text-[#0879bd] font-bold"
                 rel="prefetch"
-                href="{$page.url.pathname
-                  .split('/')
+                href={$page.url.pathname
+                  .split("/")
                   .slice(0, i + 1)
-                  .join('/')}"
+                  .join("/")}
               >
                 {#if segment.includes("_")}
                   {segment.charAt(0).toUpperCase() +
@@ -114,7 +113,7 @@
               </a>
             </li>
             <li class="crumb-separator" aria-hidden>
-              <Icon src="{ChevronRight}" class="w-5 h-5" />
+              <Icon src={ChevronRight} class="w-5 h-5" />
             </li>
           {/if}
         {/if}
@@ -122,22 +121,22 @@
     </ol>
   </svelte:fragment>
   <a href="/" class="h-full flex flex-center">
-    <img src="{Logo}" alt="" class="logo" />
+    <img src={Logo} alt="" class="logo" />
   </a>
   <svelte:fragment slot="trail">
-    <form method="post" action="{`/docentes/logout?nombre=${data.nombre}`}">
+    <form method="post" action={`/docentes/logout?nombre=${data.nombre}`}>
       <button
         type="submit"
         class="bg-pink-600 text-gray-200 px-3 py-1 rounded-2xl ml-4 h-[50px] text-light-50"
       >
-        <Icon class="w-8 h-8" src="{Logout}" />
+        <Icon class="w-8 h-8" src={Logout} />
       </button>
     </form>
   </svelte:fragment>
 </AppBar>
 <slot />
 {#if data.peticion?.estado === "Aprobado"}
-  <Modal components="{modalComponentRegistry}" />
+  <Modal components={modalComponentRegistry} />
 {/if}
 
 <style>

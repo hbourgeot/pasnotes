@@ -74,19 +74,21 @@
   {#if form?.message}
     <Toast position="t" />
   {/if}
-  <div class="p-8 rounded-xl shadow h-full w-1/2 flex flex-col justify-center bg-white">
+  <div
+    class="p-8 rounded-xl shadow h-full w-1/2 flex flex-col justify-center bg-white"
+  >
     <h2 class="text-2xl font-semibold mb-4 text-center">
       {#if isEditar}Editar{:else}Agregar{/if} Carrera
     </h2>
-    <form id="docente-form" method="post" use:enhance="{handleSubmit}">
+    <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="cedula" class="label">Código</label>
         <input
           type="text"
-          bind:value="{carreraId}"
+          bind:value={carreraId}
           id="id"
           name="id"
-          readonly="{isEditar}"
+          readonly={isEditar}
           class="input (text) py-2 px-7"
           required
         />
@@ -96,8 +98,8 @@
         <input
           type="text"
           id="nombre"
-          disabled="{isEditar && nombreCarrera == ''}"
-          bind:value="{nombreCarrera}"
+          disabled={isEditar && nombreCarrera == ""}
+          bind:value={nombreCarrera}
           name="nombre"
           class="input (text) py-2 px-7"
           required
@@ -119,7 +121,7 @@
     </form>
 
     <SlideToggle
-      bind:checked="{isEditar}"
+      bind:checked={isEditar}
       name="isEditar"
       active="bg-primary-500"
       class="my-3"
@@ -127,14 +129,16 @@
     >
   </div>
 
-  <div class="p-8 rounded-xl shadow h-full w-full flex flex-col justify-center bg-white">
+  <div
+    class="p-8 rounded-xl shadow h-full w-full flex flex-col justify-center bg-white"
+  >
     <h2 class="text-2xl font-semibold mb-4 text-center">
       Carreras registradas
     </h2>
     <Table
-      source="{tableSource}"
-      interactive="{isEditar}"
-      on:selected="{handleClick}"
+      source={tableSource}
+      interactive={isEditar}
+      on:selected={handleClick}
     />
   </div>
 </div>

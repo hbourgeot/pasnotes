@@ -2,10 +2,9 @@
   import { createSearchStore, searchHandler } from "$lib/resources/store";
   import { onDestroy } from "svelte";
   import type { Estudiante } from "../../../../../app";
-  import type {  PageData } from "./$types";
+  import type { PageData } from "./$types";
 
   export let data: PageData;
-
 
   const carreras = data.carreras;
 
@@ -23,7 +22,9 @@
       ""
     )} ${estudiante.correo} ${estudiante.estado} ${
       estudiante.telefono
-    } ${carreras.find((carrera: any) => carrera.id == estudiante.carrera)?.nombre.toLowerCase()} ${
+    } ${carreras
+      .find((carrera: any) => carrera.id == estudiante.carrera)
+      ?.nombre.toLowerCase()} ${
       estudiante.semestre
     }to ${estudiante.nombre.toLowerCase()}`,
   }));
@@ -43,16 +44,13 @@
   let semestre = "";
   let carreraSeleccionada = "";
   let search = "";
-
 </script>
 
 <svelte:head>
   <title>Estudiantes - Administración IUTEPAS</title>
 </svelte:head>
 
-<section
-  class="main w-full flex flex-col justify-evenly p-7 h-full"
->
+<section class="main w-full flex flex-col justify-evenly p-7 h-full">
   <section
     class="flex flex-col justify-evenly w-3/4 h-1/2 font-bold self-center gap-y-5"
   >
@@ -68,14 +66,16 @@
           name="carrera"
           id="carrera"
           class="select font-semibold rounded-lg mt-1 mb-3 px-5 py-3 w-full"
-          bind:value="{carreraSeleccionada}"
-          on:change="{() =>
-            ($estudianteSearch.search = `${carreraSeleccionada} ${semestre}`)}"
+          bind:value={carreraSeleccionada}
+          on:change={() =>
+            ($estudianteSearch.search = `${carreraSeleccionada} ${semestre}`)}
         >
           <option value="disabled" disabled>Filtrar por carrera</option>
           <option value="">Todas las carreras</option>
           {#each carreras as carrera}
-            <option value="{carrera.nombre.toLowerCase()}">{carrera.nombre}</option>
+            <option value={carrera.nombre.toLowerCase()}
+              >{carrera.nombre}</option
+            >
           {/each}
         </select>
       </label>
@@ -84,9 +84,9 @@
         <select
           name="semestre"
           id="semestre"
-          bind:value="{semestre}"
-          on:change="{() =>
-            ($estudianteSearch.search = `${carreraSeleccionada} ${semestre}`)}"
+          bind:value={semestre}
+          on:change={() =>
+            ($estudianteSearch.search = `${carreraSeleccionada} ${semestre}`)}
           class="select font-semibold rounded-lg mt-1 mb-3 px-5 py-3 w-full"
         >
           <option value="disabled" disabled>Filtrar por semestre</option>
@@ -103,8 +103,8 @@
         Búsqueda personalizada
         <input
           type="text"
-          bind:value="{search}"
-          on:change="{() => ($estudianteSearch.search = search)}"
+          bind:value={search}
+          on:change={() => ($estudianteSearch.search = search)}
           class="input (text) font-semibold rounded-lg mt-1 mb-3 px-5 py-3 w-full"
           placeholder="Buscar estudiante..."
         />
@@ -119,17 +119,16 @@
 </section>
 
 <style lang="scss">
-
-  :global(.text-field > input){
+  :global(.text-field > input) {
     background-color: #e3e4ff !important;
     border: #9799fc solid 3px !important;
     color: #3751a0;
   }
 
-  :global(.date-picker,.dropdown-shell,.handle,.text-field){
+  :global(.date-picker, .dropdown-shell, .handle, .text-field) {
     width: 100% !important;
   }
-  .main{
+  .main {
     height: calc(100vh - 80px);
   }
 </style>

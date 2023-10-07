@@ -4,41 +4,50 @@ import type { Docente, Materia } from "../../../../../app";
 import type { AutocompleteOption } from "@skeletonlabs/skeleton";
 import { systemLogger } from "$lib/server/logger";
 
-export const load: PageServerLoad = async ({ locals: { client, coordinador } }) => {
+export const load: PageServerLoad = async ({
+  locals: { client, coordinador },
+}) => {
   const { ok, data } = await client.GET("/api/docente");
   if (!ok) {
     return { docentes: [], materias: [], autocom: [] };
   }
 
-  systemLogger.info(`${coordinador.nombre} ha entrado a registrar una nueva materia`)
-
-  let docentes: Docente[] = data.docente.map((docente: Docente) => ({
-    cedula: docente.cedula,
-    nombre: docente.nombre,
-  })).filter(
-    (docente: Docente, index: any, self: any) =>
-      index === self.findIndex((t: Docente) => t.cedula === docente.cedula)
+  systemLogger.info(
+    `${coordinador.nombre} ha entrado a registrar una nueva materia`
   );
+
+  let docentes: Docente[] = data.docente
+    .map((docente: Docente) => ({
+      cedula: docente.cedula,
+      nombre: docente.nombre,
+    }))
+    .filter(
+      (docente: Docente, index: any, self: any) =>
+        index === self.findIndex((t: Docente) => t.cedula === docente.cedula)
+    );
 
   const { ok: okey, data: dataMat } = await client.GET("/api/materias");
   if (!okey) {
     return { docentes: docentes, materias: [], autocom: [] };
   }
 
-  const materias: string[] = dataMat.materias.filter((materia: Materia) => materia.id !== null).map(
-    (materia: Materia) => materia.id
-  );
+  const materias: string[] = dataMat.materias
+    .filter((materia: Materia) => materia.id !== null)
+    .map((materia: Materia) => materia.id);
 
   const materiasAutocomplete = dataMat.materias
     .filter((materia: Materia) => materia.id !== null)
     .map((materia: Materia) => ({
       nombre: materia.nombre,
       id: materia.id,
-      disponible: materia?.cantidad_estudiantes !== materia?.maximo
+      disponible: materia?.cantidad_estudiantes !== materia?.maximo,
     }));
 
-  const { ok: isOk, data: { carreras } } = await client.GET("/api/carreras")
-  
+  const {
+    ok: isOk,
+    data: { carreras },
+  } = await client.GET("/api/carreras");
+
   let carrerasNoRepetidas: { id: string; nombre: string }[] = carreras
     .map((carrera: { id: string; nombre: string }) => ({ ...carrera }))
     .filter(
@@ -47,9 +56,14 @@ export const load: PageServerLoad = async ({ locals: { client, coordinador } }) 
         self.findIndex(
           (t: { id: string; nombre: string }) => t.id === carrera.id
         )
-  );
+    );
 
-  return { docentes, materias, list: materiasAutocomplete, carreras: carrerasNoRepetidas };
+  return {
+    docentes,
+    materias,
+    list: materiasAutocomplete,
+    carreras: carrerasNoRepetidas,
+  };
 };
 
 export const actions: Actions = {

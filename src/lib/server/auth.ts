@@ -15,7 +15,9 @@ export const logInStudent = async (
     return { ok, data };
   }
 
-  systemLogger.info(`El estudiante ${data.estudiante.nombre} ha iniciado sesion`);
+  systemLogger.info(
+    `El estudiante ${data.estudiante.nombre} ha iniciado sesion`
+  );
 
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
@@ -37,7 +39,9 @@ export const logInControlEstudio = async (
     return { ok, data };
   }
 
-  systemLogger.info(`El personal de control de estudio ${data.control_estudio.nombre} ha iniciado sesion`);
+  systemLogger.info(
+    `El personal de control de estudio ${data.control_estudio.nombre} ha iniciado sesion`
+  );
 
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
@@ -81,7 +85,9 @@ export const logInCoordinacion = async (
     return { ok, data };
   }
 
-  systemLogger.info(`El coordinador ${data.coordinador.nombre} ha iniciado sesion`);
+  systemLogger.info(
+    `El coordinador ${data.coordinador.nombre} ha iniciado sesion`
+  );
 
   cookies.set("access_token", data.access_token, {
     httpOnly: true,
@@ -146,7 +152,6 @@ export const getUser = async (token: string, endpoint: string) => {
 
 export const getConfig = async () => {
   try {
-
     const res: Response = await fetch(`${baseURL}/api/config/1`);
     const { data: config } = await res.json();
 

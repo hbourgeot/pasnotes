@@ -124,15 +124,15 @@
                   title="Ver notas"
                   href="/control_estudio/estudiantes/{estudiante.cedula}"
                   class="font-bold btn btn-icon variant-filled-primary"
-                  ><Icon src="{Eye}" /></a
+                  ><Icon src={Eye} /></a
                 >
                 <button
                   type="button"
                   class="btn btn-icon variant-filled-secondary"
                   title="Descargar ficha"
-                  on:click="{() => generate(estudiante.cedula)}"
+                  on:click={() => generate(estudiante.cedula)}
                 >
-                  <Icon src="{Download}" />
+                  <Icon src={Download} />
                 </button>
               </td>
             </tr>
@@ -141,8 +141,8 @@
       </table>
     </div>
     <Paginator
-      bind:settings="{paginationSettings}"
-      showFirstLastButtons="{true}"
+      bind:settings={paginationSettings}
+      showFirstLastButtons={true}
       amountText="registros"
       class="mt-3 mb-3"
       separatorText="de"

@@ -99,27 +99,30 @@
   <title>Registrar docentes | Coordinadores | IUTEPAS</title>
 </svelte:head>
 <div class="h-screen flex flex-col lg:justify-center lg:items-center relative">
-<button type="button" on:click="{generate}" class="bg-blue-600 text-white px-4 py-2 rounded-full absolute top-5 right-5 flex gap-3"
-          ><Icon src={FileDownload}/> Lista de docentes con materias</button
-        >
+  <button
+    type="button"
+    on:click={generate}
+    class="bg-blue-600 text-white px-4 py-2 rounded-full absolute top-5 right-5 flex gap-3"
+    ><Icon src={FileDownload} /> Lista de docentes con materias</button
+  >
   <div
     class="container h-auto lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
   >
     <div class="p-8 w-full max-w-[410px] rounded-xl shadow h-full lg:w-1/2">
       <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Docente</h2>
-      <form id="docente-form" method="post" use:enhance="{handleSubmit}">
+      <form id="docente-form" method="post" use:enhance={handleSubmit}>
         <div class="mb-4">
           <label for="cedula" class="label">Cédula</label>
           <div
             class="input-group input-group-divider grid-cols-[auto_1fr_auto]"
           >
-            <select class="select" bind:value="{identidad}">
+            <select class="select" bind:value={identidad}>
               <option value="V">V</option>
               <option value="E">E</option>
             </select>
             <input
               type="number"
-              bind:value="{cedula}"
+              bind:value={cedula}
               min="1000000"
               id="cedula"
               class="input (text) py-2 px-7"
@@ -143,7 +146,7 @@
             type="email"
             id="correo"
             name="correo"
-            bind:value="{correo}"
+            bind:value={correo}
             class="input (text) py-2 px-7"
             required
           />
@@ -158,7 +161,9 @@
             required
           />
         </div>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-full"
+        <button
+          type="submit"
+          class="bg-blue-600 text-white px-4 py-2 rounded-full"
           >Registrar docente</button
         >
       </form>
@@ -168,10 +173,10 @@
       <h2 class="text-2xl font-semibold mb-4 text-center">
         Docentes registrados
       </h2>
-      <Table source="{tableSource}" />
+      <Table source={tableSource} />
       <Paginator
-        bind:settings="{paginationSettings}"
-        showFirstLastButtons="{true}"
+        bind:settings={paginationSettings}
+        showFirstLastButtons={true}
         amountText="registros"
         class="my-3"
         separatorText="de"

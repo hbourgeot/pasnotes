@@ -1,7 +1,13 @@
 import { client } from "$lib/server/fetch";
 import type { Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
-import type { ControlEstudio, Coordinacion, Docente, Estudiante, SuperUsuario } from "./app";
+import type {
+  ControlEstudio,
+  Coordinacion,
+  Docente,
+  Estudiante,
+  SuperUsuario,
+} from "./app";
 import { getAccessToken, getConfig, getUser } from "$lib/server/auth";
 import jwt from "jsonwebtoken";
 const { decode } = jwt;
@@ -70,7 +76,7 @@ const authHandler: Handle = async ({ event, resolve }) => {
 
           switch (rol) {
             case "CE":
-              redirectUrl = "/control_estudio/login?exp=true"
+              redirectUrl = "/control_estudio/login?exp=true";
             case "CO":
               redirectUrl = "/coordinadores/login?exp=true";
               break;
@@ -83,17 +89,17 @@ const authHandler: Handle = async ({ event, resolve }) => {
             case "S":
               redirectUrl = "/superusuario/login?exp=true";
               break;
-            }
-            
-            if (redirectUrl) {
-              if (i < 1) {
-                i++
-                return new Response(null, {
-                  status: 302,
-                  headers: {
-                    Location: redirectUrl,
-                  },
-                });
+          }
+
+          if (redirectUrl) {
+            if (i < 1) {
+              i++;
+              return new Response(null, {
+                status: 302,
+                headers: {
+                  Location: redirectUrl,
+                },
+              });
             }
           }
         }

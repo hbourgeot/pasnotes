@@ -5,10 +5,11 @@ import { systemLogger } from "$lib/server/logger";
 let ciclo = "";
 export const load = (async ({ params, locals: { client, docente } }) => {
   const { ok, data } = await client.GET(`/api/materias/${params.materia}`);
-  if (!ok || data.materia.id === "")
-    throw redirect(300, "/docentes/materias");
+  if (!ok || data.materia.id === "") throw redirect(300, "/docentes/materias");
 
-  systemLogger.info(`El docente ${docente.nombre} está viendo su materia ${params.materia}`)
+  systemLogger.info(
+    `El docente ${docente.nombre} está viendo su materia ${params.materia}`
+  );
 
   const carrera = data.materia.carrera;
   const estudiantes = data.materia.estudiantes;
@@ -65,8 +66,9 @@ export const actions: Actions = {
 
     const { ok, data } = await client.POST(`/api/archivos/upload`, formData);
 
-    systemLogger.info(`El docente ${docente.nombre} cargó su planificación en formato PDF`)
-
+    systemLogger.info(
+      `El docente ${docente.nombre} cargó su planificación en formato PDF`
+    );
   },
 
   peticion: async ({ params, locals: { client, docente }, request }) => {
@@ -81,11 +83,16 @@ export const actions: Actions = {
       id_docente: docente.cedula,
     };
 
-    
-    const { ok, data } = await client.POST("/api/peticiones/add", obj)
-    systemLogger.warn(`El docente ${docente.nombre} realizó una petición de modificación de nota del corte nro ${obj.nombre_campo} en la materia ${params.materia} para el estudiante ${obj.id_estudiante}`)
-    if(!ok) return {message: "Hubo un problema al realizar la petición, por favor intente de nuevo"}
+    const { ok, data } = await client.POST("/api/peticiones/add", obj);
+    systemLogger.warn(
+      `El docente ${docente.nombre} realizó una petición de modificación de nota del corte nro ${obj.nombre_campo} en la materia ${params.materia} para el estudiante ${obj.id_estudiante}`
+    );
+    if (!ok)
+      return {
+        message:
+          "Hubo un problema al realizar la petición, por favor intente de nuevo",
+      };
 
-    return {message: "Petición realizada"}
-  }
+    return { message: "Petición realizada" };
+  },
 };

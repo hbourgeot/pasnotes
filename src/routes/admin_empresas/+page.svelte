@@ -1,7 +1,7 @@
 <script>
-	import PdfViewer from 'svelte-pdf';
+  import PdfViewer from "svelte-pdf";
 
-	import pdf from './pensum.pdf'
+  import pdf from "./pensum.pdf";
 </script>
 
-<PdfViewer url={pdf} data={null}/>
+<PdfViewer url={pdf} data={null} />

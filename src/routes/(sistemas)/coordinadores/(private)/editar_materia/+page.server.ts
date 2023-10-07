@@ -59,8 +59,9 @@ export const load = (async ({ locals: { client, coordinador, config } }) => {
     materias,
     list: materiasAutocomplete,
     carreras: carrerasNoRepetidas,
-    tableMaterias: dataMat.materias
-      .filter((materia: Materia) => materia.id !== null)
+    tableMaterias: dataMat.materias.filter(
+      (materia: Materia) => materia.id !== null
+    ),
   };
 }) satisfies PageServerLoad;
 
@@ -70,7 +71,8 @@ export const actions: Actions = {
     console.log(materia);
 
     const { ok, data } = await client.PUT(
-      "/api/materias/update/" + materia.id, materia
+      "/api/materias/update/" + materia.id,
+      materia
     );
 
     console.log(ok, data);

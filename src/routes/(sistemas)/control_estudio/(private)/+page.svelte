@@ -9,13 +9,11 @@
 
   let controlEstudio: ControlEstudio = data.controlEstudio;
 </script>
+
 <svelte:head>
   <title>Control de estudio | IUTEPAS</title>
 </svelte:head>
-<div
-  class="flex flex-center h-screen  flex-col w-full max-h-auto gap-6"
-  
->
+<div class="flex flex-center h-screen flex-col w-full max-h-auto gap-6">
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
     ¡Bienvenid@, {controlEstudio.nombre}!
   </h1>
@@ -56,10 +54,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Informacion del personal

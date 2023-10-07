@@ -3,19 +3,23 @@ import type { Coordinacion, Docente } from "../../../../../app";
 import type { Actions, PageServerLoad } from "./$types";
 import { systemLogger } from "$lib/server/logger";
 
-export const load: PageServerLoad = async ({locals:{client,superUsuario}}) => {
+export const load: PageServerLoad = async ({
+  locals: { client, superUsuario },
+}) => {
   const { ok, data } = await client.GET("/api/coordinacion");
-  
+
   if (!ok) return {};
 
-  systemLogger.info(`${superUsuario.nombre} ha entrado a ver los coordinadors registrados y puede que registre uno`)
+  systemLogger.info(
+    `${superUsuario.nombre} ha entrado a ver los coordinadors registrados y puede que registre uno`
+  );
 
   const coordinadores: Coordinacion[] = data.filter(
     (coordinador: Docente, index: any, self: any) =>
       index === self.findIndex((t: Docente) => t.cedula === coordinador.cedula)
   );
-  
-  return {coordinadores}
+
+  return { coordinadores };
 };
 
 export const actions: Actions = {
@@ -32,7 +36,10 @@ export const actions: Actions = {
       telefono: coordinador.telefono,
     };
 
-    const { ok, status, data } = await client.POST("/api/coordinacion/add", payload);
+    const { ok, status, data } = await client.POST(
+      "/api/coordinacion/add",
+      payload
+    );
     if (!ok) {
       return fail(400, data);
     }

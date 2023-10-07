@@ -13,7 +13,10 @@ export const POST: RequestHandler = async ({ locals: { client }, request }) => {
 
   if (!ok) return json({ message: data.message, status: 400 });
 
-  const { ok: okPeticion, data: dataPeticion } = await client.PATCH(`/api/peticiones/update/${obj.peticion}`, { estado: 'Terminado' });
+  const { ok: okPeticion, data: dataPeticion } = await client.PATCH(
+    `/api/peticiones/update/${obj.peticion}`,
+    { estado: "Terminado" }
+  );
   if (!okPeticion) return json({ message: data.message, status: 400 });
 
   return json({ message: "Modificado!" });

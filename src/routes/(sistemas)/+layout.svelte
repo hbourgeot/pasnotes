@@ -1,10 +1,12 @@
 <script lang="ts">
 </script>
+
 <main class="w-full main-element" data-theme="modern">
-  <slot/>
+  <slot />
 </main>
+
 <style>
-  main{
+  main {
     background-image: url("$lib/images/layered-waves-haikei.svg");
     background-size: cover;
     background-position: bottom center;
