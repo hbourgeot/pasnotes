@@ -41,29 +41,3 @@
     </div> 
   </svelte:fragment>
 </AppBar>
-
-<style>
-  summary::marker {
-    display: none;
-    font-size: 0px;
-  }
-
-  details {
-    top: -10px;
-  }
-
-  ul li {
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-
-  }
-
-  .nav ul li:hover {
-    background-color: #0b101a;
-  }
-  ul li:hover {
-    font-weight: bold;
-  }
-</style>
