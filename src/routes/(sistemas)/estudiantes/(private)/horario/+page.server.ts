@@ -59,14 +59,6 @@ export const load: PageServerLoad = async ({
 
   let materias: Materia[] = data.materias;
 
-  materias = materias.map((mat) => ({
-    ...mat,
-    dia: `${mat.dia}${mat.dia2 ? ", " + mat.dia2 : ""}`,
-    disponible: mat?.cantidad_estudiantes !== mat?.maximo,
-    docente: docentes.find((doc: Docente) => doc.cedula == mat.id_docente)
-      ?.nombre,
-  }));
-
   const {
     ok: okey,
     data: { docente: docentes },
@@ -77,6 +69,14 @@ export const load: PageServerLoad = async ({
   if (!okey) {
     return { materias, estudiante, message: "", horarioHecho: false };
   }
+
+  materias = materias.map((mat) => ({
+    ...mat,
+    disponible: mat?.cantidad_estudiantes !== mat?.maximo,
+    docente: docentes.find((doc: Docente) => doc.cedula == mat.id_docente)
+      ?.nombre,
+  }));
+
 
   console.log(materias);
 

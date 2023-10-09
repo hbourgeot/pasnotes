@@ -8,7 +8,7 @@
   } from "@skeletonlabs/skeleton";
 
   import { TimePicker, Label } from "attractions";
-  import type { Docente } from "../../../../../app";
+  import type { Docente, Materia } from "../../../../../app";
   import type { ActionData, PageData, SubmitFunction } from "./$types";
   import ModalList from "$lib/components/ModalList.svelte";
   import { triggerToast } from "$lib/utils/toast";
@@ -70,7 +70,16 @@
     }
   }
 
-  const modalComponentRegistry: Record<string, ModalComponent> = {
+  let modalComponentRegistry: Record<string, ModalComponent> = {
+    // Custom Modal 1
+    modalList: {
+      // Pass a reference to your custom component
+      ref: ModalList,
+      props: { materias: listMaterias, estudiantes: false },
+    },
+  };
+  $: listMaterias = data.list.filter((mat: Materia) => mat.semestre < semestre);
+  $: modalComponentRegistry = {
     // Custom Modal 1
     modalList: {
       // Pass a reference to your custom component

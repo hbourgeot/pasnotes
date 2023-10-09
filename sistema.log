@@ -1010,3 +1010,30 @@
 {"level":"info","message":"admin ha entrado a ver los coordinadors registrados y puede que registre uno","timestamp":"06-10-2023 22:14:36"}
 {"level":"info","message":"admin va a ver, editar y/o crear carreras","timestamp":"06-10-2023 22:14:48"}
 {"level":"info","message":"El super usuario admin ha cerrado sesión","timestamp":"06-10-2023 22:14:50"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"07-10-2023 18:56:56"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"07-10-2023 18:56:58"}
+{"level":"info","message":"leonel curalli ha entrado a ver las materias","timestamp":"07-10-2023 18:57:01"}
+{"level":"info","message":"leonel curalli ha entrado a registrar una nueva materia","timestamp":"07-10-2023 18:57:05"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha iniciado sesion","timestamp":"09-10-2023 08:33:31"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 08:34:08"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 08:35:46"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 08:36:35"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 08:43:52"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 08:45:56"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 08:47:58"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes ha terminado de registrar su horario satisfactoriamente","timestamp":"09-10-2023 08:49:41"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"09-10-2023 09:05:23"}
+{"level":"warn","message":"El estudiante elibeth leonela curalli jaimes ha terminado de registrar su horario satisfactoriamente","timestamp":"09-10-2023 09:05:46"}
+{"level":"info","message":"El estudiante elibeth leonela curalli jaimes ha cerrado sesión","timestamp":"09-10-2023 09:06:19"}
+{"level":"info","message":"El coordinador Elizabeth jaimes ha iniciado sesion","timestamp":"09-10-2023 09:06:57"}
+{"level":"info","message":"Elizabeth jaimes está viendo las configuraciones del sistema","timestamp":"09-10-2023 09:07:00"}
+{"level":"info","message":"Elizabeth jaimes ha entrado a ver las materias","timestamp":"09-10-2023 09:07:04"}
+{"level":"info","message":"Elizabeth jaimes ha entrado al módulo de los estudiantes","timestamp":"09-10-2023 09:07:11"}
+{"level":"info","message":"Elizabeth jaimes ha entrado a ver la lista de los estudiantes","timestamp":"09-10-2023 09:07:12"}
+{"level":"info","message":"El coordinador leonel curalli ha iniciado sesion","timestamp":"09-10-2023 09:07:59"}
+{"level":"info","message":"leonel curalli ha entrado al módulo de los estudiantes","timestamp":"09-10-2023 09:08:05"}
+{"level":"info","message":"leonel curalli ha entrado a ver la lista de los estudiantes","timestamp":"09-10-2023 09:08:07"}
+{"level":"info","message":"El coordinador leonel curalli ha cerrado sesión","timestamp":"09-10-2023 09:10:47"}
+{"level":"info","message":"El coordinador Elizabeth jaimes ha iniciado sesion","timestamp":"09-10-2023 09:10:59"}
+{"level":"info","message":"Elizabeth jaimes ha entrado al módulo de los estudiantes","timestamp":"09-10-2023 09:11:02"}
+{"level":"info","message":"Elizabeth jaimes ha entrado a ver la lista de los estudiantes","timestamp":"09-10-2023 09:11:04"}

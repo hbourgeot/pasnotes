@@ -13,7 +13,7 @@
   <title>Materias | Coordinadores | IUTEPAS</title>
 </svelte:head>
 <div class="main relative">
-  <div class="absolute top-5 right-5">
+  <div class="absolute top-5 left-5">
     <a href="/coordinadores/editar_materia" class="btn variant-filled-primary"
       >Editar materias</a
     >
