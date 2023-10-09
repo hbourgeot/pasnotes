@@ -25,7 +25,7 @@
     } catch (e) {
       console.error(e);
       triggerToast("El estudiante no tiene materias inscritas");
-      goto("/coordinadores");
+      window.history.back();
     }
   }
 

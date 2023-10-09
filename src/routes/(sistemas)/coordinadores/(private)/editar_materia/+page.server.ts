@@ -37,6 +37,7 @@ export const load = (async ({ locals: { client, coordinador, config } }) => {
     .map((materia: Materia) => ({
       nombre: materia.nombre,
       id: materia.id,
+      disponible: materia.cantidad_estudiantes !== materia.maximo
     }));
 
   const {
@@ -44,21 +45,11 @@ export const load = (async ({ locals: { client, coordinador, config } }) => {
     data: { carreras },
   } = await client.GET("/api/carreras");
 
-  let carrerasNoRepetidas: { id: string; nombre: string }[] = carreras
-    .map((carrera: { id: string; nombre: string }) => ({ ...carrera }))
-    .filter(
-      (carrera: { id: string; nombre: string }, index: any, self: any) =>
-        index ===
-        self.findIndex(
-          (t: { id: string; nombre: string }) => t.id === carrera.id
-        )
-    );
-
   return {
     docentes,
     materias,
     list: materiasAutocomplete,
-    carreras: carrerasNoRepetidas,
+    carreras: carreras,
     tableMaterias: dataMat.materias.filter(
       (materia: Materia) => materia.id !== null
     ),

@@ -168,6 +168,7 @@
       <Table
         source={tableSource}
         interactive={true}
+        regionBody="capitalize"
         on:selected={handleClick}
       />
     </div>
