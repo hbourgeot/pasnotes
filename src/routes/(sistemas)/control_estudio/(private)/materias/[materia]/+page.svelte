@@ -45,7 +45,7 @@
     triggerToast(form?.message);
   }
 
-  const sourceData = data.estudiantes.map((nota: any) => ({
+  let sourceData = data.estudiantes.map((nota: any) => ({
     nombre: nota.nombre,
     cedula: nota.cedula,
     nota1: nota.nota1,
@@ -54,7 +54,7 @@
     promedio: nota.promedio,
   }));
 
-  const tableSource: TableSource = {
+  let tableSource: TableSource = {
     head: [
       "Nombre",
       "Cédula",
@@ -116,6 +116,34 @@
       ref: ModalFile,
     },
   };
+
+  $: tableSource = {
+    head: [
+      "Nombre",
+      "Cédula",
+      "1er corte",
+      "2do corte",
+      "3er corte",
+      "Promedio",
+    ],
+    body: tableMapperValues(sourceData, [
+      "nombre",
+      "cedula",
+      "nota1",
+      "nota2",
+      "nota3",
+      "promedio",
+    ]),
+  };
+
+  $: sourceData = data.estudiantes.map((nota: any) => ({
+    nombre: nota.nombre,
+    cedula: nota.cedula,
+    nota1: nota.nota1,
+    nota2: nota.nota2,
+    nota3: nota.nota3,
+    promedio: nota.promedio,
+  }))
 
   const handleSubmit: SubmitFunction = async ({ cancel }) => {
     let response = await new Promise<string>((resolve) => {
@@ -196,7 +224,7 @@
       class="mt-12"
     />
   </section>
-  <section class="w-full h-[90vh] sticky formField">
+  <section class="w-full sticky formField">
     <div
       class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5"
     >
@@ -288,6 +316,10 @@
 
   .select {
     appearance: none;
+  }
+
+  main{
+    min-height: calc(100vh - 80px);
   }
 
   /*span label {

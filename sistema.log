@@ -1073,3 +1073,14 @@
 {"level":"info","message":"Elizabeth jaimes ha entrado a editar una nueva materia","timestamp":"14-10-2023 11:57:04"}
 {"level":"info","message":"Elizabeth jaimes ha entrado a editar una nueva materia","timestamp":"14-10-2023 11:57:16"}
 {"level":"info","message":"Elizabeth jaimes ha entrado a ver las materias","timestamp":"14-10-2023 11:59:10"}
+{"level":"info","message":"El coordinador Elizabeth jaimes ha cerrado sesión","timestamp":"14-10-2023 12:01:47"}
+{"level":"info","message":"El personal de control de estudio yezenia alvarez ha iniciado sesion","timestamp":"14-10-2023 12:02:51"}
+{"level":"info","message":"yezenia alvarez ha entrado al módulo de los estudiantes","timestamp":"14-10-2023 12:02:58"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver las materias","timestamp":"14-10-2023 12:03:00"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"14-10-2023 12:05:15"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver la materia 01LYC122","timestamp":"14-10-2023 12:05:19"}
+{"level":"warn","message":"¡Atención! yezenia alvarez ha cambiado una nota del undefined perteneciente al estudiante con cédula undefined de la materia 01LYC122","timestamp":"14-10-2023 12:06:10"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver la materia 01LYC122","timestamp":"14-10-2023 12:06:10"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver la materia 01LYC122","timestamp":"14-10-2023 12:06:18"}
+{"level":"warn","message":"¡Atención! yezenia alvarez ha cambiado una nota del undefined perteneciente al estudiante con cédula undefined de la materia 01LYC122","timestamp":"14-10-2023 12:08:39"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver la materia 01LYC122","timestamp":"14-10-2023 12:08:39"}
