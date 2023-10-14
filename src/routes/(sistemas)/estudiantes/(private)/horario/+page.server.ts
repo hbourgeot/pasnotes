@@ -103,77 +103,82 @@ export const actions: Actions = {
       Authorization: cookies.get("access_token"),
     };
 
-    const {
-      ok,
-      data: { materias: materiasData },
-    } = await client.GET(`/api/materias/inscribir/${estudiante.cedula}`);
-    if (!ok) return fail(400, { message: "Error desconocido" });
+     const {
+       ok,
+       data: { materias: materiasData },
+     } = await client.GET(`/api/materias/inscribir/${estudiante.cedula}`);
+     if (!ok) return fail(400, { message: "Error desconocido" });
 
-    let materias: Materia[] = [];
-    for (const materia of materiasIDs) {
-      materias.push(materiasData.find((mat: Materia) => mat.id == materia));
-    }
+     let materias = [];
+     for (const materia of materiasIDs) {
+       materias.push(materiasData.find((mat: Materia) => mat.id == materia));
+     }
 
-    for (const materia of materiasIDs) {
-      const currentMateria: Materia = materias.find(
-        (mat: Materia) => mat.id === materia
-      ) as unknown as Materia;
+     // Primer bucle para verificar conflictos
+     for (const materia of materiasIDs) {
+       const currentMateria = materias.find((mat) => mat.id === materia);
 
-      const demasMaterias = materias.filter(
-        (mat: Materia) =>
-          mat.id !== currentMateria.id && mat.dia === currentMateria.dia
-      );
+       const materiaEnConflicto = checkMateriaConflict(
+         currentMateria,
+         materias
+       ); // Usando la función que definimos antes
 
-      const [currentHoraInicioH, currentHoraInicioM] =
-        currentMateria.hora_inicio.split(":").map(Number);
-      const [currentHoraFinalH, currentHoraFinalM] = currentMateria.hora_fin
-        .split(":")
-        .map(Number);
+       if (materiaEnConflicto) {
+         return fail(400, {
+           message: `La materia ${currentMateria.nombre} choca con ${materiaEnConflicto.nombre}`,
+         });
+       }
+     }
 
-      const materiaEnConflicto = demasMaterias.find((mat: Materia) => {
-        const [matHoraInicioH, matHoraInicioM] = mat.hora_inicio
-          .split(":")
-          .map(Number);
-        const [matHoraFinalH, matHoraFinalM] = mat.hora_fin
-          .split(":")
-          .map(Number);
+     // Segundo bucle para hacer el POST si todo está bien
+     for (const materia of materiasIDs) {
+       const { ok, data } = await addMateria(client, materia, headers); // Usando la función que definimos antes
+       if (!ok) {
+         return fail(400, { message: data.message });
+       }
+     }
 
-        return (
-          ((matHoraInicioH > currentHoraInicioH ||
-            (matHoraInicioH === currentHoraInicioH &&
-              matHoraInicioM >= currentHoraInicioM)) &&
-            (matHoraInicioH < currentHoraFinalH ||
-              (matHoraInicioH === currentHoraFinalH &&
-                matHoraInicioM < currentHoraFinalM))) ||
-          ((matHoraFinalH > currentHoraInicioH ||
-            (matHoraFinalH === currentHoraInicioH &&
-              matHoraFinalM > currentHoraInicioM)) &&
-            (matHoraFinalH < currentHoraFinalH ||
-              (matHoraFinalH === currentHoraFinalH &&
-                matHoraFinalM <= currentHoraFinalM)))
-        );
-      });
+     systemLogger.warn(
+       `El estudiante ${estudiante.nombre} ha terminado de registrar su horario satisfactoriamente`
+     );
 
-      if (materiaEnConflicto) {
-        return fail(400, {
-          message: `La materia ${currentMateria.nombre} choca con ${materiaEnConflicto.nombre}`,
-        });
-      }
-
-      const { ok, data } = await client.POST(
-        `/api/students/add-materia/${materia}`,
-        null,
-        headers
-      );
-      if (!ok) {
-        return fail(400, { message: data.message });
-      }
-    }
-
-    systemLogger.warn(
-      `El estudiante ${estudiante.nombre} ha terminado de registrar su horario satisfactoriamente`
-    );
-
-    return { message: "¡Su horario ha sido inscrito exitosamente!" };
+     return { message: "¡Su horario ha sido inscrito exitosamente!" };
   },
 };
+
+
+// Función para comprobar si hay conflicto de horarios entre materias
+function checkMateriaConflict(currentMateria: Materia, materias: Materia[]) {
+  const demasMaterias = materias.filter(
+    (mat) => mat.id !== currentMateria.id && mat.dia === currentMateria.dia
+  );
+
+  const [currentHoraInicioH, currentHoraInicioM] = currentMateria.hora_inicio.split(":").map(Number);
+  const [currentHoraFinalH, currentHoraFinalM] = currentMateria.hora_fin.split(":").map(Number);
+
+  return demasMaterias.find((mat) => {
+    const [matHoraInicioH, matHoraInicioM] = mat.hora_inicio.split(":").map(Number);
+    const [matHoraFinalH, matHoraFinalM] = mat.hora_fin.split(":").map(Number);
+
+    return (
+      (matHoraInicioH > currentHoraInicioH ||
+        (matHoraInicioH === currentHoraInicioH && matHoraInicioM >= currentHoraInicioM)) &&
+      (matHoraInicioH < currentHoraFinalH ||
+        (matHoraInicioH === currentHoraFinalH && matHoraInicioM < currentHoraFinalM)) ||
+      (matHoraFinalH > currentHoraInicioH ||
+        (matHoraFinalH === currentHoraInicioH && matHoraFinalM > currentHoraInicioM)) &&
+      (matHoraFinalH < currentHoraFinalH ||
+        (matHoraFinalH === currentHoraFinalH && matHoraFinalM <= currentHoraFinalM))
+    );
+  });
+}
+
+// Función para hacer el POST a la API
+async function addMateria(client: any, materia: string, headers: object) {
+  const { ok, data } = await client.POST(
+    `/api/students/add-materia/${materia}`,
+    null,
+    headers
+  );
+  return { ok, data };
+}
