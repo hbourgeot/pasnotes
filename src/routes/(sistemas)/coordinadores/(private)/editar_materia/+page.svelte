@@ -55,7 +55,7 @@
     prelacion: "",
     semestre: 0,
     unidad_credito: 0,
-    cantidad_estudiantes: "",
+    cantidad_estudiantes: 0,
     modalidad: "",
   };
 
@@ -92,26 +92,25 @@
     ),
   };
 
-  $: console.log(
-    tableMapperValues(
-      sourceData.map((val) => ({
-        ...val,
-        dia: `${val.dia}${
-          val.dia2 !== "" && val.dia2 !== null ? " y " + val.dia2 : ""
-        }`,
-      })),
-      ["id", "nombre", "unidad_credito", "dia", "semestre", "prelacion"]
-    )
-  );
+  $: listMaterias = data.list.filter((mat: Materia) => mat.semestre < materia.semestre);
 
   const carreras = data.carreras ?? [];
-  const daysBackup = days;
-  const modalComponentRegistry: Record<string, ModalComponent> = {
+  let modalComponentRegistry: Record<string, ModalComponent> = {
     // Custom Modal 1
     modalList: {
       // Pass a reference to your custom component
       ref: ModalList,
-      props: { materias: listMaterias },
+      props: { materias: listMaterias, estudiantes: false },
+    },
+  };
+
+  $: listMaterias = data.list.filter((mat: Materia) => mat.semestre < materia.semestre && mat.id !== materia.id);
+  $: modalComponentRegistry = {
+    // Custom Modal 1
+    modalList: {
+      // Pass a reference to your custom component
+      ref: ModalList,
+      props: { materias: listMaterias, estudiantes: false },
     },
   };
 
@@ -511,7 +510,7 @@
           <button
             type="button"
             on:click={handleAdd}
-            disabled={materia.semestre == 1}
+            disabled={materia.semestre <= 1}
             class="bg-blue-600 text-white px-4 py-2 rounded-xl"
             >Seleccionar prelación</button
           >

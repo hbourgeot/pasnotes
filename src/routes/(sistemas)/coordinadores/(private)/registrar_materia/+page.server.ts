@@ -1,7 +1,6 @@
 import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import type { Docente, Materia } from "../../../../../app";
-import type { AutocompleteOption } from "@skeletonlabs/skeleton";
 import { systemLogger } from "$lib/server/logger";
 
 export const load: PageServerLoad = async ({
@@ -41,28 +40,19 @@ export const load: PageServerLoad = async ({
       nombre: materia.nombre,
       id: materia.id,
       disponible: materia?.cantidad_estudiantes !== materia?.maximo,
+      semestre: materia.semestre
     }));
 
   const {
-    ok: isOk,
     data: { carreras },
   } = await client.GET("/api/carreras");
 
-  let carrerasNoRepetidas: { id: string; nombre: string }[] = carreras
-    .map((carrera: { id: string; nombre: string }) => ({ ...carrera }))
-    .filter(
-      (carrera: { id: string; nombre: string }, index: any, self: any) =>
-        index ===
-        self.findIndex(
-          (t: { id: string; nombre: string }) => t.id === carrera.id
-        )
-    );
-
+  console.log(materiasAutocomplete);
   return {
     docentes,
     materias,
     list: materiasAutocomplete,
-    carreras: carrerasNoRepetidas,
+    carreras: carreras,
   };
 };
 

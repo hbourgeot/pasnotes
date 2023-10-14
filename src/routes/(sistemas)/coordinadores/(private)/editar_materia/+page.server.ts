@@ -37,7 +37,8 @@ export const load = (async ({ locals: { client, coordinador, config } }) => {
     .map((materia: Materia) => ({
       nombre: materia.nombre,
       id: materia.id,
-      disponible: materia.cantidad_estudiantes !== materia.maximo
+      disponible: materia.cantidad_estudiantes !== materia.maximo,
+      semestre: materia.semestre
     }));
 
   const {
