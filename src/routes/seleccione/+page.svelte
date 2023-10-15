@@ -6,14 +6,15 @@
   import { Toast, toastStore } from "@skeletonlabs/skeleton";
 
   let y: number;
-
 </script>
 
 <svelte:head>
   <title>Inicio de Sesión | Estudiantes | IUTEPAS</title>
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
-<a href="/" class="btn variant-ghost-primary absolute top-3 left-3"><Icon src={ChevronLeft} class="h-5 w-5 mr-1"/> Volver al inicio</a>
+<a href="/" class="btn variant-ghost-primary absolute top-3 left-3"
+  ><Icon src={ChevronLeft} class="h-5 w-5 mr-1" /> Volver al inicio</a
+>
 <section
   class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0 main"
 >
@@ -54,7 +55,7 @@
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   }
-  .main{
+  .main {
     background-image: url("$lib/images/layered-waves-haikei.svg");
     background-size: cover;
     background-position: bottom center;

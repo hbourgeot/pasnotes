@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type {TableSource, ToastSettings} from "@skeletonlabs/skeleton"
+  import type { TableSource, ToastSettings } from "@skeletonlabs/skeleton";
   import {
     toastStore,
     Toast,
@@ -30,13 +30,17 @@
   }
 
   const handleSubmit: SubmitFunction = ({ data, cancel }) => {
-    if(sourceData.find(docente => docente.cedula === cedulaIdentidad)){
-      triggerToast(`El docente con la cédula ${cedulaIdentidad} ya ha sido previamente registrado, pruebe con otra`);
+    if (sourceData.find((docente) => docente.cedula === cedulaIdentidad)) {
+      triggerToast(
+        `El docente con la cédula ${cedulaIdentidad} ya ha sido previamente registrado, pruebe con otra`
+      );
       return cancel();
     }
 
-    if(sourceData.find(docente => docente.correo === correo)){
-      triggerToast(`El docente con el correo ${correo} ya ha sido previamente registrado, pruebe con otro`);
+    if (sourceData.find((docente) => docente.correo === correo)) {
+      triggerToast(
+        `El docente con el correo ${correo} ya ha sido previamente registrado, pruebe con otro`
+      );
       return cancel();
     }
     data.append("cedula", cedulaIdentidad);
@@ -49,12 +53,7 @@
   $: sourceData = data.controlEstudio as unknown as ControlEstudio[];
 
   let tableSource: TableSource = {
-    head: [
-      "Cédula",
-      "Correo",
-      "Nombre",
-      "Teléfono",
-    ],
+    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -64,12 +63,7 @@
   };
 
   $: tableSource = {
-    head: [
-      "Cédula",
-      "Correo",
-      "Nombre",
-      "Teléfono",
-    ],
+    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -78,15 +72,20 @@
     ]),
   };
 </script>
+
 <svelte:head>
   <title>Registrar personal | Super usuario | IUTEPAS</title>
 </svelte:head>
-<div class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white">
+<div
+  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
+>
   {#if form?.message}
     <Toast position="t" />
   {/if}
   <div class="p-8 rounded-xl shadow h-full w-1/2">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Añadir Personal de Control de Estudio</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-center">
+      Añadir Personal de Control de Estudio
+    </h2>
     <form id="docente-form" method="post" use:enhance={handleSubmit}>
       <div class="mb-4">
         <label for="cedula" class="label">Cedula</label>
@@ -121,7 +120,7 @@
           type="email"
           id="correo"
           name="correo"
-          bind:value="{correo}"
+          bind:value={correo}
           class="input (text) py-2 px-7"
           required
         />

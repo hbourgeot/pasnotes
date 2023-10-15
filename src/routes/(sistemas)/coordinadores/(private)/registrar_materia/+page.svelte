@@ -8,7 +8,7 @@
   } from "@skeletonlabs/skeleton";
 
   import { TimePicker, Label } from "attractions";
-  import type { Docente } from "../../../../../app";
+  import type { Docente, Materia } from "../../../../../app";
   import type { ActionData, PageData, SubmitFunction } from "./$types";
   import ModalList from "$lib/components/ModalList.svelte";
   import { triggerToast } from "$lib/utils/toast";
@@ -31,7 +31,7 @@
   let horaFin: any = null;
   let horaInicio2: any = null;
   let horaFin2: any = null;
-  let semestre = 1
+  let semestre = 1;
 
   $: if (materiasIDs.length > 0) {
     prelacion = materiasIDs.join(" - ");
@@ -54,7 +54,7 @@
   ];
 
   let name = "";
-  let diasDeClase: {label: string, value: string}[] = [];
+  let diasDeClase: { label: string; value: string }[] = [];
   let showExtraDays = false;
 
   function cambioDiaClase(e: any) {
@@ -70,12 +70,21 @@
     }
   }
 
-  const modalComponentRegistry: Record<string, ModalComponent> = {
+  let modalComponentRegistry: Record<string, ModalComponent> = {
     // Custom Modal 1
     modalList: {
       // Pass a reference to your custom component
       ref: ModalList,
-      props: { materias: listMaterias,  estudiantes: false },
+      props: { materias: listMaterias, estudiantes: false },
+    },
+  };
+  $: listMaterias = data.list.filter((mat: Materia) => mat.semestre < semestre);
+  $: modalComponentRegistry = {
+    // Custom Modal 1
+    modalList: {
+      // Pass a reference to your custom component
+      ref: ModalList,
+      props: { materias: listMaterias, estudiantes: false },
     },
   };
 
@@ -114,7 +123,7 @@
   };
 
   const handleSubmit: SubmitFunction = ({ formData }) => {
-    formData.append("dia",diasDeClase[0].value)
+    formData.append("dia", diasDeClase[0].value);
 
     formData.append(
       "hora_inicio",
@@ -123,12 +132,15 @@
 
     formData.append("hora_fin", moment(horaFin, "hh:mm A").format("hh:mm A"));
     if (diasDeClase[1]) {
-      formData.append("dia2",diasDeClase[1].value)
+      formData.append("dia2", diasDeClase[1].value);
       formData.append(
         "hora_inicio2",
         moment(horaInicio2, "hh:mm A").format("hh:mm A")
       );
-      formData.append("hora_fin2", moment(horaFin2, "hh:mm A").format("hh:mm A"));
+      formData.append(
+        "hora_fin2",
+        moment(horaFin2, "hh:mm A").format("hh:mm A")
+      );
     }
     return async ({ update }) => {
       await update();
@@ -164,7 +176,9 @@
           />
         </div>
         <div class="mb-4">
-          <label for="maximo" class="label">Cantidad máxima de estudiantes</label>
+          <label for="maximo" class="label"
+            >Cantidad máxima de estudiantes</label
+          >
           <input
             type="number"
             id="maximo"
@@ -192,7 +206,7 @@
               <option value="4">4 U.C</option>
             </select>
 
-            <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />
+            <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
           </label>
         </div>
         <div class="mb-4 w-1/4">
@@ -211,7 +225,7 @@
               <option value="4">4h</option>
             </select>
 
-            <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />
+            <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
           </label>
         </div>
         <div class="mb-4 w-1/4">
@@ -230,7 +244,7 @@
               <option value="4">4h</option>
             </select>
 
-            <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />
+            <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
           </label>
         </div>
         <div class="mb-4 w-1/4">
@@ -240,7 +254,7 @@
               name="semestre"
               id="semestre"
               class="select py-2 px-7 outline-none"
-              bind:value="{semestre}"
+              bind:value={semestre}
               required
             >
               <option value={1}>1ro</option>
@@ -251,7 +265,7 @@
               <option value={6}>6to</option>
             </select>
 
-            <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />
+            <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
           </label>
         </div>
       </div>
@@ -263,14 +277,14 @@
               name="id_carrera"
               id="carrera"
               class="select py-2 px-7 outline-none"
-              value="{carreras[0].id}"
+              value={carreras[0].id}
             >
               {#each carreras as carrera}
-                <option value="{carrera.id}">{carrera.nombre}</option>
+                <option value={carrera.id}>{carrera.nombre}</option>
               {/each}
             </select>
 
-            <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />
+            <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
           </label>
         </div>
         <div class="mb-4 w-1/2">
@@ -280,15 +294,15 @@
               name="id_docente"
               id="docente"
               class="select py-2 px-7 outline-none"
-              value="{docentesSelect[0].cedula}"
+              value={docentesSelect[0].cedula}
               required
             >
               {#each docentesSelect as docente}
-                <option value="{docente.cedula}">{docente.nombre}</option>
+                <option value={docente.cedula}>{docente.nombre}</option>
               {/each}
             </select>
 
-            <Icon src="{ChevronDown}" class="absolute top-8 right-4 w-5 h-5" />
+            <Icon src={ChevronDown} class="absolute top-8 right-4 w-5 h-5" />
           </label>
         </div>
       </div>
@@ -296,14 +310,18 @@
         <div class="mb-4 w-1/2">
           <label for="dia" class="label">Día de Clases</label>
           <Select
-            items="{days}"
+            items={days}
             multiple
             id="dia"
-            name="{name}"
+            {name}
             placeholder="Seleccione"
             required
-            on:change="{cambioDiaClase}"
-            on:clear="{() => {showExtraDays = false; horaFin2 = null; horaInicio2 = null}}"
+            on:change={cambioDiaClase}
+            on:clear={() => {
+              showExtraDays = false;
+              horaFin2 = null;
+              horaInicio2 = null;
+            }}
             --border-radius="24px"
             --background="#d8d9fc"
             --list-background="#d8d9fc"
@@ -318,7 +336,7 @@
             name="modalidad"
             id="modalidad"
             class="select py-2 px-7"
-            value="{0}"
+            value={0}
             required
           >
             <option value="Presencial">Presencial</option>
@@ -327,7 +345,7 @@
         </div>
         <div class="mb-4 w-1/4">
           <label for="" class="label">Hora inicio</label>
-          <TimePicker format="%H:%M %P" bind:value="{horaInicio}">
+          <TimePicker format="%H:%M %P" bind:value={horaInicio}>
             <svelte:fragment slot="hours-label"
               ><Label>Horas</Label></svelte:fragment
             >
@@ -343,7 +361,7 @@
       <div class="flex justify-between items-center gap-x-5">
         <div class="mb-4 w-1/3">
           <label for="" class="label">Hora fin</label>
-          <TimePicker format="%H:%M %P" bind:value="{horaFin}">
+          <TimePicker format="%H:%M %P" bind:value={horaFin}>
             <svelte:fragment slot="hours-label"
               ><Label>Horas</Label></svelte:fragment
             >
@@ -358,7 +376,7 @@
         {#if showExtraDays}
           <div class="mb-4 w-1/3">
             <label for="" class="label">Hora inicio Día 2</label>
-            <TimePicker format="%H:%M %P" bind:value="{horaInicio2}">
+            <TimePicker format="%H:%M %P" bind:value={horaInicio2}>
               <svelte:fragment slot="hours-label"
                 ><Label>Horas</Label></svelte:fragment
               >
@@ -372,7 +390,7 @@
           </div>
           <div class="mb-4 w-1/3">
             <label for="" class="label">Hora fin Dia 2</label>
-            <TimePicker format="%H:%M %P" bind:value="{horaFin2}">
+            <TimePicker format="%H:%M %P" bind:value={horaFin2}>
               <svelte:fragment slot="hours-label"
                 ><Label>Horas</Label></svelte:fragment
               >
@@ -391,7 +409,7 @@
       >
         <button
           type="button"
-          on:click="{handleAdd}"
+          on:click={handleAdd}
           disabled={semestre == 1}
           class="bg-blue-600 text-white px-4 py-2 rounded-xl"
           >Seleccionar prelación de materias</button
@@ -401,7 +419,7 @@
             type="text"
             class="input (text) py-2 px-7 my-3"
             readonly
-            bind:value="{prelacion}"
+            bind:value={prelacion}
             name="prelacion"
             minlength="1"
           />
@@ -419,7 +437,7 @@
     </form>
   </div>
 </div>
-<Modal components="{modalComponentRegistry}" />
+<Modal components={modalComponentRegistry} />
 
 <style>
   :global(.bx--form-requirement) {

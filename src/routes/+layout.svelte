@@ -10,8 +10,6 @@
 
   // Finally, your application's global stylesheet (sometimes labeled 'app.css')
   import "../app.postcss";
-
-  import fondo from '$lib/images/layered-waves-haikei.svg'
 </script>
 
 <main class="w-full">
@@ -23,5 +21,3 @@
     background-color: white;
   }
 </style>
-
-

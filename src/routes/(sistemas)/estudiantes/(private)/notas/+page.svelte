@@ -26,15 +26,16 @@
     ]),
   };
 </script>
+
 <svelte:head>
   <title>Notas | Estudiantes | IUTEPAS</title>
 </svelte:head>
-<div class='w-full h-screen'>
+<div class="w-full h-screen">
   <h2 class="text-3xl py-10 text-center">
-    Notas de <span class="text-sky-600 capitalize">{data.estudiante?.nombre}</span
+    Notas de <span class="text-sky-600 capitalize"
+      >{data.estudiante?.nombre}</span
     >
   </h2>
-  
+
   <Table source={tableSimple} class="lg:w-9/12 lg:mx-auto" />
-  
 </div>

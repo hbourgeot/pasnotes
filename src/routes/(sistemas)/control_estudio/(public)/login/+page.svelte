@@ -36,7 +36,9 @@
   <title>Inicio de Sesión | Control de estudio | IUTEPAS</title>
 </svelte:head>
 <svelte:window bind:innerHeight={y} />
-<a href="/seleccione" class="btn variant-ghost-primary absolute top-3 left-3"><Icon src={ChevronLeft} class="h-5 w-5 mr-1"/> Volver al inicio</a>
+<a href="/seleccione" class="btn variant-ghost-primary absolute top-3 left-3"
+  ><Icon src={ChevronLeft} class="h-5 w-5 mr-1" /> Volver al inicio</a
+>
 <section
   class="w-full h-screen flex flex-col justify-center items-center mb-15 xl:mb-0"
 >
@@ -46,7 +48,9 @@
     class="max-w-[485px] flex flex-col justify-center items-center gap-5 login xl:h-[fit-content] xl:mt-0 w-3/4"
   >
     <img src={Pascal} alt="Instituto Pascal" class="w-1/2" />
-    <h1 class="text-3xl mb-8 font-bold flex justify-center text-center items-center gap">
+    <h1
+      class="text-3xl mb-8 font-bold flex justify-center text-center items-center gap"
+    >
       Bienvenido Personal de control de estudio
     </h1>
     {#if form?.message || isExpirated}

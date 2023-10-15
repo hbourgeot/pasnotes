@@ -12,6 +12,7 @@
   let panel = false;
   let clicked = 0;
 </script>
+
 <svelte:head>
   <title>Super usuario | IUTEPAS</title>
 </svelte:head>
@@ -26,12 +27,11 @@
     class="w-[98%] flex flex-col items-center gap-10 bg-white rounded-lg"
     style="min-height: calc(100vh); max-height: auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
   >
-    <div
-      class="w-full mt-5 flex flex-wrap gap-5 flex-center"
-    >
+    <div class="w-full mt-5 flex flex-wrap gap-5 flex-center">
       <a
         href="/superusuario/editar_cde"
-        class="flex btn variant-filled justify-center items-center h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]">Editar CDE</a
+        class="flex btn variant-filled justify-center items-center h-fit md:w-[200px] w-30 p-4 rounded-xl text-white bg-[#e78ae2]"
+        >Editar CDE</a
       >
       <a
         href="/superusuario/editar_coordinador"
@@ -73,10 +73,10 @@
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Información del super usuario

@@ -98,24 +98,24 @@ interface Peticiones {
   docente: {
     cedula: string;
     nombre: string;
-  },
+  };
   estudiante: {
     cedula: string;
     nombre: string;
-  },
+  };
   materia: {
     id: string;
     nombre: string;
-  },
+  };
   peticion: {
-    campo: string | null,
+    campo: string | null;
     descripcion: string;
     estado: string;
-    id: number,
+    id: number;
     id_docente: string;
     id_estudiante: string;
     id_materia: string;
-  }
+  };
 }
 
 interface SuperUsuario {
@@ -131,5 +131,7 @@ export {
   Materia,
   ControlEstudio,
   Config,
-  Notas, Peticiones, SuperUsuario
+  Notas,
+  Peticiones,
+  SuperUsuario,
 };

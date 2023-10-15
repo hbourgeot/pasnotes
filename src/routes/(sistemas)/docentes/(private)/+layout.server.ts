@@ -8,7 +8,7 @@ export const load = (async ({ locals: { docente, client } }) => {
   }
 
   const { ok, data } = await client.GET("/api/peticiones");
-  if (!ok) return { peticion: null, nombre: docente.nombre, aprobado: 'a' };
+  if (!ok) return { peticion: null, nombre: docente.nombre, aprobado: "a" };
 
   let peticion: Peticiones = data.find(
     (peticion: Peticiones) =>

@@ -42,11 +42,12 @@
 
   onMount(() => update());
 </script>
+
 <svelte:head>
   <title>Estudiantes | IUTEPAS</title>
 </svelte:head>
 <div
-  class="flex flex-center flex-col w-full max-h-auto gap-6 "
+  class="flex flex-center flex-col w-full max-h-auto gap-6"
   style="min-height: 100vh"
 >
   <h1 class="w-[90%] text-2xl font-bold text-center capitalize">
@@ -60,21 +61,22 @@
       class="w-full h-auto mt-5 flex flex-wrap gap-5 flex-center [&>a]:w-30 [&>a]:p-4 [&>a]:rounded-xl [&>a]:text-white
             md:[&>a]:w-[240px]"
     >
-    <a
-      href="/estudiantes/constancia" target="_blank"
-      class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white bg-[#e78ae2] w-full"
-      ><Icon src="{Download}" theme="round" size="24px" /> Constancia
-      de estudio</a
-    >
-    <a
-      href="/estudiantes/historico"
-      class="w-full btn variant-filled h-full bg-[#e78ae2]">Histórico de Notas</a
-    >
-    <a
-      href="/estudiantes/horario"
-      class="w-full btn variant-filled h-full bg-[#e78ae2]"
-      >Inscribir materias</a
-    >
+      <a
+        href="/estudiantes/constancia"
+        target="_blank"
+        class="flex btn variant-filled flex-row-reverse gap-x-2 w-30 p-4 rounded-xl text-white bg-[#e78ae2] w-full"
+        ><Icon src={Download} theme="round" size="24px" /> Constancia de estudio</a
+      >
+      <a
+        href="/estudiantes/historico"
+        class="w-full btn variant-filled h-full bg-[#e78ae2]"
+        >Histórico de Notas</a
+      >
+      <a
+        href="/estudiantes/horario"
+        class="w-full btn variant-filled h-full bg-[#e78ae2]"
+        >Inscribir materias</a
+      >
       <a
         href="/estudiantes/notas"
         class="w-full btn variant-filled h-full bg-[#e78ae2]">Notas</a
@@ -86,15 +88,17 @@
         Información general
       </h2>
 
-      <details class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4">
+      <details
+        class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4"
+      >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Información del estudiante
@@ -124,15 +128,17 @@
           </span>
         </div>
       </details>
-       <details class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4">
+      <details
+        class="flex w-full lg:w-3/5 lg:text-base xl:text-lg mx-auto flex-col items-center justify-center mb-4"
+      >
         <summary
           class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
         >
           <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
+            <Icon src={ExpandMore} class="icon " />
           </span>
           <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
+            <Icon src={ExpandLess} class="icon " />
           </span>
 
           Materias inscritas
@@ -150,10 +156,10 @@
                 <h2>{materia.materia}</h2>
                 {#if planificaciones[n]}
                   <a
-                    href="{materia.download}"
+                    href={materia.download}
                     class="flex gap-2"
                     download="planificacion.pdf"
-                    >Descargar <Icon src="{Download}" /></a
+                    >Descargar <Icon src={Download} /></a
                   >
                 {:else}
                   <p>No hay planificación</p>
@@ -168,7 +174,6 @@
 </div>
 
 <style class="scss">
-
   span h2 {
     font-weight: 600;
     padding-left: 16px;

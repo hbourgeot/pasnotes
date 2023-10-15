@@ -12,7 +12,9 @@ export const load: PageServerLoad = async ({
       carrera.id === estudiante.carrera
   ).nombre;
 
-  systemLogger.info(`El estudiante ${estudiante.nombre} ha generado su constancia de estudios`);
+  systemLogger.info(
+    `El estudiante ${estudiante.nombre} ha generado su constancia de estudios`
+  );
 
   return {
     cedula: estudiante.cedula,

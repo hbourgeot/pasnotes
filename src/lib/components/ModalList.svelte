@@ -38,24 +38,28 @@
 
 {#if $modalStore[0]}
   <div class="modal-example-form {cBase}">
-    <header class="{cHeader}">
+    <header class={cHeader}>
       {$modalStore[0].title ?? "(title missing)"}
     </header>
-    <article>{$modalStore[0].body ?? "(body missing)"}
+    <article>
+      {$modalStore[0].body ?? "(body missing)"}
       {#if estudiantes}
-    <p class="text-sm mt-3"><span class="text-orange-600 font-bold">ADVERTENCIA:</span> las materias que tengan una línea por encima, es porque ya no aceptan más inscripciones</p>
-    {/if}
-  </article>
+        <p class="text-sm mt-3">
+          <span class="text-orange-600 font-bold">ADVERTENCIA:</span> las materias
+          que tengan una línea por encima, es porque ya no aceptan más inscripciones
+        </p>
+      {/if}
+    </article>
     <ListBox
       class="border border-surface-500 p-4 rounded-container-token"
       multiple
     >
       {#each materiasSelect as materia}
         <ListBoxItem
-          bind:group="{selected}"
-          name="{materia.value}"
-          class="{materia.disabled ? 'line-through !cursor-not-allowed' : ''}"
-          value="{materia.value}">{materia.label}</ListBoxItem
+          bind:group={selected}
+          name={materia.value}
+          class={materia.disabled ? "line-through !cursor-not-allowed" : ""}
+          value={materia.value}>{materia.label}</ListBoxItem
         >
       {/each}
     </ListBox>

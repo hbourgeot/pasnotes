@@ -11,6 +11,7 @@
   let docente: Docente = data.docente;
   let materias: Materia[] = data.materias;
 </script>
+
 <svelte:head>
   <title>Docentes | IUTEPAS</title>
 </svelte:head>
@@ -73,7 +74,7 @@
           </span>
         </div>
       </details>
-       <details
+      <details
         class="flex w-full mx-auto flex-col my-5 items-center justify-center"
       >
         <summary

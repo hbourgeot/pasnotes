@@ -2,8 +2,10 @@ import { systemLogger } from "$lib/server/logger";
 import { fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
-export const load = (async ({ params, locals: {controlEstudio, client } }) => {
-  systemLogger.info(`${controlEstudio.nombre} ha entrado a ver la materia ${params.materia}`)
+export const load = (async ({ params, locals: { controlEstudio, client } }) => {
+  systemLogger.info(
+    `${controlEstudio.nombre} ha entrado a ver la materia ${params.materia}`
+  );
   const { ok, data } = await client.GET(`/api/materias/${params.materia}`);
   if (!ok) return { materia: null };
 
@@ -17,7 +19,12 @@ export const load = (async ({ params, locals: {controlEstudio, client } }) => {
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-  default: async ({ params, cookies, request, locals: { client, controlEstudio } }) => {
+  default: async ({
+    params,
+    cookies,
+    request,
+    locals: { client, controlEstudio },
+  }) => {
     const campo = ["nota1", "nota2", "nota3"];
     let obj: any = Object.fromEntries(await request.formData());
 
@@ -40,15 +47,13 @@ export const actions: Actions = {
     );
 
     if (!ok) return fail(400, { message: data.message });
-    const cortes = [
-      'primer corte',
-      'segundo corte',
-      'tercer corte'
-    ]
+    const cortes = ["primer corte", "segundo corte", "tercer corte"];
     systemLogger.warn(
       `¡Atención! ${controlEstudio.nombre} ha cambiado una nota del ${
         cortes[obj.nombre_campo - 1]
-      } perteneciente al estudiante con cédula ${obj.id_estudiante} de la materia ${params.materia}`
+      } perteneciente al estudiante con cédula ${
+        obj.id_estudiante
+      } de la materia ${params.materia}`
     );
     return { message: "Modificado!" };
   },

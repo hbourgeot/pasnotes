@@ -6,5 +6,5 @@ export const load = (async ({ locals: { coordinador } }) => {
     throw redirect(302, "/coordinadores/login");
   }
 
-  return {nombre: coordinador.nombre};
+  return { nombre: coordinador.nombre };
 }) satisfies LayoutServerLoad;

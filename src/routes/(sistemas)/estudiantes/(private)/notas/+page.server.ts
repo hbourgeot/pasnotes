@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({
       message: "No tienes materias registradas",
       materias: [],
     };
-  
-  systemLogger.info(`${estudiante.nombre} ha entrado a ver sus notas`)
+
+  systemLogger.info(`${estudiante.nombre} ha entrado a ver sus notas`);
   return { estudiante, materias: data.notas };
 };

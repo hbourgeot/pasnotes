@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type {TableSource, ToastSettings} from "@skeletonlabs/skeleton"
+  import type { TableSource, ToastSettings } from "@skeletonlabs/skeleton";
   import {
     toastStore,
     Toast,
@@ -41,12 +41,7 @@
   $: sourceData = data.coordinacion as unknown as Coordinacion[];
 
   let tableSource: TableSource = {
-    head: [
-      "Cédula",
-      "Correo",
-      "Nombre",
-      "Teléfono",
-    ],
+    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -56,12 +51,7 @@
   };
 
   $: tableSource = {
-    head: [
-      "Cédula",
-      "Correo",
-      "Nombre",
-      "Teléfono",
-    ],
+    head: ["Cédula", "Correo", "Nombre", "Teléfono"],
     body: tableMapperValues(sourceData, [
       "cedula",
       "correo",
@@ -70,21 +60,24 @@
     ]),
   };
 
-  const handleClick= (e: CustomEvent)=>{
+  const handleClick = (e: CustomEvent) => {
     cedula = e.detail[0].split(/^(V-|E-)/g)[2];
-    identidad = e.detail[0].split(/^(V-|E-)/g)[1].replace("-", "")
+    identidad = e.detail[0].split(/^(V-|E-)/g)[1].replace("-", "");
     coord = {
       cedula: "",
       correo: e.detail[1],
       nombre: e.detail[2],
       telefono: e.detail[3],
     };
-  }
+  };
 </script>
+
 <svelte:head>
   <title>Editar coordinador | Super usuario | IUTEPAS</title>
 </svelte:head>
-<div class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white">
+<div
+  class="container lg:w-2/3 md:w-3/4 mx-auto px-4 py-8 flex flex-col lg:flex-row justify-evenly items-center gap-3 rounded-xl bg-white"
+>
   {#if form?.message}
     <Toast position="t" />
   {/if}
@@ -149,7 +142,9 @@
   </div>
 
   <div class="p-8 rounded-xl shadow h-full w-full">
-    <h2 class="text-2xl font-semibold mb-4 text-center">Coordinadores registrados</h2>
-    <Table source={tableSource} interactive={true} on:selected={handleClick} />
+    <h2 class="text-2xl font-semibold mb-4 text-center">
+      Coordinadores registrados
+    </h2>
+    <Table source={tableSource} interactive={true} on:selected={handleClick} regionBody="capitalize" />
   </div>
 </div>

@@ -4,9 +4,9 @@
   import type { TableSource } from "@skeletonlabs/skeleton";
   import pascalConFondo from "$lib/images/pascalConFondo.png";
 
-  import { Icon } from '@steeze-ui/svelte-icon'
+  import { Icon } from "@steeze-ui/svelte-icon";
 
-  import { Download } from '@steeze-ui/tabler-icons'
+  import { Download } from "@steeze-ui/tabler-icons";
 
   export let data: PageData;
 
@@ -59,24 +59,23 @@
     document.querySelector(".app-bar")?.classList.toggle("hidden");
   };
 </script>
+
 <svelte:head>
   <title>Histórico de notas | Estudiantes | IUTEPAS</title>
 </svelte:head>
 <main class="h-[calc(100vh-80px)] relative print:z-1200">
   <button
-    bind:this="{printBtn}"
+    bind:this={printBtn}
     class="btn bg-pink-600 absolute top-5 right-5 text-white save"
-    on:click="{print}">
-    
-    <Icon class='w-8 h-8' src={Download}/>
-
-    </button
+    on:click={print}
   >
+    <Icon class="w-8 h-8" src={Download} />
+  </button>
   <header
-    bind:this="{header}"
+    bind:this={header}
     class="w-[800px] bg-white py-5 justify-start items-center px-8 hidden"
   >
-    <img src="{pascalConFondo}" alt="" class="h-[fit-content] w-[200px]" />
+    <img src={pascalConFondo} alt="" class="h-[fit-content] w-[200px]" />
     <section class="text-center w-7/11">
       <h2 class="text-2xl">S.C. IUTEPAS</h2>
       <p class="text-sm">
@@ -107,7 +106,7 @@
   </h2>
 
   <Table
-    source="{tableSimple}"
+    source={tableSimple}
     class="lg:w-9/12 lg:mx-auto text-lg print:text-sm print:w-full"
     id="pdf"
     regionCell="!text-lg print-cell"
@@ -129,13 +128,15 @@
       width: 800px !important;
       margin: 0 auto;
     }
-    
-    :global(body){background-color: white;}
-    :global(.main-element){
+
+    :global(body) {
+      background-color: white;
+    }
+    :global(.main-element) {
       background-image: none !important;
     }
 
-    :global(.print-cell){
+    :global(.print-cell) {
       font-size: 14px !important;
     }
   }

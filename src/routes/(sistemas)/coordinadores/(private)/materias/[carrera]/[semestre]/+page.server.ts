@@ -15,11 +15,11 @@ export const load = (async ({
       params.carrera
     }' del ${getSemester(params.semestre)}`
   );
-  const { ok,data } = await client.GET("/api/materias");
+  const { ok, data } = await client.GET("/api/materias");
   const { data: dataDocentes } = await client.GET("/api/docente");
   if (!ok) {
-    triggerToast('No hay materias')
-    throw redirect(302, '/coordinadores/materias')
+    triggerToast("No hay materias");
+    throw redirect(302, "/coordinadores/materias");
   }
 
   const materiasData: Materia[] = data.materias;

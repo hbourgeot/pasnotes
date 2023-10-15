@@ -27,12 +27,15 @@
     try {
       const payload = new FormData();
       payload.append("cedula_estudiante", formData.cedula_estudiante);
-      payload.append("nombre_campo", formData.nombre_campo)
-      payload.append("valor", formData.valor.toString())
-      payload.append("materia", formData.materia)
+      payload.append("nombre_campo", formData.nombre_campo);
+      payload.append("valor", formData.valor.toString());
+      payload.append("materia", formData.materia);
       payload.append("peticion", idPeticion.toString());
-      const response = await fetch("/api/notas", { method: "POST", body: payload})
-      let {message} = await response.json();
+      const response = await fetch("/api/notas", {
+        method: "POST",
+        body: payload,
+      });
+      let { message } = await response.json();
       triggerToast(message);
     } catch (e) {
       console.error(e);
@@ -51,7 +54,7 @@
 
 {#if $modalStore[0]}
   <div class="modal-example-form {cBase}">
-    <header class="{cHeader}">
+    <header class={cHeader}>
       {$modalStore[0].title ?? "(title missing)"}
     </header>
     <article>{$modalStore[0].body ?? "(body missing)"}</article>
@@ -63,7 +66,7 @@
           class="input p-2"
           type="text"
           readonly
-          bind:value="{formData.materia}"
+          bind:value={formData.materia}
         />
       </label>
       <label class="label">
@@ -72,7 +75,7 @@
           class="input p-2"
           type="text"
           readonly
-          bind:value="{formData.cedula_estudiante}"
+          bind:value={formData.cedula_estudiante}
         />
       </label>
       <label class="label">
@@ -80,7 +83,7 @@
         <input
           class="input p-2"
           type="text"
-          bind:value="{formData.nombre_campo}"
+          bind:value={formData.nombre_campo}
           readonly
         />
       </label>
@@ -89,7 +92,7 @@
         <input
           class="input p-2"
           type="number"
-          bind:value="{formData.valor}"
+          bind:value={formData.valor}
           min="0"
           max="20"
           placeholder="20"

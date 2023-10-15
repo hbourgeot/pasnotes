@@ -13,8 +13,14 @@ export const load = (async ({ locals: { estudiante, client }, cookies }) => {
     headers
   );
 
-  const { ok: carOk, data: { carreras } } = await client.GET("/api/carreras")
-  const carrera: {id: string, nombre: string} = carreras.find((carrera: {id:string,nombre:string}) => carrera.id == estudiante.carrera)
+  const {
+    ok: carOk,
+    data: { carreras },
+  } = await client.GET("/api/carreras");
+  const carrera: { id: string; nombre: string } = carreras.find(
+    (carrera: { id: string; nombre: string }) =>
+      carrera.id == estudiante.carrera
+  );
 
   if (!ok) return { estudiante, materias: [] };
 
@@ -26,6 +32,6 @@ export const load = (async ({ locals: { estudiante, client }, cookies }) => {
       download: "",
     })),
     ciclo: data.ciclo,
-    carrera
+    carrera,
   };
 }) satisfies PageServerLoad;

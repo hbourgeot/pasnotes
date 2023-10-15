@@ -8,14 +8,17 @@
 
   export let data: PageData;
 
-
   const materiaData = data.materias.map((materia) => ({
     ...materia,
     codigo: materia.id,
     nombre: materia.nombre,
     dia: materia.dia2 ? `${materia.dia}, ${materia.dia2}` : materia.dia,
-    hora_inicio: materia.dia2 ? `${materia.hora_inicio}, ${materia.hora_inicio2}` : materia.hora_inicio,
-    hora_fin: materia.dia2 ? `${materia.hora_fin}, ${materia.hora_fin2}` : materia.hora_fin,
+    hora_inicio: materia.dia2
+      ? `${materia.hora_inicio}, ${materia.hora_inicio2}`
+      : materia.hora_inicio,
+    hora_fin: materia.dia2
+      ? `${materia.hora_fin}, ${materia.hora_fin2}`
+      : materia.hora_fin,
     docente: data.docentes.find(
       (docente) => materia.id_docente === docente.cedula
     )?.nombre,
@@ -51,14 +54,15 @@
   const redirectTable = (e: CustomEvent) => {
     window.location.pathname = "/coordinadores/materias/" + e.detail[0];
   };
-
 </script>
+
 <svelte:head>
   <title>Materias de {data.carrera.nombre} | Coordinadores | IUTEPAS</title>
 </svelte:head>
 
-<div class="flex h-screen items-center p-10 flex-col w-full max-h-auto gap-6 relative">
-  
+<div
+  class="flex h-screen items-center p-10 flex-col w-full max-h-auto gap-6 relative"
+>
   <h2 class="text-3xl">
     Materias de la Carrera {data.carrera.nombre} ({data.semestre})
   </h2>

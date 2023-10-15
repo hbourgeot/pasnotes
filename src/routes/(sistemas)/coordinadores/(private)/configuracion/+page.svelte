@@ -8,9 +8,10 @@
   export let data: PageData;
   export let form: ActionData;
 
-  $: if(form?.message){
+  $: if (form?.message) {
     triggerToast(form.message);
-    if(form.ok) setTimeout(() => window.location.href = "/coordinadores", 3000)
+    if (form.ok)
+      setTimeout(() => (window.location.href = "/coordinadores"), 3000);
   }
 
   let config = data.config;
@@ -25,6 +26,7 @@
     }
   });
 </script>
+
 <svelte:head>
   <title>Configuraciones | Coordinadores | IUTEPAS</title>
 </svelte:head>
@@ -38,15 +40,15 @@
     <form
       id="docente-form"
       method="post"
-      use:enhance={({data}) => {
+      use:enhance={({ data }) => {
         // @ts-ignore
         const anio = document.getElementById("ciclo1")?.value;
         // @ts-ignore
         const ciclo = document.getElementById("ciclo2")?.value;
         data.append("ciclo", `${anio}-${ciclo}`);
-        return async({update}) => {
-            await update();
-        }
+        return async ({ update }) => {
+          await update();
+        };
       }}
       class="grid grid-cols-2 gap-3"
     >
@@ -56,14 +58,19 @@
           <select
             id="ciclo1"
             required
-            value="{config.ciclo.split("-")[0]}"
+            value={config.ciclo.split("-")[0]}
             class="select border-r-1 border-blue-300 border-solid"
           >
             {#each years as year}
-              <option value="{year}">{year}</option>
+              <option value={year}>{year}</option>
             {/each}
           </select>
-          <select id="ciclo2" value="{config.ciclo.split("-")[1]}" required class="select">
+          <select
+            id="ciclo2"
+            value={config.ciclo.split("-")[1]}
+            required
+            class="select"
+          >
             <option value="1">1</option>
             <option value="2">2</option>
           </select>
@@ -79,7 +86,7 @@
           min="5"
           max="100"
           step="1"
-          value="{config.porc1}"
+          value={config.porc1}
           required
         />
       </div>
@@ -91,7 +98,7 @@
           type="number"
           id="porc2"
           name="porc2"
-          value="{config.porc2}"
+          value={config.porc2}
           min="5"
           max="100"
           step="1"
@@ -109,7 +116,7 @@
           min="5"
           max="100"
           step="1"
-          value="{config.porc3}"
+          value={config.porc3}
           required
         />
       </div>
@@ -120,7 +127,7 @@
           type="date"
           id="cuota1"
           name="cuota1"
-          value="{config.cuota1}"
+          value={config.cuota1}
           required
         />
       </div>
@@ -131,7 +138,7 @@
           type="date"
           id="cuota2"
           name="cuota2"
-          value="{config.cuota2}"
+          value={config.cuota2}
           required
         />
       </div>
@@ -142,7 +149,7 @@
           type="date"
           id="cuota3"
           name="cuota3"
-          value="{config.cuota3}"
+          value={config.cuota3}
           required
         />
       </div>
@@ -153,7 +160,7 @@
           type="date"
           id="cuota4"
           name="cuota4"
-          value="{config.cuota4}"
+          value={config.cuota4}
           required
         />
       </div>
@@ -164,7 +171,7 @@
           type="date"
           id="cuota5"
           name="cuota5"
-          value="{config.cuota5}"
+          value={config.cuota5}
           required
         />
       </div>
@@ -177,20 +184,19 @@
           type="date"
           id="horario_inicio"
           name="horario_inicio"
-          value="{config.horario_inicio}"
+          value={config.horario_inicio}
           required
         />
       </div>
       <div>
-        <label for="horario_fin"
-          >Fecha de Cierre para inscribir horarios:</label
+        <label for="horario_fin">Fecha de Cierre para inscribir horarios:</label
         >
         <input
           class="input (date) h-10 p-2"
           type="date"
           id="horario_fin"
           name="horario_fin"
-          value="{config.horario_fin}"
+          value={config.horario_fin}
           required
         />
       </div>

@@ -37,10 +37,10 @@
               <a
                 class="no-underline text-[#0879bd]"
                 rel="prefetch"
-                href="{$page.url.pathname
-                  .split('/')
+                href={$page.url.pathname
+                  .split("/")
                   .slice(0, i + 1)
-                  .join('/')}"
+                  .join("/")}
               >
                 {#if segment.includes("usuario")}
                   {segment.charAt(0).toUpperCase() +
@@ -52,7 +52,7 @@
               </a>
             </li>
             <li class="crumb-separator" aria-hidden>
-              <Icon src="{ChevronRight}" class="w-5 h-5" />
+              <Icon src={ChevronRight} class="w-5 h-5" />
             </li>
           {/if}
         {/if}
@@ -60,14 +60,14 @@
     </ol>
   </svelte:fragment>
   <a href="/" class="h-full flex flex-center">
-    <img src="{Logo}" alt="" class="logo" />
+    <img src={Logo} alt="" class="logo" />
   </a>
   <svelte:fragment slot="trail">
-    <form method="post" action="{`/superusuario/logout?nombre=${data.nombre}`}">
+    <form method="post" action={`/superusuario/logout?nombre=${data.nombre}`}>
       <button
         type="submit"
         class="bg-pink-600 text-gray-200 px-3 py-1 rounded-xl ml-4 h-[50px] text-light-50"
-        ><Icon class="w-6 h-6" src="{Logout}" /></button
+        ><Icon class="w-6 h-6" src={Logout} /></button
       >
     </form>
   </svelte:fragment>

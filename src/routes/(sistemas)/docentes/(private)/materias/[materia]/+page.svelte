@@ -17,7 +17,7 @@
   import ModalFile from "$lib/components/ModalFile.svelte";
   import { onMount } from "svelte";
   import { ExpandLess, ExpandMore } from "@steeze-ui/material-design-icons";
-  
+
   import { Icon } from "@steeze-ui/svelte-icon";
   import pascalConFondo from "$lib/images/pascalConFondo.png";
   import { FileDownload } from "@steeze-ui/tabler-icons";
@@ -81,8 +81,8 @@
   $: if (estudiante) {
     estudianteFind = data.estudiantes.find(
       (item: any) => item.cedula === estudiante
-      );
-    }
+    );
+  }
 
   $: sourceData = data.estudiantes.map((nota: any) => ({
     nombre: nota.nombre,
@@ -188,34 +188,38 @@
       myFile = myFile; // Force Svelte
       uploadForm.requestSubmit();
 
-      triggerToast("Planificacion cargada exitosamente")
+      triggerToast("Planificacion cargada exitosamente");
     } catch (error) {
       console.error("An error occurred:", error);
     }
   };
-  
-  const handleSubmit: SubmitFunction = ({formData, cancel}) => {
-    if(estudiante==""){
+
+  const handleSubmit: SubmitFunction = ({ formData, cancel }) => {
+    if (estudiante == "") {
       triggerToast("Por favor seleccione un estudiante");
       return cancel();
     }
 
-    if(toChange=="0"){
+    if (toChange == "0") {
       triggerToast("Por favor seleccione un corte");
       return cancel();
     }
 
-    return async({update}) => {
+    return async ({ update }) => {
       await update();
       estudiante = "";
-    }
-  }
+    };
+  };
 </script>
+
 <svelte:head>
   <title>{data.materia.nombre} | Docentes | IUTEPAS</title>
 </svelte:head>
-<header bind:this="{header}" class="w-[800px] bg-white py-5 justify-start items-center px-8 hidden">
-  <img src="{pascalConFondo}" alt="" class="h-[fit-content] w-[200px]" />
+<header
+  bind:this={header}
+  class="w-[800px] bg-white py-5 justify-start items-center px-8 hidden"
+>
+  <img src={pascalConFondo} alt="" class="h-[fit-content] w-[200px]" />
   <section class="text-center w-7/11">
     <h2 class="text-2xl">S.C. IUTEPAS</h2>
     <p class="text-sm">
@@ -228,7 +232,9 @@
     <p class="text-sm">Sector Barrancón, Cagua, Edo. Aragua, ZP 2122</p>
     <p class="text-sm">Telfs.: (0244) 395.93.89</p>
   </section>
-  <section class="text-center w-[fit-content] text-sm bg-blue-400 border-1 border-blue-400 border-solid h-auto rounded-lg">
+  <section
+    class="text-center w-[fit-content] text-sm bg-blue-400 border-1 border-blue-400 border-solid h-auto rounded-lg"
+  >
     <p class="text-light-50 align-text-top text-center h-[30px]">
       Fecha del reporte
     </p>
@@ -237,157 +243,170 @@
     </div>
   </section>
 </header>
-<main class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]">
+<main
+  class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]"
+>
   <section class="w-full p-5">
-    <h1 class="text-3xl capitalize font-bold text-primary-500">{data.materia.nombre}</h1>
+    <h1 class="text-3xl capitalize font-bold text-primary-500">
+      {data.materia.nombre}
+    </h1>
     {#if sourceData[0].cedula !== null}
-    <Table
-      source="{tableSource}"
-      interactive="{true}"
-      on:selected="{handleSelect}"
-    />
+      <Table
+        source={tableSource}
+        interactive={true}
+        on:selected={handleSelect}
+      />
     {:else}
-    <h3 class="text-xl font-bold">La materia no tiene estudiantes registrados</h3>
+      <h3 class="text-xl font-bold">
+        La materia no tiene estudiantes registrados
+      </h3>
     {/if}
   </section>
   <section class="w-full sticky">
-    <div class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5">
+    <div
+      class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5"
+    >
       <button
-      bind:this="{printBtn}"
-      class="btn bg-pink-600 text-white save"
-      on:click="{print}">
-    
-        <Icon class='w-8 h-8' src={FileDownload}/>
+        bind:this={printBtn}
+        class="btn bg-pink-600 text-white save"
+        on:click={print}
+      >
+        <Icon class="w-8 h-8" src={FileDownload} />
 
         Descargar Notas
       </button>
     </div>
     {#if sourceData[0].cedula !== null}
-    <form
-      use:enhance={handleSubmit}
-      method="post"
-      class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white"
-    >
-      <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
-        Asignacion de Notas
-      </h3>
-      <span class="w-[30%]">
-        <label for="estudiante"> Estudiante </label>
-        <input
-          readonly
-          bind:value="{estudiante}"
-          type="text"
-          id="estudiante"
-          name="cedula_estudiante"
-          required
-          class="w-full input"
-        />
-      </span>
-      <span class="w-[30%]">
-        <label for="corte"> Corte </label>
-        <select
-          class="select"
-          name="nombre_campo"
-          required
-          id="corte"
-          bind:value="{toChange}"
-        >
-          <option value="0" disabled>Seleccione una nota a cambiar</option>
-          <option value="1" disabled="{estudianteFind.nota1 != 0}"
-            >1er corte</option
-          >
-          <option value="2" disabled="{estudianteFind.nota2 != 0}"
-            >2do corte</option
-          >
-          <option value="3" disabled="{estudianteFind.nota3 != 0}"
-            >3er corte</option
-          >
-        </select>
-      </span>
-      <span class="w-[30%]">
-        <label for="calificacion"> Nota </label>
-        <input
-          name="valor"
-          type="number"
-          required
-          bind:value="{nota}"
-          id="calificacion"
-          class="input"
-        />
-      </span>
-
-      <div class="w-full p-4 flex justify-center gap-8 mt-8">
-        <button type="button"
-          on:click="{() => {
-            estudiante = '';
-            nota = 0;
-            toChange = '0';
-          }}"
-          class="bg-pink-600 p-4 w-52 text-white rounded-xl">Cancelar</button
-        >
-        <button class="bg-[#006FB0] text-white p-4 w-52 rounded-xl" formaction="?/notas"
-          >Editar</button
-        >
-      </div>
-      <details
-        class="flex w-full my-5 mx-auto flex-col items-center justify-center"
+      <form
+        use:enhance={handleSubmit}
+        method="post"
+        class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white"
       >
-        <summary
-          class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
-        >
-          <span class="expand">
-            <Icon src="{ExpandMore}" class="icon " />
-          </span>
-          <span class="expanded">
-            <Icon src="{ExpandLess}" class="icon " />
-          </span>
-          ¿Hay alguna nota errónea?
-        </summary>
-
-        <form
-          action="?/peticion"
-          method="post"
-          class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto rounded-2xl gap-2"
-        >
-          <span class="w-[48%]">
-            <label for="estudiante_peticion"> Estudiante </label>
-            <input
-              readonly
-              bind:value="{estudiante}"
-              type="text"
-              id="estudiante_peticion"
-              name="id_estudiante"
-              class="w-full input"
-            />
-          </span>
-          <span class="w-[48%]">
-            <label for="corte_peticion"> Corte </label>
-            <select class="select" name="nombre_campo" id="corte_peticion">
-              <option value="0" disabled>Seleccione una nota a cambiar</option>
-              <option value="1" disabled="{estudianteFind.nota1 == 0}"
-                >1er corte</option
-              >
-              <option value="2" disabled="{estudianteFind.nota2 == 0}"
-                >2do corte</option
-              >
-              <option value="3" disabled="{estudianteFind.nota3 == 0}"
-                >3er corte</option
-              >
-            </select>
-          </span>
-          <span class="w-full">
-            <label for="descripcion_peticion"> Descripción </label>
-            <textarea
-              rows="3"
-              name="descripcion"
-              id="descripcion_peticion"
-              class="input rounded-2xl p-3"></textarea>
-          </span>
-          <button type="submit" class="btn variant-filled">Pedir permiso</button
+        <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
+          Asignacion de Notas
+        </h3>
+        <span class="w-[30%]">
+          <label for="estudiante"> Estudiante </label>
+          <input
+            readonly
+            bind:value={estudiante}
+            type="text"
+            id="estudiante"
+            name="cedula_estudiante"
+            required
+            class="w-full input"
+          />
+        </span>
+        <span class="w-[30%]">
+          <label for="corte"> Corte </label>
+          <select
+            class="select"
+            name="nombre_campo"
+            required
+            id="corte"
+            bind:value={toChange}
           >
-        </form>
-      </details>
-    </form>
+            <option value="0" disabled>Seleccione una nota a cambiar</option>
+            <option value="1" disabled={estudianteFind.nota1 != 0}
+              >1er corte</option
+            >
+            <option value="2" disabled={estudianteFind.nota2 != 0}
+              >2do corte</option
+            >
+            <option value="3" disabled={estudianteFind.nota3 != 0}
+              >3er corte</option
+            >
+          </select>
+        </span>
+        <span class="w-[30%]">
+          <label for="calificacion"> Nota </label>
+          <input
+            name="valor"
+            type="number"
+            required
+            bind:value={nota}
+            id="calificacion"
+            class="input"
+          />
+        </span>
+
+        <div class="w-full p-4 flex justify-center gap-8 mt-8">
+          <button
+            type="button"
+            on:click={() => {
+              estudiante = "";
+              nota = 0;
+              toChange = "0";
+            }}
+            class="bg-pink-600 p-4 w-52 text-white rounded-xl">Cancelar</button
+          >
+          <button
+            class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
+            formaction="?/notas">Editar</button
+          >
+        </div>
+        <details
+          class="flex w-full my-5 mx-auto flex-col items-center justify-center"
+        >
+          <summary
+            class=" flex w-full h-[40px] items-center gap-4 pl-4 rounded border border-gray-200"
+          >
+            <span class="expand">
+              <Icon src={ExpandMore} class="icon " />
+            </span>
+            <span class="expanded">
+              <Icon src={ExpandLess} class="icon " />
+            </span>
+            ¿Hay alguna nota errónea?
+          </summary>
+
+          <form
+            action="?/peticion"
+            method="post"
+            class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto rounded-2xl gap-2"
+          >
+            <span class="w-[48%]">
+              <label for="estudiante_peticion"> Estudiante </label>
+              <input
+                readonly
+                bind:value={estudiante}
+                type="text"
+                id="estudiante_peticion"
+                name="id_estudiante"
+                class="w-full input"
+              />
+            </span>
+            <span class="w-[48%]">
+              <label for="corte_peticion"> Corte </label>
+              <select class="select" name="nombre_campo" id="corte_peticion">
+                <option value="0" disabled>Seleccione una nota a cambiar</option
+                >
+                <option value="1" disabled={estudianteFind.nota1 == 0}
+                  >1er corte</option
+                >
+                <option value="2" disabled={estudianteFind.nota2 == 0}
+                  >2do corte</option
+                >
+                <option value="3" disabled={estudianteFind.nota3 == 0}
+                  >3er corte</option
+                >
+              </select>
+            </span>
+            <span class="w-full">
+              <label for="descripcion_peticion"> Descripción </label>
+              <textarea
+                rows="3"
+                name="descripcion"
+                id="descripcion_peticion"
+                class="input rounded-2xl p-3"
+              />
+            </span>
+            <button type="submit" class="btn variant-filled"
+              >Pedir permiso</button
+            >
+          </form>
+        </details>
+      </form>
     {/if}
     <div
       class="bg-white flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100"
@@ -395,26 +414,26 @@
       <h3 class="w-full pt-4 pl-8 text-black pb-4 text-2xl">
         Cargar planificación
       </h3>
-      <button class="btn variant-filled" on:click="{() => handleForm()}"
+      <button class="btn variant-filled" on:click={() => handleForm()}
         >Cargar</button
-        >
+      >
     </div>
   </section>
   <form
     action="?/carga"
     method="post"
-    use:enhance="{({ data }) => {
-      data.set('files', myFile);
+    use:enhance={({ data }) => {
+      data.set("files", myFile);
       return async ({ update }) => {
         await update();
       };
-    }}"
+    }}
     class="hidden"
     bind:this={uploadForm}
   >
-    <FileDropzone name="files" bind:files="{myFile}" />
+    <FileDropzone name="files" bind:files={myFile} />
   </form>
-  <Modal components="{modalComponentRegistry}" />
+  <Modal components={modalComponentRegistry} />
 </main>
 
 <style>
