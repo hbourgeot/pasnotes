@@ -77,7 +77,6 @@ export const load: PageServerLoad = async ({
       ?.nombre,
   }));
 
-
   console.log(materias);
 
   systemLogger.warn(
@@ -103,49 +102,45 @@ export const actions: Actions = {
       Authorization: cookies.get("access_token"),
     };
 
-     const {
-       ok,
-       data: { materias: materiasData },
-     } = await client.GET(`/api/materias/inscribir/${estudiante.cedula}`);
-     if (!ok) return fail(400, { message: "Error desconocido" });
+    const {
+      ok,
+      data: { materias: materiasData },
+    } = await client.GET(`/api/materias/inscribir/${estudiante.cedula}`);
+    if (!ok) return fail(400, { message: "Error desconocido" });
 
-     let materias = [];
-     for (const materia of materiasIDs) {
-       materias.push(materiasData.find((mat: Materia) => mat.id == materia));
-     }
+    let materias = [];
+    for (const materia of materiasIDs) {
+      materias.push(materiasData.find((mat: Materia) => mat.id == materia));
+    }
 
-     // Primer bucle para verificar conflictos
-     for (const materia of materiasIDs) {
-       const currentMateria = materias.find((mat) => mat.id === materia);
+    // Primer bucle para verificar conflictos
+    for (const materia of materiasIDs) {
+      const currentMateria = materias.find((mat) => mat.id === materia);
 
-       const materiaEnConflicto = checkMateriaConflict(
-         currentMateria,
-         materias
-       ); // Usando la función que definimos antes
+      const materiaEnConflicto = checkMateriaConflict(currentMateria, materias); // Usando la función que definimos antes
 
-       if (materiaEnConflicto) {
-         return fail(400, {
-           message: `La materia ${currentMateria.nombre} choca con ${materiaEnConflicto.nombre}`,
-         });
-       }
-     }
+      if (materiaEnConflicto) {
+        return fail(400, {
+          message: `La materia ${currentMateria.nombre} choca con ${materiaEnConflicto.nombre}`,
+        });
+      }
+    }
 
-     // Segundo bucle para hacer el POST si todo está bien
-     for (const materia of materiasIDs) {
-       const { ok, data } = await addMateria(client, materia, headers); // Usando la función que definimos antes
-       if (!ok) {
-         return fail(400, { message: data.message });
-       }
-     }
+    // Segundo bucle para hacer el POST si todo está bien
+    for (const materia of materiasIDs) {
+      const { ok, data } = await addMateria(client, materia, headers); // Usando la función que definimos antes
+      if (!ok) {
+        return fail(400, { message: data.message });
+      }
+    }
 
-     systemLogger.warn(
-       `El estudiante ${estudiante.nombre} ha terminado de registrar su horario satisfactoriamente`
-     );
+    systemLogger.warn(
+      `El estudiante ${estudiante.nombre} ha terminado de registrar su horario satisfactoriamente`
+    );
 
-     return { message: "¡Su horario ha sido inscrito exitosamente!" };
+    return { message: "¡Su horario ha sido inscrito exitosamente!" };
   },
 };
-
 
 // Función para comprobar si hay conflicto de horarios entre materias
 function checkMateriaConflict(currentMateria: Materia, materias: Materia[]) {
@@ -153,22 +148,32 @@ function checkMateriaConflict(currentMateria: Materia, materias: Materia[]) {
     (mat) => mat.id !== currentMateria.id && mat.dia === currentMateria.dia
   );
 
-  const [currentHoraInicioH, currentHoraInicioM] = currentMateria.hora_inicio.split(":").map(Number);
-  const [currentHoraFinalH, currentHoraFinalM] = currentMateria.hora_fin.split(":").map(Number);
+  const [currentHoraInicioH, currentHoraInicioM] = currentMateria.hora_inicio
+    .split(":")
+    .map(Number);
+  const [currentHoraFinalH, currentHoraFinalM] = currentMateria.hora_fin
+    .split(":")
+    .map(Number);
 
   return demasMaterias.find((mat) => {
-    const [matHoraInicioH, matHoraInicioM] = mat.hora_inicio.split(":").map(Number);
+    const [matHoraInicioH, matHoraInicioM] = mat.hora_inicio
+      .split(":")
+      .map(Number);
     const [matHoraFinalH, matHoraFinalM] = mat.hora_fin.split(":").map(Number);
 
     return (
-      (matHoraInicioH > currentHoraInicioH ||
-        (matHoraInicioH === currentHoraInicioH && matHoraInicioM >= currentHoraInicioM)) &&
-      (matHoraInicioH < currentHoraFinalH ||
-        (matHoraInicioH === currentHoraFinalH && matHoraInicioM < currentHoraFinalM)) ||
-      (matHoraFinalH > currentHoraInicioH ||
-        (matHoraFinalH === currentHoraInicioH && matHoraFinalM > currentHoraInicioM)) &&
-      (matHoraFinalH < currentHoraFinalH ||
-        (matHoraFinalH === currentHoraFinalH && matHoraFinalM <= currentHoraFinalM))
+      ((matHoraInicioH > currentHoraInicioH ||
+        (matHoraInicioH === currentHoraInicioH &&
+          matHoraInicioM >= currentHoraInicioM)) &&
+        (matHoraInicioH < currentHoraFinalH ||
+          (matHoraInicioH === currentHoraFinalH &&
+            matHoraInicioM < currentHoraFinalM))) ||
+      ((matHoraFinalH > currentHoraInicioH ||
+        (matHoraFinalH === currentHoraInicioH &&
+          matHoraFinalM > currentHoraInicioM)) &&
+        (matHoraFinalH < currentHoraFinalH ||
+          (matHoraFinalH === currentHoraFinalH &&
+            matHoraFinalM <= currentHoraFinalM)))
     );
   });
 }

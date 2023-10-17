@@ -61,7 +61,7 @@
 </div>
 
 <style>
-.main{
-  min-height: calc(100vh - 80px);
-}
+  .main {
+    min-height: calc(100vh - 80px);
+  }
 </style>

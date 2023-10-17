@@ -145,6 +145,11 @@
     <h2 class="text-2xl font-semibold mb-4 text-center">
       Coordinadores registrados
     </h2>
-    <Table source={tableSource} interactive={true} on:selected={handleClick} regionBody="capitalize" />
+    <Table
+      source={tableSource}
+      interactive={true}
+      on:selected={handleClick}
+      regionBody="capitalize"
+    />
   </div>
 </div>

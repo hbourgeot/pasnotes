@@ -119,7 +119,7 @@
     document.querySelector(".app-bar")?.classList.toggle("hidden");
 
     window.print();
-    
+
     header.classList.toggle("hidden");
     header.classList.toggle("flex");
 
@@ -247,8 +247,10 @@
   class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]"
 >
   <section class="w-full p-5">
-    <h1 class="text-3xl  font-bold text-primary-500 my-4">
-      Notas de estudiantes en <span class="text-secondary-500 normal-case">{data.materia.nombre}</span>
+    <h1 class="text-3xl font-bold text-primary-500 my-4">
+      Notas de estudiantes en <span class="text-secondary-500 normal-case"
+        >{data.materia.nombre}</span
+      >
     </h1>
     {#if sourceData[0].cedula !== null}
       <Table
@@ -263,7 +265,7 @@
       </h3>
     {/if}
   </section>
-  <section class="w-full sticky" bind:this="{sidebar}">
+  <section class="w-full sticky" bind:this={sidebar}>
     <div
       class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5"
     >

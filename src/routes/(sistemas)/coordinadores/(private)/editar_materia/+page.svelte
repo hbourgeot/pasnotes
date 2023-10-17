@@ -92,7 +92,9 @@
     ),
   };
 
-  $: listMaterias = data.list.filter((mat: Materia) => mat.semestre < materia.semestre);
+  $: listMaterias = data.list.filter(
+    (mat: Materia) => mat.semestre < materia.semestre
+  );
 
   const carreras = data.carreras ?? [];
   let modalComponentRegistry: Record<string, ModalComponent> = {
@@ -104,7 +106,9 @@
     },
   };
 
-  $: listMaterias = data.list.filter((mat: Materia) => mat.semestre < materia.semestre && mat.id !== materia.id);
+  $: listMaterias = data.list.filter(
+    (mat: Materia) => mat.semestre < materia.semestre && mat.id !== materia.id
+  );
   $: modalComponentRegistry = {
     // Custom Modal 1
     modalList: {

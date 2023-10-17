@@ -110,7 +110,7 @@
     font-weight: 600;
     padding-left: 16px;
   }
-  
+
   details .expanded {
     display: none;
   }

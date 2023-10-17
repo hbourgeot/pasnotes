@@ -40,7 +40,7 @@ export const load: PageServerLoad = async ({
       nombre: materia.nombre,
       id: materia.id,
       disponible: materia?.cantidad_estudiantes !== materia?.maximo,
-      semestre: materia.semestre
+      semestre: materia.semestre,
     }));
 
   const {
