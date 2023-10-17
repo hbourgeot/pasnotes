@@ -2,7 +2,7 @@
   import { Table, tableMapperValues } from "@skeletonlabs/skeleton";
   import type { TableSource } from "@skeletonlabs/skeleton";
   import type { PageData } from "./$types";
-  import type { Materia } from "../../../app";
+  import type { Materia } from "../../../../../app";
   import { goto } from "$app/navigation";
 
   export let data: PageData;
@@ -73,22 +73,3 @@
     {/if}
   </section>
 </main>
-
-<style scoped>
-  .container {
-    width: 90%;
-    background-color: rgba(209, 203, 203, 10);
-    margin: 0 auto;
-  }
-
-  ul > li {
-    width: 80px;
-    height: 80px;
-    background-color: #194bca;
-    color: white;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
