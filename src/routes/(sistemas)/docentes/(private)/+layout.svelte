@@ -76,8 +76,6 @@
       body: form,
     });
   };
-
-  handleSecondModal();
 </script>
 
 <Toast position="t" />

@@ -1098,3 +1098,17 @@
 {"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"14-10-2023 12:36:50"}
 {"level":"warn","message":"El estudiante elibeth leonela curalli jaimes entró a registrar su horario","timestamp":"14-10-2023 12:37:46"}
 {"level":"warn","message":"El estudiante elibeth leonela curalli jaimes ha terminado de registrar su horario satisfactoriamente","timestamp":"14-10-2023 12:38:32"}
+{"level":"info","message":"El docente alvaro pacheco ha iniciado sesion","timestamp":"16-10-2023 23:06:34"}
+{"level":"info","message":"alvaro pacheco ha entrado a ver las materias que imparte","timestamp":"16-10-2023 23:06:36"}
+{"level":"info","message":"El docente alvaro pacheco está viendo su materia 01EDF121","timestamp":"16-10-2023 23:06:39"}
+{"level":"info","message":"El docente alvaro pacheco está viendo su materia 01EDF121","timestamp":"16-10-2023 23:10:41"}
+{"level":"info","message":"El docente alvaro pacheco está viendo su materia 01EDF121","timestamp":"16-10-2023 23:12:53"}
+{"level":"info","message":"El docente alvaro pacheco está viendo su materia 01EDF121","timestamp":"16-10-2023 23:12:55"}
+{"level":"info","message":"El docente alvaro pacheco ha iniciado sesion","timestamp":"17-10-2023 04:42:40"}
+{"level":"info","message":"alvaro pacheco ha entrado a ver las materias que imparte","timestamp":"17-10-2023 04:42:45"}
+{"level":"info","message":"El docente alvaro pacheco está viendo su materia 01EDF121","timestamp":"17-10-2023 04:42:49"}
+{"level":"info","message":"El docente alvaro pacheco está viendo su materia 01EDF121","timestamp":"17-10-2023 04:43:01"}
+{"level":"info","message":"El personal de control de estudio yezenia alvarez ha iniciado sesion","timestamp":"17-10-2023 04:47:45"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver las materias","timestamp":"17-10-2023 04:47:48"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver las materias de la carrera con código '1' del 1er semestre","timestamp":"17-10-2023 04:47:50"}
+{"level":"info","message":"yezenia alvarez ha entrado a ver la materia 01ETI122","timestamp":"17-10-2023 04:47:52"}
