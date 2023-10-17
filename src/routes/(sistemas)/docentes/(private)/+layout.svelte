@@ -35,13 +35,19 @@
       props: { cedulaEstudiante, materia, nombreCampo, idPeticion },
     },
   };
+  function capitalizeWords(str: string) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
 
   const handleModal = async () => {
     const modal: ModalSettings = {
       type: "component",
       // Pass the component registry key as a string:
       component: "modalForm",
-      title: `¡Oye ${data.nombre}!`,
+      title: `¡Oye ${capitalizeWords(data.nombre)}!`,
       body: `Tu petición #${data.peticion?.id} ha sido aprobada`,
       buttonTextCancel: "Cancelar",
       buttonTextSubmit: "Enviar",
@@ -53,7 +59,7 @@
     await new Promise<Boolean>((resolve) => {
       const modal: ModalSettings = {
         type: "confirm",
-        title: `¡Oh uh ${data.nombre}!`,
+        title: `Petición negada`,
         body: `Tu petición #${data.peticion?.id} para cambiar la nota del estudiante ${data.peticion?.id_estudiante} en la materia ${data.peticion?.id_materia} fue denegada, comunícate con el personal de control de estudios para saber el motivo.`,
         buttonTextConfirm: "OK",
         buttonTextCancel: "Cerrar",
@@ -70,6 +76,8 @@
       body: form,
     });
   };
+
+  handleSecondModal();
 </script>
 
 <Toast position="t" />
@@ -99,10 +107,10 @@
               <a
                 class="no-underline text-[#0879bd] font-bold"
                 rel="prefetch"
-                href={$page.url.pathname
-                  .split("/")
+                href="{$page.url.pathname
+                  .split('/')
                   .slice(0, i + 1)
-                  .join("/")}
+                  .join('/')}"
               >
                 {#if segment.includes("_")}
                   {segment.charAt(0).toUpperCase() +
@@ -113,7 +121,7 @@
               </a>
             </li>
             <li class="crumb-separator" aria-hidden>
-              <Icon src={ChevronRight} class="w-5 h-5" />
+              <Icon src="{ChevronRight}" class="w-5 h-5" />
             </li>
           {/if}
         {/if}
@@ -121,22 +129,22 @@
     </ol>
   </svelte:fragment>
   <a href="/" class="h-full flex flex-center">
-    <img src={Logo} alt="" class="logo" />
+    <img src="{Logo}" alt="" class="logo" />
   </a>
   <svelte:fragment slot="trail">
-    <form method="post" action={`/docentes/logout?nombre=${data.nombre}`}>
+    <form method="post" action="{`/docentes/logout?nombre=${data.nombre}`}">
       <button
         type="submit"
         class="bg-pink-600 text-gray-200 px-3 py-1 rounded-2xl ml-4 h-[50px] text-light-50"
       >
-        <Icon class="w-8 h-8" src={Logout} />
+        <Icon class="w-8 h-8" src="{Logout}" />
       </button>
     </form>
   </svelte:fragment>
 </AppBar>
 <slot />
 {#if data.peticion?.estado === "Aprobado"}
-  <Modal components={modalComponentRegistry} />
+  <Modal components="{modalComponentRegistry}" />
 {/if}
 
 <style>
