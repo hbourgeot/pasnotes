@@ -19,6 +19,9 @@ const config = {
       postcss: true,
     }),
   ],
+  vitePlugin: {
+    
+  }
 };
 
 export default config;
