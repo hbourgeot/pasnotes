@@ -35,13 +35,19 @@
       props: { cedulaEstudiante, materia, nombreCampo, idPeticion },
     },
   };
+  function capitalizeWords(str: string) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
 
   const handleModal = async () => {
     const modal: ModalSettings = {
       type: "component",
       // Pass the component registry key as a string:
       component: "modalForm",
-      title: `¡Oye ${data.nombre}!`,
+      title: `¡Oye ${capitalizeWords(data.nombre)}!`,
       body: `Tu petición #${data.peticion?.id} ha sido aprobada`,
       buttonTextCancel: "Cancelar",
       buttonTextSubmit: "Enviar",
@@ -53,7 +59,7 @@
     await new Promise<Boolean>((resolve) => {
       const modal: ModalSettings = {
         type: "confirm",
-        title: `¡Oh uh ${data.nombre}!`,
+        title: `Petición negada`,
         body: `Tu petición #${data.peticion?.id} para cambiar la nota del estudiante ${data.peticion?.id_estudiante} en la materia ${data.peticion?.id_materia} fue denegada, comunícate con el personal de control de estudios para saber el motivo.`,
         buttonTextConfirm: "OK",
         buttonTextCancel: "Cerrar",

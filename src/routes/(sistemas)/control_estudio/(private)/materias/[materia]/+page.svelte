@@ -143,7 +143,7 @@
     nota2: nota.nota2,
     nota3: nota.nota3,
     promedio: nota.promedio,
-  }))
+  }));
 
   const handleSubmit: SubmitFunction = async ({ cancel }) => {
     let response = await new Promise<string>((resolve) => {
@@ -318,7 +318,7 @@
     appearance: none;
   }
 
-  main{
+  main {
     min-height: calc(100vh - 80px);
   }
 

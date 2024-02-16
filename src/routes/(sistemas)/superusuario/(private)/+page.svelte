@@ -108,10 +108,6 @@
     padding-left: 16px;
   }
 
-  button {
-    background-color: rgba(88, 119, 221, 0.7);
-  }
-
   details .expanded {
     display: none;
   }

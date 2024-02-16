@@ -40,12 +40,12 @@
 
   let tableSource: TableSource = {
     head: [
-      "Nombre del Estudiante",
-      "Cédula del Estudiante",
-      "Nota del 1er corte",
-      "Nota del 2do corte",
-      "Nota del 3er corte",
-      "Promedio de notas",
+      "Nombre completo",
+      "C.I.",
+      "1er corte",
+      "2do corte",
+      "3er corte",
+      "Promedio",
     ],
     body: tableMapperValues(sourceData, [
       "nombre",
@@ -62,14 +62,9 @@
   let nota: number = 0;
   let toChange: string = "0";
 
-  let files: FileList;
   let uploadForm: HTMLFormElement;
   let myFile: any;
   let downloadFile: string;
-  let downloadLink: any;
-  let nota1: number;
-  let nota2: number;
-  let nota3: number;
 
   let estudianteFind: any = {
     nombre: "",
@@ -95,12 +90,12 @@
 
   $: tableSource = {
     head: [
-      "Nombre del Estudiante",
-      "Cédula del Estudiante",
-      "Nota del 1er corte",
-      "Nota del 2do corte",
-      "Nota del 3er corte",
-      "Promedio de notas",
+      "Nombre completo",
+      "C.I.",
+      "1er corte",
+      "2do corte",
+      "3er corte",
+      "Promedio",
     ],
     body: tableMapperValues(sourceData, [
       "nombre",
@@ -114,17 +109,22 @@
 
   let printBtn: HTMLButtonElement;
   let header: HTMLElement;
+  let sidebar: HTMLElement;
 
   const print = () => {
     header.classList.toggle("hidden");
     header.classList.toggle("flex");
+
+    sidebar.classList.toggle("hidden");
     document.querySelector(".app-bar")?.classList.toggle("hidden");
-    document.querySelector(".formField")?.classList.toggle("hidden");
+
     window.print();
+
     header.classList.toggle("hidden");
     header.classList.toggle("flex");
+
+    sidebar.classList.toggle("hidden");
     document.querySelector(".app-bar")?.classList.toggle("hidden");
-    document.querySelector(".formField")?.classList.toggle("hidden");
   };
 
   onMount(async () => {
@@ -247,14 +247,17 @@
   class="flex justify-center items-baseline bg-transparent h-[calc(100vh-80px)]"
 >
   <section class="w-full p-5">
-    <h1 class="text-3xl capitalize font-bold text-primary-500">
-      {data.materia.nombre}
+    <h1 class="text-3xl font-bold text-primary-500 my-4">
+      Notas de estudiantes en <span class="text-secondary-500 normal-case"
+        >{data.materia.nombre}</span
+      >
     </h1>
     {#if sourceData[0].cedula !== null}
       <Table
         source={tableSource}
         interactive={true}
         on:selected={handleSelect}
+        regionBody="capitalize"
       />
     {:else}
       <h3 class="text-xl font-bold">
@@ -262,7 +265,7 @@
       </h3>
     {/if}
   </section>
-  <section class="w-full sticky">
+  <section class="w-full sticky" bind:this={sidebar}>
     <div
       class="flex mt-16 flex-wrap justify-around w-[80%] mx-auto h-auto border rounded-2xl border-dark-100 bg-white p-5"
     >
@@ -303,6 +306,7 @@
             class="select"
             name="nombre_campo"
             required
+            disabled={!estudiante.length ? true : false}
             id="corte"
             bind:value={toChange}
           >
@@ -321,6 +325,7 @@
         <span class="w-[30%]">
           <label for="calificacion"> Nota </label>
           <input
+            disabled={!estudiante.length ? true : false}
             name="valor"
             type="number"
             required
@@ -333,6 +338,7 @@
         <div class="w-full p-4 flex justify-center gap-8 mt-8">
           <button
             type="button"
+            disabled={!estudiante.length ? true : false}
             on:click={() => {
               estudiante = "";
               nota = 0;
@@ -342,6 +348,7 @@
           >
           <button
             class="bg-[#006FB0] text-white p-4 w-52 rounded-xl"
+            disabled={!estudiante.length ? true : false}
             formaction="?/notas">Editar</button
           >
         </div>

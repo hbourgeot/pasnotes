@@ -196,7 +196,7 @@
 </svelte:head>
 <form
   class="mb-4 lg:w-2/3 <md:w-3/4 <sm:w-10/11 mx-auto p-5 flex flex-col items-center gap-5 h-[calc(100vh-80px)]"
-  use:enhance="{handleSubmit}"
+  use:enhance={handleSubmit}
   method="post"
 >
   <h3 class="label text-3xl bold my-4">
@@ -206,14 +206,14 @@
     {#if !data.horarioHecho}
       <button
         type="button"
-        on:click="{handleAdd}"
+        on:click={handleAdd}
         class="bg-blue-600 text-white px-4 py-2 rounded"
         >Seleccionar materias</button
       >
     {/if}
 
     <Table
-      source="{tableSimple}"
+      source={tableSimple}
       class="md:mx-auto"
       regionHeadCell="normal-case"
       regionBody="capitalize"
@@ -226,7 +226,7 @@
     {/if}
   {/if}
 </form>
-<Modal components="{modalComponentRegistry}" />
+<Modal components={modalComponentRegistry} />
 
 <style>
 </style>
